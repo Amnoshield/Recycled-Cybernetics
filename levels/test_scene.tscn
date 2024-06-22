@@ -1,19 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://hyckbp12hyty"]
+[gd_scene load_steps=6 format=3 uid="uid://hyckbp12hyty"]
 
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player.tscn" id="1_qjf0g"]
 [ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/enemy.tscn" id="2_rvdcj"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_06lub"]
 
+[sub_resource type="TileSet" id="TileSet_qwb80"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
+vertices = PackedVector2Array(336, -72, 345, 242, -149, 231, -131, -78)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-141, -89, 346, -82, 356, 253, -160, 241)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
 [node name="test_scene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_qjf0g")]
-position = Vector2(421, 265)
+position = Vector2(326, 118)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(243.943, 67.8232)
+position = Vector2(189, 120)
 scale = Vector2(30, 26)
 texture = SubResource("PlaceholderTexture2D_06lub")
 
 [node name="enemy" parent="." instance=ExtResource("2_rvdcj")]
-position = Vector2(94, 104)
+position = Vector2(55, 114)
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+tile_set = SubResource("TileSet_qwb80")
+format = 2
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(96, 69)
+navigation_polygon = SubResource("NavigationPolygon_rst2h")
+avoidance_layers = 2
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(167, 102, 210, 103, 210, 145, 167, 141)
+avoidance_layers = 2
