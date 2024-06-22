@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj2adqdmn3iqk"]
+
+[ext_resource type="Script" path="res://objects/player.gd" id="1_pjd8b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8nb"]
+size = Vector2(32, 32)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7m08q"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1mdqv"]
+font_size = 9
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_mask = 2
+script = ExtResource("1_pjd8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_mj8nb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = SubResource("PlaceholderTexture2D_7m08q")
+
+[node name="Label" type="Label" parent="CharacterBody2D/Sprite2D"]
+offset_left = -14.0
+offset_top = -16.0
+offset_right = 14.0
+offset_bottom = -3.0
+text = "Player"
+label_settings = SubResource("LabelSettings_1mdqv")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
