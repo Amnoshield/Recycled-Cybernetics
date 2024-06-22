@@ -81,6 +81,10 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 z_index = 100
 collision_mask = 2
+motion_mode = 1
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_block_on_wall = false
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_pjd8b")

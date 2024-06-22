@@ -9,7 +9,7 @@ func _ready():
 	$NavigationAgent2D.max_speed = speed
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	nav.set_target_position(get_node("../Player").position)
 	var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
 	velocity = relitive_pos.normalized()*speed
