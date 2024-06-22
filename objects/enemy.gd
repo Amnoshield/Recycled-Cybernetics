@@ -1,27 +1,25 @@
-extends CharacterBody2D
+extends Node2D
 
 @onready var nav:NavigationAgent2D = $NavigationAgent2D
-@export var AI_update_speed = 1
 @export var speed = 5
+@export var health = 10
 
 
 func _ready():
 	$NavigationAgent2D.max_speed = speed
-	$"Ai update".start(AI_update_speed)
-	_on_ai_update_timeout()
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	nav.set_target_position(get_node("../Player").position)
 	var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
 
-	
-	velocity = relitive_pos.limit_length(speed)
-	move_and_slide()
+	translate(relitive_pos.normalized()*delta*speed)
 
 
-func make_path(_position:Vector2):
-	nav.set_target_position(_position)
 
+func _on_area_2d_area_entered(area):
+	if area.name == "damager":
+		health -= area.damage
+		if health <= 0:
+			self.queue_free()
 
-func _on_ai_update_timeout():
-	make_path(get_node("../Player").position)

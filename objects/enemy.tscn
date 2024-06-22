@@ -9,15 +9,12 @@ size = Vector2(32, 32)
 font_size = 9
 shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x76qg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
 size = Vector2(32, 32)
 
-[node name="enemy" type="CharacterBody2D"]
-collision_layer = 4
-platform_on_leave = 2
-platform_floor_layers = 4294967040
+[node name="enemy" type="Node2D"]
 script = ExtResource("1_ej2j7")
-speed = 25
+speed = 80
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.997072, 0, 0.142165, 1)
@@ -32,15 +29,13 @@ text = "Enemy"
 label_settings = SubResource("LabelSettings_41dxn")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
-avoidance_enabled = true
 avoidance_layers = 2
 avoidance_mask = 2
 debug_enabled = true
 
-[node name="Ai update" type="Timer" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_x76qg")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3cj4s")
 
-[connection signal="timeout" from="Ai update" to="." method="_on_ai_update_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
