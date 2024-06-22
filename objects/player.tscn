@@ -12,19 +12,20 @@ size = Vector2(32, 32)
 font_size = 9
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="Node2D"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D"]
 collision_mask = 2
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_pjd8b")
+speed = 100
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mj8nb")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_7m08q")
 
-[node name="Label" type="Label" parent="CharacterBody2D/Sprite2D"]
+[node name="Label" type="Label" parent="Sprite2D"]
 offset_left = -14.0
 offset_top = -16.0
 offset_right = 14.0
@@ -32,4 +33,4 @@ offset_bottom = -3.0
 text = "Player"
 label_settings = SubResource("LabelSettings_1mdqv")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="."]
