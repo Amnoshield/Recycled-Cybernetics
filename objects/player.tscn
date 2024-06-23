@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=13 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/sword attack.gd" id="2_0rrg6"]
@@ -56,6 +56,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4oe3"]
 size = Vector2(32, 32)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmbah"]
+radius = 67.1863
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 100
 collision_mask = 2
@@ -81,8 +84,6 @@ offset_right = 14.0
 offset_bottom = -3.0
 text = "Player"
 label_settings = SubResource("LabelSettings_1mdqv")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="sword attack2" type="Node2D" parent="."]
 
@@ -110,5 +111,10 @@ script = ExtResource("3_f5pnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("RectangleShape2D_o4oe3")
+
+[node name="parry" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="parry"]
+shape = SubResource("CircleShape2D_bmbah")
 
 [connection signal="area_entered" from="sword attack2/sword attack" to="sword attack2/sword attack" method="_on_area_entered"]

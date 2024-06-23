@@ -2,21 +2,25 @@ extends CharacterBody2D
 
 @export var speed = 5
 @export var health = 10
+@export var knockback_res = 0
+
+var knockback = Vector2(0, 0)
 
 
-func _physics_process(delta):
-	get_move_input(delta)
+func _physics_process(_delta):
+	if knockback.length() < speed:
+		velocity = speed * Input.get_vector("left", "right", "up", "down")
+	else:
+		knockback = knockback.limit_length(knockback.length()-knockback_res)
+		velocity = knockback
+		knockback /= 2
+	
 	move_and_slide() 
 
 
-func get_move_input(_delta):
-	velocity = speed * Input.get_vector("left", "right", "up", "down")
-
-
-func take_damage(damage:int, knockback):
+func take_damage(damage:int, take_knockback):
 	health -= damage
-	velocity = knockback
-	move_and_slide()
-	
+	knockback = take_knockback
+
 	if health <= 0:
 		self.queue_free()

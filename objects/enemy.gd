@@ -5,7 +5,9 @@ extends CharacterBody2D
 @export var speed = 5
 @export var health = 10
 @export var damage = 1
-@export var knockback = 1000
+@export var knockback_strenth = 1000
+@export var knockback_res = 0
+var knockback = Vector2(0, 0)
 
 
 func _ready():
@@ -13,20 +15,25 @@ func _ready():
 
 
 func _physics_process(_delta):
-	nav.set_target_position(player.position)
-	var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
-	velocity = relitive_pos.normalized()*speed
+	if knockback.length() < speed:
+		nav.set_target_position(player.position)
+		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
+		velocity = relitive_pos.normalized()*speed
+	else:
+		knockback = knockback.limit_length(knockback.length()-knockback_res)
+		velocity = knockback
+		knockback /= 2
+	
 	move_and_slide()
 
 
-func take_damage(damage:int, knockback):
-	health -= damage
-	velocity =  knockback
-	move_and_slide()
+func take_damage(oof_damage:int, new_knockback):
+	health -= oof_damage
+	knockback =  new_knockback
 	
 	if health <= 0:
 		self.queue_free()
 
 
 func _on_attack_area_entered(area):
-	area.take_damage(damage, (area.global_position-global_position).normalized()*knockback)
+	area.take_damage(damage, (area.global_position-global_position).normalized()*knockback_strenth)

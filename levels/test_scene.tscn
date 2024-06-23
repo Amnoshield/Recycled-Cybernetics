@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://hyckbp12hyty"]
+[gd_scene load_steps=8 format=3 uid="uid://hyckbp12hyty"]
 
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player.tscn" id="1_qjf0g"]
 [ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/enemy.tscn" id="2_rvdcj"]
 [ext_resource type="Texture2D" uid="uid://bb8xeq6fsokdb" path="res://assets/kenney_tiny-dungeon/Tilemap/tilemap_packed.png" id="3_jt20m"]
+[ext_resource type="PackedScene" uid="uid://oji250hs6ggp" path="res://objects/cam.tscn" id="4_musav"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(594, -111, 591, 448, 551, 34, 551, -44, 249, 306, 423, 306, 473, 340, -25, 340, 87, 322, 535, 402, -348, 443, -327, 402, -376, -167, -327, 260, 535, 100, 473, 162, 423, 244, 361, 162, 311, 244, 311, 130, 327, 130, 361, 100, 327, 20, -9, -92, 119, -76, 489, 34, 489, 18, 183, 18, 265, 20, 183, -44, 183, -60, 121, -60, 121, 52, 119, 52, -9, -76, -167, -30, -55, -30, -55, -14, -247, 52, 57, 98, 73, 98, 73, 114, 121, 114, 121, 306, 265, 68, 249, 68, 183, 306, -25, 274, 25, 274, 25, 322, 87, 228, 71, 228, 71, 212, -87, 340, -265, 340, -265, 322, -121, 322, -87, 212, -121, 114, 23, 114, -39, -12, -39, 52, -185, 178, -185, 114, -183, 114, -183, 260, -249, 260, -247, 178, -249, -108, -311, -108, -311, 260, 23, -12, 57, -14, -167, -92)
@@ -446,3 +447,6 @@ position = Vector2(192, 367)
 
 [node name="enemy" parent="." instance=ExtResource("2_rvdcj")]
 position = Vector2(-52, 394)
+knockback_strenth = 2000
+
+[node name="Cam" parent="." instance=ExtResource("4_musav")]
