@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://hyckbp12hyty"]
 
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player.tscn" id="1_qjf0g"]
-[ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/enemy.tscn" id="2_rvdcj"]
 [ext_resource type="Texture2D" uid="uid://bb8xeq6fsokdb" path="res://assets/kenney_tiny-dungeon/Tilemap/tilemap_packed.png" id="3_jt20m"]
+[ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/fighter_enemy.tscn" id="4_8wdxf"]
 [ext_resource type="PackedScene" uid="uid://oji250hs6ggp" path="res://objects/cam.tscn" id="4_musav"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
@@ -446,8 +446,7 @@ layer_0/tile_data = PackedInt32Array(1507315, 262144, 65539, 1507316, 262144, 65
 position = Vector2(192, 367)
 health = 1000
 
-[node name="enemy" parent="." instance=ExtResource("2_rvdcj")]
-position = Vector2(-52, 394)
-knockback_strenth = 2000
-
 [node name="Cam" parent="." instance=ExtResource("4_musav")]
+
+[node name="fighter enemy" parent="." instance=ExtResource("4_8wdxf")]
+position = Vector2(-58, 393)

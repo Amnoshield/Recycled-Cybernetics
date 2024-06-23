@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @onready var nav:NavigationAgent2D = $NavigationAgent2D
 @onready var player:CharacterBody2D = get_node("../Player")
-@onready var attack_cooldown_timer:Timer = $attack_cooldown
+@onready var raycast = $RayCast2D
+@onready var attack_cooldown_timer = $attack_cooldown
 
 @export var speed = 80
 @export var health = 10
@@ -10,8 +11,10 @@ extends CharacterBody2D
 @export var knockback_strenth = 1000
 @export var knockback_res = 0
 @export var attack_cooldown = 1
+@export var wait_distence = 100
+@export var wiggle_room = 10
+@export var walk_speed = 40
 
-var attack_player = false
 var knockback = Vector2(0, 0)
 
 
@@ -24,7 +27,15 @@ func _physics_process(_delta):
 	if knockback.length() < speed:
 		nav.set_target_position(player.position)
 		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
-		velocity = relitive_pos.normalized()*speed
+		raycast.target_position = player.position-global_position
+		raycast.force_raycast_update()
+		if  raycast.is_colliding() or nav.distance_to_target() > wait_distence:
+			velocity = relitive_pos.normalized()*speed
+		elif nav.distance_to_target() < wait_distence - wiggle_room:
+			attack()
+			#velocity = (global_position-player.position).normalized()*walk_speed
+		else:
+			velocity = Vector2(0, 0)
 	else:
 		knockback = knockback.limit_length(knockback.length()-knockback_res)
 		velocity = knockback
@@ -41,21 +52,9 @@ func take_damage(oof_damage:int, new_knockback):
 		self.queue_free()
 
 
-func _on_attack_area_entered(area):
-	attack_player = true
-	attack()
-
-
 func attack():
-	if attack_player and attack_cooldown_timer.is_stopped():
-		player.take_damage(damage, (player.global_position-global_position).normalized()*knockback_strenth)
+	if attack_cooldown_timer.is_stopped():
+		$attack_box/AnimationPlayer.play("Attack")
+		knockback = (player.position-global_position).normalized()*1000
+		#player.take_damage(damage, (player.global_position-global_position).normalized()*knockback_strenth)
 		attack_cooldown_timer.start()
-
-
-func _on_attack_cooldown_timeout():
-	attack()
-
-
-func _on_attack_area_exited(area):
-	attack_player = false # Replace with function body.
-

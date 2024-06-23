@@ -1,0 +1,122 @@
+[gd_scene load_steps=11 format=3 uid="uid://ttfionm4jjiw"]
+
+[ext_resource type="Script" path="res://objects/fighter_enemy.gd" id="1_hf7jv"]
+[ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_2gs5r"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_41dxn"]
+font_size = 9
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ihid"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2d1ak"]
+radius = 30.0
+
+[sub_resource type="Animation" id="Animation_56yeu"]
+resource_name = "Attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:attacking")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_3sky3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4bv1x"]
+_data = {
+"Attack": SubResource("Animation_56yeu"),
+"RESET": SubResource("Animation_3sky3")
+}
+
+[node name="fighter enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_hf7jv")
+attack_cooldown = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.997072, 0, 0.142165, 1)
+texture = SubResource("PlaceholderTexture2D_foq3r")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -1.0
+text = "Enemy"
+label_settings = SubResource("LabelSettings_41dxn")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+avoidance_layers = 2
+avoidance_mask = 2
+
+[node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_2gs5r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("RectangleShape2D_3cj4s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0ihid")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="attack_box" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_box"]
+shape = SubResource("CircleShape2D_2d1ak")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="attack_box"]
+libraries = {
+"": SubResource("AnimationLibrary_4bv1x")
+}
