@@ -22,9 +22,9 @@ func _physics_process(_delta):
 	move_and_slide() 
 
 
-func take_damage(damage:int, take_knockback):
+func take_damage(damage:int, take_knockback:Vector2):
 	if parrying:
-		$parry.add_knockback()
+		$parry.add_knockback(take_knockback.length())
 		return
 	
 	health -= damage
