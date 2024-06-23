@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=17 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/sword attack.gd" id="2_0rrg6"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="3_f5pnt"]
+[ext_resource type="Script" path="res://objects/parry.gd" id="4_1std8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8nb"]
 size = Vector2(32, 32)
@@ -59,6 +60,67 @@ size = Vector2(32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmbah"]
 radius = 67.1863
 
+[sub_resource type="Animation" id="Animation_kdrvm"]
+resource_name = "parry"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:parrying")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_l0mbt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:parrying")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_olxjt"]
+_data = {
+"RESET": SubResource("Animation_l0mbt"),
+"parry": SubResource("Animation_kdrvm")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 100
 collision_mask = 2
@@ -70,6 +132,7 @@ platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_pjd8b")
 speed = 100
+parrying = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mj8nb")
@@ -113,8 +176,27 @@ script = ExtResource("3_f5pnt")
 shape = SubResource("RectangleShape2D_o4oe3")
 
 [node name="parry" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_1std8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="parry"]
 shape = SubResource("CircleShape2D_bmbah")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="parry"]
+libraries = {
+"": SubResource("AnimationLibrary_olxjt")
+}
+
+[node name="health" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = -17.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="area_entered" from="sword attack2/sword attack" to="sword attack2/sword attack" method="_on_area_entered"]
+[connection signal="area_entered" from="parry" to="parry" method="_on_area_entered"]
+[connection signal="area_exited" from="parry" to="parry" method="_on_area_exited"]

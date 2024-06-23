@@ -4,7 +4,7 @@ extends Area2D
 @export var knockback = 2000
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("attack_1"):
+	if Input.is_action_just_pressed("attack"):
 		var mouse_pos = get_global_mouse_position()
 		mouse_pos -= global_position
 		set_rotation(mouse_pos.angle()+deg_to_rad(90))
