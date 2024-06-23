@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=10 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/sword attack.gd" id="2_0rrg6"]
@@ -16,7 +16,20 @@ shadow_color = Color(0, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkkgw"]
 size = Vector2(94, 30)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oowhp"]
+[sub_resource type="Animation" id="Animation_bvwv6"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sword attack/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_8qkge"]
 resource_name = "sword attack"
@@ -31,45 +44,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sword attack/CollisionShape2D/Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_bvwv6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sword attack/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sword attack/CollisionShape2D/Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_530rv"]
@@ -115,11 +89,7 @@ script = ExtResource("2_0rrg6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword attack2/sword attack"]
 position = Vector2(0, -31)
 shape = SubResource("RectangleShape2D_gkkgw")
-
-[node name="Sprite2D" type="Sprite2D" parent="sword attack2/sword attack/CollisionShape2D"]
-modulate = Color(0, 0, 1, 0.643137)
-scale = Vector2(94, 30)
-texture = SubResource("PlaceholderTexture2D_oowhp")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="sword attack2"]
 libraries = {
