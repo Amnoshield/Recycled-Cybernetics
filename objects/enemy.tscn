@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://tgk8gnfdri4a"]
+[gd_scene load_steps=8 format=3 uid="uid://tgk8gnfdri4a"]
 
 [ext_resource type="Script" path="res://objects/enemy.gd" id="1_ej2j7"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_h6ciw"]
@@ -15,6 +15,9 @@ size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ihid"]
 size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh4w7"]
+size = Vector2(40, 40)
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -50,3 +53,11 @@ shape = SubResource("RectangleShape2D_3cj4s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0ihid")
+
+[node name="attack" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+shape = SubResource("RectangleShape2D_nh4w7")
+
+[connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]

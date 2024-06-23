@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=12 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/sword attack.gd" id="2_0rrg6"]
+[ext_resource type="Script" path="res://objects/hurtbox.gd" id="3_f5pnt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8nb"]
 size = Vector2(32, 32)
@@ -52,6 +53,9 @@ _data = {
 "sword attack": SubResource("Animation_8qkge")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4oe3"]
+size = Vector2(32, 32)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 100
 collision_mask = 2
@@ -83,7 +87,9 @@ label_settings = SubResource("LabelSettings_1mdqv")
 [node name="sword attack2" type="Node2D" parent="."]
 
 [node name="sword attack" type="Area2D" parent="sword attack2"]
+collision_layer = 0
 collision_mask = 4
+monitorable = false
 script = ExtResource("2_0rrg6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword attack2/sword attack"]
@@ -96,5 +102,13 @@ libraries = {
 "": SubResource("AnimationLibrary_530rv")
 }
 speed_scale = 4.0
+
+[node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_f5pnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("RectangleShape2D_o4oe3")
 
 [connection signal="area_entered" from="sword attack2/sword attack" to="sword attack2/sword attack" method="_on_area_entered"]
