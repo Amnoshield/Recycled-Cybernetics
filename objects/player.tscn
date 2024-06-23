@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=18 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/sword attack.gd" id="2_0rrg6"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="3_f5pnt"]
+[ext_resource type="Texture2D" uid="uid://b8eto42a3vray" path="res://assets/tiles/player atempt 3 - Copy.png" id="3_wtac1"]
 [ext_resource type="Script" path="res://objects/parry.gd" id="4_1std8"]
+[ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="5_njb03"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8nb"]
 size = Vector2(32, 32)
@@ -46,13 +48,6 @@ _data = {
 "RESET": SubResource("Animation_bvwv6"),
 "sword attack": SubResource("Animation_8qkge")
 }
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7m08q"]
-size = Vector2(32, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_1mdqv"]
-font_size = 9
-shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4oe3"]
 size = Vector2(32, 32)
@@ -121,6 +116,10 @@ _data = {
 "parry": SubResource("Animation_kdrvm")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_1mdqv"]
+font_size = 9
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 100
 collision_mask = 2
@@ -156,17 +155,6 @@ speed_scale = 4.0
 [node name="cooldown" type="Timer" parent="sword attack"]
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_7m08q")
-
-[node name="Label" type="Label" parent="Sprite2D"]
-offset_left = -14.0
-offset_top = -16.0
-offset_right = 14.0
-offset_bottom = -3.0
-text = "Player"
-label_settings = SubResource("LabelSettings_1mdqv")
-
 [node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 collision_mask = 0
 monitoring = false
@@ -196,6 +184,26 @@ offset_right = 20.0
 offset_bottom = -17.0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Smoothing2D" type="Node2D" parent="."]
+script = ExtResource("5_njb03")
+
+[node name="Sprite2D" type="Sprite2D" parent="Smoothing2D"]
+texture_filter = 1
+texture = ExtResource("3_wtac1")
+
+[node name="Label" type="Label" parent="Smoothing2D/Sprite2D"]
+offset_left = -14.0
+offset_top = -16.0
+offset_right = 14.0
+offset_bottom = -3.0
+text = "Player"
+label_settings = SubResource("LabelSettings_1mdqv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 
 [connection signal="area_entered" from="sword attack" to="sword attack" method="_on_area_entered"]
 [connection signal="area_exited" from="sword attack" to="sword attack" method="_on_area_exited"]

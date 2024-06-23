@@ -6,4 +6,4 @@
 script = ExtResource("1_mkcc5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
+zoom = Vector2(3, 3)

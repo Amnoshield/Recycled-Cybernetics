@@ -11,9 +11,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var direction = player.position - position
-	if direction.length() > dead_zone:
-		velocity = direction.limit_length((direction.length()-dead_zone)/deceleration)
-		translate(velocity)
-	
+#func _process(delta):
+	#var direction = player.position - position
+	#if direction.length() > dead_zone:
+		#velocity = direction.limit_length((direction.length()-dead_zone)/deceleration)
+		#translate(velocity)
+	#
