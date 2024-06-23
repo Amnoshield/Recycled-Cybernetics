@@ -7,6 +7,8 @@ extends CharacterBody2D
 @export var damage = 1
 @export var knockback_strenth = 1000
 @export var knockback_res = 0
+@export var attack_cooldown = 1
+var attack_player = false
 var knockback = Vector2(0, 0)
 
 
@@ -36,4 +38,20 @@ func take_damage(oof_damage:int, new_knockback):
 
 
 func _on_attack_area_entered(area):
-	area.take_damage(damage, (area.global_position-global_position).normalized()*knockback_strenth)
+	attack_player = true
+	attack()
+	
+
+func attack():
+	if attack_player and $attack_cooldown.is_stopped():
+		print('attacked?')
+		player.take_damage(damage, (player.global_position-global_position).normalized()*knockback_strenth)
+		$attack_cooldown.start()
+
+
+func _on_attack_cooldown_timeout():
+	attack()
+
+
+func _on_attack_area_exited(area):
+	attack_player = false # Replace with function body.

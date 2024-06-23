@@ -8,13 +8,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8nb"]
 size = Vector2(32, 32)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7m08q"]
-size = Vector2(32, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_1mdqv"]
-font_size = 9
-shadow_color = Color(0, 0, 0, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkkgw"]
 size = Vector2(94, 30)
 
@@ -23,7 +16,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sword attack/CollisionShape2D:disabled")
+tracks/0/path = NodePath("../sword attack/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,7 +31,7 @@ resource_name = "sword attack"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sword attack/CollisionShape2D:disabled")
+tracks/0/path = NodePath("../sword attack/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -54,11 +47,45 @@ _data = {
 "sword attack": SubResource("Animation_8qkge")
 }
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7m08q"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1mdqv"]
+font_size = 9
+shadow_color = Color(0, 0, 0, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4oe3"]
 size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmbah"]
 radius = 67.1863
+
+[sub_resource type="Animation" id="Animation_l0mbt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:parrying")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_kdrvm"]
 resource_name = "parry"
@@ -88,33 +115,6 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_l0mbt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:parrying")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_olxjt"]
 _data = {
 "RESET": SubResource("Animation_l0mbt"),
@@ -132,10 +132,29 @@ platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_pjd8b")
 speed = 100
-parrying = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mj8nb")
+
+[node name="sword attack" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_0rrg6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sword attack"]
+position = Vector2(0, -31)
+shape = SubResource("RectangleShape2D_gkkgw")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="sword attack"]
+libraries = {
+"": SubResource("AnimationLibrary_530rv")
+}
+speed_scale = 4.0
+
+[node name="cooldown" type="Timer" parent="sword attack"]
+one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_7m08q")
@@ -147,25 +166,6 @@ offset_right = 14.0
 offset_bottom = -3.0
 text = "Player"
 label_settings = SubResource("LabelSettings_1mdqv")
-
-[node name="sword attack2" type="Node2D" parent="."]
-
-[node name="sword attack" type="Area2D" parent="sword attack2"]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-script = ExtResource("2_0rrg6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sword attack2/sword attack"]
-position = Vector2(0, -31)
-shape = SubResource("RectangleShape2D_gkkgw")
-disabled = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="sword attack2"]
-libraries = {
-"": SubResource("AnimationLibrary_530rv")
-}
-speed_scale = 4.0
 
 [node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 collision_mask = 0
@@ -197,6 +197,8 @@ offset_bottom = -17.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="area_entered" from="sword attack2/sword attack" to="sword attack2/sword attack" method="_on_area_entered"]
+[connection signal="area_entered" from="sword attack" to="sword attack" method="_on_area_entered"]
+[connection signal="area_exited" from="sword attack" to="sword attack" method="_on_area_exited"]
+[connection signal="timeout" from="sword attack/cooldown" to="sword attack" method="_on_cooldown_timeout"]
 [connection signal="area_entered" from="parry" to="parry" method="_on_area_entered"]
 [connection signal="area_exited" from="parry" to="parry" method="_on_area_exited"]

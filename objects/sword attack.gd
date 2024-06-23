@@ -2,15 +2,24 @@ extends Area2D
 
 @export var damage = 1
 @export var knockback = 2000
+@export var cooldown = 1
+var attacking = false
+
+
+func _ready():
+	$cooldown.wait_time = cooldown
+
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and $cooldown.is_stopped():
 		var mouse_pos = get_global_mouse_position()
 		mouse_pos -= global_position
 		set_rotation(mouse_pos.angle()+deg_to_rad(90))
-		$"../AnimationPlayer".play("sword attack")
+		$AnimationPlayer.play("sword attack")
+		$cooldown.start()
 
 
 func _on_area_entered(area:Area2D):
 	if area.is_in_group("hurtbox"):
 		area.take_damage(damage, (area.global_position-global_position).normalized()*knockback)
+
