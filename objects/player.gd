@@ -8,7 +8,7 @@ extends CharacterBody2D
 var knockback = Vector2(0, 0)
 
 func _ready():
-	$health.set_text(str(health))
+	$Smoothing2D/Sprite2D/health.set_text(str(health))
 
 
 func _physics_process(_delta):
@@ -30,6 +30,6 @@ func take_damage(damage:int, take_knockback:Vector2):
 	health -= damage
 	knockback = take_knockback
 
-	$health.set_text(str(health))
+	$Smoothing2D/Sprite2D/health.set_text(str(health))
 	if health <= 0:
 		get_tree().change_scene_to_file("res://levels/death_screen.tscn")

@@ -11,13 +11,13 @@ font_size = 9
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ihid"]
-size = Vector2(32, 32)
+size = Vector2(30, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nh4w7"]
 size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ihid"]
+size = Vector2(30, 30)
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -27,6 +27,7 @@ script = ExtResource("1_ej2j7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.997072, 0, 0.142165, 1)
+scale = Vector2(0.795, 0.795)
 texture = SubResource("PlaceholderTexture2D_foq3r")
 
 [node name="Label" type="Label" parent="."]
@@ -51,15 +52,17 @@ script = ExtResource("2_h6ciw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("RectangleShape2D_3cj4s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0ihid")
-
 [node name="attack" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_nh4w7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.853722, 0.853722)
+shape = SubResource("RectangleShape2D_0ihid")
 
 [node name="attack_cooldown" type="Timer" parent="."]
 one_shot = true
