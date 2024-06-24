@@ -127,7 +127,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:invincible")
+tracks/0/path = NodePath("..:invincible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -142,7 +142,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:invincible")
+tracks/0/path = NodePath("..:invincible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -214,6 +214,9 @@ libraries = {
 "": SubResource("AnimationLibrary_olxjt")
 }
 
+[node name="cooldown" type="Timer" parent="parry"]
+one_shot = true
+
 [node name="Smoothing2D" type="Node2D" parent="."]
 script = ExtResource("5_njb03")
 
@@ -236,10 +239,15 @@ zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="Dash" type="AnimationPlayer" parent="."]
+[node name="Dash" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dash"]
 libraries = {
 "": SubResource("AnimationLibrary_5k5uo")
 }
+
+[node name="cooldown" type="Timer" parent="Dash"]
+one_shot = true
 
 [connection signal="area_entered" from="sword attack" to="sword attack" method="_on_area_entered"]
 [connection signal="area_exited" from="sword attack" to="sword attack" method="_on_area_exited"]
