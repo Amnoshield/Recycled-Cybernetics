@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bb0hwr4cieh4x"]
 
-[ext_resource type="TileSet" uid="uid://dvv64ro3hyyro" path="res://assets/tiles/TileSet1.tres" id="1_k0lkx"]
+[ext_resource type="TileSet" uid="uid://dehtu0x07meao" path="res://assets/tiles/TileSet1.tres" id="1_k0lkx"]
 [ext_resource type="Script" path="res://levels/start_zone.gd" id="1_sw0gl"]
 [ext_resource type="Script" path="res://levels/spawn_room.gd" id="3_ys80b"]
 
