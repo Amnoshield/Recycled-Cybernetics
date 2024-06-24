@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb0hwr4cieh4x"]
+
+[ext_resource type="TileSet" uid="uid://dvv64ro3hyyro" path="res://assets/tiles/TileSet1.tres" id="1_k0lkx"]
+[ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player.tscn" id="2_m64ll"]
+[ext_resource type="Script" path="res://levels/spawn_room.gd" id="3_ys80b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yexpe"]
+size = Vector2(64, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dr7b"]
+size = Vector2(64, 32)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nrnt1"]
+
+[node name="Start zone" type="Node2D"]
+
+[node name="walls" type="TileMap" parent="."]
+tile_set = ExtResource("1_k0lkx")
+format = 2
+layer_0/name = "walls"
+layer_0/z_index = 5
+layer_0/tile_data = PackedInt32Array(-131071, 131074, 0, -65535, 131074, 1, 1, 131074, 1, 65537, 65538, 2, -65538, 327682, 0, -2, 327682, 1, 65534, 327682, 1, 131070, 2, 2, 131071, 196610, 0, 65536, 196610, 0)
+layer_1/name = "floor"
+layer_1/tile_data = PackedInt32Array(-65538, 2, 0, -2, 65538, 0, 65534, 65538, 0, 131070, 65538, 0, -65537, 65538, 0, -1, 65538, 0, 65535, 2, 0, 131071, 2, 0, -131072, 65538, 0, -65536, 2, 0, 0, 2, 0, 65536, 65538, 0, -131071, 2, 0, -65535, 2, 0, 1, 65538, 0, 65537, 65538, 0)
+
+[node name="detector" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+script = ExtResource("3_ys80b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_yexpe")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="blocker" type="StaticBody2D" parent="."]
+position = Vector2(0, 48)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocker"]
+shape = SubResource("RectangleShape2D_3dr7b")
+
+[node name="Sprite2D" type="Sprite2D" parent="blocker"]
+scale = Vector2(64, 32)
+texture = SubResource("PlaceholderTexture2D_nrnt1")
+
+[node name="Player" parent="." instance=ExtResource("2_m64ll")]
+position = Vector2(0, -80)
+
+[connection signal="area_exited" from="detector" to="detector" method="_on_area_exited"]

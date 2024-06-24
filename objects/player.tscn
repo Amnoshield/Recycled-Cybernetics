@@ -51,8 +51,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjen1"]
-radius = 8.0
-height = 22.0
+radius = 5.0
+height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmbah"]
 radius = 41.1096
@@ -192,6 +192,9 @@ speed_scale = 4.0
 [node name="cooldown" type="Timer" parent="sword attack"]
 one_shot = true
 
+[node name="buffer" type="Timer" parent="sword attack"]
+one_shot = true
+
 [node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 collision_mask = 0
 monitoring = false
@@ -215,6 +218,9 @@ libraries = {
 }
 
 [node name="cooldown" type="Timer" parent="parry"]
+one_shot = true
+
+[node name="buffer" type="Timer" parent="parry"]
 one_shot = true
 
 [node name="Smoothing2D" type="Node2D" parent="."]
@@ -249,8 +255,12 @@ libraries = {
 [node name="cooldown" type="Timer" parent="Dash"]
 one_shot = true
 
+[node name="buffer" type="Timer" parent="Dash"]
+one_shot = true
+
 [connection signal="area_entered" from="sword attack" to="sword attack" method="_on_area_entered"]
-[connection signal="area_exited" from="sword attack" to="sword attack" method="_on_area_exited"]
 [connection signal="timeout" from="sword attack/cooldown" to="sword attack" method="_on_cooldown_timeout"]
 [connection signal="area_entered" from="parry" to="parry" method="_on_area_entered"]
 [connection signal="area_exited" from="parry" to="parry" method="_on_area_exited"]
+[connection signal="timeout" from="parry/cooldown" to="parry" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Dash/cooldown" to="." method="_on_cooldown_timeout"]
