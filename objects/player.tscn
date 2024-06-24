@@ -7,11 +7,12 @@
 [ext_resource type="Script" path="res://objects/parry.gd" id="4_1std8"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="5_njb03"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj8nb"]
-size = Vector2(32, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tkbnt"]
+radius = 5.0
+height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkkgw"]
-size = Vector2(94, 30)
+size = Vector2(64, 20)
 
 [sub_resource type="Animation" id="Animation_bvwv6"]
 length = 0.1
@@ -49,11 +50,12 @@ _data = {
 "sword attack": SubResource("Animation_8qkge")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4oe3"]
-size = Vector2(32, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjen1"]
+radius = 8.0
+height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmbah"]
-radius = 67.1863
+radius = 41.1096
 
 [sub_resource type="Animation" id="Animation_l0mbt"]
 length = 0.001
@@ -116,9 +118,8 @@ _data = {
 "parry": SubResource("Animation_kdrvm")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_1mdqv"]
-font_size = 9
-shadow_color = Color(0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_k722d"]
+font_size = 8
 
 [sub_resource type="Animation" id="Animation_24u2m"]
 resource_name = "Dash"
@@ -169,7 +170,7 @@ platform_floor_layers = 4294967040
 script = ExtResource("1_pjd8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_mj8nb")
+shape = SubResource("CapsuleShape2D_tkbnt")
 
 [node name="sword attack" type="Area2D" parent="."]
 collision_layer = 0
@@ -178,7 +179,7 @@ monitorable = false
 script = ExtResource("2_0rrg6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword attack"]
-position = Vector2(0, -31)
+position = Vector2(0, -22)
 shape = SubResource("RectangleShape2D_gkkgw")
 disabled = true
 
@@ -197,7 +198,7 @@ monitoring = false
 script = ExtResource("3_f5pnt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-shape = SubResource("RectangleShape2D_o4oe3")
+shape = SubResource("CapsuleShape2D_pjen1")
 
 [node name="parry" type="Area2D" parent="."]
 collision_layer = 0
@@ -213,14 +214,6 @@ libraries = {
 "": SubResource("AnimationLibrary_olxjt")
 }
 
-[node name="health" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-offset_bottom = -17.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Smoothing2D" type="Node2D" parent="."]
 script = ExtResource("5_njb03")
 
@@ -228,16 +221,18 @@ script = ExtResource("5_njb03")
 texture_filter = 1
 texture = ExtResource("3_wtac1")
 
-[node name="Label" type="Label" parent="Smoothing2D/Sprite2D"]
-offset_left = -14.0
-offset_top = -16.0
-offset_right = 14.0
-offset_bottom = -3.0
-text = "Player"
-label_settings = SubResource("LabelSettings_1mdqv")
+[node name="health" type="Label" parent="Smoothing2D/Sprite2D"]
+offset_left = -10.0
+offset_top = -21.0
+offset_right = 30.0
+offset_bottom = 2.0
+scale = Vector2(0.483602, 0.481017)
+label_settings = SubResource("LabelSettings_k722d")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
