@@ -2,7 +2,7 @@ extends Button
 
 
 func load_main_menu():
-	get_tree().change_scene_to_file("res://levels/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Menus/main_menu.tscn")
 
 
 func _on_pressed():

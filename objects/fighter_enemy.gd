@@ -65,7 +65,7 @@ func take_damage(oof_damage:int, new_knockback):
 	attacking_frame = attacking_frames
 	
 	if health <= 0:
-		self.queue_free()
+		die()
 
 
 func attack():
@@ -96,3 +96,7 @@ func _on_random_attack_cooldown_timeout():
 		attack()
 	start_random_attack()
 
+
+func die():
+	Tracker.num_enemies -= 1
+	self.queue_free()

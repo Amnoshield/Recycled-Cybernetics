@@ -25,7 +25,6 @@ func parry():
 
 
 func add_knockback(knockback):
-	print('adding knockback')
 	for area in enemys:
 		area.take_damage(damage, (area.global_position-global_position).normalized()*knockback)
 	enemys.clear()
@@ -33,7 +32,6 @@ func add_knockback(knockback):
 
 func _on_area_entered(area:Area2D):
 	if area.is_in_group("hurtbox"):
-		print('adding enemy: ', area.name)
 		enemys.append(area)
 
 

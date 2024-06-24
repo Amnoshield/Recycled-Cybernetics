@@ -38,10 +38,10 @@ func take_damage(oof_damage:int, new_knockback):
 	knockback =  new_knockback
 	
 	if health <= 0:
-		self.queue_free()
+		die()
 
 
-func _on_attack_area_entered(area):
+func _on_attack_area_entered(_area):
 	attack_player = true
 	attack()
 
@@ -56,6 +56,11 @@ func _on_attack_cooldown_timeout():
 	attack()
 
 
-func _on_attack_area_exited(area):
+func _on_attack_area_exited(_area):
 	attack_player = false # Replace with function body.
+
+
+func die():
+	Tracker.num_enemies -= 1
+	self.queue_free()
 

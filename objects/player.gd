@@ -51,10 +51,10 @@ func take_damage(damage:int, take_knockback:Vector2):
 
 	$Smoothing2D/Sprite2D/health.set_text(str(health))
 	if health <= 0:
-		get_tree().change_scene_to_file("res://levels/death_screen.tscn")
+		die()
 
 
-func _unhandled_key_input(event): #Dash
+func _unhandled_key_input(_event): #Dash
 	if Input.is_action_just_pressed("dash"):
 		if $Dash/cooldown.is_stopped():
 			dash()
@@ -72,3 +72,7 @@ func dash():
 func _on_cooldown_timeout():
 	if not $Dash/buffer.is_stopped():
 		dash()
+
+
+func die():
+	get_tree().change_scene_to_file("res://Menus/death_screen.tscn")
