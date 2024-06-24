@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxcwkhnssnixn"]
+
+[ext_resource type="Script" path="res://Menus/Start.gd" id="1_bn42c"]
+[ext_resource type="Script" path="res://Menus/Quit.gd" id="1_ge7oo"]
+[ext_resource type="Script" path="res://Menus/Quit2.gd" id="2_14iy6"]
+[ext_resource type="Script" path="res://Menus/Quit3.gd" id="3_hpg7t"]
+
+[sub_resource type="Gradient" id="Gradient_csywl"]
+offsets = PackedFloat32Array(0, 0.253247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.363636, 0.363636, 0.363636, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pqmtd"]
+gradient = SubResource("Gradient_csywl")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0qy2q"]
+font_size = 50
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="Main menu" type="Node2D"]
+
+[node name="backround" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(18, 10.125)
+texture = SubResource("GradientTexture2D_pqmtd")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+offset_left = 427.0
+offset_top = 176.0
+offset_right = 730.0
+offset_bottom = 257.0
+vertical = true
+
+[node name="Start" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Start run"
+script = ExtResource("1_bn42c")
+
+[node name="Quit1" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+script = ExtResource("1_ge7oo")
+
+[node name="Quit2" type="Button" parent="."]
+visible = false
+offset_left = 829.0
+offset_top = 331.0
+offset_right = 945.0
+offset_bottom = 362.0
+text = "Quit
+"
+script = ExtResource("2_14iy6")
+
+[node name="Quit3" type="Button" parent="."]
+visible = false
+offset_left = 235.0
+offset_top = 444.0
+offset_right = 277.0
+offset_bottom = 475.0
+text = "Quit
+"
+script = ExtResource("3_hpg7t")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1153.0
+offset_bottom = 174.0
+text = "GAME"
+label_settings = SubResource("LabelSettings_0qy2q")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[connection signal="pressed" from="BoxContainer/Start" to="BoxContainer/Start" method="_on_pressed"]
+[connection signal="pressed" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_pressed"]
+[connection signal="pressed" from="Quit2" to="Quit2" method="_on_pressed"]
+[connection signal="pressed" from="Quit3" to="Quit3" method="_on_pressed"]

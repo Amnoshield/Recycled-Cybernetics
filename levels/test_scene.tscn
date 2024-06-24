@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://hyckbp12hyty"]
 
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player.tscn" id="1_qjf0g"]
-[ext_resource type="Texture2D" uid="uid://bb8xeq6fsokdb" path="res://assets/kenney_tiny-dungeon/Tilemap/tilemap_packed.png" id="3_jt20m"]
+[ext_resource type="Texture2D" uid="uid://bb8xeq6fsokdb" path="res://assets/Not ours/kenney_tiny-dungeon/Tilemap/tilemap_packed.png" id="3_jt20m"]
 [ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/fighter_enemy.tscn" id="4_8wdxf"]
 [ext_resource type="Texture2D" uid="uid://cn0kbdubw08c" path="res://assets/tiles/mud bricks 1.png" id="5_8sc7h"]
 

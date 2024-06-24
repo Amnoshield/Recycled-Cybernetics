@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=21 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/sword attack.gd" id="2_0rrg6"]
@@ -120,6 +120,43 @@ _data = {
 font_size = 9
 shadow_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_24u2m"]
+resource_name = "Dash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:invincible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4fnnh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:invincible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5k5uo"]
+_data = {
+"Dash": SubResource("Animation_24u2m"),
+"RESET": SubResource("Animation_4fnnh")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 100
 collision_mask = 2
@@ -130,7 +167,6 @@ floor_block_on_wall = false
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_pjd8b")
-speed = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mj8nb")
@@ -204,6 +240,11 @@ label_settings = SubResource("LabelSettings_1mdqv")
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
+
+[node name="Dash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5k5uo")
+}
 
 [connection signal="area_entered" from="sword attack" to="sword attack" method="_on_area_entered"]
 [connection signal="area_exited" from="sword attack" to="sword attack" method="_on_area_exited"]
