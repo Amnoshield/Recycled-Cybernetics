@@ -1,12 +1,18 @@
 extends Area2D
 
 @export var damage = 0
-#@export var knockback = 4000
+@export var cooldown = 1
 var enemys:Array = []
 
+
+func _ready():
+	$cooldown.wait_time = cooldown
+
+
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("parry"):
+	if Input.is_action_just_pressed("parry") and $cooldown.is_stopped():
 		$AnimationPlayer.play("parry")
+		$cooldown.start()
 
 func add_knockback(knockback):
 	print('adding knockback')
