@@ -32,4 +32,4 @@ func take_damage(damage:int, take_knockback:Vector2):
 
 	$health.set_text(str(health))
 	if health <= 0:
-		self.queue_free()
+		get_tree().change_scene_to_file("res://levels/death_screen.tscn")

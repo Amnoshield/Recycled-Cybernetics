@@ -456,7 +456,6 @@ layer_0/tile_data = PackedInt32Array(1507315, 262144, 65539, 1507316, 262144, 65
 
 [node name="Player" parent="." instance=ExtResource("1_qjf0g")]
 position = Vector2(192, 367)
-health = 1000
 
 [node name="fighter enemy" parent="." instance=ExtResource("4_8wdxf")]
 position = Vector2(-58, 393)

@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw2mkqqqhl1ti"]
+
+[ext_resource type="Script" path="res://Back to main menu.gd" id="1_b4j3l"]
+
+[sub_resource type="Gradient" id="Gradient_01s0c"]
+offsets = PackedFloat32Array(0, 0.220779, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.357143, 0.357143, 0.357143, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5yamy"]
+gradient = SubResource("Gradient_01s0c")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wkak7"]
+font_size = 50
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Death screen" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(18, 10.125)
+texture = SubResource("GradientTexture2D_5yamy")
+centered = false
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 485.0
+offset_top = 229.0
+offset_right = 643.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="Back to main menu" type="Button" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "This takes you back to the main menu."
+text = "Back to main menu
+"
+script = ExtResource("1_b4j3l")
+
+[node name="Exit" type="Button" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "Wimp"
+text = "Exit
+"
+
+[node name="skill issue" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 386.0
+offset_top = 101.0
+offset_right = 743.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Get good bro"
+mouse_filter = 0
+text = "L + skill issue"
+label_settings = SubResource("LabelSettings_wkak7")
+uppercase = true
+
+[node name="you died" type="Label" parent="."]
+offset_left = 526.0
+offset_top = 177.0
+offset_right = 607.0
+offset_bottom = 207.0
+tooltip_text = "choking on my d-"
+mouse_filter = 0
+text = "You died..."
+
+[connection signal="pressed" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_pressed"]
+[connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Back to main menu" method="_on_exit_pressed"]
