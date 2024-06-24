@@ -21,14 +21,14 @@ func _ready():
 
 
 func _physics_process(_delta):
-	if knockback.length() < speed:
-		nav.set_target_position(player.position)
-		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
-		velocity = relitive_pos.normalized()*speed
-	else:
+	if knockback.length() > speed: #Use knockback
 		knockback = knockback.limit_length(knockback.length()-knockback_res)
 		velocity = knockback
 		knockback /= 2
+	else: #Use path finding
+		nav.set_target_position(player.position)
+		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
+		velocity = relitive_pos.normalized()*speed
 	
 	move_and_slide()
 

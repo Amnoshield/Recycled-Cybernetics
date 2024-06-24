@@ -35,28 +35,28 @@ func _ready():
 
 
 func _physics_process(_delta):
-	if knockback.length() < speed:
-		if attacking_frame >= attacking_frames-1:
-			nav.set_target_position(player.position)
-			var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
-			raycast.target_position = player.position-global_position
-			raycast.force_raycast_update()
-			if  raycast.is_colliding() or nav.distance_to_target() > wait_distence:
-				velocity = relitive_pos.normalized()*speed
-			elif nav.distance_to_target() < wait_distence - wiggle_room:
-				velocity = (global_position-player.position).normalized()*walk_speed/2
-			else:
-				velocity = ((player.position-global_position)-position).rotated(deg_to_rad(90*idle_direction)).normalized()*idle_speed
-		else:
-			attacking_frame += 1
-			velocity = attacking_velocity
-	else:
+	if knockback.length() > speed: #Use knockback
 		knockback = knockback.limit_length(knockback.length()-knockback_res)
 		velocity = knockback
 		knockback /= 2
+		
+	elif attacking_frame < attacking_frames-1: #Use attack velocity
+		attacking_frame += 1
+		velocity = attacking_velocity
+		
+	else: #Use pathfinding
+		nav.set_target_position(player.position)
+		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
+		raycast.target_position = player.position-global_position
+		raycast.force_raycast_update()
+		if  raycast.is_colliding() or nav.distance_to_target() > wait_distence: # pathfind to the player
+			velocity = relitive_pos.normalized()*speed
+		elif nav.distance_to_target() < wait_distence - wiggle_room: #Walk away from the player
+			velocity = (global_position-player.position).normalized()*walk_speed
+		else: #chill at a good distence from the player
+			velocity = ((player.position-global_position)-position).rotated(deg_to_rad(90*idle_direction)).normalized()*idle_speed
 	
-	if move_and_slide() and attacking_frame >= attacking_frames:
-		attacking_frame = attacking_frames
+	move_and_slide()
 
 
 func take_damage(oof_damage:int, new_knockback):
@@ -81,7 +81,6 @@ func attack():
 
 func change_idle_dir():
 	return (rng.randi_range(0, 1)-0.5)*2
-	
 
 
 func start_random_attack():
