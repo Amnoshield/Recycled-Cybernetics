@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var parrying = false
 @export var dash_speed = 1000
 @export var dash_cooldown = 1
+@export var dash_buffer = 0.2
 
 var knockback = Vector2(0, 0)
 var last_move = Vector2(0, 0)
@@ -18,6 +19,7 @@ func _ready():
 	$Smoothing2D/Sprite2D/health.set_text(str(health))
 	dashing_frame = dashing_frames
 	$Dash/cooldown.wait_time = dash_cooldown
+	$Dash/buffer.wait_time = dash_buffer
 
 
 func _physics_process(_delta):
@@ -52,9 +54,21 @@ func take_damage(damage:int, take_knockback:Vector2):
 		get_tree().change_scene_to_file("res://levels/death_screen.tscn")
 
 
-func _unhandled_key_input(event):
-	if Input.is_action_just_pressed("dash") and $Dash/cooldown.is_stopped():
-		dashing_frame = 0
-		dashing_velocity = last_move.normalized()*dash_speed
-		$Dash/AnimationPlayer.play("Dash")
-		$Dash/cooldown.start()
+func _unhandled_key_input(event): #Dash
+	if Input.is_action_just_pressed("dash"):
+		if $Dash/cooldown.is_stopped():
+			dash()
+		else:
+			$Dash/buffer.start()
+
+
+func dash():
+	dashing_frame = 0
+	dashing_velocity = last_move.normalized()*dash_speed
+	$Dash/AnimationPlayer.play("Dash")
+	$Dash/cooldown.start()
+
+
+func _on_cooldown_timeout():
+	if not $Dash/buffer.is_stopped():
+		dash()
