@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn0kbdubw08c"
-path="res://.godot/imported/mud bricks 1.png-deed73e0e2704f5d3562462e99b897d8.ctex"
+uid="uid://coab5iorip2o0"
+path="res://.godot/imported/mudbrick tileset.png-f050e283750d5f5c5279fcb4109b56b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/mud bricks 1.png"
-dest_files=["res://.godot/imported/mud bricks 1.png-deed73e0e2704f5d3562462e99b897d8.ctex"]
+source_file="res://assets/tiles/mudbrick tileset.png"
+dest_files=["res://.godot/imported/mudbrick tileset.png-f050e283750d5f5c5279fcb4109b56b1.ctex"]
 
 [params]
 
