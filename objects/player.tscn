@@ -240,6 +240,8 @@ label_settings = SubResource("LabelSettings_k722d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Smoothing2D/Sprite2D"]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
