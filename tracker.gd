@@ -17,6 +17,14 @@ var win_screen = "res://Menus/win_screen.tscn"
 var current_level_level = 1
 var player_health = 10
 var player_max_health = 10
+var go_next_level = false
+
+
+func _process(_delta):
+	if go_next_level:
+		go_next_level = false
+		next_level()
+
 
 func spawn_enemies():
 	for enemy in enemies:
@@ -58,8 +66,13 @@ func next_level():
 	current_level_level += 1
 
 
+func trigger_next_level():
+	go_next_level = true
+
+
 func reset():
 	current_level_level = 1
 	player_health = 10
 	player_max_health = 10
+	go_next_level = false
 

@@ -80,5 +80,6 @@ func die():
 	get_tree().change_scene_to_file("res://Menus/death_screen.tscn")
 
 
-func _on_hurtbox_area_entered(_area):
-	Tracker.next_level()
+func _on_hurtbox_area_entered(_area): #This only sees the finish. Besides that the hurtbox is only used by enemys for damage.
+	Tracker.trigger_next_level()
+
