@@ -61,6 +61,6 @@ func _on_attack_area_exited(_area):
 
 
 func die():
-	Tracker.num_enemies -= 1
+	Tracker.remove_enemy()
 	self.queue_free()
 

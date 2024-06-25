@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxcwkhnssnixn"]
+[gd_scene load_steps=9 format=3 uid="uid://cxcwkhnssnixn"]
 
 [ext_resource type="Script" path="res://Menus/Start.gd" id="1_bn42c"]
 [ext_resource type="Script" path="res://Menus/Quit.gd" id="1_ge7oo"]
+[ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_hc6ox"]
 [ext_resource type="Script" path="res://Menus/Quit2.gd" id="2_14iy6"]
-[ext_resource type="Script" path="res://Menus/Quit3.gd" id="3_hpg7t"]
+[ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="3_hpg7t"]
 
 [sub_resource type="Gradient" id="Gradient_csywl"]
 offsets = PackedFloat32Array(0, 0.253247, 1)
@@ -20,6 +21,7 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2, 2)
 
 [node name="Main menu" type="Node2D"]
+script = ExtResource("1_hc6ox")
 
 [node name="backround" type="Sprite2D" parent="."]
 position = Vector2(576, 324)

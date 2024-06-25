@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw2mkqqqhl1ti"]
+[gd_scene load_steps=6 format=3 uid="uid://c23tdoy3f2x7y"]
 
-[ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_b4j3l"]
+[ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_uvan7"]
+[ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="2_io5oo"]
 
 [sub_resource type="Gradient" id="Gradient_01s0c"]
 offsets = PackedFloat32Array(0, 0.220779, 1)
@@ -16,7 +17,7 @@ font_size = 50
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Death screen" type="Node2D"]
+[node name="win screen" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(18, 10.125)
@@ -42,13 +43,13 @@ layout_mode = 2
 tooltip_text = "This takes you back to the main menu."
 text = "Back to main menu
 "
-script = ExtResource("1_b4j3l")
+script = ExtResource("1_uvan7")
 
 [node name="Exit" type="Button" parent="BoxContainer"]
 layout_mode = 2
-tooltip_text = "Wimp"
-text = "Exit
-"
+tooltip_text = "You wouldn't dare!!!"
+text = "Exit"
+script = ExtResource("2_io5oo")
 
 [node name="skill issue" type="Label" parent="."]
 anchors_preset = 8
@@ -62,24 +63,24 @@ offset_right = 743.0
 offset_bottom = 170.0
 grow_horizontal = 2
 grow_vertical = 2
-tooltip_text = "Get good bro"
+tooltip_text = "This time >:)"
 mouse_filter = 0
-text = "L + skill issue"
+text = "You won!!!"
 label_settings = SubResource("LabelSettings_wkak7")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
 [node name="you died" type="Label" parent="."]
-offset_left = 526.0
-offset_top = 177.0
-offset_right = 607.0
-offset_bottom = 207.0
-tooltip_text = "choking on my d-"
+offset_left = 477.0
+offset_top = 176.0
+offset_right = 653.0
+offset_bottom = 206.0
+tooltip_text = "ծ_o"
 mouse_filter = 0
-text = "You died..."
+text = "Did you like our game?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_pressed"]
-[connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Back to main menu" method="_on_exit_pressed"]
+[connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_pressed"]

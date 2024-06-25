@@ -78,6 +78,7 @@ buffering/stretch/aspect="keep_height"
 2d_physics/layer_1="player"
 2d_physics/layer_2="walls"
 2d_physics/layer_3="enemys"
+2d_physics/layer_4="End zone"
 avoidance/layer_1="Player"
 avoidance/layer_2="Enemy"
 
