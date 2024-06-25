@@ -2,10 +2,10 @@
 
 [ext_resource type="TileSet" uid="uid://dehtu0x07meao" path="res://assets/tiles/TileSet1.tres" id="1_hgel7"]
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player.tscn" id="1_qjf0g"]
-[ext_resource type="TileSet" uid="uid://coeqejmi0xdc8" path="res://assets/tiles/TileSet2.tres" id="2_s8nug"]
+[ext_resource type="TileSet" uid="uid://0e2vkc7q5exq" path="res://assets/tiles/TileSet2.tres" id="2_s8nug"]
 [ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/enemy.tscn" id="3_sakw7"]
-[ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="3_xm5qc"]
-[ext_resource type="PackedScene" uid="uid://chrykf56drv22" path="res://objects/enemy_spawner.tscn" id="4_wspjl"]
+[ext_resource type="PackedScene" path="res://levels/start_zone.tscn" id="3_xm5qc"]
+[ext_resource type="PackedScene" path="res://objects/enemy_spawner.tscn" id="4_wspjl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(88, -127, 88, -45, -104, -45, -346, -127, -346, 115, -154, 115, -154, 195, -104, 161, -138, 195, -72, 161, -72, 177, -138, 211, 6, 177, 6, 161, 38, 161, 198, -95, 296, -95, 296, -77, 216, -77, 198, 65, 216, 83, 56, 83, 38, 65, 56, 211, -8, 211, -26, 211, -8, 307, -26, 307, 392, -29, 358, -29, 358, -111, 392, -111)
