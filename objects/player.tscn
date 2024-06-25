@@ -243,7 +243,7 @@ texture_under = ExtResource("7_hrax5")
 texture_progress = SubResource("PlaceholderTexture2D_rwm0t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 

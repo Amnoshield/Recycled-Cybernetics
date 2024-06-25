@@ -45,16 +45,16 @@ func _physics_process(_delta):
 		velocity = attacking_velocity
 		
 	else: #Use pathfinding
-		nav.set_target_position(player.position)
+		nav.set_target_position(player.global_position)
 		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
-		raycast.target_position = player.position-global_position
+		raycast.target_position = player.global_position-global_position
 		raycast.force_raycast_update()
 		if  raycast.is_colliding() or nav.distance_to_target() > wait_distence: # pathfind to the player
 			velocity = relitive_pos.normalized()*speed
 		elif nav.distance_to_target() < wait_distence - wiggle_room: #Walk away from the player
-			velocity = (global_position-player.position).normalized()*walk_speed
+			velocity = (global_position-player.global_position).normalized()*walk_speed
 		else: #chill at a good distence from the player
-			velocity = ((player.position-global_position)-position).rotated(deg_to_rad(90*idle_direction)).normalized()*idle_speed
+			velocity = ((player.global_position-global_position)-position).rotated(deg_to_rad(90*idle_direction)).normalized()*idle_speed
 	
 	move_and_slide()
 
@@ -72,7 +72,7 @@ func attack():
 	if attack_cooldown_timer.is_stopped():
 		idle_direction = change_idle_dir()
 		$attack_box/AnimationPlayer.play("Attack")
-		attacking_velocity = (player.position-global_position)*speed/attacking_frames
+		attacking_velocity = (player.global_position-global_position)*speed/attacking_frames
 		attacking_frame = 0
 		attack_cooldown_timer.start()
 		return true

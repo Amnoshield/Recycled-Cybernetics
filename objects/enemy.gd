@@ -33,11 +33,11 @@ func _physics_process(_delta):
 		velocity = knockback
 		knockback /= 2
 	elif attack_cooldown_timer.is_stopped() or  (player.global_position-global_position).length() > wait_distence: #Use path finding
-		nav.set_target_position(player.position)
+		nav.set_target_position(player.global_position)
 		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
 		velocity = relitive_pos.normalized()*speed
 	elif nav.distance_to_target() < wait_distence - wiggle_room: #Walk away from the player
-			velocity = (global_position-player.position).normalized()*walk_speed
+			velocity = (global_position-player.global_position).normalized()*walk_speed
 	else:
 		velocity = Vector2(0, 0)
 		
