@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var nav:NavigationAgent2D = $NavigationAgent2D
-@onready var player:CharacterBody2D = get_node("../Player")
+@onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @onready var raycast = $RayCast2D
 @onready var attack_cooldown_timer = $attack_cooldown
 @onready var random_cooldown_timer = $random_attack_cooldown

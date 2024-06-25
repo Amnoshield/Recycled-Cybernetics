@@ -33,5 +33,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 
 func _on_area_2d_area_entered(area:Area2D):
 	ray.target_position = area.global_position - global_position
+	ray.force_raycast_update()
 	if not ray.is_colliding():
 		near_spawners.append(area.get_parent())

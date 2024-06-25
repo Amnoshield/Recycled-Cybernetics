@@ -50,25 +50,13 @@ tile_set = ExtResource("2_s8nug")
 format = 2
 layer_0/tile_data = PackedInt32Array(1245199, 262144, 0, 1310735, 0, 0, 1376271, 0, 1, 1441807, 0, 0, 1507343, 0, 1, 1638415, 327680, 1, 1572879, 0, 0, 1638414, 131072, 1, 1638412, 131072, 1, 1638413, 196608, 1, 1638410, 131072, 1, 1638411, 196608, 1, 1638408, 131072, 1, 1638409, 196608, 1, 1638407, 262144, 0, 786440, 65536, 1, 786441, 65536, 1, 1114112, 327680, 0, -393184, 131072, 1, -393183, 196608, 1, -393182, 131072, 1, -393181, 196608, 1, -393180, 131072, 1, -393179, 327680, 0, -327643, 0, 0, -262107, 0, 1, -196571, 0, 0, -131035, 0, 1, -65499, 0, 0, 37, 0, 1, 65573, 0, 0, 131109, 0, 1, 196645, 327680, 1, 196643, 131072, 1, 196644, 196608, 1, 196641, 131072, 1, 196642, 196608, 1, 196640, 196608, 1, -262113, 65536, 1, -65505, 65536, 0, 31, 0, 0, -327649, 0, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_qjf0g")]
-position = Vector2(211, 411)
-
 [node name="enemy_spawner" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(607, 69)
+position = Vector2(573, 95)
 enemy = ExtResource("3_sakw7")
 
 [node name="enemy_spawner5" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(526, 38)
+position = Vector2(512, 55)
 enemy = ExtResource("3_sakw7")
 
-[node name="enemy_spawner2" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(66, 76)
-enemy = ExtResource("3_sakw7")
-
-[node name="enemy_spawner4" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(-4, 178)
-enemy = ExtResource("3_sakw7")
-
-[node name="enemy_spawner3" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(-50, 29)
-enemy = ExtResource("3_sakw7")
+[node name="Player" parent="." instance=ExtResource("1_qjf0g")]
+position = Vector2(211, 411)
