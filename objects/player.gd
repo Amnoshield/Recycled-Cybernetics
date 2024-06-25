@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
+@onready var health_bar = $Smoothing2D/Sprite2D/HealthBar
+
 @export var speed = 100
-@export var health = 10
 @export var knockback_res = 0
 @export var invincible = false
 @export var parrying = false
@@ -16,7 +17,8 @@ var dashing_frames = 5
 var dashing_frame = 0
 
 func _ready():
-	$Smoothing2D/Sprite2D/health.set_text(str(health))
+	health_bar.set_value_no_signal(Tracker.player_health)
+	health_bar.max_value = Tracker.player_max_health
 	dashing_frame = dashing_frames
 	$Dash/cooldown.wait_time = dash_cooldown
 	$Dash/buffer.wait_time = dash_buffer
@@ -46,11 +48,11 @@ func take_damage(damage:int, take_knockback:Vector2):
 	elif invincible:
 		return
 	
-	health -= damage
+	Tracker.player_health -= damage
 	knockback = take_knockback
 
-	$Smoothing2D/Sprite2D/health.set_text(str(health))
-	if health <= 0:
+	health_bar.set_value_no_signal(Tracker.player_health)
+	if Tracker.player_health <= 0:
 		die()
 
 
@@ -76,3 +78,7 @@ func _on_cooldown_timeout():
 
 func die():
 	get_tree().change_scene_to_file("res://Menus/death_screen.tscn")
+
+
+func _on_hurtbox_area_entered(_area):
+	Tracker.next_level()

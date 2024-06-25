@@ -25,6 +25,7 @@ collision_layer = 4
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_ej2j7")
+health = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.997072, 0, 0.142165, 1)
