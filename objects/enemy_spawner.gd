@@ -10,6 +10,7 @@ func _ready():
 
 func spawn():
 	var mob:Node = enemy.instantiate()
+	mob.global_position = global_position
 	get_node("..").add_child(mob)
 	self.queue_free()
 
