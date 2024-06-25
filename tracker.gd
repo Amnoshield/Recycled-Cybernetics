@@ -60,6 +60,6 @@ func next_level():
 
 func reset():
 	current_level_level = 1
-	var player_health = 10
-	var player_max_health = 10
+	player_health = 10
+	player_max_health = 10
 
