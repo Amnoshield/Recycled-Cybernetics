@@ -16,6 +16,10 @@ size = Vector2(8, 16)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_ww0ps")
+speed = null
+turning_speed_deg = null
+damage = null
+knockback = null
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_4f4c3")
@@ -25,6 +29,7 @@ shape = SubResource("RectangleShape2D_vpi8q")
 
 [node name="hitbox" type="Area2D" parent="." groups=["hurtbox"]]
 collision_layer = 4
+collision_mask = 4
 script = ExtResource("2_q33em")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]

@@ -13,7 +13,5 @@ func Enter():
 	attack_cooldown.start()
 	enemy.idle_direction = enemy.change_idle_dir()
 	Transitioned.emit(self, "Ranger_Idle")
-	enemy.velocity = Vector2(0, 0)
-
 
 

@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var idle_direction = change_idle_dir()
 
 @export var speed = 80
-@export var health = 10
+@export var health = 5
 @export var damage = 1
 @export var knockback_strenth = 500
 @export var knockback_res = 0
