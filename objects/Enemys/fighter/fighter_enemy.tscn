@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_f3y4s"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_knockback.gd" id="4_aj36c"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_idle.gd" id="5_4afeg"]
-[ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_pathfind.gd" id="6_uuq4m"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_walk_away.gd" id="7_1goen"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_attack.gd" id="8_brjpt"]
+[ext_resource type="Script" path="res://objects/Enemys/ranger/states/Ranger_Pathfind.gd" id="8_hu6qp"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
 size = Vector2(32, 32)
@@ -133,9 +133,8 @@ libraries = {
 [node name="random_attack_cooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="State_Machine" type="Node" parent="."]
 script = ExtResource("3_f3y4s")
-initial_state = NodePath("Fighter_pathfind")
 
 [node name="Fighter_Knockback" type="Node" parent="State_Machine"]
 script = ExtResource("4_aj36c")
@@ -143,14 +142,14 @@ script = ExtResource("4_aj36c")
 [node name="Fighter_Idle" type="Node" parent="State_Machine"]
 script = ExtResource("5_4afeg")
 
-[node name="Fighter_pathfind" type="Node" parent="State_Machine"]
-script = ExtResource("6_uuq4m")
-
 [node name="Fighter_walk_away" type="Node" parent="State_Machine"]
 script = ExtResource("7_1goen")
 
 [node name="fighter_attack" type="Node" parent="State_Machine"]
 script = ExtResource("8_brjpt")
+
+[node name="Ranger_Pathfind" type="Node" parent="State_Machine"]
+script = ExtResource("8_hu6qp")
 
 [connection signal="area_entered" from="attack_box" to="." method="_on_attack_box_area_entered"]
 [connection signal="timeout" from="random_attack_cooldown" to="." method="_on_random_attack_cooldown_timeout"]
