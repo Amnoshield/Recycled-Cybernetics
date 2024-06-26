@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvvska5yiricq"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xt4sb"]
-size = Vector2(20, 20)
-
-[node name="enemy_marker" type="Sprite2D"]
-z_index = 50
-texture = SubResource("PlaceholderTexture2D_xt4sb")

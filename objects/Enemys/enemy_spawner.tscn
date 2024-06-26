@@ -9,7 +9,7 @@ radius = 64.0
 script = ExtResource("1_rqrns")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(32, 32)
+scale = Vector2(16, 16)
 rect = Rect2(-1, -1, 2, 2)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

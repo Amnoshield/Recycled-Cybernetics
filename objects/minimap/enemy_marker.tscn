@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c78t5crfo0mc4"]
+
+[ext_resource type="Texture2D" uid="uid://d1ii0p1k6hv7s" path="res://objects/minimap/Enemy_marker.png" id="1_cmgps"]
+
+[node name="Enemy marker" type="Sprite2D"]
+z_index = 50
+scale = Vector2(2, 2)
+texture = ExtResource("1_cmgps")

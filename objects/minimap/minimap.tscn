@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjke165hnb1ua"]
+[gd_scene load_steps=4 format=3 uid="uid://cjke165hnb1ua"]
 
+[ext_resource type="PackedScene" uid="uid://c78t5crfo0mc4" path="res://objects/minimap/enemy_marker.tscn" id="2_0wrlj"]
 [ext_resource type="Script" path="res://objects/minimap/minimap.gd" id="2_irbol"]
-[ext_resource type="PackedScene" uid="uid://cvvska5yiricq" path="res://objects/Enemys/enemy_marker.tscn" id="2_upp0x"]
+[ext_resource type="Texture2D" uid="uid://dkhu1i4arr6pr" path="res://objects/minimap/gear.png" id="2_utm22"]
 
 [node name="minimap" type="CanvasLayer"]
 
@@ -17,7 +18,12 @@ handle_input_locally = false
 size = Vector2i(200, 200)
 render_target_update_mode = 4
 script = ExtResource("2_irbol")
-tracker_texture = ExtResource("2_upp0x")
+tracker_texture = ExtResource("2_0wrlj")
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer2/SubViewport"]
-zoom = Vector2(0.1, 0.1)
+zoom = Vector2(0.3, 0.3)
+
+[node name="Player" type="Sprite2D" parent="SubViewportContainer2/SubViewport"]
+z_index = 51
+position = Vector2(100, 100)
+texture = ExtResource("2_utm22")
