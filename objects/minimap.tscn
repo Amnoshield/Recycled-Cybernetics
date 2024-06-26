@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds2y5784v24x8"]
+[gd_scene load_steps=3 format=3 uid="uid://cjke165hnb1ua"]
 
 [ext_resource type="Script" path="res://objects/minimap.gd" id="2_irbol"]
 [ext_resource type="PackedScene" uid="uid://cvvska5yiricq" path="res://objects/enemy_marker.tscn" id="2_upp0x"]
