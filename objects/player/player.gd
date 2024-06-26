@@ -16,6 +16,9 @@ var dashing_velocity = Vector2(0, 0)
 var dashing_frames = 5
 var dashing_frame = 0
 
+@onready var AP = $Smoothing2D/Sprite2D/AnimationPlayer
+@onready var sprite = $Smoothing2D/Sprite2D
+
 func _ready():
 	health_bar.set_value_no_signal(Tracker.player_health)
 	health_bar.max_value = Tracker.player_max_health
@@ -34,9 +37,15 @@ func _physics_process(_delta):
 		velocity = dashing_velocity
 	else: #Use player movement
 		velocity = speed * Input.get_vector("left", "right", "up", "down")
-		if velocity.length() != 0:
-			last_move = velocity
-	
+		
+		if velocity.y > 0 and velocity.x == 0:
+			AP.play("walk forward")
+		if velocity.y < 0 and velocity.x == 0:
+			AP.play("walk backward")
+		if velocity.x < 0 and velocity.y == 0:
+			AP.play("walk sideways")
+			AP.play("walk sideways")
+		print(last_move)
 	move_and_slide()
 
 
