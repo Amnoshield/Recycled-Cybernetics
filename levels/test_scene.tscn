@@ -55,6 +55,10 @@ layer_0/tile_data = PackedInt32Array(786440, 65536, 1, 786441, 65536, 1, 1114112
 position = Vector2(627, 88)
 enemy = ExtResource("3_sakw7")
 
+[node name="enemy_spawner2" parent="." instance=ExtResource("4_wspjl")]
+position = Vector2(101, 145)
+enemy = ExtResource("3_sakw7")
+
 [node name="enemy_spawner5" parent="." instance=ExtResource("4_wspjl")]
 position = Vector2(19, 120)
 enemy = ExtResource("7_10qa7")

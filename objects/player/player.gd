@@ -67,8 +67,18 @@ func _physics_process(_delta):
 			last_move = velocity
 	
 	if velocity == Vector2.ZERO:
-		if last_move == Vector2(0 ,100):
+		if last_move == Vector2(0 ,-100):
+			sprite.flip_h = false
+			AP.play("idle back")
+		elif  last_move == Vector2(0 ,100):
+			sprite.flip_h = false
 			AP.play("idle front")
+		elif  last_move.x > 0:
+			sprite.flip_h = true
+			AP.play("idle side")
+		elif  last_move.x < 0:
+			sprite.flip_h = false
+			AP.play("idle side")
 	move_and_slide()
 
 
