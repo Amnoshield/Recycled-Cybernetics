@@ -38,8 +38,8 @@ func get_ange_to_player():
 	return (player.global_position - global_position).angle()+deg_to_rad(-90)
 
 
-func take_damage(_damage, knockback:Vector2):
-	self_knockback = knockback.normalized()*500
+func take_damage(_damage, fake_knockback:Vector2):
+	self_knockback = fake_knockback.normalized()*500
 	knocked_back = true
 	var hitbox:Area2D = $hitbox
 	hitbox.collision_mask = 4
