@@ -74,15 +74,15 @@ one_shot = true
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_euwad")
-initial_state = NodePath("Enemy_pathfind")
+initial_state = NodePath("blob_pathfind")
 
-[node name="Enemy_pathfind" type="Node" parent="State Machine"]
+[node name="blob_pathfind" type="Node" parent="State Machine"]
 script = ExtResource("4_onm1h")
 
-[node name="Knockback" type="Node" parent="State Machine"]
+[node name="blob_Knockback" type="Node" parent="State Machine"]
 script = ExtResource("5_trb5e")
 
-[node name="Idle" type="Node" parent="State Machine"]
+[node name="blob_Idle" type="Node" parent="State Machine"]
 script = ExtResource("6_vu8to")
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]

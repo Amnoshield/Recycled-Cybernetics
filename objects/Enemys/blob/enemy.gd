@@ -34,7 +34,7 @@ func _physics_process(_delta):
 func take_damage(oof_damage:int, new_knockback):
 	health -= oof_damage
 	knockback =  new_knockback
-	$"State Machine".overide_state("Knockback")
+	$"State Machine".overide_state("blob_Knockback")
 	
 	if health <= 0:
 		die()

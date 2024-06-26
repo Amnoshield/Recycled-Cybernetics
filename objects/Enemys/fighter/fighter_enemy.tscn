@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ttfionm4jjiw"]
+[gd_scene load_steps=17 format=3 uid="uid://ttfionm4jjiw"]
 
 [ext_resource type="Script" path="res://objects/Enemys/fighter/fighter_enemy.gd" id="1_hf7jv"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_2gs5r"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_knockback.gd" id="4_aj36c"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_idle.gd" id="5_4afeg"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_pathfind.gd" id="6_uuq4m"]
+[ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_walk_away.gd" id="7_1goen"]
+[ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_attack.gd" id="8_brjpt"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
 size = Vector2(32, 32)
@@ -143,6 +145,12 @@ script = ExtResource("5_4afeg")
 
 [node name="Fighter_pathfind" type="Node" parent="State_Machine"]
 script = ExtResource("6_uuq4m")
+
+[node name="Fighter_walk_away" type="Node" parent="State_Machine"]
+script = ExtResource("7_1goen")
+
+[node name="fighter_attack" type="Node" parent="State_Machine"]
+script = ExtResource("8_brjpt")
 
 [connection signal="area_entered" from="attack_box" to="." method="_on_attack_box_area_entered"]
 [connection signal="timeout" from="random_attack_cooldown" to="." method="_on_random_attack_cooldown_timeout"]

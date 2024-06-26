@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var knockback_strenth = 500
 @export var knockback_res = 0
 @export var attack_cooldown = 1
-@export var wait_distence = 100
+@export var wait_distence = 75
 @export var wiggle_room = 10
 @export var walk_speed = 40
 @export var random_attack_min = 1
@@ -63,7 +63,7 @@ func take_damage(oof_damage:int, new_knockback):
 	health -= oof_damage
 	knockback =  new_knockback
 	attacking_frame = attacking_frames
-	$State_Machine.overide_state("knockback")
+	$State_Machine.overide_state("Fighter_Knockback")
 	
 	if health <= 0:
 		die()
@@ -71,11 +71,13 @@ func take_damage(oof_damage:int, new_knockback):
 
 func attack():
 	if attack_cooldown_timer.is_stopped():
-		idle_direction = change_idle_dir()
-		$attack_box/AnimationPlayer.play("Attack")
-		attacking_velocity = (player.global_position-global_position)*speed/attacking_frames
-		attacking_frame = 0
 		attack_cooldown_timer.start()
+		if $State_Machine.current_state.name in ["Fighter_Idle", "Fighter_walk_away"]:
+			$State_Machine.overide_state("fighter_attack")
+			idle_direction = change_idle_dir()
+			$attack_box/AnimationPlayer.play("Attack")
+			attacking_velocity = (player.global_position-global_position)*speed/attacking_frames
+			attacking_frame = 0
 		return true
 	return false
 
