@@ -35,26 +35,26 @@ func _ready():
 
 
 func _physics_process(_delta):
-	if knockback.length() > speed: #Use knockback
-		knockback = knockback.limit_length(knockback.length()-knockback_res)
-		velocity = knockback
-		knockback /= 2
-		
-	elif attacking_frame < attacking_frames-1: #Use attack velocity
-		attacking_frame += 1
-		velocity = attacking_velocity
-		
-	else: #Use pathfinding
-		nav.set_target_position(player.global_position)
-		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
-		raycast.target_position = player.global_position-global_position
-		raycast.force_raycast_update()
-		if  raycast.is_colliding() or nav.distance_to_target() > wait_distence: # pathfind to the player
-			velocity = relitive_pos.normalized()*speed
-		elif nav.distance_to_target() < wait_distence - wiggle_room: #Walk away from the player
-			velocity = (global_position-player.global_position).normalized()*walk_speed
-		else: #chill at a good distence from the player
-			velocity = ((player.global_position-global_position)-position).rotated(deg_to_rad(90*idle_direction)).normalized()*idle_speed
+	#if knockback.length() > speed: #Use knockback
+		#knockback = knockback.limit_length(knockback.length()-knockback_res)
+		#velocity = knockback
+		#knockback /= 2
+		#
+	#elif attacking_frame < attacking_frames-1: #Use attack velocity
+		#attacking_frame += 1
+		#velocity = attacking_velocity
+		#
+	#else: #Use pathfinding
+		#nav.set_target_position(player.global_position)
+		#var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
+		#raycast.target_position = player.global_position-global_position
+		#raycast.force_raycast_update()
+		#if  raycast.is_colliding() or nav.distance_to_target() > wait_distence: # pathfind to the player
+			#velocity = relitive_pos.normalized()*speed
+		#elif nav.distance_to_target() < wait_distence - wiggle_room: #Walk away from the player
+			#velocity = (global_position-player.global_position).normalized()*walk_speed
+		#else: #chill at a good distence from the player
+			#velocity = ((player.global_position-global_position)-position).rotated(deg_to_rad(90*idle_direction)).normalized()*idle_speed
 	
 	move_and_slide()
 
@@ -63,6 +63,7 @@ func take_damage(oof_damage:int, new_knockback):
 	health -= oof_damage
 	knockback =  new_knockback
 	attacking_frame = attacking_frames
+	$State_Machine.overide_state("knockback")
 	
 	if health <= 0:
 		die()

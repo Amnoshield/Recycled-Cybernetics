@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://tgk8gnfdri4a"]
+[gd_scene load_steps=12 format=3 uid="uid://tgk8gnfdri4a"]
 
-[ext_resource type="Script" path="res://objects/enemy.gd" id="1_ej2j7"]
+[ext_resource type="Script" path="res://objects/Enemys/blob/enemy.gd" id="1_ej2j7"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_h6ciw"]
+[ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_euwad"]
+[ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_pathfind.gd" id="4_onm1h"]
+[ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_knockback.gd" id="5_trb5e"]
+[ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_idle.gd" id="6_vu8to"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
 size = Vector2(32, 32)
@@ -67,6 +71,19 @@ shape = SubResource("RectangleShape2D_0ihid")
 
 [node name="attack_cooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_euwad")
+initial_state = NodePath("Enemy_pathfind")
+
+[node name="Enemy_pathfind" type="Node" parent="State Machine"]
+script = ExtResource("4_onm1h")
+
+[node name="Knockback" type="Node" parent="State Machine"]
+script = ExtResource("5_trb5e")
+
+[node name="Idle" type="Node" parent="State Machine"]
+script = ExtResource("6_vu8to")
 
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
 [connection signal="area_exited" from="attack" to="." method="_on_attack_area_exited"]

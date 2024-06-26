@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://chrykf56drv22"]
 
-[ext_resource type="Script" path="res://objects/enemy_spawner.gd" id="1_rqrns"]
+[ext_resource type="Script" path="res://objects/Enemys/enemy_spawner.gd" id="1_rqrns"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_py3ou"]
 radius = 64.0

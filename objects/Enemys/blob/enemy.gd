@@ -28,25 +28,13 @@ func _ready():
 
 
 func _physics_process(_delta):
-	if knockback.length() > speed: #Use knockback
-		knockback = knockback.limit_length(knockback.length()-knockback_res)
-		velocity = knockback
-		knockback /= 2
-	elif attack_cooldown_timer.is_stopped() or  (player.global_position-global_position).length() > wait_distence: #Use path finding
-		nav.set_target_position(player.global_position)
-		var relitive_pos:Vector2 = nav.get_next_path_position()- global_position
-		velocity = relitive_pos.normalized()*speed
-	elif nav.distance_to_target() < wait_distence - wiggle_room: #Walk away from the player
-			velocity = (global_position-player.global_position).normalized()*walk_speed
-	else:
-		velocity = Vector2(0, 0)
-		
 	move_and_slide()
 
 
 func take_damage(oof_damage:int, new_knockback):
 	health -= oof_damage
 	knockback =  new_knockback
+	$"State Machine".overide_state("Knockback")
 	
 	if health <= 0:
 		die()
