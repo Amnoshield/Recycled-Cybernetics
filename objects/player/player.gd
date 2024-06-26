@@ -39,13 +39,46 @@ func _physics_process(_delta):
 		velocity = speed * Input.get_vector("left", "right", "up", "down")
 		
 		if velocity.y > 0 and velocity.x == 0:
+			sprite.flip_h = false
 			AP.play("walk forward")
 		if velocity.y < 0 and velocity.x == 0:
+			sprite.flip_h = false
 			AP.play("walk backward")
 		if velocity.x < 0 and velocity.y == 0:
+			sprite.flip_h = false
 			AP.play("walk sideways")
+		if velocity.x > 0 and velocity.y == 0:
+			sprite.flip_h = true
 			AP.play("walk sideways")
-		print(last_move)
+		if velocity.x < 0 and velocity.y > 0:
+			sprite.flip_h = false
+			AP.play("walk down diag")
+		if velocity.x > 0 and velocity.y > 0:
+			sprite.flip_h = true
+			AP.play("walk down diag")
+		if velocity.x < 0 and velocity.y < 0:
+			sprite.flip_h = false
+			AP.play("walk up diag")
+		if velocity.x > 0 and velocity.y < 0:
+			sprite.flip_h = true
+			AP.play("walk up diag")
+		
+		if velocity.length() != 0:
+			last_move = velocity
+	
+	if velocity == Vector2.ZERO:
+		if last_move == Vector2(0 ,-100):
+			sprite.flip_h = false
+			AP.play("idle back")
+		elif  last_move == Vector2(0 ,100):
+			sprite.flip_h = false
+			AP.play("idle front")
+		elif  last_move.x > 0:
+			sprite.flip_h = true
+			AP.play("idle side")
+		elif  last_move.x < 0:
+			sprite.flip_h = false
+			AP.play("idle side")
 	move_and_slide()
 
 
