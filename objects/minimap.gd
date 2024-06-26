@@ -16,7 +16,6 @@ func _physics_process(_delta):
 
 
 func add_tracker(tracke:Node):
-	print("tracker added")
 	var tracker = tracker_texture.instantiate()
 	tracker.position = tracke.global_position
 	tracker_pos[tracke.global_position] = tracker
