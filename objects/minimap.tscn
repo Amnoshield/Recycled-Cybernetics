@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds2y5784v24x8"]
+
+[ext_resource type="Script" path="res://objects/minimap.gd" id="2_irbol"]
+[ext_resource type="PackedScene" uid="uid://cvvska5yiricq" path="res://objects/enemy_marker.tscn" id="2_upp0x"]
+
+[node name="minimap" type="CanvasLayer"]
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+offset_left = 93.0
+offset_top = 32.0
+offset_right = 143.0
+offset_bottom = 82.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2" groups=["minimap"]]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+script = ExtResource("2_irbol")
+tracker_texture = ExtResource("2_upp0x")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer2/SubViewport"]
+zoom = Vector2(0.1, 0.1)

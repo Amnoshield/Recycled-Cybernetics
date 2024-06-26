@@ -2,8 +2,8 @@ extends Node
 
 
 var num_enemies = 0
-var enemies = []
-var end = null
+var spawners:Array = []
+var end
 var rng = RandomNumberGenerator.new()
 
 
@@ -27,9 +27,8 @@ func _process(_delta):
 
 
 func spawn_enemies():
-	for enemy in enemies:
+	for enemy in spawners:
 		enemy.spawnable = true
-	enemies.clear()
 
 
 func remove_enemy():
@@ -75,4 +74,3 @@ func reset():
 	player_health = 10
 	player_max_health = 10
 	go_next_level = false
-

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=23 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/sword attack.gd" id="2_0rrg6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://objects/parry.gd" id="4_1std8"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="5_njb03"]
 [ext_resource type="Texture2D" uid="uid://bpswrm76m3g18" path="res://icon.svg" id="7_hrax5"]
+[ext_resource type="PackedScene" uid="uid://ds2y5784v24x8" path="res://objects/minimap.tscn" id="8_ai6nc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tkbnt"]
 radius = 5.0
@@ -259,6 +260,8 @@ one_shot = true
 
 [node name="buffer" type="Timer" parent="Dash"]
 one_shot = true
+
+[node name="minimap" parent="." instance=ExtResource("8_ai6nc")]
 
 [connection signal="area_entered" from="sword attack" to="sword attack" method="_on_area_entered"]
 [connection signal="timeout" from="sword attack/cooldown" to="sword attack" method="_on_cooldown_timeout"]

@@ -1,14 +1,16 @@
 extends Node2D
 
 @onready var ray = $RayCast2D
+@onready var minimap = get_tree().get_nodes_in_group("minimap")[0]
 @export var enemy:PackedScene
 var spawnable = false
 var near_spawners = []
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Tracker.num_enemies += 1
-	Tracker.enemies.append(self)
+	add()
 
 
 func spawn():
@@ -19,7 +21,7 @@ func spawn():
 	get_node("..").add_child(mob)
 	spawnable = false
 	trigger()
-	self.queue_free()
+	remove()
 
 
 func trigger():
@@ -36,3 +38,14 @@ func _on_area_2d_area_entered(area:Area2D):
 	ray.force_raycast_update()
 	if not ray.is_colliding():
 		near_spawners.append(area.get_parent())
+
+
+func add():
+	Tracker.spawners.append(self)
+	minimap.add_tracker(self)
+
+
+func remove():
+	Tracker.spawners.erase(self)
+	minimap.remove_tracker(self)
+	self.queue_free()
