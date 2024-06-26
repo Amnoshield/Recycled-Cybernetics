@@ -1,14 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://hyckbp12hyty"]
+[gd_scene load_steps=9 format=3 uid="uid://hyckbp12hyty"]
 
 [ext_resource type="TileSet" uid="uid://dehtu0x07meao" path="res://assets/tiles/TileSet1.tres" id="1_hgel7"]
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_q7mjs"]
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player/player.tscn" id="1_qjf0g"]
 [ext_resource type="TileSet" uid="uid://coeqejmi0xdc8" path="res://assets/tiles/TileSet2.tres" id="2_s8nug"]
-[ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/enemy.tscn" id="3_sakw7"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="3_xm5qc"]
 [ext_resource type="PackedScene" uid="uid://chrykf56drv22" path="res://objects/Enemys/enemy_spawner.tscn" id="4_wspjl"]
 [ext_resource type="PackedScene" uid="uid://cuqr8ovfm68t3" path="res://objects/Enemys/ranger/ranged_enemy.tscn" id="7_10qa7"]
-[ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/Enemys/fighter/fighter_enemy.tscn" id="7_r02f0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(96, -135, 96, -37, -96, -37, -354, -135, -354, 123, -162, 123, -162, 203, -96, 153, -158, 203, -34, 219, -146, 215, -64, 153, -53, 169, 350, -103, 350, -119, 400, -119, 400, -21, 339, -87, 350, -69, 339, -85, 350, -21, 315, -87, 315, -85, 64, 91, 64, 219, 0, 219, 30, 153, 0, 315, -34, 315, -13, 169, -146, 219, -2, 153, 30, 57, 190, 57, 224, 91, 224, -69, 190, -103, 304, -69, 304, -103)
@@ -51,22 +49,6 @@ position = Vector2(-177, -54)
 tile_set = ExtResource("2_s8nug")
 format = 2
 layer_0/tile_data = PackedInt32Array(786440, 65536, 1, 786441, 65536, 1, 1114112, 327680, 0, -393184, 131072, 1, -393183, 196608, 1, -393182, 131072, 1, -393181, 196608, 1, -393180, 131072, 1, -393179, 327680, 0, -327643, 0, 0, -262107, 0, 1, -196571, 0, 0, -131035, 0, 1, -65499, 0, 0, 37, 0, 1, 65573, 0, 0, 131109, 0, 1, 196645, 327680, 1, 196643, 131072, 1, 196644, 196608, 1, 196641, 131072, 1, 196642, 196608, 1, 196640, 196608, 1, -262113, 65536, 1, -65505, 65536, 0, 31, 0, 0, -327649, 0, 1)
-
-[node name="enemy_spawner" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(627, 88)
-enemy = ExtResource("3_sakw7")
-
-[node name="enemy_spawner2" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(79, 136)
-enemy = ExtResource("3_sakw7")
-
-[node name="enemy_spawner3" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(7, 190)
-enemy = ExtResource("3_sakw7")
-
-[node name="enemy_spawner4" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(-8, 106)
-enemy = ExtResource("7_r02f0")
 
 [node name="enemy_spawner5" parent="." instance=ExtResource("4_wspjl")]
 position = Vector2(-47, 51)

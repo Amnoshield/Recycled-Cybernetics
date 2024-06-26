@@ -13,9 +13,12 @@ size = Vector2(8, 16)
 size = Vector2(8, 16)
 
 [node name="Bullet" type="CharacterBody2D"]
+z_index = 30
 collision_layer = 0
 collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_ww0ps")
+speed = 50
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_4f4c3")
@@ -25,6 +28,7 @@ shape = SubResource("RectangleShape2D_vpi8q")
 
 [node name="hitbox" type="Area2D" parent="." groups=["hurtbox"]]
 collision_layer = 4
+input_pickable = false
 script = ExtResource("2_q33em")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
