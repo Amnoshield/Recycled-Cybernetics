@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dci3v73nppluu"
-path="res://.godot/imported/blob attack atempt 1.png-c199c8e9411bd37da36d590d601986c8.ctex"
+uid="uid://dabygsqdp1a6f"
+path="res://.godot/imported/blob_try_2(edited).png-dc92a1a1add2a1df9816df584f9f88c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/other/blob attack atempt 1.png"
-dest_files=["res://.godot/imported/blob attack atempt 1.png-c199c8e9411bd37da36d590d601986c8.ctex"]
+source_file="res://assets/enemies/blob_try_2(edited).png"
+dest_files=["res://.godot/imported/blob_try_2(edited).png-dc92a1a1add2a1df9816df584f9f88c4.ctex"]
 
 [params]
 

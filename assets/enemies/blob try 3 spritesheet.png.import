@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deup5ykxbprps"
-path="res://.godot/imported/blob_try_2.png-b624e41b7a601ad7512d89886a29bafb.ctex"
+uid="uid://b1atfphlheuyw"
+path="res://.godot/imported/blob try 3 spritesheet.png-b226c2625ee166a63a6ea569173b6e28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/other/blob_try_2.png"
-dest_files=["res://.godot/imported/blob_try_2.png-b624e41b7a601ad7512d89886a29bafb.ctex"]
+source_file="res://assets/enemies/blob try 3 spritesheet.png"
+dest_files=["res://.godot/imported/blob try 3 spritesheet.png-b226c2625ee166a63a6ea569173b6e28.ctex"]
 
 [params]
 

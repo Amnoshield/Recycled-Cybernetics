@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c78t5crfo0mc4" path="res://objects/minimap/enemy_marker.tscn" id="2_0wrlj"]
 [ext_resource type="Script" path="res://objects/minimap/minimap.gd" id="2_irbol"]
-[ext_resource type="Texture2D" uid="uid://dkhu1i4arr6pr" path="res://objects/minimap/gear.png" id="2_utm22"]
+[ext_resource type="Texture2D" uid="uid://dkhu1i4arr6pr" path="res://assets/gear.png" id="3_sfjlg"]
 
 [node name="minimap" type="CanvasLayer"]
 
@@ -21,9 +21,10 @@ script = ExtResource("2_irbol")
 tracker_texture = ExtResource("2_0wrlj")
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer2/SubViewport"]
+self_modulate = Color(1, 1, 1, 0.384314)
 zoom = Vector2(0.3, 0.3)
 
 [node name="Player" type="Sprite2D" parent="SubViewportContainer2/SubViewport"]
 z_index = 51
 position = Vector2(100, 100)
-texture = ExtResource("2_utm22")
+texture = ExtResource("3_sfjlg")

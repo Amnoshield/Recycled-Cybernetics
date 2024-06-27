@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkhu1i4arr6pr"
-path="res://.godot/imported/gear.png-72366dd67af8162c0e5a5e822e5b7728.ctex"
+uid="uid://c4dx0ulyrv13o"
+path="res://.godot/imported/blob death.png-7e8322b276adb1761972e08b5ff0adc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/minimap/gear.png"
-dest_files=["res://.godot/imported/gear.png-72366dd67af8162c0e5a5e822e5b7728.ctex"]
+source_file="res://assets/enemies/blob death.png"
+dest_files=["res://.godot/imported/blob death.png-7e8322b276adb1761972e08b5ff0adc8.ctex"]
 
 [params]
 

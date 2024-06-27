@@ -11,7 +11,9 @@ var tracker_pos = {}
 
 
 func _ready():
-	add_child(source.duplicate(2))
+	var temp = source.duplicate(2)
+	temp.modulate.a = 0.8
+	add_child(temp)
 
 
 func _physics_process(_delta):
@@ -29,3 +31,11 @@ func add_tracker(tracke:Node):
 
 func remove_tracker(tracke):
 	tracker_pos[tracke.global_position].queue_free()
+
+
+func invis():
+	$"..".visible = false
+
+
+func vis():
+	$"..".visible = true
