@@ -1,7 +1,8 @@
-[gd_scene load_steps=40 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=41 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/player/sword attack.gd" id="2_0rrg6"]
+[ext_resource type="Texture2D" uid="uid://c5stghi1hqtje" path="res://assets/other/attack1.png" id="3_8jrcb"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="3_f5pnt"]
 [ext_resource type="Script" path="res://objects/player/parry.gd" id="4_1std8"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="5_njb03"]
@@ -19,45 +20,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tkbnt"]
 radius = 5.0
 height = 16.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkkgw"]
-size = Vector2(64, 20)
-
-[sub_resource type="Animation" id="Animation_bvwv6"]
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../sword attack/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_8qkge"]
-resource_name = "sword attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../sword attack/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_530rv"]
-_data = {
-"RESET": SubResource("Animation_bvwv6"),
-"sword attack": SubResource("Animation_8qkge")
-}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjen1"]
 radius = 5.0
@@ -809,6 +771,143 @@ _data = {
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rwm0t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkkgw"]
+size = Vector2(64, 20)
+
+[sub_resource type="Animation" id="Animation_bvwv6"]
+length = 0.24
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+
+[sub_resource type="Animation" id="Animation_8qkge"]
+resource_name = "sword attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_8jrcb")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D/Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D/Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationPlayer:speed_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_530rv"]
+_data = {
+"RESET": SubResource("Animation_bvwv6"),
+"sword attack": SubResource("Animation_8qkge")
+}
+
 [sub_resource type="Animation" id="Animation_24u2m"]
 resource_name = "Dash"
 length = 0.2
@@ -859,29 +958,6 @@ script = ExtResource("1_pjd8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_tkbnt")
-
-[node name="sword attack" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-script = ExtResource("2_0rrg6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sword attack"]
-position = Vector2(0, -22)
-shape = SubResource("RectangleShape2D_gkkgw")
-disabled = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="sword attack"]
-libraries = {
-"": SubResource("AnimationLibrary_530rv")
-}
-speed_scale = 4.0
-
-[node name="cooldown" type="Timer" parent="sword attack"]
-one_shot = true
-
-[node name="buffer" type="Timer" parent="sword attack"]
-one_shot = true
 
 [node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 collision_mask = 8
@@ -937,6 +1013,35 @@ nine_patch_stretch = true
 texture_under = ExtResource("7_hrax5")
 texture_progress = SubResource("PlaceholderTexture2D_rwm0t")
 
+[node name="sword attack" type="Area2D" parent="Smoothing2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_0rrg6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Smoothing2D/sword attack"]
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_gkkgw")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Smoothing2D/sword attack/CollisionShape2D"]
+visible = false
+position = Vector2(0, 4)
+texture = ExtResource("3_8jrcb")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Smoothing2D/sword attack"]
+libraries = {
+"": SubResource("AnimationLibrary_530rv")
+}
+speed_scale = 1.5
+
+[node name="cooldown" type="Timer" parent="Smoothing2D/sword attack"]
+one_shot = true
+
+[node name="buffer" type="Timer" parent="Smoothing2D/sword attack"]
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
@@ -961,10 +1066,10 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[connection signal="area_entered" from="sword attack" to="sword attack" method="_on_area_entered"]
-[connection signal="timeout" from="sword attack/cooldown" to="sword attack" method="_on_cooldown_timeout"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="parry" to="parry" method="_on_area_entered"]
 [connection signal="area_exited" from="parry" to="parry" method="_on_area_exited"]
 [connection signal="timeout" from="parry/cooldown" to="parry" method="_on_cooldown_timeout"]
+[connection signal="area_entered" from="Smoothing2D/sword attack" to="Smoothing2D/sword attack" method="_on_area_entered"]
+[connection signal="timeout" from="Smoothing2D/sword attack/cooldown" to="Smoothing2D/sword attack" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="Dash/cooldown" to="." method="_on_cooldown_timeout"]
