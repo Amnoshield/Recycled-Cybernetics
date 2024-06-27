@@ -5,10 +5,10 @@ class_name PartTemplate
 var self_idx
 
 
-func setup(title:String, sprite:CompressedTexture2D, description:String, idx:int):
-	title(title)
+func setup(_title:String, sprite:CompressedTexture2D, _description:String, idx:int):
+	title(_title)
 	part_sprite(sprite)
-	description(description)
+	description(_description)
 	self_idx = idx
 
 
