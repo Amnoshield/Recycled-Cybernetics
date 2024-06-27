@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cygkyh2kfb2u2"
-path="res://.godot/imported/attack1.png-05a17c229f56c366b3759e24ad328e6b.ctex"
+uid="uid://c65p1avpgfxhc"
+path="res://.godot/imported/health bar red 2.png-e688e1effe700b6330d5670bc7f2d2b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/other/attack1.png"
-dest_files=["res://.godot/imported/attack1.png-05a17c229f56c366b3759e24ad328e6b.ctex"]
+source_file="res://assets/other/health colors/health bar red 2.png"
+dest_files=["res://.godot/imported/health bar red 2.png-e688e1effe700b6330d5670bc7f2d2b3.ctex"]
 
 [params]
 
