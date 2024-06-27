@@ -1,14 +1,89 @@
-[gd_scene load_steps=11 format=3 uid="uid://tgk8gnfdri4a"]
+[gd_scene load_steps=22 format=3 uid="uid://tgk8gnfdri4a"]
 
 [ext_resource type="Script" path="res://objects/Enemys/blob/enemy.gd" id="1_ej2j7"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_h6ciw"]
+[ext_resource type="Texture2D" uid="uid://ilf36upc3gin" path="res://assets/other/blob try 3 spritesheet.png" id="2_jes58"]
+[ext_resource type="Texture2D" uid="uid://3cfeg76hgkki" path="res://assets/other/blob attack atempt 1.png" id="2_k3v14"]
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_euwad"]
 [ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_pathfind.gd" id="4_onm1h"]
 [ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_knockback.gd" id="5_trb5e"]
 [ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_idle.gd" id="6_vu8to"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
-size = Vector2(16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn760"]
+atlas = ExtResource("2_k3v14")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j0wf"]
+atlas = ExtResource("2_k3v14")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgyqk"]
+atlas = ExtResource("2_k3v14")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6brd5"]
+atlas = ExtResource("2_k3v14")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1m47e"]
+atlas = ExtResource("2_k3v14")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnsjx"]
+atlas = ExtResource("2_jes58")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t61n"]
+atlas = ExtResource("2_jes58")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmrr8"]
+atlas = ExtResource("2_jes58")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynsut"]
+atlas = ExtResource("2_jes58")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpw1v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn760")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j0wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgyqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6brd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1m47e")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnsjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t61n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmrr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynsut")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
 size = Vector2(16, 16)
@@ -26,9 +101,11 @@ motion_mode = 1
 script = ExtResource("1_ej2j7")
 health = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.997072, 0, 0.142165, 1)
-texture = SubResource("PlaceholderTexture2D_foq3r")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cpw1v")
+animation = &"attack"
+autoplay = "attack"
+frame_progress = 0.825869
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
