@@ -21,8 +21,10 @@ var dashing_frame = 0
 @onready var sprite = $Smoothing2D/Sprite2D
 
 func _ready():
-	health_bar.set_value_no_signal(Tracker.player_health)
+	Tracker.apply_upgrades()
 	health_bar.max_value = Tracker.player_max_health
+	health_bar.value = Tracker.player_health
+
 	dashing_frame = dashing_frames
 	$Dash/cooldown.wait_time = dash_cooldown
 	$Dash/buffer.wait_time = dash_buffer

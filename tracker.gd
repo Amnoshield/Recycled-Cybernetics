@@ -23,18 +23,20 @@ var player_health = 10
 var player_max_health = 10
 var go_next_level = false
 
+var level_next
+
 
 func _ready():
 	var counter = 0
 	while counter < len(upgrades):
-		upgrades[counter] = load(upgrades[counter])		
+		upgrades[counter] = load(upgrades[counter]).new()
 		counter += 1
 
 
 func _process(_delta):
 	if go_next_level:
 		go_next_level = false
-		next_level()
+		start_next_level()
 
 
 func spawn_enemies():
@@ -48,40 +50,40 @@ func remove_enemy():
 	if num_enemies <= 0 and is_instance_valid(end):
 		end.open()
 	elif num_enemies <= 0:
-		print('Idk man')
+		print('Fishish crash stopped')
+
+
+func start_next_level():
+	get_tree().change_scene_to_file("res://Menus/pick_part.tscn")
 
 
 func next_level():
-	if current_level_level == 1:#tutorial
-		get_tree().change_scene_to_file(totorial_level)
-	elif current_level_level == 2:#level 1
-		var _min = 0
-		var _max = len(first_levels)-1
-		var level = first_levels[rng.randi_range(_min, _max)]
-		get_tree().change_scene_to_file(level)
-	elif current_level_level == 3:#level 2
-		var _min = 0
-		var _max = len(second_levels)-1
-		var level = second_levels[rng.randi_range(_min, _max)]
-		get_tree().change_scene_to_file(level)
-	elif current_level_level == 4:#level 3
-		var _min = 0
-		var _max = len(third_levels)-1
-		var level = third_levels[rng.randi_range(_min, _max)]
-		get_tree().change_scene_to_file(level)
-	elif current_level_level == 5:#Boss
-		var _min = 0
-		var _max = len(boss_levels)-1
-		var level = boss_levels[rng.randi_range(_min, _max)]
-		get_tree().change_scene_to_file(level)
-	else:#Win screen
-		get_tree().change_scene_to_file(win_screen)
-	
-	current_level_level += 1
+	get_tree().change_scene_to_file(level_next)
 
 
 func trigger_next_level():
 	go_next_level = true
+	
+	if current_level_level == 1:#level 1
+		var _min = 0
+		var _max = len(first_levels)-1
+		level_next = first_levels[rng.randi_range(_min, _max)]
+	elif current_level_level == 2:#level 2
+		var _min = 0
+		var _max = len(second_levels)-1
+		level_next = second_levels[rng.randi_range(_min, _max)]
+	elif current_level_level == 3:#level 3
+		var _min = 0
+		var _max = len(third_levels)-1
+		level_next = third_levels[rng.randi_range(_min, _max)]
+	elif current_level_level == 4:#Boss
+		var _min = 0
+		var _max = len(boss_levels)-1
+		level_next = boss_levels[rng.randi_range(_min, _max)]
+	else:#Win screen
+		level_next = win_screen
+	
+	current_level_level += 1
 
 
 func reset():
@@ -91,9 +93,10 @@ func reset():
 	go_next_level = false
 
 
-func get_upgrade(idx:int, buff:bool):
+func get_upgrade(idx:int):
 	var upgrade = upgrades.pop_at(idx)
-	chosen_upgrades.append({"obj":upgrade, "name":upgrade.name})
+	chosen_upgrades.append({"obj":upgrade, "name":upgrade.name, 'des':upgrade.discription})
+	next_level()
 
 
 func apply_upgrades():

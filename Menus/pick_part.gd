@@ -1,21 +1,26 @@
 extends Node2D
 
-@onready var part1 = $parts/PartTemplate
-@onready var part2 = $parts/PartTemplate2
-@onready var part3 = $parts/PartTemplate3
-
 var rng = RandomNumberGenerator.new()
 var parts = []
+var part_templates = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for x in range(3):
+		part_templates.append(load("res://Menus/part template.tscn").instantiate())
+		part_templates[-1].global_position = Vector2(288*x+288, 324)
+		self.add_child(part_templates[-1])
+	
 	var _min = 0
 	var _max = len(Tracker.upgrades)-1
 	while len(parts) < 3:
 		var part_number = rng.randi_range(_min, _max)
-		if part_number not in parts:
-			parts.append(part_number)
+		#if part_number not in parts:
+		parts.append(part_number)
 	
-	part1
 	
+	for part_idx in part_templates.size():
+		var temp_part = Tracker.upgrades[parts[part_idx]]
+		part_templates[part_idx].setup(temp_part.title, temp_part.part_sprite, temp_part.discription, parts[part_idx])
+
 

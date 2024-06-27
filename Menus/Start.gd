@@ -2,4 +2,4 @@ extends Button
 
 
 func _on_pressed():
-	Tracker.next_level()
+	get_tree().change_scene_to_file(Tracker.totorial_level)

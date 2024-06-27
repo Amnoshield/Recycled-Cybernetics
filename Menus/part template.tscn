@@ -6,7 +6,7 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cjam5"]
 
-[node name="PartTemplate" type="Node2D"]
+[node name="PartTemplate" type="Node2D" groups=["part"]]
 script = ExtResource("1_sfx6p")
 
 [node name="background" type="Sprite2D" parent="."]
@@ -43,8 +43,6 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 text = "Description"
-fit_content = true
-scroll_following = true
 selection_enabled = true
 deselect_on_focus_loss_enabled = false
 
