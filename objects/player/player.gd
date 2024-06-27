@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var health_bar = $Smoothing2D/Sprite2D/HealthBar
+@onready var pause_screen:PackedScene = preload("res://Menus/pause_screen.tscn")
 
 @export var speed = 100
 @export var knockback_res = 0
@@ -38,6 +39,7 @@ func _physics_process(_delta):
 	else: #Use player movement
 		velocity = speed * Input.get_vector("left", "right", "up", "down")
 		
+		#walk animations
 		if velocity.y > 0 and velocity.x == 0:
 			sprite.flip_h = false
 			AP.play("walk forward")
@@ -66,7 +68,7 @@ func _physics_process(_delta):
 		if velocity.length() != 0:
 			last_move = velocity
 	
-	if velocity == Vector2.ZERO:
+	if velocity == Vector2.ZERO: #Idle animations
 		if last_move == Vector2(0 ,-100):
 			sprite.flip_h = false
 			AP.play("idle back")
@@ -79,6 +81,7 @@ func _physics_process(_delta):
 		elif  last_move.x < 0:
 			sprite.flip_h = false
 			AP.play("idle side")
+	
 	move_and_slide()
 
 
@@ -98,12 +101,19 @@ func take_damage(damage:int, take_knockback:Vector2):
 		die()
 
 
-func _unhandled_key_input(_event): #Dash
-	if Input.is_action_just_pressed("dash"):
+func _unhandled_key_input(event:InputEvent): #Dash
+	if event.is_action_pressed("dash"):
 		if $Dash/cooldown.is_stopped():
 			dash()
 		else:
 			$Dash/buffer.start()
+	elif event.is_action_pressed("pause"): #trigger pause
+		
+		var new_pause = pause_screen.instantiate()
+		new_pause.global_position = global_position
+		get_tree().get_nodes_in_group("scene root")[0].add_child(new_pause)
+		get_tree().paused = true
+		
 
 
 func dash():

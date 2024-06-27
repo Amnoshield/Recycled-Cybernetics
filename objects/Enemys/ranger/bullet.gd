@@ -15,7 +15,6 @@ var knocked_back = false
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	print(hitbox.collision_mask)
 	rotation = get_ange_to_player()+deg_to_rad(rng.randi_range(-45, 45))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

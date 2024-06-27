@@ -70,6 +70,6 @@ func change_idle_dir():
 
 
 
-func _on_animation_player_animation_finished(die):
+func _on_animation_player_animation_finished(_die): #kill the enemy after death enimation
 	queue_free()
 

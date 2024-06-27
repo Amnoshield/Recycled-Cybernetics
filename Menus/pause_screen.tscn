@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2a4fxjcvqsd6"]
+
+[ext_resource type="Script" path="res://Menus/Continue.gd" id="1_ip8t5"]
+[ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_jqo0x"]
+[ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="2_tiku3"]
+
+[sub_resource type="Gradient" id="Gradient_01s0c"]
+offsets = PackedFloat32Array(0, 0.220779, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.357143, 0.357143, 0.357143, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5yamy"]
+gradient = SubResource("Gradient_01s0c")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wkak7"]
+font_size = 50
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="pause screen" type="Node2D"]
+process_mode = 3
+z_index = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.486275)
+scale = Vector2(4.65625, 2.65625)
+texture = SubResource("GradientTexture2D_5yamy")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -55.0
+offset_right = 246.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+vertical = true
+
+[node name="Puased" type="Label" parent="BoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+text = "Paused"
+label_settings = SubResource("LabelSettings_wkak7")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="what did you think?" type="Label" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "ծ_o"
+mouse_filter = 0
+text = "What do you think of our game so far?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Continue"
+script = ExtResource("1_ip8t5")
+
+[node name="Back to main menu" type="Button" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "This takes you back to the main menu."
+text = "Back to main menu
+"
+script = ExtResource("1_jqo0x")
+
+[node name="Exit" type="Button" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "You wouldn't dare!!!"
+text = "Exit"
+script = ExtResource("2_tiku3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[connection signal="pressed" from="BoxContainer/Continue" to="BoxContainer/Continue" method="_on_pressed"]
+[connection signal="pressed" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_pressed"]
+[connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_pressed"]

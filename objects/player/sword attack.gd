@@ -11,8 +11,8 @@ func _ready():
 	$buffer.wait_time = buffer
 
 
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("attack"):
+func _unhandled_input(event):
+	if event.is_action_pressed("attack"):
 		if $cooldown.is_stopped():
 			attack()
 		else:

@@ -34,8 +34,10 @@ func spawn_enemies():
 func remove_enemy():
 	num_enemies -= 1
 	
-	if num_enemies <= 0:
+	if num_enemies <= 0 and is_instance_valid(end):
 		end.open()
+	elif num_enemies <= 0:
+		print('Idk man')
 
 
 func next_level():
