@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj1mi16t07l8t"
-path="res://.godot/imported/blob try 2 spritesheet.png-817ea591fbff39e2af55004505160785.ctex"
+uid="uid://c4dx0ulyrv13o"
+path="res://.godot/imported/blob death.png-6c228cba29b9e8676d9f66a49afd7f26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/other/blob try 2 spritesheet.png"
-dest_files=["res://.godot/imported/blob try 2 spritesheet.png-817ea591fbff39e2af55004505160785.ctex"]
+source_file="res://assets/other/blob death.png"
+dest_files=["res://.godot/imported/blob death.png-6c228cba29b9e8676d9f66a49afd7f26.ctex"]
 
 [params]
 
