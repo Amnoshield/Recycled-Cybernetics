@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bc2cowapjjoje"]
+
+[ext_resource type="Script" path="res://Menus/pick_part.gd" id="1_6342l"]
+[ext_resource type="PackedScene" uid="uid://byceesklxexht" path="res://Menus/part template.tscn" id="2_tn32k"]
+
+[sub_resource type="Gradient" id="Gradient_csywl"]
+offsets = PackedFloat32Array(0, 0.253247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.363636, 0.363636, 0.363636, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pqmtd"]
+gradient = SubResource("Gradient_csywl")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0qy2q"]
+font_size = 50
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="pick part" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_6342l")
+
+[node name="backround" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(18, 10.125)
+texture = SubResource("GradientTexture2D_pqmtd")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1153.0
+offset_bottom = 174.0
+text = "Pick your next part"
+label_settings = SubResource("LabelSettings_0qy2q")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="parts" type="Node2D" parent="."]
+
+[node name="PartTemplate" parent="parts" instance=ExtResource("2_tn32k")]
+position = Vector2(276, 326)
+
+[node name="PartTemplate2" parent="parts" instance=ExtResource("2_tn32k")]
+position = Vector2(556, 328)
+
+[node name="PartTemplate3" parent="parts" instance=ExtResource("2_tn32k")]
+position = Vector2(870, 330)

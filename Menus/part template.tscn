@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://byceesklxexht"]
+
+[ext_resource type="Script" path="res://Menus/part template.gd" id="1_sfx6p"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7xx6q"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cjam5"]
+
+[node name="PartTemplate" type="Node2D"]
+script = ExtResource("1_sfx6p")
+
+[node name="background" type="Sprite2D" parent="."]
+self_modulate = Color(0, 1, 1, 1)
+scale = Vector2(166, 269)
+texture = SubResource("PlaceholderTexture2D_7xx6q")
+
+[node name="Title" type="Label" parent="."]
+offset_left = -69.0
+offset_top = -117.0
+offset_right = 69.0
+offset_bottom = -94.0
+text = "Title
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="part sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -47)
+scale = Vector2(140, 82)
+texture = SubResource("PlaceholderTexture2D_cjam5")
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_direction = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_right = 70.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+text = "Description"
+fit_content = true
+scroll_following = true
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+
+[node name="Take" type="Button" parent="."]
+offset_left = -68.0
+offset_top = 84.0
+offset_right = 70.0
+offset_bottom = 115.0
+text = "Take"
+
+[connection signal="pressed" from="Take" to="." method="_on_take_pressed"]
