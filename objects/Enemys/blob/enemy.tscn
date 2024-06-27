@@ -105,7 +105,7 @@ health = 3
 sprite_frames = SubResource("SpriteFrames_cpw1v")
 animation = &"attack"
 autoplay = "attack"
-frame_progress = 0.825869
+frame_progress = 0.7157
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
