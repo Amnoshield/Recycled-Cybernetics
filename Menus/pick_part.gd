@@ -21,7 +21,14 @@ func _ready():
 	
 	for part_idx in part_templates.size():
 		if part_idx > len(parts)-1: break
-		var temp_part = Tracker.upgrades[parts[part_idx]]
-		part_templates[part_idx].setup(temp_part.title, temp_part.part_sprite, temp_part.discription, temp_part.background_sprite, parts[part_idx])
+		var idx2 = rng.randi_range(0, 1)
+		var temp_part = Tracker.upgrades[parts[part_idx]][idx2]
+		part_templates[part_idx].setup(
+			temp_part.title,
+			temp_part.part_sprite,
+			temp_part.discription,
+			temp_part.background_sprite,
+			parts[part_idx],
+			idx2)
 
 

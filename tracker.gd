@@ -1,21 +1,20 @@
 extends Node
 
-var num_enemies = 0
 var spawners:Array = []
 var end
 var rng = RandomNumberGenerator.new()
-var next_upgrade
+var next_upgrade = false
 var upgrades = []
 var chosen_upgrades = []
 var upgrades_main:Array = [
-	"res://objects/player/upgrades/double_health.gd",
-	"res://objects/player/upgrades/half_health.gd",
-	"res://objects/player/upgrades/double_attack_speed.gd",
-	"res://objects/player/upgrades/half_attack_speed.gd",
-	"res://objects/player/upgrades/half_parry_cooldown.gd",
-	"res://objects/player/upgrades/double_parry_cooldown.gd",
-	"res://objects/player/upgrades/half_dash_cooldown.gd",
-	"res://objects/player/upgrades/double_dash_cooldown.gd"
+	["res://objects/player/upgrades/double_health.gd", "res://objects/player/upgrades/half_health.gd"],
+	["res://objects/player/upgrades/double_attack_speed.gd", "res://objects/player/upgrades/half_attack_speed.gd"],
+	["res://objects/player/upgrades/half_parry_cooldown.gd", "res://objects/player/upgrades/double_parry_cooldown.gd"],
+	["res://objects/player/upgrades/half_dash_cooldown.gd", "res://objects/player/upgrades/double_dash_cooldown.gd"],
+	["res://objects/player/upgrades/double_damage.gd", "res://objects/player/upgrades/half_damage.gd"],
+	["res://objects/player/upgrades/double_knockback_res.gd", "res://objects/player/upgrades/half_knockback_res.gd"],
+	["res://objects/player/upgrades/double_speed.gd", "res://objects/player/upgrades/half_speed.gd"],
+	
 ]
 
 
@@ -26,6 +25,7 @@ var third_levels = ["res://levels/test_scene.tscn"]
 var boss_levels = ["res://levels/test_scene.tscn"]
 var win_screen = "res://Menus/win_screen.tscn"
 
+var level_next
 
 #need to be reset
 var current_level_level
@@ -38,15 +38,16 @@ var player_attack_cooldown
 var player_damage
 var player_knockback
 var player_parry_cooldown
-var go_next_level = false
 
-var level_next
+var num_enemies
+var go_next_level
 
 
 func _ready():
 	var counter = 0
 	while counter < len(upgrades_main):
-		upgrades_main[counter] = load(upgrades_main[counter]).new()
+		upgrades_main[counter][0] = load(upgrades_main[counter][0]).new()
+		upgrades_main[counter][1] = load(upgrades_main[counter][1]).new()
 		counter += 1
 	
 	reset()
@@ -55,12 +56,18 @@ func _ready():
 func _process(_delta):
 	if go_next_level:
 		go_next_level = false
-		start_next_level()
+		if current_level_level > 4:
+			next_level()
+		else:
+			start_next_level()
 
 
 func spawn_enemies():
 	for enemy in spawners:
-		enemy.spawnable = true
+		if is_instance_valid(enemy):
+			enemy.spawnable = true
+		else:
+			print("stale spawner")
 	spawners.clear() #Idk if this does anyhting but a crach happend related to this so just in case
 
 
@@ -69,6 +76,8 @@ func remove_enemy():
 	
 	if num_enemies <= 0 and is_instance_valid(end):
 		end.open()
+	elif num_enemies <= 0:
+		print("end not valid")
 
 
 func start_next_level():
@@ -81,7 +90,7 @@ func next_level():
 
 func trigger_next_level():
 	go_next_level = true
-	
+	current_level_level += 1
 	if current_level_level == 1:#level 1
 		var _min = 0
 		var _max = len(first_levels)-1
@@ -100,31 +109,37 @@ func trigger_next_level():
 		level_next = boss_levels[rng.randi_range(_min, _max)]
 	else:#Win screen
 		level_next = win_screen
-	
-	current_level_level += 1
 
 
-func reset():
-	current_level_level = 1
+func player_reset():
 	player_health = 10
 	player_max_health = 10
 	player_speed = 100
-	player_knockback_res = 0
+	player_knockback_res = 1
 	player_dash_cooldown = 1.
 	player_attack_cooldown = 1.
-	player_damage = 1.
+	player_damage = 2
 	player_knockback = 1000
 	player_parry_cooldown = 1.
+
+
+func reset():
+	player_reset()
 	
+	num_enemies = 0
+	next_upgrade = false
+	current_level_level = 0
 	go_next_level = false
 	
+	
+	chosen_upgrades.clear()
 	for upgrade in upgrades_main:
 		if upgrade not in upgrades:
 			upgrades.append(upgrade)
 
 
-func get_upgrade(idx:int):
-	next_upgrade = upgrades.pop_at(idx)
+func get_upgrade(idx1:int, idx2:int):
+	next_upgrade = upgrades.pop_at(idx1)[idx2]
 	chosen_upgrades.append({"obj":next_upgrade, "name":next_upgrade.name, 'des':next_upgrade.discription})
 	next_level()
 

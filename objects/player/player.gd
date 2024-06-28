@@ -16,7 +16,7 @@ var knockback_res
 var dash_cooldown
 var attack_cooldown
 var damage
-var player_knockback
+var entity_knockback
 var parry_cooldown
 
 #normal
@@ -45,7 +45,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if knockback.length() > speed: #Use knockback
-		knockback = knockback.limit_length(knockback.length()-knockback_res)
+		knockback = knockback.limit_length(knockback.length())
 		velocity = knockback
 		knockback /= 2
 	elif dashing_frame < dashing_frames -1: #Dash
@@ -109,7 +109,7 @@ func take_damage(damage_:int, take_knockback:Vector2):
 		return
 	
 	health -= damage_
-	knockback = take_knockback
+	knockback = take_knockback*knockback_res
 
 	health_bar.set_value_no_signal(health)
 	if health <= 0:
@@ -159,7 +159,7 @@ func upload_tracker():
 	Tracker.player_dash_cooldown = dash_cooldown
 	Tracker.player_attack_cooldown = attack_cooldown
 	Tracker.player_damage = damage
-	Tracker.player_knockback = player_knockback
+	Tracker.player_knockback = entity_knockback
 	Tracker.player_parry_cooldown = parry_cooldown
 
 
@@ -171,5 +171,5 @@ func download_tracker():
 	dash_cooldown = Tracker.player_dash_cooldown
 	attack_cooldown = Tracker.player_attack_cooldown
 	damage = Tracker.player_damage
-	player_knockback = Tracker.player_knockback
+	entity_knockback = Tracker.player_knockback
 	parry_cooldown = Tracker.player_parry_cooldown
