@@ -41,6 +41,8 @@ func _ready():
 	$Dash/buffer.wait_time = dash_buffer
 	
 	$"Smoothing2D/sword attack/cooldown".wait_time = attack_cooldown
+	$"Smoothing2D/sword attack/CollisionShape2D/progress bar".max_value = attack_cooldown*100
+	
 	$parry/cooldown.wait_time = parry_cooldown
 
 
