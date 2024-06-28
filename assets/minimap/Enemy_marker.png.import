@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chnlshfr5taxu"
-path="res://.godot/imported/v3 attack indicators1.png-dcb64b009f418479612cd8c2e3dfee15.ctex"
+uid="uid://d1ii0p1k6hv7s"
+path="res://.godot/imported/Enemy_marker.png-6552bb9204634c1bb235f3f87aeda7ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player ani/v3 attack indicators1.png"
-dest_files=["res://.godot/imported/v3 attack indicators1.png-dcb64b009f418479612cd8c2e3dfee15.ctex"]
+source_file="res://assets/minimap/Enemy_marker.png"
+dest_files=["res://.godot/imported/Enemy_marker.png-6552bb9204634c1bb235f3f87aeda7ba.ctex"]
 
 [params]
 

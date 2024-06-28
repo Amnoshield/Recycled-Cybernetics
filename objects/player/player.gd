@@ -31,6 +31,8 @@ var dashing_frame = 0
 @onready var sprite = $Smoothing2D/Sprite2D
 
 func _ready():
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	download_tracker()
 	Tracker.apply_upgrade()
 	health_bar.max_value = max_health
@@ -110,6 +112,8 @@ func take_damage(damage_:int, take_knockback:Vector2):
 	
 	elif invincible:
 		return
+		
+	print(damage_)
 	
 	damage_ -= damage_res
 	if damage_ < 0:

@@ -114,8 +114,8 @@ func trigger_next_level():
 
 
 func player_reset():
-	player_health = 10
-	player_max_health = 10
+	player_health = 20
+	player_max_health = 20
 	player_speed = 100
 	player_knockback_res = 1
 	player_dash_cooldown = 1.

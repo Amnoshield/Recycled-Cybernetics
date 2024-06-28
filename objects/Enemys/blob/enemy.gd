@@ -5,16 +5,16 @@ extends CharacterBody2D
 @onready var attack_cooldown_timer:Timer = $attack_cooldown
 @onready var idle_direction = change_idle_dir()
 
-@export var speed = 80
-@export var health = 10
-@export var damage = 1
-@export var knockback_strenth = 1000
-@export var knockback_res = 0
-@export var attack_cooldown = 1
-@export var idle_speed = 20
-@export var wait_distence = 80
-@export var wiggle_room = 10
-@export var walk_speed = 40
+var speed = 80
+var health = 8
+var damage = 2
+var knockback_strenth = 1000
+var knockback_res = 0
+var attack_cooldown = 1
+var idle_speed = 20
+var wait_distence = 80
+var wiggle_room = 10
+var walk_speed = 40
 
 
 var attack_player = false
@@ -47,7 +47,7 @@ func _on_attack_area_entered(_area):
 
 func attack():
 	if attack_player and attack_cooldown_timer.is_stopped():
-		player.take_damage(damage, (player.global_position-global_position).normalized()*knockback_strenth)
+		player.take_damage(damage+rng.randi_range(-1, 1), (player.global_position-global_position).normalized()*knockback_strenth)
 		attack_cooldown_timer.start()
 
 

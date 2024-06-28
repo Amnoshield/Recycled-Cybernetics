@@ -3,10 +3,10 @@ extends CharacterBody2D
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @onready var hitbox:Area2D = $hitbox
 
-@export var speed = 20
-@export var turning_speed_deg = 1
-@export var damage = 1
-@export var knockback = 100
+var speed = 20
+var turning_speed_deg = 1
+var damage = 2
+var knockback = 100
 
 var enemy = true
 var self_knockback = Vector2(0, 0)
@@ -51,7 +51,7 @@ func take_damage(_damage, fake_knockback:Vector2):
 func _on_hitbox_area_entered(area:Area2D):#hit whatever it is looking at
 	if not (enemy and player.parrying):
 		die()
-	area.take_damage(damage, (area.global_position-global_position).normalized()*knockback)
+	area.take_damage(damage+rng.randi_range(-1, 1), (area.global_position-global_position).normalized()*knockback)
 	
 
 

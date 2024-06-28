@@ -7,18 +7,18 @@ extends CharacterBody2D
 @onready var random_cooldown_timer = $random_attack_cooldown
 @onready var idle_direction = change_idle_dir()
 
-@export var speed = 80
-@export var health = 10
-@export var damage = 1
-@export var knockback_strenth = 500
-@export var knockback_res = 0
-@export var attack_cooldown = 1
-@export var wait_distence = 75
-@export var wiggle_room = 10
-@export var walk_speed = 40
-@export var random_attack_min = 1
-@export var random_attack_max = 5
-@export var idle_speed = 20
+var speed = 80
+var health = 15
+var damage = 3
+var knockback_strenth = 500
+var knockback_res = 0
+var attack_cooldown = 1
+var wait_distence = 75
+var wiggle_room = 10
+var walk_speed = 40
+var random_attack_min = 1
+var random_attack_max = 5
+var idle_speed = 20
 
 var knockback = Vector2(0, 0)
 var attacking_velocity = Vector2(0, 0)
@@ -70,7 +70,7 @@ func start_random_attack():
 
 
 func _on_attack_box_area_entered(area): #this should only apply to the player
-	area.take_damage(damage, (area.global_position-global_position).normalized()*knockback_strenth)
+	area.take_damage(damage+rng.randi_range(-1, 1), (area.global_position-global_position).normalized()*knockback_strenth)
 
 
 func _on_random_attack_cooldown_timeout():

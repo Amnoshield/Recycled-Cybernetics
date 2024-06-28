@@ -6,16 +6,15 @@ extends CharacterBody2D
 @onready var attack_cooldown_timer = $attack_cooldown
 @onready var idle_direction = change_idle_dir()
 
-@export var speed = 80
-@export var health = 5
-@export var damage = 1
-@export var knockback_strenth = 500
-@export var knockback_res = 0
-@export var attack_cooldown = 1
-@export var wait_distence = 75
-@export var wiggle_room = 10
-@export var walk_speed = 40
-@export var idle_speed = 20
+var speed = 80
+var health = 10
+var knockback_strenth = 500
+var knockback_res = 0
+var attack_cooldown = 1
+var wait_distence = 75
+var wiggle_room = 10
+var walk_speed = 40
+var idle_speed = 20
 
 var knockback = Vector2(0, 0)
 var rng = RandomNumberGenerator.new()

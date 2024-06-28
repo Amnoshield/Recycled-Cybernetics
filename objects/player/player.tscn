@@ -18,8 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bmb24q8vmpk8k" path="res://assets/player ani/idle ani/side idle.png" id="13_qir1g"]
 [ext_resource type="Texture2D" uid="uid://bj8aj6748evxt" path="res://assets/other/health bar 1 no back.png" id="14_yra7k"]
 [ext_resource type="Texture2D" uid="uid://17l8ijegubl5" path="res://assets/other/health colors/health bar red 1.png" id="15_jfr3i"]
-[ext_resource type="Texture2D" uid="uid://byjhks2ck5dqs" path="res://assets/player ani/v3 attack indicators0.png" id="18_ic065"]
-[ext_resource type="Texture2D" uid="uid://chnlshfr5taxu" path="res://assets/player ani/v3 attack indicators1.png" id="19_htbhl"]
+[ext_resource type="Texture2D" uid="uid://byjhks2ck5dqs" path="res://assets/player ani/attack cooldown/v3 attack indicators0.png" id="18_nal1k"]
+[ext_resource type="Texture2D" uid="uid://chnlshfr5taxu" path="res://assets/player ani/attack cooldown/v3 attack indicators1.png" id="19_htbhl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tkbnt"]
 radius = 5.0
@@ -702,7 +702,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkkgw"]
-size = Vector2(64, 20)
+size = Vector2(46, 16)
 
 [sub_resource type="Animation" id="Animation_bvwv6"]
 length = 0.24
@@ -933,16 +933,24 @@ autoplay = "idle front"
 speed_scale = 0.8
 
 [node name="HealthBar" type="TextureProgressBar" parent="Smoothing2D/Sprite2D"]
+z_index = 1
 offset_left = -20.0
 offset_top = 10.0
 offset_right = 20.0
-offset_bottom = 16.0
+offset_bottom = 18.0
 max_value = 10.0
 value = 5.0
 nine_patch_stretch = true
-texture_under = ExtResource("13_aemq5")
-texture_over = ExtResource("14_yra7k")
 texture_progress = ExtResource("15_jfr3i")
+
+[node name="under" type="Sprite2D" parent="Smoothing2D/Sprite2D"]
+position = Vector2(0, 14)
+texture = ExtResource("13_aemq5")
+
+[node name="over" type="Sprite2D" parent="Smoothing2D/Sprite2D"]
+z_index = 2
+position = Vector2(0, 14)
+texture = ExtResource("14_yra7k")
 
 [node name="sword attack" type="Area2D" parent="Smoothing2D"]
 collision_layer = 0
@@ -951,7 +959,7 @@ monitorable = false
 script = ExtResource("2_0rrg6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Smoothing2D/sword attack"]
-position = Vector2(0, -22)
+position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_gkkgw")
 disabled = true
 
@@ -960,15 +968,16 @@ visible = false
 position = Vector2(0, 4)
 texture = ExtResource("3_8jrcb")
 hframes = 6
+frame = 2
 
 [node name="progress bar" type="TextureProgressBar" parent="Smoothing2D/sword attack/CollisionShape2D"]
 offset_left = -4.0
-offset_top = 6.0
+offset_top = 4.0
 offset_right = 4.0
-offset_bottom = 10.0
+offset_bottom = 8.0
 value = 50.0
 fill_mode = 3
-texture_under = ExtResource("18_ic065")
+texture_under = ExtResource("18_nal1k")
 texture_progress = ExtResource("19_htbhl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Smoothing2D/sword attack"]
