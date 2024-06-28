@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://tgk8gnfdri4a"]
 
-[ext_resource type="Script" path="res://objects/Enemys/blob/enemy.gd" id="1_ej2j7"]
+[ext_resource type="Script" path="res://objects/Enemys/blob/blob.gd" id="1_ckgri"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_h6ciw"]
 [ext_resource type="Texture2D" uid="uid://b1atfphlheuyw" path="res://assets/enemies/blob try 3 spritesheet.png" id="2_jes58"]
 [ext_resource type="Texture2D" uid="uid://dci3v73nppluu" path="res://assets/enemies/blob attack atempt 1.png" id="2_k3v14"]
@@ -249,20 +249,18 @@ _data = {
 "die": SubResource("Animation_8ex3m")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_rv1ff"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh4w7"]
-size = Vector2(18, 18)
+[sub_resource type="CircleShape2D" id="CircleShape2D_v2fb7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ihid"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wmcbu"]
+radius = 8.0
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="blob" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
-script = ExtResource("1_ej2j7")
+script = ExtResource("1_ckgri")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cpw1v")
@@ -288,17 +286,17 @@ monitoring = false
 script = ExtResource("2_h6ciw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-shape = SubResource("RectangleShape2D_3cj4s")
+shape = SubResource("CircleShape2D_rv1ff")
 
 [node name="attack" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
-shape = SubResource("RectangleShape2D_nh4w7")
+shape = SubResource("CircleShape2D_v2fb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0ihid")
+shape = SubResource("CircleShape2D_wmcbu")
 
 [node name="attack_cooldown" type="Timer" parent="."]
 one_shot = true

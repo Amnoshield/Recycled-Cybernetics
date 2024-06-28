@@ -19,11 +19,11 @@ var upgrades_main:Array = [
 ]
 
 
-var totorial_level = "res://levels/test_scene.tscn"
-var first_levels = ["res://levels/test_scene.tscn"]
-var second_levels = ["res://levels/test_scene.tscn"]
-var third_levels = ["res://levels/test_scene.tscn"]
-var boss_levels = ["res://levels/test_scene.tscn"]
+var totorial_level = "res://levels/levels fr fr og/test_scene.tscn"
+var first_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
+var second_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
+var third_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
+var boss_levels = ["res://levels/levels fr fr og/boss_room.tscn"]
 var win_screen = "res://Menus/win_screen.tscn"
 
 var level_next
@@ -147,6 +147,6 @@ func get_upgrade(idx1:int, idx2:int):
 	next_level()
 
 
-func apply_upgrade():
+func apply_upgrade(entity):
 	if next_upgrade:
-		next_upgrade.affect(get_tree().get_nodes_in_group("Player")[0])
+		next_upgrade.affect(entity)

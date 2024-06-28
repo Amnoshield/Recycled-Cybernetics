@@ -34,7 +34,7 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	download_tracker()
-	Tracker.apply_upgrade()
+	Tracker.apply_upgrade(self)
 	health_bar.max_value = max_health
 	health_bar.value = health
 
@@ -112,8 +112,6 @@ func take_damage(damage_:int, take_knockback:Vector2):
 	
 	elif invincible:
 		return
-		
-	print(damage_)
 	
 	damage_ -= damage_res
 	if damage_ < 0:

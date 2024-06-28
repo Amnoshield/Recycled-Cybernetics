@@ -980,7 +980,7 @@ fill_mode = 3
 texture_under = ExtResource("18_nal1k")
 texture_progress = ExtResource("19_htbhl")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Smoothing2D/sword attack"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Smoothing2D/sword attack" groups=["attack"]]
 libraries = {
 "": SubResource("AnimationLibrary_530rv")
 }

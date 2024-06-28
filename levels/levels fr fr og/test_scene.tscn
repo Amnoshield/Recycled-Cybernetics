@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="3_xm5qc"]
 [ext_resource type="PackedScene" uid="uid://chrykf56drv22" path="res://objects/Enemys/enemy_spawner.tscn" id="4_wspjl"]
 [ext_resource type="PackedScene" uid="uid://cuqr8ovfm68t3" path="res://objects/Enemys/ranger/ranged_enemy.tscn" id="7_10qa7"]
-[ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/enemy.tscn" id="7_nf70n"]
+[ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/blob.tscn" id="7_nf70n"]
 [ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/Enemys/fighter/fighter_enemy.tscn" id="8_sdq5g"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
@@ -65,7 +65,7 @@ position = Vector2(19, 171)
 enemy = ExtResource("7_nf70n")
 
 [node name="enemy_spawner8" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(-43, 118)
+position = Vector2(609, 42)
 enemy = ExtResource("8_sdq5g")
 
 [node name="Player" parent="." instance=ExtResource("1_qjf0g")]
