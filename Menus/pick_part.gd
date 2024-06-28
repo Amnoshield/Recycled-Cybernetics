@@ -13,13 +13,14 @@ func _ready():
 	
 	var _min = 0
 	var _max = len(Tracker.upgrades)-1
-	while len(parts) < 3:
+	while len(parts) < 3 and len(Tracker.upgrades) != len(parts):
 		var part_number = rng.randi_range(_min, _max)
-		#if part_number not in parts:
-		parts.append(part_number)
+		if part_number not in parts:
+			parts.append(part_number)
 	
 	
 	for part_idx in part_templates.size():
+		if part_idx > len(parts)-1: break
 		var temp_part = Tracker.upgrades[parts[part_idx]]
 		part_templates[part_idx].setup(temp_part.title, temp_part.part_sprite, temp_part.discription, parts[part_idx])
 

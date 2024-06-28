@@ -3,14 +3,23 @@ extends CharacterBody2D
 @onready var health_bar = $Smoothing2D/Sprite2D/HealthBar
 @onready var pause_screen:PackedScene = preload("res://Menus/pause_screen.tscn")
 
-@export var speed = 100
-@export var knockback_res = 0
 @export var invincible = false
 @export var parrying = false
 @export var dash_speed = 1000
-@export var dash_cooldown = 1
 @export var dash_buffer = 0.2
 
+#Exported to tracker
+var health
+var max_health
+var speed
+var knockback_res
+var dash_cooldown
+var attack_cooldown
+var damage
+var player_knockback
+var parry_cooldown
+
+#normal
 var knockback = Vector2(0, 0)
 var last_move = Vector2(0, 0)
 var dashing_velocity = Vector2(0, 0)
@@ -21,13 +30,17 @@ var dashing_frame = 0
 @onready var sprite = $Smoothing2D/Sprite2D
 
 func _ready():
+	download_tracker()
 	Tracker.apply_upgrades()
-	health_bar.max_value = Tracker.player_max_health
-	health_bar.value = Tracker.player_health
+	health_bar.max_value = max_health
+	health_bar.value = health
 
 	dashing_frame = dashing_frames
 	$Dash/cooldown.wait_time = dash_cooldown
 	$Dash/buffer.wait_time = dash_buffer
+	
+	$"Smoothing2D/sword attack/cooldown".wait_time = attack_cooldown
+	$parry/cooldown.wait_time = parry_cooldown
 
 
 func _physics_process(_delta):
@@ -87,7 +100,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 
-func take_damage(damage:int, take_knockback:Vector2):
+func take_damage(damage_:int, take_knockback:Vector2):
 	if parrying:
 		$parry.add_knockback(take_knockback.length())
 		return
@@ -95,11 +108,11 @@ func take_damage(damage:int, take_knockback:Vector2):
 	elif invincible:
 		return
 	
-	Tracker.player_health -= damage
+	health -= damage_
 	knockback = take_knockback
 
-	health_bar.set_value_no_signal(Tracker.player_health)
-	if Tracker.player_health <= 0:
+	health_bar.set_value_no_signal(health)
+	if health <= 0:
 		die()
 
 
@@ -134,5 +147,29 @@ func die():
 
 
 func _on_hurtbox_area_entered(_area): #This only sees the finish. Besides that the hurtbox is only used by enemys for damage.
+	upload_tracker()
 	Tracker.trigger_next_level()
 
+
+func upload_tracker():
+	Tracker.player_max_health = max_health
+	Tracker.player_health = health
+	Tracker.player_speed = speed
+	Tracker.player_knockback_res = knockback_res
+	Tracker.player_dash_cooldown = dash_cooldown
+	Tracker.player_attack_cooldown = attack_cooldown
+	Tracker.player_damage = damage
+	Tracker.player_knockback = player_knockback
+	Tracker.player_parry_cooldown = parry_cooldown
+
+
+func download_tracker():
+	health = Tracker.player_health
+	max_health = Tracker.player_max_health
+	speed = Tracker.player_speed
+	knockback_res = Tracker.player_knockback_res
+	dash_cooldown = Tracker.player_dash_cooldown
+	attack_cooldown = Tracker.player_attack_cooldown
+	damage = Tracker.player_damage
+	player_knockback = Tracker.player_knockback
+	parry_cooldown = Tracker.player_parry_cooldown

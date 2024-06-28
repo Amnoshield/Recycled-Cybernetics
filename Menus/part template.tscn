@@ -19,10 +19,12 @@ offset_left = -69.0
 offset_top = -117.0
 offset_right = 69.0
 offset_bottom = -94.0
+tooltip_text = "Title"
 text = "Title
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
 [node name="part sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -47)
@@ -41,6 +43,7 @@ offset_right = 70.0
 offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Description"
 focus_mode = 2
 text = "Description"
 selection_enabled = true
@@ -51,6 +54,7 @@ offset_left = -68.0
 offset_top = 84.0
 offset_right = 70.0
 offset_bottom = 115.0
+tooltip_text = "Take this part and continue"
 text = "Take"
 
 [connection signal="pressed" from="Take" to="." method="_on_take_pressed"]

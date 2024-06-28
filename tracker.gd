@@ -1,12 +1,17 @@
 extends Node
 
-
 var num_enemies = 0
 var spawners:Array = []
 var end
 var rng = RandomNumberGenerator.new()
-var upgrades = ["res://objects/player/upgrades/test_upgrade.gd"]
+var upgrades = []
 var chosen_upgrades = []
+var upgrades_main:Array = [
+	"res://objects/player/upgrades/double_health.gd",
+	"res://objects/player/upgrades/half_health.gd",
+	"res://objects/player/upgrades/double_attack_speed.gd",
+	
+]
 
 
 var totorial_level = "res://levels/test_scene.tscn"
@@ -18,9 +23,16 @@ var win_screen = "res://Menus/win_screen.tscn"
 
 
 #need to be reset
-var current_level_level = 1
-var player_health = 10
-var player_max_health = 10
+var current_level_level
+var player_health
+var player_max_health
+var player_speed
+var player_knockback_res
+var player_dash_cooldown
+var player_attack_cooldown
+var player_damage
+var player_knockback
+var player_parry_cooldown
 var go_next_level = false
 
 var level_next
@@ -28,9 +40,11 @@ var level_next
 
 func _ready():
 	var counter = 0
-	while counter < len(upgrades):
-		upgrades[counter] = load(upgrades[counter]).new()
+	while counter < len(upgrades_main):
+		upgrades_main[counter] = load(upgrades_main[counter]).new()
 		counter += 1
+	
+	reset()
 
 
 func _process(_delta):
@@ -90,7 +104,19 @@ func reset():
 	current_level_level = 1
 	player_health = 10
 	player_max_health = 10
+	player_speed = 100
+	player_knockback_res = 0
+	player_dash_cooldown = 1
+	player_attack_cooldown = 1
+	player_damage = 1
+	player_knockback = 1000
+	player_parry_cooldown = 1
+	
 	go_next_level = false
+	
+	for upgrade in upgrades_main:
+		if upgrade not in upgrades:
+			upgrades.append(upgrade)
 
 
 func get_upgrade(idx:int):
@@ -101,4 +127,4 @@ func get_upgrade(idx:int):
 
 func apply_upgrades():
 	for upgrade in chosen_upgrades:
-		upgrade["obj"].affect()
+		upgrade["obj"].affect(get_tree().get_nodes_in_group("Player")[0])

@@ -1,13 +1,10 @@
 extends Area2D
 
-@export var damage = 1
-@export var knockback = 2000
-@export var cooldown = 1
 @export var buffer = 0.2
+@onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 
 
 func _ready():
-	$cooldown.wait_time = cooldown
 	$buffer.wait_time = buffer
 
 
@@ -29,7 +26,7 @@ func attack():
 
 func _on_area_entered(area:Area2D):
 	if area.is_in_group("hurtbox"):
-		area.take_damage(damage, (area.global_position-global_position).normalized()*knockback)
+		area.take_damage(player.damage, (area.global_position-global_position).normalized()*player.player_knockback)
 
 
 func _on_cooldown_timeout():

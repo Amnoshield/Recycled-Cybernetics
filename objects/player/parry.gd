@@ -1,13 +1,11 @@
 extends Area2D
 
-@export var damage = 0
-@export var cooldown = 1
+@onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @export var buffer = 0.2
 var enemys:Array = []
 
 
 func _ready():
-	$cooldown.wait_time = cooldown
 	$buffer.wait_time = buffer
 
 
@@ -26,7 +24,7 @@ func parry():
 
 func add_knockback(knockback):
 	for area in enemys:
-		area.take_damage(damage, (area.global_position-global_position).normalized()*knockback)
+		area.take_damage(0, (area.global_position-global_position).normalized()*knockback)
 	enemys.clear()
 
 
