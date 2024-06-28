@@ -18,6 +18,7 @@ var attack_cooldown
 var damage
 var entity_knockback
 var parry_cooldown
+var damage_res
 
 #normal
 var knockback = Vector2(0, 0)
@@ -108,6 +109,9 @@ func take_damage(damage_:int, take_knockback:Vector2):
 	elif invincible:
 		return
 	
+	damage_ -= damage_res
+	if damage_ < 0:
+		damage_ = 0
 	health -= damage_
 	knockback = take_knockback*knockback_res
 
@@ -161,6 +165,7 @@ func upload_tracker():
 	Tracker.player_damage = damage
 	Tracker.player_knockback = entity_knockback
 	Tracker.player_parry_cooldown = parry_cooldown
+	Tracker.player_damage_res = damage_res
 
 
 func download_tracker():
@@ -173,3 +178,4 @@ func download_tracker():
 	damage = Tracker.player_damage
 	entity_knockback = Tracker.player_knockback
 	parry_cooldown = Tracker.player_parry_cooldown
+	damage_res = Tracker.player_damage_res

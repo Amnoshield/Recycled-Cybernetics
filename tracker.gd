@@ -14,7 +14,8 @@ var upgrades_main:Array = [
 	["res://objects/player/upgrades/double_damage.gd", "res://objects/player/upgrades/half_damage.gd"],
 	["res://objects/player/upgrades/double_knockback_res.gd", "res://objects/player/upgrades/half_knockback_res.gd"],
 	["res://objects/player/upgrades/double_speed.gd", "res://objects/player/upgrades/half_speed.gd"],
-	
+	["res://objects/player/upgrades/more_damage_res.gd", "res://objects/player/upgrades/less_damage_res.gd"],
+	["res://objects/player/upgrades/double_knockback.gd", "res://objects/player/upgrades/half_knockback.gd"]
 ]
 
 
@@ -38,6 +39,7 @@ var player_attack_cooldown
 var player_damage
 var player_knockback
 var player_parry_cooldown
+var player_damage_res
 
 var num_enemies
 var go_next_level
@@ -121,6 +123,7 @@ func player_reset():
 	player_damage = 2
 	player_knockback = 1000
 	player_parry_cooldown = 1.
+	player_damage_res = 0
 
 
 func reset():
