@@ -4,13 +4,18 @@ var num_enemies = 0
 var spawners:Array = []
 var end
 var rng = RandomNumberGenerator.new()
+var next_upgrade
 var upgrades = []
 var chosen_upgrades = []
 var upgrades_main:Array = [
 	"res://objects/player/upgrades/double_health.gd",
 	"res://objects/player/upgrades/half_health.gd",
 	"res://objects/player/upgrades/double_attack_speed.gd",
-	
+	"res://objects/player/upgrades/half_attack_speed.gd",
+	"res://objects/player/upgrades/half_parry_cooldown.gd",
+	"res://objects/player/upgrades/double_parry_cooldown.gd",
+	"res://objects/player/upgrades/half_dash_cooldown.gd",
+	"res://objects/player/upgrades/double_dash_cooldown.gd"
 ]
 
 
@@ -56,6 +61,7 @@ func _process(_delta):
 func spawn_enemies():
 	for enemy in spawners:
 		enemy.spawnable = true
+	spawners.clear() #Idk if this does anyhting but a crach happend related to this so just in case
 
 
 func remove_enemy():
@@ -63,8 +69,6 @@ func remove_enemy():
 	
 	if num_enemies <= 0 and is_instance_valid(end):
 		end.open()
-	elif num_enemies <= 0:
-		print('Fishish crash stopped')
 
 
 func start_next_level():
@@ -106,11 +110,11 @@ func reset():
 	player_max_health = 10
 	player_speed = 100
 	player_knockback_res = 0
-	player_dash_cooldown = 1
-	player_attack_cooldown = 1
-	player_damage = 1
+	player_dash_cooldown = 1.
+	player_attack_cooldown = 1.
+	player_damage = 1.
 	player_knockback = 1000
-	player_parry_cooldown = 1
+	player_parry_cooldown = 1.
 	
 	go_next_level = false
 	
@@ -120,11 +124,11 @@ func reset():
 
 
 func get_upgrade(idx:int):
-	var upgrade = upgrades.pop_at(idx)
-	chosen_upgrades.append({"obj":upgrade, "name":upgrade.name, 'des':upgrade.discription})
+	next_upgrade = upgrades.pop_at(idx)
+	chosen_upgrades.append({"obj":next_upgrade, "name":next_upgrade.name, 'des':next_upgrade.discription})
 	next_level()
 
 
-func apply_upgrades():
-	for upgrade in chosen_upgrades:
-		upgrade["obj"].affect(get_tree().get_nodes_in_group("Player")[0])
+func apply_upgrade():
+	if next_upgrade:
+		next_upgrade.affect(get_tree().get_nodes_in_group("Player")[0])

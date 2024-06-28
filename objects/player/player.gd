@@ -31,7 +31,7 @@ var dashing_frame = 0
 
 func _ready():
 	download_tracker()
-	Tracker.apply_upgrades()
+	Tracker.apply_upgrade()
 	health_bar.max_value = max_health
 	health_bar.value = health
 

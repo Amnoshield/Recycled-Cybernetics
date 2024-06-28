@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Menus/part template.gd" id="1_sfx6p"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7xx6q"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jtvrp"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cjam5"]
 
@@ -10,9 +10,9 @@
 script = ExtResource("1_sfx6p")
 
 [node name="background" type="Sprite2D" parent="."]
-self_modulate = Color(0, 1, 1, 1)
+self_modulate = Color(0, 0, 1, 1)
 scale = Vector2(166, 269)
-texture = SubResource("PlaceholderTexture2D_7xx6q")
+texture = SubResource("PlaceholderTexture2D_jtvrp")
 
 [node name="Title" type="Label" parent="."]
 offset_left = -69.0
@@ -20,6 +20,7 @@ offset_top = -117.0
 offset_right = 69.0
 offset_bottom = -94.0
 tooltip_text = "Title"
+mouse_filter = 0
 text = "Title
 "
 horizontal_alignment = 1

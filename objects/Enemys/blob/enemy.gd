@@ -64,10 +64,8 @@ func die():
 	$AnimatedSprite2D/AnimationPlayer.play("die")
 
 
-
 func change_idle_dir():
 	return (rng.randi_range(0, 1)-0.5)*2
-
 
 
 func _on_animation_player_animation_finished(_die): #kill the enemy after death enimation
