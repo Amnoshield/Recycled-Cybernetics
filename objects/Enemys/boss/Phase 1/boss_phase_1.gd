@@ -37,9 +37,11 @@ var damage_res = 0 #Used
 
 func _ready():
 	Tracker.player_reset()
-	player._ready()
+	player.download_tracker()
+	player.set_settings()
 	Tracker.apply_upgrade(self)
 	$NavigationAgent2D.max_speed = speed
+	print(attack_cooldown)
 	attack_cooldown_timer.wait_time = attack_cooldown
 	start_random_attack()
 	attacking_frame = attacking_frames
@@ -58,7 +60,7 @@ func take_damage(oof_damage:int, new_knockback):
 	health -= oof_damage
 	knockback =  new_knockback*knockback_res
 	attacking_frame = attacking_frames
-	$State_Machine.overide_state("Fighter_Knockback")
+	$State_Machine.overide_state("boss_P1_Knockback")
 	
 	if health <= 0:
 		die()

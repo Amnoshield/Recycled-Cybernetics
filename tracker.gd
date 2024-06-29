@@ -114,8 +114,13 @@ func trigger_next_level():
 
 
 func player_reset():
-	player_health = 20
+	if player_max_health > 20: #If the player got a more health upgrade
+		player_health /= 2
+	elif player_max_health < 20: #If the player got a less health upgrade
+		player_health *= 2
+	
 	player_max_health = 20
+	
 	player_speed = 100
 	player_knockback_res = 1
 	player_dash_cooldown = 1.
@@ -127,6 +132,9 @@ func player_reset():
 
 
 func reset():
+	player_max_health = 20
+	player_health = 20
+	
 	player_reset()
 	
 	num_enemies = 0

@@ -50,6 +50,6 @@ func _on_area_entered(area:Area2D):
 
 
 func _on_cooldown_timeout():
+	progress_bar.modulate.a = 1
 	if not $buffer.is_stopped():
 		attack()
-	progress_bar.modulate.a = 1

@@ -65,7 +65,7 @@ position = Vector2(19, 171)
 enemy = ExtResource("7_nf70n")
 
 [node name="enemy_spawner8" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(609, 42)
+position = Vector2(537, 27)
 enemy = ExtResource("8_sdq5g")
 
 [node name="Player" parent="." instance=ExtResource("1_qjf0g")]

@@ -35,16 +35,21 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	download_tracker()
 	Tracker.apply_upgrade(self)
-	health_bar.max_value = max_health
-	health_bar.value = health
-
+	
 	dashing_frame = dashing_frames
-	$Dash/cooldown.wait_time = dash_cooldown
+	
 	$Dash/buffer.wait_time = dash_buffer
 	
+	set_settings()
+
+
+func set_settings():
+	health_bar.max_value = max_health
+	health_bar.value = health
+	
+	$Dash/cooldown.wait_time = dash_cooldown
 	$"Smoothing2D/sword attack/cooldown".wait_time = attack_cooldown
 	$"Smoothing2D/sword attack/CollisionShape2D/progress bar".max_value = attack_cooldown*100
-	
 	$parry/cooldown.wait_time = parry_cooldown
 
 
