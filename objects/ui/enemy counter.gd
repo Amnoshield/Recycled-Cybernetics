@@ -1,9 +1,8 @@
 extends Label
 
 
-func _ready():
+func start():
 	Tracker.enemy_counter = self
-	change_label(Tracker.num_enemies)
 
 
 func change_label(num:int):

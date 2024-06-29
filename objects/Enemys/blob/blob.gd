@@ -60,10 +60,14 @@ func _on_attack_area_exited(_area):
 
 
 func die():
-	$hurtbox/CollisionShape2D.disabled = true
-	$CollisionShape2D.disabled = true
-	$attack/CollisionShape2D.disabled = true
+	call_deferred("remove_hitboxes")
 	$AnimatedSprite2D/AnimationPlayer.play("die")
+
+
+func remove_hitboxes():
+	$hurtbox/CollisionShape2D.disabled = true
+	#$CollisionShape2D.disabled = true
+	$attack/CollisionShape2D.disabled = true
 
 
 func change_idle_dir():

@@ -83,7 +83,7 @@ func start_random_attack():
 	random_cooldown_timer.start(rng.randi_range(random_attack_min, random_attack_max))
 
 
-func _on_attack_box_area_entered(area): #this should only apply to the player
+func _on_attack_box_area_entered(_area): #this should only apply to the player
 	attacking = true
 	if attack_cooldown_timer.is_stopped():
 		deal_damage()
@@ -114,5 +114,5 @@ func _on_attack_cooldown_timeout():
 		deal_damage()
 
 
-func _on_attack_box_area_exited(area):
+func _on_attack_box_area_exited(_area):
 	attacking = false

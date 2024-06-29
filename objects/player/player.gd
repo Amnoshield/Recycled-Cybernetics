@@ -130,7 +130,7 @@ func take_damage(damage_:int, take_knockback:Vector2):
 
 	health_bar.set_value_no_signal(health)
 	if health <= 0:
-		die()
+		call_deferred("die")
 
 
 func _unhandled_key_input(event:InputEvent): #Dash
