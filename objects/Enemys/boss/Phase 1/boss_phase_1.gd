@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var random_cooldown_timer = $random_attack_cooldown
 @onready var idle_direction = change_idle_dir()
 @onready var player_attack_animation = get_tree().get_nodes_in_group("attack")[0]
+@onready var dash_timer = $dash_cooldown
 
 var knockback_strenth = 500
 var wait_distence = 75
@@ -15,6 +16,7 @@ var walk_speed = 40
 var random_attack_min = 2
 var random_attack_max = 5
 var idle_speed = 20
+var attacking = false
 
 var knockback = Vector2(0, 0)
 var attacking_velocity = Vector2(0, 0)
@@ -43,6 +45,8 @@ func _ready():
 	$NavigationAgent2D.max_speed = speed
 	print(attack_cooldown)
 	attack_cooldown_timer.wait_time = attack_cooldown
+	dash_timer.wait_time = dash_cooldown
+	
 	start_random_attack()
 	attacking_frame = attacking_frames
 	
@@ -67,16 +71,8 @@ func take_damage(oof_damage:int, new_knockback):
 
 
 func attack():
-	if attack_cooldown_timer.is_stopped():
-		attack_cooldown_timer.start()
-		if not $State_Machine.current_state.name in ["boss_P1_Knockback"]:
-			$State_Machine.overide_state("boss_P1_attack")
-			idle_direction = change_idle_dir()
-			$attack_box/AnimationPlayer.play("Attack")
-			attacking_velocity = (player.global_position-global_position)*speed/attacking_frames
-			attacking_frame = 0
-		return true
-	return false
+	if attack_cooldown_timer.is_stopped() and dash_timer.is_stopped() and not $State_Machine.current_state.name in ["boss_P1_Knockback"]:
+		$State_Machine.overide_state("boss_P1_dash_attack")
 
 
 func change_idle_dir():
@@ -88,8 +84,14 @@ func start_random_attack():
 
 
 func _on_attack_box_area_entered(area): #this should only apply to the player
-	area.take_damage(damage+rng.randi_range(-1, 1), (area.global_position-global_position).normalized()*knockback_strenth)
+	attacking = true
+	if attack_cooldown_timer.is_stopped():
+		deal_damage()
 
+func deal_damage():
+	attack_cooldown_timer.start()
+	attacking_frame = attacking_frames
+	player.take_damage(damage+rng.randi_range(-1, 1), (player.global_position-global_position).normalized()*knockback_strenth)
 
 func _on_random_attack_cooldown_timeout():
 	if not raycast.is_colliding() and nav.distance_to_target() < wait_distence+wiggle_room:
@@ -106,3 +108,11 @@ func player_attack(_name):
 	if not raycast.is_colliding() and nav.distance_to_target() < wait_distence+wiggle_room and rng.randi_range(1, 4) == 1:
 		attack()
 
+
+func _on_attack_cooldown_timeout():
+	if attacking:
+		deal_damage()
+
+
+func _on_attack_box_area_exited(area):
+	attacking = false

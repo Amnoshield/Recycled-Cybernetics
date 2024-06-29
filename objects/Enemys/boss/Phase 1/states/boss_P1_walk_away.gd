@@ -12,7 +12,7 @@ func Physics_Update(_delta):
 	nav.set_target_position(player.global_position)
 	ray.target_position = player.global_position-enemy.global_position
 	ray.force_raycast_update()
-	if  not ray.is_colliding() and nav.distance_to_target() > enemy.wait_distence:
+	if  not ray.is_colliding() or nav.distance_to_target() > enemy.wait_distence:
 		Transitioned.emit(self, "boss_P1_idle")
 
 	enemy.velocity = (enemy.global_position-player.global_position).normalized()*enemy.walk_speed

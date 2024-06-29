@@ -12,6 +12,7 @@ func Physics_Update(_delta):
 	ray.target_position = player.global_position-enemy.global_position
 	ray.force_raycast_update()
 	if ray.is_colliding() or nav.distance_to_target() > enemy.wait_distence+enemy.wiggle_room:
+		enemy.idle_direction*=-1
 		Transitioned.emit(self, "boss_P1_pathfind")
 	elif nav.distance_to_target() < enemy.wait_distence-enemy.wiggle_room:
 		Transitioned.emit(self, "boss_P1_walk_away")

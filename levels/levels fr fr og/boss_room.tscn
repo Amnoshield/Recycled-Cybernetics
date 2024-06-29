@@ -49,9 +49,9 @@ position = Vector2(-177, -54)
 tile_set = ExtResource("4_lw64u")
 format = 2
 
-[node name="Player" parent="." instance=ExtResource("9_bmv48")]
-position = Vector2(829, -20)
-
 [node name="enemy_spawner" parent="." instance=ExtResource("5_2f4wb")]
 position = Vector2(830, -378)
 enemy = ExtResource("7_mjs13")
+
+[node name="Player" parent="." instance=ExtResource("9_bmv48")]
+position = Vector2(829, -20)

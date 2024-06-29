@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.gd" id="1_q1s7m"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_8n533"]
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_17gaw"]
-[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_attack.gd" id="8_kj7ga"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_dash_attack.gd" id="4_ehept"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_walk_away.gd" id="8_ogiva"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_idle.gd" id="8_p7amt"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_knockback.gd" id="8_rrxt6"]
@@ -23,50 +23,14 @@ size = Vector2(32, 32)
 radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjnlu"]
-size = Vector2(34, 34)
+size = Vector2(40, 40)
 
 [sub_resource type="Animation" id="Animation_56yeu"]
 resource_name = "Attack"
 length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:attacking")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="Animation" id="Animation_3sky3"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4bv1x"]
 _data = {
@@ -124,7 +88,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_box"]
 shape = SubResource("RectangleShape2D_pjnlu")
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="attack_box"]
 libraries = {
@@ -134,12 +97,15 @@ libraries = {
 [node name="random_attack_cooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="dash_cooldown" type="Timer" parent="."]
+one_shot = true
+
 [node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_17gaw")
 initial_state = NodePath("boss_P1_Idle")
 
-[node name="boss_P1_attack" type="Node" parent="State_Machine"]
-script = ExtResource("8_kj7ga")
+[node name="boss_P1_dash_attack" type="Node" parent="State_Machine"]
+script = ExtResource("4_ehept")
 
 [node name="boss_P1_Idle" type="Node" parent="State_Machine"]
 script = ExtResource("8_p7amt")
@@ -153,5 +119,7 @@ script = ExtResource("9_vdmoq")
 [node name="boss_P1_walk_away" type="Node" parent="State_Machine"]
 script = ExtResource("8_ogiva")
 
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="area_entered" from="attack_box" to="." method="_on_attack_box_area_entered"]
+[connection signal="area_exited" from="attack_box" to="." method="_on_attack_box_area_exited"]
 [connection signal="timeout" from="random_attack_cooldown" to="." method="_on_random_attack_cooldown_timeout"]
