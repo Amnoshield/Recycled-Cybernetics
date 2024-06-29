@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjipcywtmt2jq"]
+
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/boss_phase_2.gd" id="1_wcsac"]
+[ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_w8jl8"]
+[ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_fbts4"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/p2_knockback.gd" id="4_3ifxj"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_run.gd" id="5_smnca"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_41dxn"]
+font_size = 9
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t25iu"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjnlu"]
+size = Vector2(40, 40)
+
+[node name="boss phase 2" type="CharacterBody2D" groups=["boss"]]
+z_index = 3
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_wcsac")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.997072, 0, 0.142165, 1)
+texture = SubResource("PlaceholderTexture2D_foq3r")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -1.0
+text = "P2"
+label_settings = SubResource("LabelSettings_41dxn")
+horizontal_alignment = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+path_postprocessing = 1
+radius = 32.0
+avoidance_layers = 2
+avoidance_mask = 2
+debug_enabled = true
+
+[node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_w8jl8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("RectangleShape2D_3cj4s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t25iu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="attack_box" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_box"]
+shape = SubResource("RectangleShape2D_pjnlu")
+
+[node name="dash_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="random_attack_cooldown" type="Timer" parent="."]
+
+[node name="parry_cooldown" type="Timer" parent="."]
+
+[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_fbts4")
+initial_state = NodePath("p2_d_run")
+
+[node name="p2_knockback" type="Node" parent="State_Machine"]
+script = ExtResource("4_3ifxj")
+
+[node name="p2_d_run" type="Node" parent="State_Machine"]
+script = ExtResource("5_smnca")
+
+[node name="run_timer" type="Timer" parent="State_Machine"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="State_Machine/run_timer" to="State_Machine/p2_d_run" method="_on_run_timer_timeout"]

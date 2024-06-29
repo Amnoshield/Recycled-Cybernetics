@@ -43,7 +43,6 @@ func _ready():
 	player.set_settings()
 	Tracker.apply_upgrade(self)
 	$NavigationAgent2D.max_speed = speed
-	print(attack_cooldown)
 	attack_cooldown_timer.wait_time = attack_cooldown
 	dash_timer.wait_time = dash_cooldown
 	
