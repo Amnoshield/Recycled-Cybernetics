@@ -2,9 +2,10 @@ extends Node2D
 
 @onready var ray = $RayCast2D
 @onready var minimap = get_tree().get_nodes_in_group("minimap")[0]
-@export var enemy:PackedScene
+@export var enemies:Array[PackedScene] = [null]
 var spawnable = false
 var near_spawners = []
+var rng = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,7 +17,7 @@ func _ready():
 func spawn():
 	if not spawnable:
 		return
-	var mob:Node = enemy.instantiate()
+	var mob:Node = enemies[rng.randi_range(0, len(enemies)-1)].instantiate()
 	mob.global_position = global_position
 	get_node("..").add_child(mob)
 	spawnable = false

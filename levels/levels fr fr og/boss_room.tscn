@@ -51,7 +51,7 @@ format = 2
 
 [node name="enemy_spawner" parent="." instance=ExtResource("5_2f4wb")]
 position = Vector2(830, -378)
-enemy = ExtResource("7_mjs13")
+enemies = Array[PackedScene]([ExtResource("7_mjs13")])
 
 [node name="Player" parent="." instance=ExtResource("9_bmv48")]
 position = Vector2(829, -20)

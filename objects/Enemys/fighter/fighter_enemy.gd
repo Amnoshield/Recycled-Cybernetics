@@ -80,6 +80,6 @@ func _on_random_attack_cooldown_timeout():
 
 
 func die():
-	Tracker.remove_enemy()
+	Tracker.remove_enemy(self)
 	self.queue_free()
 

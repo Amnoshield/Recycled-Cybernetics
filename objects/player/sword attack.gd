@@ -16,11 +16,6 @@ func _process(_delta):
 	var mouse_pos = get_global_mouse_position()
 	mouse_pos -= global_position
 	var next_rotation:float = mouse_pos.angle()+deg_to_rad(90)
-	#next_rotation -= rotation
-	#if next_rotation < deg_to_rad(turning_speed):
-		#next_rotation = deg_to_rad(turning_speed)
-	#elif next_rotation > deg_to_rad(-turning_speed):
-		#next_rotation = deg_to_rad(-turning_speed)
 
 	set_rotation(next_rotation)
 	

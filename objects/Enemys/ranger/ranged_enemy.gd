@@ -43,5 +43,5 @@ func change_idle_dir():
 
 
 func die():
-	Tracker.remove_enemy()
+	Tracker.remove_enemy(self)
 	self.queue_free()

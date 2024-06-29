@@ -60,7 +60,9 @@ func _on_attack_area_exited(_area):
 
 
 func die():
-	Tracker.remove_enemy()
+	$hurtbox/CollisionShape2D.disabled = true
+	$CollisionShape2D.disabled = true
+	$attack/CollisionShape2D.disabled = true
 	$AnimatedSprite2D/AnimationPlayer.play("die")
 
 
@@ -69,5 +71,6 @@ func change_idle_dir():
 
 
 func _on_animation_player_animation_finished(_die): #kill the enemy after death enimation
+	Tracker.remove_enemy(self)
 	queue_free()
 

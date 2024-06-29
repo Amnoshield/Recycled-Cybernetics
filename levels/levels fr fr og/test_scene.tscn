@@ -11,9 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/Enemys/fighter/fighter_enemy.tscn" id="8_sdq5g"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
-vertices = PackedVector2Array(96, -135, 96, -37, -96, -37, -354, -135, -354, 123, -162, 123, -162, 203, -96, 153, -158, 203, -34, 219, -146, 215, -64, 153, -53, 169, 350, -103, 350, -119, 400, -119, 400, -21, 339, -87, 350, -69, 339, -85, 350, -21, 315, -87, 315, -85, 64, 91, 64, 219, 0, 219, 30, 153, 0, 315, -34, 315, -13, 169, -146, 219, -2, 153, 30, 57, 190, 57, 224, 91, 224, -69, 190, -103, 304, -69, 304, -103)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5), PackedInt32Array(6, 5, 2, 7, 8), PackedInt32Array(9, 10, 8, 7, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 13, 16, 18, 19), PackedInt32Array(16, 20, 18), PackedInt32Array(21, 17, 19, 22), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(25, 27, 28, 9, 29), PackedInt32Array(9, 30, 10), PackedInt32Array(9, 12, 29), PackedInt32Array(29, 31, 26, 25), PackedInt32Array(23, 26, 32), PackedInt32Array(23, 32, 33, 34), PackedInt32Array(35, 34, 33, 36), PackedInt32Array(37, 35, 36, 38, 21, 22)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-401, -192, 618, -133, 614, 472, -371, 466)])
+vertices = PackedVector2Array(96, -135, 96, -37, -82, -37, -354, -135, -96, -23, -354, 123, -176, 123, -96, 139, -162, 137, -158, 203, -162, 203, -82, 153, -48, 219, -146, 215, -64, 153, -53, 169, 350, -103, 350, -119, 400, -119, 400, -21, 339, -87, 350, -69, 339, -85, 350, -21, 315, -87, 315, -85, 64, 105, 64, 219, 14, 219, 30, 139, 0, 233, 0, 315, -34, 315, -34, 233, -13, 169, -146, 219, -2, 153, 16, 153, 190, -103, 304, -103, 304, -69, 238, -69, 224, -55, 190, 43, 224, 91, 176, 57, 78, 91, 30, 57)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 5, 4), PackedInt32Array(6, 4, 7, 8), PackedInt32Array(9, 10, 8, 7, 11), PackedInt32Array(12, 13, 9, 11, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 16, 19, 21, 22), PackedInt32Array(19, 23, 21), PackedInt32Array(24, 20, 22, 25), PackedInt32Array(26, 27, 28, 29), PackedInt32Array(30, 31, 32, 33, 34), PackedInt32Array(12, 35, 13), PackedInt32Array(12, 15, 34, 33), PackedInt32Array(28, 30, 34, 36, 37), PackedInt32Array(38, 39, 24, 25, 40, 41), PackedInt32Array(38, 41, 42), PackedInt32Array(43, 38, 42, 44), PackedInt32Array(45, 43, 44), PackedInt32Array(45, 44, 46, 47), PackedInt32Array(47, 46, 26), PackedInt32Array(29, 47, 26), PackedInt32Array(28, 37, 29)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-401, -192, 485, -155, 455, 17, 285, 52, 259, 143, 142, 156, -4, 358, -253, 183, -395, 145)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 15.0
 
@@ -52,21 +52,29 @@ tile_set = ExtResource("2_s8nug")
 format = 2
 layer_0/tile_data = PackedInt32Array(786440, 65536, 1, 786441, 65536, 1, 1114112, 327680, 0, -393184, 131072, 1, -393183, 196608, 1, -393182, 131072, 1, -393181, 196608, 1, -393180, 131072, 1, -393179, 327680, 0, -327643, 0, 0, -262107, 0, 1, -196571, 0, 0, -131035, 0, 1, -65499, 0, 0, 37, 0, 1, 65573, 0, 0, 131109, 0, 1, 196645, 327680, 1, 196643, 131072, 1, 196644, 196608, 1, 196641, 131072, 1, 196642, 196608, 1, 196640, 196608, 1, -262113, 65536, 1, -65505, 65536, 0, 31, 0, 0, -327649, 0, 1)
 
+[node name="Player" parent="." instance=ExtResource("1_qjf0g")]
+position = Vector2(212, 410)
+
 [node name="enemy_spawner5" parent="." instance=ExtResource("4_wspjl")]
 position = Vector2(-47, 51)
-enemy = ExtResource("7_10qa7")
+enemies = Array[PackedScene]([ExtResource("7_10qa7")])
 
 [node name="enemy_spawner6" parent="." instance=ExtResource("4_wspjl")]
 position = Vector2(75, 79)
-enemy = ExtResource("7_nf70n")
+enemies = Array[PackedScene]([ExtResource("7_nf70n")])
 
 [node name="enemy_spawner7" parent="." instance=ExtResource("4_wspjl")]
 position = Vector2(19, 171)
-enemy = ExtResource("7_nf70n")
+enemies = Array[PackedScene]([ExtResource("7_nf70n")])
 
 [node name="enemy_spawner8" parent="." instance=ExtResource("4_wspjl")]
-position = Vector2(537, 27)
-enemy = ExtResource("8_sdq5g")
+position = Vector2(534, 14)
+enemies = Array[PackedScene]([ExtResource("7_nf70n"), ExtResource("8_sdq5g")])
 
-[node name="Player" parent="." instance=ExtResource("1_qjf0g")]
-position = Vector2(212, 410)
+[node name="enemy_spawner10" parent="." instance=ExtResource("4_wspjl")]
+position = Vector2(535, 43)
+enemies = Array[PackedScene]([ExtResource("7_nf70n")])
+
+[node name="enemy_spawner9" parent="." instance=ExtResource("4_wspjl")]
+position = Vector2(606, 35)
+enemies = Array[PackedScene]([ExtResource("7_10qa7")])

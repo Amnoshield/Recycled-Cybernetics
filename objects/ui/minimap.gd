@@ -34,8 +34,8 @@ func remove_tracker(tracke):
 
 
 func invis():
-	$"..".visible = false
+	$"../../..".visible = false
 
 
 func vis():
-	$"..".visible = true
+	$"../../..".visible = true

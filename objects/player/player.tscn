@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="5_njb03"]
 [ext_resource type="Texture2D" uid="uid://xocy84g7igib" path="res://assets/player ani/idle ani/front idle.png" id="6_l6bmj"]
 [ext_resource type="Texture2D" uid="uid://barddwqo8a3ou" path="res://assets/player ani/walk ani/front walk.png" id="7_gcc1m"]
-[ext_resource type="PackedScene" uid="uid://cjke165hnb1ua" path="res://objects/minimap/minimap.tscn" id="8_ai6nc"]
 [ext_resource type="Texture2D" uid="uid://clfwe7oncep6e" path="res://assets/player ani/walk ani/walk back.png" id="8_q63qd"]
 [ext_resource type="Texture2D" uid="uid://shqf5ldunsoy" path="res://assets/player ani/walk ani/sideways walk 2.png" id="9_twqrj"]
 [ext_resource type="Texture2D" uid="uid://b0okccog3optx" path="res://assets/player ani/walk ani/front diag walk.png" id="10_5koeu"]
@@ -20,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://17l8ijegubl5" path="res://assets/other/health colors/health bar red 1.png" id="15_jfr3i"]
 [ext_resource type="Texture2D" uid="uid://byjhks2ck5dqs" path="res://assets/player ani/attack cooldown/v3 attack indicators0.png" id="18_nal1k"]
 [ext_resource type="Texture2D" uid="uid://chnlshfr5taxu" path="res://assets/player ani/attack cooldown/v3 attack indicators1.png" id="19_htbhl"]
+[ext_resource type="PackedScene" uid="uid://cjke165hnb1ua" path="res://objects/ui/ui.tscn" id="20_8yet6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tkbnt"]
 radius = 5.0
@@ -1010,7 +1010,7 @@ one_shot = true
 [node name="buffer" type="Timer" parent="Dash"]
 one_shot = true
 
-[node name="minimap" parent="." instance=ExtResource("8_ai6nc")]
+[node name="ui" parent="." instance=ExtResource("20_8yet6")]
 
 [node name="Pause timeout" type="Timer" parent="."]
 wait_time = 0.2

@@ -15,6 +15,10 @@ func Physics_Update(_delta):
 	ray.force_raycast_update()
 	if  not ray.is_colliding() and nav.distance_to_target() < enemy.wait_distence:
 		Transitioned.emit(self, "boss_P1_idle")
+	elif ray.is_colliding() and nav.path_postprocessing == 0:
+		nav.path_postprocessing = 1
+	elif not ray.is_colliding() and nav.path_postprocessing == 1:
+		nav.path_postprocessing = 0
 
 	var relitive_pos:Vector2 = nav.get_next_path_position()- enemy.global_position
 	enemy.velocity = relitive_pos.normalized()*enemy.speed

@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var health_bar = $Smoothing2D/Sprite2D/HealthBar
 @onready var pause_screen:PackedScene = preload("res://Menus/pause_screen.tscn")
+@onready var dash_timer = $Dash/cooldown
+@onready var parry_timer = $parry/cooldown
 
 @export var invincible = false
 @export var parrying = false
@@ -47,10 +49,12 @@ func set_settings():
 	health_bar.max_value = max_health
 	health_bar.value = health
 	
-	$Dash/cooldown.wait_time = dash_cooldown
+	dash_timer.wait_time = dash_cooldown
 	$"Smoothing2D/sword attack/cooldown".wait_time = attack_cooldown
 	$"Smoothing2D/sword attack/CollisionShape2D/progress bar".max_value = attack_cooldown*100
-	$parry/cooldown.wait_time = parry_cooldown
+	parry_timer.wait_time = parry_cooldown
+	
+	$ui.setup()
 
 
 func _physics_process(_delta):
@@ -131,7 +135,7 @@ func take_damage(damage_:int, take_knockback:Vector2):
 
 func _unhandled_key_input(event:InputEvent): #Dash
 	if event.is_action_pressed("dash"):
-		if $Dash/cooldown.is_stopped():
+		if dash_timer.is_stopped():
 			dash()
 		else:
 			$Dash/buffer.start()
@@ -147,7 +151,7 @@ func dash():
 	dashing_frame = 0
 	dashing_velocity = last_move.normalized()*dash_speed
 	$Dash/AnimationPlayer.play("Dash")
-	$Dash/cooldown.start()
+	dash_timer.start()
 
 
 func _on_cooldown_timeout():

@@ -1,7 +1,9 @@
 extends Node
 
+
 var spawners:Array = []
 var end
+var enemy_counter
 var rng = RandomNumberGenerator.new()
 var next_upgrade = false
 var upgrades = []
@@ -73,8 +75,12 @@ func spawn_enemies():
 	spawners.clear() #Idk if this does anyhting but a crach happend related to this so just in case
 
 
-func remove_enemy():
+func remove_enemy(enemy):
+	if not is_instance_valid(enemy): return
+	
 	num_enemies -= 1
+	
+	enemy_counter.change_label(num_enemies)
 	
 	if num_enemies <= 0 and is_instance_valid(end):
 		end.open()
