@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cjipcywtmt2jq"]
+[gd_scene load_steps=34 format=3 uid="uid://cjipcywtmt2jq"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/boss_phase_2.gd" id="1_wcsac"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_w8jl8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cygkyh2kfb2u2" path="res://assets/other/attack1.png" id="3_jqst3"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/p2_knockback.gd" id="4_3ifxj"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_run.gd" id="5_tpgxy"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/big attack.gd" id="5_wsisd"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_idle.gd" id="6_4g0cs"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_dash.gd" id="7_1eggf"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_pathfind.gd" id="8_par44"]
@@ -14,7 +15,11 @@
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_start_attack.gd" id="10_m1rtj"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash1.gd" id="11_2xp4h"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack1.gd" id="12_iskxl"]
-[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_run.gd" id="15_0231k"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_run1.gd" id="15_0231k"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_run2.gd" id="16_sshnt"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack2.gd" id="17_kr0ek"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash2.gd" id="18_7gx5x"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_0_big_attack.gd" id="20_jxvgn"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
 size = Vector2(32, 32)
@@ -166,6 +171,46 @@ _data = {
 "sword attack": SubResource("Animation_8qkge")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1pi5"]
+size = Vector2(80, 236)
+
+[sub_resource type="Animation" id="Animation_ymnbh"]
+resource_name = "big attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_udmup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cuna5"]
+_data = {
+"RESET": SubResource("Animation_udmup"),
+"big attack": SubResource("Animation_ymnbh")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sgb8"]
 radius = 45.2769
 
@@ -228,12 +273,28 @@ visible = false
 position = Vector2(0, 4)
 texture = ExtResource("3_jqst3")
 hframes = 6
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="attack_box"]
 libraries = {
 "": SubResource("AnimationLibrary_530rv")
 }
 speed_scale = 1.5
+
+[node name="big attack" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+script = ExtResource("5_wsisd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="big attack"]
+position = Vector2(0, -140)
+shape = SubResource("RectangleShape2D_q1pi5")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="big attack"]
+libraries = {
+"": SubResource("AnimationLibrary_cuna5")
+}
 
 [node name="player_range" type="Area2D" parent="."]
 collision_layer = 0
@@ -263,6 +324,9 @@ one_shot = true
 [node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_fbts4")
 initial_state = NodePath("p2_d_run")
+
+[node name="agro" type="Timer" parent="State_Machine"]
+one_shot = true
 
 [node name="p2_knockback" type="Node" parent="State_Machine"]
 script = ExtResource("4_3ifxj")
@@ -296,11 +360,29 @@ script = ExtResource("11_2xp4h")
 [node name="p2_o_attack1" type="Node" parent="State_Machine"]
 script = ExtResource("12_iskxl")
 
-[node name="p2_o_run" type="Node" parent="State_Machine"]
+[node name="p2_o_run1" type="Node" parent="State_Machine"]
 script = ExtResource("15_0231k")
 
+[node name="p2_o_run2" type="Node" parent="State_Machine"]
+script = ExtResource("16_sshnt")
+
+[node name="p2_o_attack2" type="Node" parent="State_Machine"]
+script = ExtResource("17_kr0ek")
+
+[node name="p2_o_dash2" type="Node" parent="State_Machine"]
+script = ExtResource("18_7gx5x")
+
+[node name="big attack" type="Timer" parent="State_Machine"]
+one_shot = true
+
+[node name="p2_o_big_attack" type="Node" parent="State_Machine"]
+script = ExtResource("20_jxvgn")
+
 [connection signal="area_entered" from="attack_box" to="attack_box" method="_on_area_entered"]
+[connection signal="area_entered" from="big attack" to="big attack" method="_on_area_entered"]
 [connection signal="area_entered" from="player_range" to="State_Machine/p2_d_idle" method="_on_player_range_area_entered"]
 [connection signal="timeout" from="player_range/parry_deration" to="." method="_on_parry_deration_timeout"]
 [connection signal="timeout" from="feint" to="State_Machine/p2_d_idle" method="_on_feint_timeout"]
+[connection signal="timeout" from="State_Machine/agro" to="State_Machine/p2_d_idle" method="_on_agro_timeout"]
 [connection signal="timeout" from="State_Machine/run_timer" to="State_Machine/p2_d_run" method="_on_run_timer_timeout"]
+[connection signal="timeout" from="State_Machine/big attack" to="State_Machine/p2_o_big_attack" method="_on_big_attack_timeout"]

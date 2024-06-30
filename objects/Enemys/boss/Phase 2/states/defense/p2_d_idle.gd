@@ -7,6 +7,7 @@ class_name p2_d_idle
 @onready var parry_der = $"../../player_range/parry_deration"
 @onready var dash_timer = $"../../dash_cooldown"
 @onready var feint_timer = $"../../feint"
+@onready var agro = $"../agro"
 var one = false
 var rng = RandomNumberGenerator.new()
 
@@ -14,6 +15,7 @@ var rng = RandomNumberGenerator.new()
 func Enter():
 	enemy.idle_direction = enemy.change_idle_dir()
 	one = false
+	agro.start(rng.randi_range(3, 6))
 
 
 func Physics_Update(_delta):
@@ -72,3 +74,10 @@ func trigger_parry():
 func trigger_dash():
 	dash_timer.start()
 	$"..".overide_state("p2_d_dash")
+
+
+func _on_agro_timeout():
+	if $"..".current_state != self:
+		return
+	
+	Transitioned.emit(self, "p2_po_pathfind")

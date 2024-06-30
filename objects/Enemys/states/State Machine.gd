@@ -32,8 +32,9 @@ func _physics_process(delta):
 func on_child_transition(state, new_state_name = null):
 	if state != current_state:
 		return
-	
+	var bad = false
 	if not new_state_name:
+		bad = true
 		new_state_name = next_state
 	
 	var new_state = states.get(new_state_name.to_lower())
@@ -46,7 +47,8 @@ func on_child_transition(state, new_state_name = null):
 		
 	
 	current_state = new_state
-	new_state.Enter()
+	if not bad:
+		new_state.Enter()
 
 
 func overide_state(new_state_name, continue_after = true, exit = true):
