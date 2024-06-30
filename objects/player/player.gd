@@ -54,7 +54,8 @@ func set_settings():
 	$"Smoothing2D/sword attack/CollisionShape2D/progress bar".max_value = attack_cooldown*100
 	parry_timer.wait_time = parry_cooldown
 	
-	$ui.setup()
+	$Smoothing2D/Sprite2D/ReferenceRect/dash.setup()
+	$Smoothing2D/Sprite2D/ReferenceRect/parry.setup()
 
 
 func _physics_process(_delta):

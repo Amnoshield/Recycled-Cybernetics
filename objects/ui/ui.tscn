@@ -1,17 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjke165hnb1ua"]
+[gd_scene load_steps=5 format=3 uid="uid://cjke165hnb1ua"]
 
-[ext_resource type="Script" path="res://objects/ui/ui.gd" id="1_spx88"]
 [ext_resource type="Script" path="res://objects/ui/minimap.gd" id="2_1fe7h"]
 [ext_resource type="PackedScene" uid="uid://c78t5crfo0mc4" path="res://objects/ui/enemy_marker.tscn" id="3_un4ku"]
 [ext_resource type="Texture2D" uid="uid://dkhu1i4arr6pr" path="res://assets/minimap/gear.png" id="4_quvrr"]
-[ext_resource type="Script" path="res://objects/ui/dash_bar.gd" id="5_02ro3"]
 [ext_resource type="Script" path="res://objects/ui/enemy counter.gd" id="5_nme5a"]
-[ext_resource type="Script" path="res://objects/ui/parry_bar.gd" id="6_5sodn"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h3r2r"]
 
 [node name="ui" type="CanvasLayer"]
-script = ExtResource("1_spx88")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="."]
 offset_left = 835.0
@@ -26,6 +20,7 @@ offset_left = 93.0
 offset_top = 32.0
 offset_right = 293.0
 offset_bottom = 232.0
+mouse_filter = 2
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="minimap"]
 layout_mode = 0
@@ -53,6 +48,7 @@ offset_left = 93.0
 offset_top = 232.0
 offset_right = 293.0
 offset_bottom = 272.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="enemy counter"]
 layout_mode = 0
@@ -60,46 +56,3 @@ offset_right = 200.0
 offset_bottom = 40.0
 text = "Enemies left: 1"
 script = ExtResource("5_nme5a")
-
-[node name="ReferenceRect" type="ReferenceRect" parent="."]
-offset_left = 762.0
-offset_top = 584.0
-offset_right = 913.0
-offset_bottom = 624.0
-
-[node name="dash" type="ReferenceRect" parent="ReferenceRect"]
-layout_mode = 2
-offset_right = 60.0
-offset_bottom = 40.0
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ReferenceRect/dash"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 40.0
-step = 0.01
-value = 50.0
-fill_mode = 3
-nine_patch_stretch = true
-texture_progress = SubResource("PlaceholderTexture2D_h3r2r")
-script = ExtResource("5_02ro3")
-
-[node name="parry" type="ReferenceRect" parent="ReferenceRect"]
-layout_mode = 2
-offset_right = 60.0
-offset_bottom = 40.0
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="ReferenceRect/parry"]
-layout_mode = 0
-offset_left = 91.0
-offset_top = -1.0
-offset_right = 151.0
-offset_bottom = 39.0
-step = 0.01
-value = 50.0
-fill_mode = 3
-nine_patch_stretch = true
-texture_progress = SubResource("PlaceholderTexture2D_h3r2r")
-script = ExtResource("6_5sodn")
-
-[connection signal="value_changed" from="ReferenceRect/dash/TextureProgressBar" to="ReferenceRect/dash/TextureProgressBar" method="_on_value_changed"]
-[connection signal="value_changed" from="ReferenceRect/parry/TextureProgressBar" to="ReferenceRect/parry/TextureProgressBar" method="_on_value_changed"]
