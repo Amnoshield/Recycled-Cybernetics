@@ -25,8 +25,8 @@ var attacking_frame = 0
 var rng = RandomNumberGenerator.new()
 
 #Affected by parts
-var health = 20
-var max_health = 20
+var health = 10
+var max_health = 10
 var speed = 100 #used
 var knockback_res = 1 #Used
 var dash_cooldown = 1#Not used
@@ -41,7 +41,7 @@ func _ready():
 	Tracker.player_reset()
 	player.download_tracker()
 	player.set_settings()
-	Tracker.apply_upgrade(self)
+	Tracker.apply_upgrades(self)
 	$NavigationAgent2D.max_speed = speed
 	attack_cooldown_timer.wait_time = attack_cooldown
 	dash_timer.wait_time = dash_cooldown
@@ -66,7 +66,7 @@ func take_damage(oof_damage:int, new_knockback):
 	$State_Machine.overide_state("boss_P1_Knockback")
 	
 	if health <= 0:
-		die()
+		call_deferred("die")
 
 
 func attack():
@@ -87,10 +87,12 @@ func _on_attack_box_area_entered(_area): #this should only apply to the player
 	if attack_cooldown_timer.is_stopped():
 		deal_damage()
 
+
 func deal_damage():
 	attack_cooldown_timer.start()
 	attacking_frame = attacking_frames
 	player.take_damage(damage+rng.randi_range(-1, 1), (player.global_position-global_position).normalized()*knockback_strenth)
+
 
 func _on_random_attack_cooldown_timeout():
 	if not raycast.is_colliding() and nav.distance_to_target() < wait_distence+wiggle_room:
@@ -99,7 +101,10 @@ func _on_random_attack_cooldown_timeout():
 
 
 func die():
-	Tracker.remove_enemy(self)
+	#Tracker.remove_enemy(self)
+	var p2 = load("res://objects/Enemys/boss/Phase 2/boss_phase_2.tscn").instantiate()
+	p2.global_position = global_position
+	get_node("..").add_child(p2)
 	self.queue_free()
 
 
