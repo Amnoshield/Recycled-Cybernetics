@@ -7,7 +7,6 @@ class_name Fighter_pathfind
 @onready var enemy:CharacterBody2D = $"../.."
 @onready var attack_cooldown:Timer = $"../../attack_cooldown"
 @onready var ray:RayCast2D = $"../../RayCast2D"
-@onready var ap = $Sprite2D/AnimationPlayer
 
 func Physics_Update(_delta):
 	nav.set_target_position(player.global_position)

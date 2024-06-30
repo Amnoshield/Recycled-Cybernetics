@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var random_cooldown_timer = $random_attack_cooldown
 @onready var idle_direction = change_idle_dir()
 @onready var ap = $Sprite2D/AnimationPlayer
+@onready var sprite = $Sprite2D
 
 var speed = 80
 var health = 10
@@ -35,6 +36,24 @@ func _ready():
 	attacking_frame = attacking_frames
 
 
+func _process(_delta):
+	var face_player = velocity 
+	if true:#velocity.length() < speed:
+		face_player = player.global_position - global_position
+	if velocity == Vector2.ZERO:
+		ap.play("idle")
+	
+	if face_player.x > 0:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
+	
+	if abs(face_player.x) > abs(face_player.y):
+		ap.play("side walk")
+	elif face_player.y > 0:
+		ap.play("front walk")
+	elif face_player.y < 0:
+		ap.play("back walk")
 func _physics_process(_delta):
 	move_and_slide()
 
