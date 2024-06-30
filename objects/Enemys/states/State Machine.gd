@@ -3,6 +3,7 @@ class_name State_Machine
 
 @export var initial_state:State
 
+var next_state
 var current_state:State
 var states = {}
 
@@ -28,9 +29,12 @@ func _physics_process(delta):
 	if current_state:
 		current_state.Physics_Update(delta)
 
-func on_child_transition(state, new_state_name):
+func on_child_transition(state, new_state_name = null):
 	if state != current_state:
 		return
+	
+	if not new_state_name:
+		new_state_name = next_state
 	
 	var new_state = states.get(new_state_name.to_lower())
 	if not new_state:
@@ -44,14 +48,17 @@ func on_child_transition(state, new_state_name):
 	new_state.Enter()
 
 
-func overide_state(new_state_name):
+func overide_state(new_state_name, continue_after = true, exit = false):
 	var new_state = states.get(new_state_name.to_lower())
 	if not new_state:
 		print("State \"", new_state_name, "\" does not exist")
 		return
 		
-	if current_state:
+	if exit and current_state:
 		current_state.Exit()
+	
+	if continue_after:
+		next_state = current_state.name.to_lower()
 	
 	current_state = new_state
 	new_state.Enter()
