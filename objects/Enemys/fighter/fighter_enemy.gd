@@ -72,7 +72,7 @@ func attack():
 	if attack_cooldown_timer.is_stopped():
 		attack_cooldown_timer.start()
 		if $State_Machine.current_state.name in ["Fighter_Idle", "Fighter_walk_away"]:
-			$State_Machine.overide_state("fighter_attack")
+			$State_Machine.overide_state("fighterWindup")
 			idle_direction = change_idle_dir()
 			$attack_box/AnimationPlayer.play("Attack")
 			attacking_velocity = (player.global_position-global_position)*speed/attacking_frames

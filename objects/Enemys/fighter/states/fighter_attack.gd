@@ -4,6 +4,7 @@ class_name fighter_attack
 @onready var enemy:CharacterBody2D = $"../.."
 
 
+
 func Physics_Update(_delta):
 	if enemy.attacking_frame >= enemy.attacking_frames-1:
 		Transitioned.emit(self, "Fighter_Idle")

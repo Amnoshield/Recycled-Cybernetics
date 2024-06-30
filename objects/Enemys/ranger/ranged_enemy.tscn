@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cuqr8ovfm68t3"]
+[gd_scene load_steps=12 format=3 uid="uid://cuqr8ovfm68t3"]
 
 [ext_resource type="Script" path="res://objects/Enemys/ranger/ranged_enemy.gd" id="1_pjekh"]
+[ext_resource type="Texture2D" uid="uid://c1d8am415edvj" path="res://assets/maxes asprite stuff (ignore this)/drone maybe.png" id="2_cijyy"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_t8yqc"]
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_vluf6"]
 [ext_resource type="Script" path="res://objects/Enemys/ranger/states/Ranger_Idle.gd" id="6_77wl4"]
@@ -9,15 +10,8 @@
 [ext_resource type="Script" path="res://objects/Enemys/ranger/states/Ranger_Knockback.gd" id="8_7eftn"]
 [ext_resource type="Script" path="res://objects/Enemys/ranger/states/Ranger_Attack.gd" id="8_31vvr"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
-size = Vector2(32, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_41dxn"]
-font_size = 9
-shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gog7"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5dx4"]
 radius = 15.0
@@ -30,16 +24,7 @@ motion_mode = 1
 script = ExtResource("1_pjekh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.997072, 0, 0.142165, 1)
-texture = SubResource("PlaceholderTexture2D_foq3r")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = -1.0
-text = "Enemy"
-label_settings = SubResource("LabelSettings_41dxn")
+texture = ExtResource("2_cijyy")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
@@ -53,9 +38,10 @@ monitoring = false
 script = ExtResource("2_t8yqc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-shape = SubResource("RectangleShape2D_3cj4s")
+shape = SubResource("CircleShape2D_4gog7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_c5dx4")
 
 [node name="attack_cooldown" type="Timer" parent="."]
