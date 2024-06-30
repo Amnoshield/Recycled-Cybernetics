@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @onready var hitbox:Area2D = $hitbox
 
-var speed = 20
+var speed = 30
 var turning_speed_deg = 1
 var damage = 2
 var knockback = 100
