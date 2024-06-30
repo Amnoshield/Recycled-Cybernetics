@@ -16,11 +16,11 @@ func Physics_Update(_delta):
 	ray.target_position = player.global_position-enemy.global_position
 	ray.force_raycast_update()
 	if  nav.distance_to_target() > 300:
-		Transitioned.emit(self, "boss_P1_idle")
+		Transitioned.emit(self, "p2_d_idle")
 
 	enemy.velocity = (enemy.global_position-player.global_position).normalized()*enemy.speed
 
 
 func _on_run_timer_timeout():
 	if $"..".current_state == self:
-		Transitioned.emit(self, "boss_P1_idle")
+		Transitioned.emit(self, "p2_d_idle")
