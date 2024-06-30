@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var idle_direction = change_idle_dir()
 @onready var player_attack_animation = get_tree().get_nodes_in_group("attack")[0]
 @onready var dash_timer = $dash_cooldown
+@onready var parry_timer = $player_range/parry_cooldown
 
 var knockback_strenth = 500
 var knockback = Vector2(0, 0)
@@ -15,6 +16,8 @@ var dashing_velocity = Vector2(0, 0)
 var dashing_frames = 10
 var dashing_frame
 var rng = RandomNumberGenerator.new()
+var parrying = false
+var parried = false
 
 #Affected by parts
 var health = 20
@@ -37,6 +40,7 @@ func _ready():
 	$NavigationAgent2D.max_speed = speed
 	attack_cooldown_timer.wait_time = attack_cooldown
 	dash_timer.wait_time = dash_cooldown
+	parry_timer.wait_time = parry_cooldown
 	
 	dashing_frame = dashing_frames
 	
@@ -48,12 +52,17 @@ func _physics_process(_delta):
 
 
 func take_damage(oof_damage:int, new_knockback):
+	if parrying:
+		print('parried')
+		parried = true
+		player.take_damage(0, (player.global_position-global_position).normalized()*new_knockback.length())
+		return
 	oof_damage -= damage_res
 	if oof_damage < 0:
 		oof_damage = 0
 	health -= oof_damage
 	knockback =  new_knockback*knockback_res
-	#dashing_frame = dashing_frames #This sould be used at the end of the dashing / attacking state
+	dashing_frame = dashing_frames #This sould be used at the end of the dashing / attacking state
 	$State_Machine.overide_state("p2_Knockback")
 	
 	if health <= 0:
@@ -71,4 +80,9 @@ func start_random_attack():
 func die():
 	Tracker.remove_enemy(self)
 	self.queue_free()
+
+
+func _on_parry_deration_timeout():
+	parrying = false
+
 
