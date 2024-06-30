@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brk42t2rmnl6a"
-path="res://.godot/imported/fighter backward walk.png-9e3340bfcae5479d1ca1d15e7532ee68.ctex"
+uid="uid://dkqm7mnaok6dd"
+path="res://.godot/imported/fighter sideways run.png-81f1f24ddbaa4dc75643f5e983baec8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/fighter/fighter backward walk.png"
-dest_files=["res://.godot/imported/fighter backward walk.png-9e3340bfcae5479d1ca1d15e7532ee68.ctex"]
+source_file="res://assets/enemies/fighter/fighter sideways run.png"
+dest_files=["res://.godot/imported/fighter sideways run.png-81f1f24ddbaa4dc75643f5e983baec8b.ctex"]
 
 [params]
 

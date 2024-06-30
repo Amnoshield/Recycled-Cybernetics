@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var attack_cooldown_timer = $attack_cooldown
 @onready var random_cooldown_timer = $random_attack_cooldown
 @onready var idle_direction = change_idle_dir()
+@onready var ap = $Sprite2D/AnimationPlayer
 
 var speed = 80
 var health = 10
