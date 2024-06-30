@@ -69,7 +69,7 @@ enemies = Array[PackedScene]([ExtResource("7_nf70n")])
 
 [node name="enemy_spawner8" parent="." instance=ExtResource("4_wspjl")]
 position = Vector2(534, 14)
-enemies = Array[PackedScene]([ExtResource("7_nf70n"), ExtResource("8_sdq5g")])
+enemies = Array[PackedScene]([ExtResource("8_sdq5g")])
 
 [node name="enemy_spawner10" parent="." instance=ExtResource("4_wspjl")]
 position = Vector2(535, 43)

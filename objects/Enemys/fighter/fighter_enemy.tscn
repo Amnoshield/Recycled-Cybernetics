@@ -1,20 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://ttfionm4jjiw"]
+[gd_scene load_steps=16 format=3 uid="uid://ttfionm4jjiw"]
 
 [ext_resource type="Script" path="res://objects/Enemys/fighter/fighter_enemy.gd" id="1_hf7jv"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_2gs5r"]
+[ext_resource type="Texture2D" uid="uid://c111holav570i" path="res://assets/enemies/fighter/fighter attempt 2.png" id="2_mon54"]
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_f3y4s"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_knockback.gd" id="4_aj36c"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_idle.gd" id="5_4afeg"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_walk_away.gd" id="7_1goen"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_attack.gd" id="8_brjpt"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_pathfind.gd" id="8_ys7ct"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
-size = Vector2(32, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_41dxn"]
-font_size = 9
-shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
 size = Vector2(32, 32)
@@ -82,16 +76,7 @@ motion_mode = 1
 script = ExtResource("1_hf7jv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.997072, 0, 0.142165, 1)
-texture = SubResource("PlaceholderTexture2D_foq3r")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = -1.0
-text = "Enemy"
-label_settings = SubResource("LabelSettings_41dxn")
+texture = ExtResource("2_mon54")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
@@ -100,6 +85,7 @@ avoidance_layers = 2
 avoidance_mask = 2
 
 [node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+visible = false
 collision_layer = 4
 collision_mask = 0
 monitoring = false
@@ -109,15 +95,18 @@ script = ExtResource("2_2gs5r")
 shape = SubResource("RectangleShape2D_3cj4s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_0jk20")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="attack_cooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="attack_box" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 monitorable = false
 
