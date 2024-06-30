@@ -1,5 +1,5 @@
 extends State
-class_name p2_d_dash
+class_name p2_o_dash1
 
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @onready var enemy:CharacterBody2D = $"../.."
@@ -7,7 +7,7 @@ class_name p2_d_dash
 
 func Enter():
 	enemy.dashing_frame = 0
-	enemy.dashing_velocity = (enemy.global_position-player.global_position).normalized()*500
+	enemy.dashing_velocity = (player.global_position-enemy.global_position).normalized()*500
 
 
 func Physics_Update(_delta):
@@ -15,5 +15,5 @@ func Physics_Update(_delta):
 	enemy.velocity = enemy.dashing_velocity
 	
 	if enemy.dashing_frame >= enemy.dashing_frames -1: #Dash
-		Transitioned.emit(self, "p2_po_pathfind")
+		Transitioned.emit(self, "p2_o_attack1")
 

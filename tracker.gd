@@ -164,3 +164,8 @@ func get_upgrade(idx1:int, idx2:int):
 func apply_upgrade(entity):
 	if next_upgrade:
 		next_upgrade.affect(entity)
+
+
+func apply_upgrades(entity):
+	for upgrade in chosen_upgrades:
+		upgrade["obj"].affect(entity)

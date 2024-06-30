@@ -26,7 +26,7 @@ var speed = 100
 var knockback_res = 1
 var dash_cooldown = 1
 var attack_cooldown = 1
-var damage = 2
+var damage = 5
 var entity_knockback = 1500
 var parry_cooldown = 1
 var damage_res = 0
@@ -36,7 +36,7 @@ func _ready():
 	Tracker.player_reset()
 	player.download_tracker()
 	player.set_settings()
-	Tracker.apply_upgrade(self)
+	Tracker.apply_upgrades(self)
 	$NavigationAgent2D.max_speed = speed
 	attack_cooldown_timer.wait_time = attack_cooldown
 	dash_timer.wait_time = dash_cooldown
@@ -52,8 +52,7 @@ func _physics_process(_delta):
 
 
 func take_damage(oof_damage:int, new_knockback):
-	if parrying:
-		print('parried')
+	if parrying and not player.parrying:
 		parried = true
 		player.take_damage(0, (player.global_position-global_position).normalized()*new_knockback.length())
 		return

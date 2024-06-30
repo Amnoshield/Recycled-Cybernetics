@@ -7,6 +7,13 @@ class_name p2_d_idle
 @onready var parry_der = $"../../player_range/parry_deration"
 @onready var dash_timer = $"../../dash_cooldown"
 @onready var feint_timer = $"../../feint"
+var one = false
+var rng = RandomNumberGenerator.new()
+
+
+func Enter():
+	enemy.idle_direction = enemy.change_idle_dir()
+	one = false
 
 
 func Physics_Update(_delta):
@@ -15,18 +22,53 @@ func Physics_Update(_delta):
 
 
 func _on_player_range_area_entered(_area):
+	if $"..".current_state != self:
+		return
+	
 	if parry_timer.is_stopped() and dash_timer.is_stopped():
-		parry_timer.start()
 		feint_timer.start()
-		parry_der.start()
-		enemy.parrying = true
+		trigger_parry()
+	elif parry_timer.is_stopped():
+		if rng.randi_range(1, 4) == 1:
+			one = "parry"
+			feint_timer.start()
+		else:
+			trigger_parry()
+			Transitioned.emit(self, "p2_po_pathfind")
+			
+	elif dash_timer.is_stopped():
+		if rng.randi_range(1, 4) == 1:
+			one = "dash"
+			feint_timer.start()
+		else:
+			trigger_dash()
 
 
 func _on_feint_timeout():
-	if not enemy.parried:
-		dash_timer.start()
-		$"..".overide_state("p2_d_dash")
+	if $"..".current_state != self:
+		return
+	
+	if not one:
+		if not enemy.parried:
+			trigger_dash()
+		else:
+			Transitioned.emit(self, "p2_po_pathfind")
+			enemy.parried = false
 	else:
-		enemy.parried = false
+		if one == 'parry':
+			trigger_parry()
+			Transitioned.emit(self, "p2_po_pathfind")
+		else:
+			trigger_dash()
+			
 	
 	pass
+
+func trigger_parry():
+	parry_timer.start()
+	parry_der.start()
+	enemy.parrying = true
+
+func trigger_dash():
+	dash_timer.start()
+	$"..".overide_state("p2_d_dash")

@@ -1,12 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjipcywtmt2jq"]
+[gd_scene load_steps=25 format=3 uid="uid://cjipcywtmt2jq"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/boss_phase_2.gd" id="1_wcsac"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_w8jl8"]
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_fbts4"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/attack_box.gd" id="3_j0yj8"]
+[ext_resource type="Texture2D" uid="uid://cygkyh2kfb2u2" path="res://assets/other/attack1.png" id="3_jqst3"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/p2_knockback.gd" id="4_3ifxj"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_run.gd" id="5_tpgxy"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_idle.gd" id="6_4g0cs"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_dash.gd" id="7_1eggf"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_pathfind.gd" id="8_par44"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_idle.gd" id="9_dccwe"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_start_attack.gd" id="10_m1rtj"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash1.gd" id="11_2xp4h"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack1.gd" id="12_iskxl"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_run.gd" id="15_0231k"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
 size = Vector2(32, 32)
@@ -23,6 +31,140 @@ radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjnlu"]
 size = Vector2(46, 16)
+
+[sub_resource type="Animation" id="Animation_bvwv6"]
+length = 0.24
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+
+[sub_resource type="Animation" id="Animation_8qkge"]
+resource_name = "sword attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_jqst3")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D/Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D/Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationPlayer:speed_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_530rv"]
+_data = {
+"RESET": SubResource("Animation_bvwv6"),
+"sword attack": SubResource("Animation_8qkge")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sgb8"]
 radius = 45.2769
@@ -49,11 +191,9 @@ horizontal_alignment = 1
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
-path_postprocessing = 1
 radius = 32.0
 avoidance_layers = 2
 avoidance_mask = 2
-debug_enabled = true
 
 [node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 collision_layer = 4
@@ -76,11 +216,24 @@ one_shot = true
 [node name="attack_box" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
+script = ExtResource("3_j0yj8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_box"]
 position = Vector2(0, -30)
 shape = SubResource("RectangleShape2D_pjnlu")
 disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="attack_box/CollisionShape2D"]
+visible = false
+position = Vector2(0, 4)
+texture = ExtResource("3_jqst3")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="attack_box"]
+libraries = {
+"": SubResource("AnimationLibrary_530rv")
+}
+speed_scale = 1.5
 
 [node name="player_range" type="Area2D" parent="."]
 collision_layer = 0
@@ -94,10 +247,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="parry_cooldown" type="Timer" parent="player_range"]
-wait_time = 10.0
 one_shot = true
 
 [node name="dash_cooldown" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
 
 [node name="random_attack_cooldown" type="Timer" parent="."]
@@ -118,7 +271,7 @@ script = ExtResource("4_3ifxj")
 script = ExtResource("5_tpgxy")
 
 [node name="run_timer" type="Timer" parent="State_Machine"]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="p2_d_idle" type="Node" parent="State_Machine"]
@@ -128,6 +281,25 @@ script = ExtResource("6_4g0cs")
 [node name="p2_d_dash" type="Node" parent="State_Machine"]
 script = ExtResource("7_1eggf")
 
+[node name="p2_po_pathfind" type="Node" parent="State_Machine"]
+script = ExtResource("8_par44")
+
+[node name="p2_po_idle" type="Node" parent="State_Machine"]
+script = ExtResource("9_dccwe")
+
+[node name="p2_o_start_attack" type="Node" parent="State_Machine"]
+script = ExtResource("10_m1rtj")
+
+[node name="p2_o_dash1" type="Node" parent="State_Machine"]
+script = ExtResource("11_2xp4h")
+
+[node name="p2_o_attack1" type="Node" parent="State_Machine"]
+script = ExtResource("12_iskxl")
+
+[node name="p2_o_run" type="Node" parent="State_Machine"]
+script = ExtResource("15_0231k")
+
+[connection signal="area_entered" from="attack_box" to="attack_box" method="_on_area_entered"]
 [connection signal="area_entered" from="player_range" to="State_Machine/p2_d_idle" method="_on_player_range_area_entered"]
 [connection signal="timeout" from="player_range/parry_deration" to="." method="_on_parry_deration_timeout"]
 [connection signal="timeout" from="feint" to="State_Machine/p2_d_idle" method="_on_feint_timeout"]

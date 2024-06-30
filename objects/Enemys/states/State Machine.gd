@@ -12,12 +12,10 @@ func _ready():
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
-			child.process_mode = Node.PROCESS_MODE_DISABLED
 		else:
 			print("unknown child in state")
 	
 	if initial_state:
-		initial_state.process_mode = Node.PROCESS_MODE_INHERIT
 		initial_state.Enter()
 		current_state = initial_state
 	else:
@@ -45,10 +43,8 @@ func on_child_transition(state, new_state_name = null):
 		
 	if current_state:
 		current_state.Exit()
-		current_state.process_mode = Node.PROCESS_MODE_DISABLED
 		
 	
-	new_state.process_mode = Node.PROCESS_MODE_INHERIT
 	current_state = new_state
 	new_state.Enter()
 
@@ -62,12 +58,8 @@ func overide_state(new_state_name, continue_after = true, exit = true):
 	if exit and current_state:
 		current_state.Exit()
 	
-	if current_state:
-		current_state.process_mode = Node.PROCESS_MODE_DISABLED		
-	
 	if continue_after:
 		next_state = current_state.name.to_lower()
 	
-	new_state.process_mode = Node.PROCESS_MODE_INHERIT
 	current_state = new_state
 	new_state.Enter()
