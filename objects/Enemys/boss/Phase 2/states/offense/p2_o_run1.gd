@@ -1,5 +1,5 @@
 extends State
-class_name p2_o_run
+class_name p2_o_run1
 
 @onready var nav:NavigationAgent2D = $"../../NavigationAgent2D"
 @onready var enemy:CharacterBody2D = $"../.."

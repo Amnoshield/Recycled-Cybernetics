@@ -18,4 +18,3 @@ func Physics_Update(_delta):
 	var relitive_pos:Vector2 = nav.get_next_path_position()- enemy.global_position
 	enemy.velocity = relitive_pos.normalized()*enemy.speed
 
-

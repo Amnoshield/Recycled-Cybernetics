@@ -20,8 +20,8 @@ var parrying = false
 var parried = false
 
 #Affected by parts
-var health = 20
-var max_health = 20
+var health = 10
+var max_health = 10
 var speed = 100
 var knockback_res = 1
 var dash_cooldown = 1

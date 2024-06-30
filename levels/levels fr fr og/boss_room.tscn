@@ -52,4 +52,4 @@ format = 2
 position = Vector2(829, -20)
 
 [node name="boss phase 1" parent="." instance=ExtResource("6_m6gho")]
-position = Vector2(829, -375)
+position = Vector2(838, -383)

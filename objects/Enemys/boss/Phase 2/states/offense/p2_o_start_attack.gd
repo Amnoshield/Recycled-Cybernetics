@@ -7,7 +7,7 @@ var rng = RandomNumberGenerator.new()
 
 
 func Enter():
-	if rng.randi_range(1, 4):# == 1
+	if rng.randi_range(0, 1) == 1:
 		Transitioned.emit(self, "p2_o_dash1")
 	else:
-		print("attack + big attack")
+		Transitioned.emit(self, "p2_o_run2")
