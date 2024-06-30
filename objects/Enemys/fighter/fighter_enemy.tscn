@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ttfionm4jjiw"]
+[gd_scene load_steps=29 format=3 uid="uid://ttfionm4jjiw"]
 
 [ext_resource type="Script" path="res://objects/Enemys/fighter/fighter_enemy.gd" id="1_hf7jv"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_2gs5r"]
@@ -12,71 +12,7 @@
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_walk_away.gd" id="7_1goen"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_attack.gd" id="8_brjpt"]
 [ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighter_pathfind.gd" id="8_ys7ct"]
-
-[sub_resource type="Animation" id="Animation_kdael"]
-resource_name = "front walk"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_65y76")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimationPlayer:speed_scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.369915),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.6]
-}
+[ext_resource type="Script" path="res://objects/Enemys/fighter/states/fighterWindup.gd" id="13_acsna"]
 
 [sub_resource type="Animation" id="Animation_u146j"]
 length = 0.001
@@ -206,69 +142,69 @@ tracks/4/keys = {
 "values": [0.6]
 }
 
-[sub_resource type="Animation" id="Animation_07m8u"]
-resource_name = "side walk"
+[sub_resource type="Animation" id="Animation_kdael"]
+resource_name = "front walk"
 length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer:speed_scale")
+tracks/0/path = NodePath(".:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.6]
+"update": 1,
+"values": [4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:texture")
+tracks/1/path = NodePath(".:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_vfrrl")]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:hframes")
+tracks/2/path = NodePath(".:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [ExtResource("2_65y76")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".:vframes")
+tracks/3/path = NodePath(".:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.369915),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.6]
 }
 
 [sub_resource type="Animation" id="Animation_03m5k"]
@@ -336,6 +272,71 @@ tracks/4/keys = {
 "values": [1.0]
 }
 
+[sub_resource type="Animation" id="Animation_07m8u"]
+resource_name = "side walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer:speed_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_vfrrl")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k1o71"]
 _data = {
 "RESET": SubResource("Animation_u146j"),
@@ -343,6 +344,43 @@ _data = {
 "front walk": SubResource("Animation_kdael"),
 "idle": SubResource("Animation_03m5k"),
 "side walk": SubResource("Animation_07m8u")
+}
+
+[sub_resource type="Animation" id="Animation_aseef"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1gba8"]
+resource_name = "dash"
+length = 0.51
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.51),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.34, 0.34, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b76hl"]
+_data = {
+"RESET": SubResource("Animation_aseef"),
+"dash": SubResource("Animation_1gba8")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
@@ -418,7 +456,13 @@ hframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_k1o71")
 }
+autoplay = "idle"
 speed_scale = 0.6
+
+[node name="dashAP" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_b76hl")
+}
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 5.0
@@ -483,5 +527,9 @@ script = ExtResource("8_brjpt")
 [node name="Fighter_pathfind" type="Node" parent="State_Machine"]
 script = ExtResource("8_ys7ct")
 
+[node name="fighterWindup" type="Node" parent="State_Machine"]
+script = ExtResource("13_acsna")
+
+[connection signal="animation_finished" from="Sprite2D/dashAP" to="State_Machine/fighterWindup" method="_on_dash_ap_animation_finished"]
 [connection signal="area_entered" from="attack_box" to="." method="_on_attack_box_area_entered"]
 [connection signal="timeout" from="random_attack_cooldown" to="." method="_on_random_attack_cooldown_timeout"]
