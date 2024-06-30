@@ -6,7 +6,7 @@ class_name Fighter_walk_away
 @onready var ray:RayCast2D = $"../../RayCast2D"
 @onready var nav:NavigationAgent2D = $"../../NavigationAgent2D"
 @onready var enemy:CharacterBody2D = $"../.."
-
+@onready var ap = $Sprite2D/AnimationPlayer
 
 func Physics_Update(_delta):
 	nav.set_target_position(player.global_position)
