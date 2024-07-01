@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_tu0wh"]
 [ext_resource type="TileSet" uid="uid://dehtu0x07meao" path="res://assets/tiles/TileSet1.tres" id="3_sjtvc"]
 [ext_resource type="TileSet" uid="uid://coeqejmi0xdc8" path="res://assets/tiles/TileSet2.tres" id="4_lw64u"]
-[ext_resource type="PackedScene" uid="uid://d31bq328wfore" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.tscn" id="6_m6gho"]
 [ext_resource type="PackedScene" uid="uid://chrykf56drv22" path="res://objects/Enemys/enemy_spawner.tscn" id="6_qhumj"]
+[ext_resource type="PackedScene" uid="uid://d8ubqr5qt61m" path="res://objects/Enemys/boss/Phase 3/boss_phase_3.tscn" id="7_p243f"]
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player/player.tscn" id="9_bmv48"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
@@ -54,4 +54,4 @@ position = Vector2(829, -20)
 
 [node name="enemy_spawner" parent="." instance=ExtResource("6_qhumj")]
 position = Vector2(828, -379)
-enemies = Array[PackedScene]([ExtResource("6_m6gho")])
+enemies = Array[PackedScene]([ExtResource("7_p243f")])

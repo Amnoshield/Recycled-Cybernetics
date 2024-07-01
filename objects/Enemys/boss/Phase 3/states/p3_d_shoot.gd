@@ -18,4 +18,3 @@ func fire():
 	new_bullet.global_position = enemy.global_position
 	get_node("../../..").add_child(new_bullet)
 	enemy.idle_direction = enemy.change_idle_dir()
-	Transitioned.emit(self, "p2_d_idle")

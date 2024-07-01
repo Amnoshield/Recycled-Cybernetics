@@ -501,8 +501,7 @@ libraries = {
 "": SubResource("AnimationLibrary_4bv1x")
 }
 
-[node name="random_attack_cooldown" type="Timer" parent="."]
-one_shot = true
+[node name="rng attack" type="Timer" parent="."]
 
 [node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_f3y4s")
@@ -528,4 +527,4 @@ script = ExtResource("13_acsna")
 
 [connection signal="animation_finished" from="Sprite2D/dashAP" to="State_Machine/fighterWindup" method="_on_dash_ap_animation_finished"]
 [connection signal="area_entered" from="attack_box" to="." method="_on_attack_box_area_entered"]
-[connection signal="timeout" from="random_attack_cooldown" to="." method="_on_random_attack_cooldown_timeout"]
+[connection signal="timeout" from="rng attack" to="." method="_on_rng_attack_timeout"]

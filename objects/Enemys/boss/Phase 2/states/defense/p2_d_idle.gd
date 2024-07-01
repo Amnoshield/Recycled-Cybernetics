@@ -13,7 +13,6 @@ var rng = RandomNumberGenerator.new()
 
 
 func Enter():
-	print('idling')
 	enemy.idle_direction = enemy.change_idle_dir()
 	one = false
 	agro.start(rng.randi_range(3, 6))

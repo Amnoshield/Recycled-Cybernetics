@@ -33,6 +33,7 @@ func on_child_transition(state, new_state_name = null):
 	if state != current_state:
 		return
 	var bad = false
+
 	if not new_state_name:
 		bad = true
 		new_state_name = next_state

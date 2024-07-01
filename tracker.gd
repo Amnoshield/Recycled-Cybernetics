@@ -21,7 +21,7 @@ var upgrades_main:Array = [
 ]
 
 
-var totorial_level = "res://levels/levels fr fr og/test_scene.tscn"
+var totorial_level = "res://levels/levels fr fr og/intro room.tscn"
 var first_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
 var second_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
 var third_levels = ["res://levels/levels fr fr og/test_scene.tscn"]

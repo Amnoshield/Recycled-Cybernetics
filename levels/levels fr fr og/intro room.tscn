@@ -1,15 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx5bxoa7qux06"]
+[gd_scene load_steps=13 format=3 uid="uid://cx5bxoa7qux06"]
 
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_s5vrl"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_r2c4j"]
 [ext_resource type="TileSet" uid="uid://dehtu0x07meao" path="res://assets/tiles/TileSet1.tres" id="3_mhmuc"]
 [ext_resource type="TileSet" uid="uid://coeqejmi0xdc8" path="res://assets/tiles/TileSet2.tres" id="4_p5wi8"]
+[ext_resource type="Texture2D" uid="uid://cv521ur28move" path="res://assets/other/controls_0.png" id="5_c3kyj"]
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player/player.tscn" id="5_vnatj"]
+[ext_resource type="PackedScene" uid="uid://chrykf56drv22" path="res://objects/Enemys/enemy_spawner.tscn" id="6_h8wl2"]
+[ext_resource type="Texture2D" uid="uid://c8x882vchytt6" path="res://assets/other/controls_1.png" id="7_jg2cg"]
+[ext_resource type="Texture2D" uid="uid://cp2qrupwaov2a" path="res://assets/other/controls_2.png" id="8_8jed5"]
+[ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/Enemys/fighter/fighter_enemy.tscn" id="9_3c6g4"]
+[ext_resource type="Texture2D" uid="uid://dcge1qf7pck33" path="res://assets/other/controls_3.png" id="9_o7es4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
-vertices = PackedVector2Array(96, -135, 96, -37, -82, -37, -354, -135, -96, -23, -354, 123, -176, 123, -96, 139, -162, 137, -158, 203, -162, 203, -82, 153, -48, 219, -146, 215, -64, 153, -53, 169, 350, -103, 350, -119, 400, -119, 400, -21, 339, -87, 350, -69, 339, -85, 350, -21, 315, -87, 315, -85, 64, 105, 64, 219, 14, 219, 30, 139, 0, 233, 0, 315, -34, 315, -34, 233, -13, 169, -146, 219, -2, 153, 16, 153, 190, -103, 304, -103, 304, -69, 238, -69, 224, -55, 190, 43, 224, 91, 176, 57, 78, 91, 30, 57)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 5, 4), PackedInt32Array(6, 4, 7, 8), PackedInt32Array(9, 10, 8, 7, 11), PackedInt32Array(12, 13, 9, 11, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 16, 19, 21, 22), PackedInt32Array(19, 23, 21), PackedInt32Array(24, 20, 22, 25), PackedInt32Array(26, 27, 28, 29), PackedInt32Array(30, 31, 32, 33, 34), PackedInt32Array(12, 35, 13), PackedInt32Array(12, 15, 34, 33), PackedInt32Array(28, 30, 34, 36, 37), PackedInt32Array(38, 39, 24, 25, 40, 41), PackedInt32Array(38, 41, 42), PackedInt32Array(43, 38, 42, 44), PackedInt32Array(45, 43, 44), PackedInt32Array(45, 44, 46, 47), PackedInt32Array(47, 46, 26), PackedInt32Array(29, 47, 26), PackedInt32Array(28, 37, 29)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-401, -192, 485, -155, 455, 17, 285, 52, 259, 143, 142, 156, -4, 358, -253, 183, -395, 145)])
+vertices = PackedVector2Array(384, -583, 384, -293, 270, -293, 94, -583, 210, -293, 94, -293, 266, -289, 212, -289)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 3), PackedInt32Array(4, 3, 2, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(62, -617, 420, -617, 421, -275, 276, -276, 200, -274, 60, -271)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 15.0
 
@@ -17,9 +23,9 @@ agent_radius = 15.0
 position = Vector2(0, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["walls"]]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.129412)
 z_index = 5
-position = Vector2(232, 113)
+position = Vector2(266, 49)
 navigation_polygon = SubResource("NavigationPolygon_rst2h")
 avoidance_layers = 2
 
@@ -47,7 +53,26 @@ z_index = 3
 position = Vector2(-177, -54)
 tile_set = ExtResource("4_p5wi8")
 format = 2
-layer_0/tile_data = PackedInt32Array(786440, 65536, 1, 786441, 65536, 1, 1114112, 327680, 0, -393184, 131072, 1, -393183, 196608, 1, -393182, 131072, 1, -393181, 196608, 1, -393180, 131072, 1, -393179, 327680, 0, -327643, 0, 0, -262107, 0, 1, -196571, 0, 0, -131035, 0, 1, -65499, 0, 0, 37, 0, 1, 65573, 0, 0, 131109, 0, 1, 196645, 327680, 1, 196643, 131072, 1, 196644, 196608, 1, 196641, 131072, 1, 196642, 196608, 1, 196640, 196608, 1, -262113, 65536, 1, -65505, 65536, 0, 31, 0, 0, -327649, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D"]
+position = Vector2(205, -347)
+texture = ExtResource("5_c3kyj")
 
 [node name="Player" parent="." instance=ExtResource("5_vnatj")]
-position = Vector2(212, 410)
+position = Vector2(501, -173)
+
+[node name="Controls1" type="Sprite2D" parent="."]
+position = Vector2(540, -299)
+texture = ExtResource("7_jg2cg")
+
+[node name="Controls2" type="Sprite2D" parent="."]
+position = Vector2(504, -239)
+texture = ExtResource("8_8jed5")
+
+[node name="Controls3" type="Sprite2D" parent="."]
+position = Vector2(500, -364)
+texture = ExtResource("9_o7es4")
+
+[node name="enemy_spawner" parent="." instance=ExtResource("6_h8wl2")]
+position = Vector2(506, -533)
+enemies = Array[PackedScene]([ExtResource("9_3c6g4")])

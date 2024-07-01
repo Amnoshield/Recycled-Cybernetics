@@ -15,6 +15,7 @@ var rng = RandomNumberGenerator.new()
 
 func Enter():
 	if attack_cool.is_stopped():
+		$"..".next_state = self.name
 		$"..".overide_state("p3_d_shoot")
 	enemy.idle_direction = enemy.change_idle_dir()
 	one = false

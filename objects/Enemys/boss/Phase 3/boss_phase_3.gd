@@ -52,7 +52,7 @@ func spawn_minions():
 	for x in range(2):
 		Tracker.num_enemies += 1
 		var mob:Node = minion.instantiate()
-		mob.global_position = global_position+Vector2(rng.randi_range(-100, 100), rng.randi_range(-100, 100))
+		mob.global_position = global_position+Vector2(rng.randi_range(-10, 10), rng.randi_range(-10, 10))
 		get_node("..").add_child(mob)
 	Tracker.enemy_counter.change_label(Tracker.num_enemies)
 

@@ -4,7 +4,6 @@ extends CharacterBody2D
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @onready var raycast = $RayCast2D
 @onready var attack_cooldown_timer = $attack_cooldown
-@onready var random_cooldown_timer = $random_attack_cooldown
 @onready var idle_direction = change_idle_dir()
 @onready var ap = $Sprite2D/AnimationPlayer
 @onready var sprite = $Sprite2D
@@ -32,8 +31,8 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	$NavigationAgent2D.max_speed = speed
 	attack_cooldown_timer.wait_time = attack_cooldown
-	start_random_attack()
 	attacking_frame = attacking_frames
+	start_rng_attack()
 
 
 func _process(_delta):
@@ -54,6 +53,8 @@ func _process(_delta):
 		ap.play("front walk")
 	elif face_player.y < 0:
 		ap.play("back walk")
+
+
 func _physics_process(_delta):
 	move_and_slide()
 
@@ -74,7 +75,6 @@ func attack():
 		if $State_Machine.current_state.name in ["Fighter_Idle", "Fighter_walk_away"]:
 			$State_Machine.overide_state("fighterWindup")
 			idle_direction = change_idle_dir()
-			$attack_box/AnimationPlayer.play("Attack")
 			attacking_velocity = (player.global_position-global_position)*speed/attacking_frames
 			attacking_frame = 0
 		return true
@@ -85,21 +85,21 @@ func change_idle_dir():
 	return (rng.randi_range(0, 1)-0.5)*2
 
 
-func start_random_attack():
-	random_cooldown_timer.start(rng.randi_range(random_attack_min, random_attack_max))
-
-
 func _on_attack_box_area_entered(area): #this should only apply to the player
+	attacking_frame = attacking_frames
 	area.take_damage(damage+rng.randi_range(-1, 1), (area.global_position-global_position).normalized()*knockback_strenth)
-
-
-func _on_random_attack_cooldown_timeout():
-	if not raycast.is_colliding() and nav.distance_to_target() < wait_distence+wiggle_room:
-		attack()
-	start_random_attack()
 
 
 func die():
 	Tracker.remove_enemy(self)
 	self.queue_free()
 
+
+func _on_rng_attack_timeout():
+	attack()
+	start_rng_attack()
+
+
+func start_rng_attack():
+	$"rng attack".wait_time = rng.randf_range(0.5, 4)
+	$"rng attack".start()

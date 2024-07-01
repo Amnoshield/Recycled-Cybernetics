@@ -12,8 +12,8 @@ var tracker_pos = {}
 
 func _ready():
 	var temp = source.duplicate(2)
-	temp.modulate.a = 0.8
 	add_child(temp)
+	$"..".modulate.a = 0.8
 
 
 func _physics_process(_delta):
