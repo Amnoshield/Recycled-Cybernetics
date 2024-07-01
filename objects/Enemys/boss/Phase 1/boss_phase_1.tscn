@@ -2,15 +2,13 @@
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.gd" id="1_q1s7m"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_8n533"]
+[ext_resource type="Texture2D" uid="uid://df8d34s32objc" path="res://assets/boss/boss atempt 1(color change).png" id="2_eags0"]
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_17gaw"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_dash_attack.gd" id="4_ehept"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_walk_away.gd" id="8_ogiva"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_idle.gd" id="8_p7amt"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_knockback.gd" id="8_rrxt6"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_pathfind.gd" id="9_vdmoq"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
-size = Vector2(32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_41dxn"]
 font_size = 9
@@ -46,10 +44,10 @@ motion_mode = 1
 script = ExtResource("1_q1s7m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.997072, 0, 0.142165, 1)
-texture = SubResource("PlaceholderTexture2D_foq3r")
+texture = ExtResource("2_eags0")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
@@ -72,6 +70,7 @@ monitoring = false
 script = ExtResource("2_8n533")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+visible = false
 shape = SubResource("RectangleShape2D_3cj4s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
