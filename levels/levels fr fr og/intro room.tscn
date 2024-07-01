@@ -54,24 +54,24 @@ position = Vector2(-177, -54)
 tile_set = ExtResource("4_p5wi8")
 format = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D"]
+[node name="Controls0" type="Sprite2D" parent="NavigationRegion2D"]
 position = Vector2(205, -347)
 texture = ExtResource("5_c3kyj")
 
-[node name="Player" parent="." instance=ExtResource("5_vnatj")]
-position = Vector2(501, -173)
-
-[node name="Controls1" type="Sprite2D" parent="."]
-position = Vector2(540, -299)
+[node name="Controls1" type="Sprite2D" parent="NavigationRegion2D"]
+position = Vector2(274, -348)
 texture = ExtResource("7_jg2cg")
 
-[node name="Controls2" type="Sprite2D" parent="."]
-position = Vector2(504, -239)
+[node name="Controls2" type="Sprite2D" parent="NavigationRegion2D"]
+position = Vector2(238, -288)
 texture = ExtResource("8_8jed5")
 
-[node name="Controls3" type="Sprite2D" parent="."]
-position = Vector2(500, -364)
+[node name="Controls3" type="Sprite2D" parent="NavigationRegion2D"]
+position = Vector2(234, -413)
 texture = ExtResource("9_o7es4")
+
+[node name="Player" parent="." instance=ExtResource("5_vnatj")]
+position = Vector2(501, -173)
 
 [node name="enemy_spawner" parent="." instance=ExtResource("6_h8wl2")]
 position = Vector2(506, -533)

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var ray = $RayCast2D
 @onready var minimap = get_tree().get_nodes_in_group("minimap")[0]
-@export var enemies:Array[PackedScene] = [null]
+@export var enemies:Array[PackedScene]
 var spawnable = false
 var near_spawners = []
 var rng = RandomNumberGenerator.new()
