@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="3_hpg7t"]
 
 [sub_resource type="Gradient" id="Gradient_csywl"]
-offsets = PackedFloat32Array(0, 0.253247, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.363636, 0.363636, 0.363636, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.363636, 0.363636, 0.363636, 1, 0.784314, 0.784314, 0.784314, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pqmtd"]
 gradient = SubResource("Gradient_csywl")

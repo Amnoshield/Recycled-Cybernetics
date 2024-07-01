@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjke165hnb1ua"]
+[gd_scene load_steps=8 format=3 uid="uid://cjke165hnb1ua"]
 
 [ext_resource type="Script" path="res://objects/ui/minimap.gd" id="2_1fe7h"]
 [ext_resource type="PackedScene" uid="uid://c78t5crfo0mc4" path="res://objects/ui/enemy_marker.tscn" id="3_un4ku"]
+[ext_resource type="FontFile" uid="uid://sl08fd13yipe" path="res://assets/fonts/dogicapixel.otf" id="4_1rivu"]
+[ext_resource type="Texture2D" uid="uid://dmowbmp4bytuf" path="res://assets/ui/ui minimap.png" id="4_4c4r1"]
 [ext_resource type="Texture2D" uid="uid://dkhu1i4arr6pr" path="res://assets/minimap/gear.png" id="4_quvrr"]
 [ext_resource type="Script" path="res://objects/ui/enemy counter.gd" id="5_nme5a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mrlc8"]
+font = ExtResource("4_1rivu")
 
 [node name="ui" type="CanvasLayer"]
 
@@ -16,10 +21,10 @@ value = 50.0
 fill_mode = 3
 
 [node name="minimap" type="ReferenceRect" parent="."]
-offset_left = 93.0
-offset_top = 32.0
-offset_right = 293.0
-offset_bottom = 232.0
+offset_left = 41.0
+offset_top = 33.0
+offset_right = 241.0
+offset_bottom = 233.0
 mouse_filter = 2
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="minimap"]
@@ -43,16 +48,22 @@ z_index = 51
 position = Vector2(100, 100)
 texture = ExtResource("4_quvrr")
 
+[node name="ui minimap" type="Sprite2D" parent="minimap/SubViewportContainer2"]
+position = Vector2(100, 101)
+texture = ExtResource("4_4c4r1")
+
 [node name="enemy counter" type="ReferenceRect" parent="."]
-offset_left = 93.0
-offset_top = 232.0
-offset_right = 293.0
-offset_bottom = 272.0
+offset_left = 41.0
+offset_top = 233.0
+offset_right = 241.0
+offset_bottom = 273.0
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="enemy counter"]
 layout_mode = 0
+offset_top = 9.0
 offset_right = 200.0
-offset_bottom = 40.0
+offset_bottom = 49.0
 text = "Enemies left: 1"
+label_settings = SubResource("LabelSettings_mrlc8")
 script = ExtResource("5_nme5a")

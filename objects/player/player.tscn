@@ -17,8 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://bmb24q8vmpk8k" path="res://assets/player ani/idle ani/side idle.png" id="13_qir1g"]
 [ext_resource type="Texture2D" uid="uid://bj8aj6748evxt" path="res://assets/other/health bar 1 no back.png" id="14_yra7k"]
 [ext_resource type="Texture2D" uid="uid://17l8ijegubl5" path="res://assets/other/health colors/health bar red 1.png" id="15_jfr3i"]
+[ext_resource type="Texture2D" uid="uid://01oxc8wxn6do" path="res://assets/ui/dash/parry ui color.png" id="16_fo1ar"]
 [ext_resource type="Script" path="res://objects/player/dash_cooldown_bar.gd" id="16_ha2u6"]
 [ext_resource type="Script" path="res://objects/player/parry_cooldown_bar.gd" id="17_i1b0q"]
+[ext_resource type="Texture2D" uid="uid://b2h3qiqc1aeuq" path="res://assets/ui/dash/parry ui.png" id="17_v4jom"]
 [ext_resource type="Texture2D" uid="uid://byjhks2ck5dqs" path="res://assets/player ani/attack cooldown/v3 attack indicators0.png" id="18_nal1k"]
 [ext_resource type="Texture2D" uid="uid://chnlshfr5taxu" path="res://assets/player ani/attack cooldown/v3 attack indicators1.png" id="19_htbhl"]
 [ext_resource type="PackedScene" uid="uid://cjke165hnb1ua" path="res://objects/ui/ui.tscn" id="20_8yet6"]
@@ -703,10 +705,6 @@ _data = {
 "walk up diag": SubResource("Animation_02sac")
 }
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iluli"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p1fw1"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkkgw"]
 size = Vector2(46, 16)
 
@@ -927,7 +925,7 @@ script = ExtResource("5_njb03")
 
 [node name="Sprite2D" type="Sprite2D" parent="Smoothing2D"]
 texture_filter = 1
-texture = ExtResource("11_a4lcp")
+texture = ExtResource("10_5koeu")
 offset = Vector2(0, 1)
 hframes = 8
 
@@ -936,7 +934,7 @@ libraries = {
 "": SubResource("AnimationLibrary_huaq5")
 }
 autoplay = "idle front"
-speed_scale = 0.8
+speed_scale = 1.4
 
 [node name="HealthBar" type="TextureProgressBar" parent="Smoothing2D/Sprite2D"]
 z_index = 1
@@ -967,26 +965,36 @@ mouse_filter = 2
 
 [node name="dash" type="TextureProgressBar" parent="Smoothing2D/Sprite2D/ReferenceRect"]
 layout_mode = 0
-offset_right = 17.0
-offset_bottom = 10.0
+offset_top = -1.0
+offset_right = 16.0
+offset_bottom = 9.0
 step = 0.01
 value = 50.0
 fill_mode = 3
 nine_patch_stretch = true
-texture_progress = SubResource("PlaceholderTexture2D_iluli")
+texture_progress = ExtResource("16_fo1ar")
 script = ExtResource("16_ha2u6")
+
+[node name="ui prog bar" type="Sprite2D" parent="Smoothing2D/Sprite2D/ReferenceRect/dash"]
+position = Vector2(8, 5)
+texture = ExtResource("17_v4jom")
 
 [node name="parry" type="TextureProgressBar" parent="Smoothing2D/Sprite2D/ReferenceRect"]
 layout_mode = 0
-offset_left = 17.0
+offset_left = 18.0
+offset_top = -1.0
 offset_right = 34.0
-offset_bottom = 10.0
+offset_bottom = 9.0
 step = 0.01
 value = 50.0
 fill_mode = 3
 nine_patch_stretch = true
-texture_progress = SubResource("PlaceholderTexture2D_p1fw1")
+texture_progress = ExtResource("16_fo1ar")
 script = ExtResource("17_i1b0q")
+
+[node name="ui prog bar" type="Sprite2D" parent="Smoothing2D/Sprite2D/ReferenceRect/parry"]
+position = Vector2(8, 5)
+texture = ExtResource("17_v4jom")
 
 [node name="sword attack" type="Area2D" parent="Smoothing2D"]
 collision_layer = 0
