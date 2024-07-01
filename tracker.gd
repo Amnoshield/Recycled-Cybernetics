@@ -77,7 +77,7 @@ func spawn_enemies():
 
 func remove_enemy(enemy):
 	if not is_instance_valid(enemy): return
-	
+
 	num_enemies -= 1
 	
 	enemy_counter.change_label(num_enemies)

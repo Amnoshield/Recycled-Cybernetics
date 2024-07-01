@@ -9,6 +9,7 @@ var relitive
 func Enter():
 	relitive = player.global_position-enemy.global_position
 	$"../big attack".start()
+	enemy.velocity = Vector2(0, 0)
 
 
 func _on_big_attack_timeout():

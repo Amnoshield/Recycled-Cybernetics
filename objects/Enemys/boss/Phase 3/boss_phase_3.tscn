@@ -1,0 +1,393 @@
+[gd_scene load_steps=35 format=3 uid="uid://d8ubqr5qt61m"]
+
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 3/boss_phase_3.gd" id="1_6wuha"]
+[ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_a73d7"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/attack_box.gd" id="3_lm58b"]
+[ext_resource type="Texture2D" uid="uid://cygkyh2kfb2u2" path="res://assets/other/attack1.png" id="4_w3pn6"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/big attack.gd" id="5_1gmjt"]
+[ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="6_lh845"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/p2_knockback.gd" id="7_0yoog"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_run.gd" id="8_80n6h"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_dash.gd" id="10_nk011"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_pathfind.gd" id="11_l5gxb"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_idle.gd" id="12_cumtj"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_start_attack.gd" id="13_jlb03"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash1.gd" id="14_hq5h2"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack1.gd" id="15_7spxc"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_run1.gd" id="16_if0et"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_run2.gd" id="17_321d1"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack2.gd" id="18_ygl0q"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash2.gd" id="19_gw2t7"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_0_big_attack.gd" id="20_dg8kq"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 3/states/p3_d_idle.gd" id="21_6y3yd"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 3/states/p3_d_shoot.gd" id="21_wye13"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq3r"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_41dxn"]
+font_size = 9
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t25iu"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjnlu"]
+size = Vector2(46, 16)
+
+[sub_resource type="Animation" id="Animation_bvwv6"]
+length = 0.24
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+
+[sub_resource type="Animation" id="Animation_8qkge"]
+resource_name = "sword attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_w3pn6")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D/Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D/Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationPlayer:speed_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_530rv"]
+_data = {
+"RESET": SubResource("Animation_bvwv6"),
+"sword attack": SubResource("Animation_8qkge")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1pi5"]
+size = Vector2(80, 236)
+
+[sub_resource type="Animation" id="Animation_udmup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ymnbh"]
+resource_name = "big attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cuna5"]
+_data = {
+"RESET": SubResource("Animation_udmup"),
+"big attack": SubResource("Animation_ymnbh")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4sgb8"]
+radius = 45.2769
+
+[node name="boss phase 3" type="CharacterBody2D" groups=["boss"]]
+z_index = 3
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_6wuha")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.997072, 0, 0.142165, 1)
+texture = SubResource("PlaceholderTexture2D_foq3r")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -1.0
+text = "P3"
+label_settings = SubResource("LabelSettings_41dxn")
+horizontal_alignment = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+radius = 32.0
+avoidance_layers = 2
+avoidance_mask = 2
+
+[node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_a73d7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("RectangleShape2D_3cj4s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t25iu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="attack_box" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+script = ExtResource("3_lm58b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_box"]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_pjnlu")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="attack_box/CollisionShape2D"]
+visible = false
+position = Vector2(0, 4)
+texture = ExtResource("4_w3pn6")
+hframes = 6
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="attack_box"]
+libraries = {
+"": SubResource("AnimationLibrary_530rv")
+}
+speed_scale = 1.5
+
+[node name="big attack" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+script = ExtResource("5_1gmjt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="big attack"]
+position = Vector2(0, -140)
+shape = SubResource("RectangleShape2D_q1pi5")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="big attack"]
+libraries = {
+"": SubResource("AnimationLibrary_cuna5")
+}
+
+[node name="player_range" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_range"]
+shape = SubResource("CircleShape2D_4sgb8")
+
+[node name="parry_deration" type="Timer" parent="player_range"]
+wait_time = 0.5
+one_shot = true
+
+[node name="parry_cooldown" type="Timer" parent="player_range"]
+one_shot = true
+
+[node name="dash_cooldown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="random_attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="feint" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_lh845")
+initial_state = NodePath("p2_d_run")
+
+[node name="agro" type="Timer" parent="State_Machine"]
+one_shot = true
+
+[node name="p2_knockback" type="Node" parent="State_Machine"]
+script = ExtResource("7_0yoog")
+
+[node name="p2_d_run" type="Node" parent="State_Machine"]
+script = ExtResource("8_80n6h")
+next_state = "p3_d_idle"
+
+[node name="run_timer" type="Timer" parent="State_Machine"]
+wait_time = 2.0
+one_shot = true
+
+[node name="p2_d_dash" type="Node" parent="State_Machine"]
+script = ExtResource("10_nk011")
+
+[node name="p2_po_pathfind" type="Node" parent="State_Machine"]
+script = ExtResource("11_l5gxb")
+
+[node name="p2_po_idle" type="Node" parent="State_Machine"]
+script = ExtResource("12_cumtj")
+
+[node name="p2_o_start_attack" type="Node" parent="State_Machine"]
+script = ExtResource("13_jlb03")
+
+[node name="p2_o_dash1" type="Node" parent="State_Machine"]
+script = ExtResource("14_hq5h2")
+
+[node name="p2_o_attack1" type="Node" parent="State_Machine"]
+script = ExtResource("15_7spxc")
+
+[node name="p2_o_run1" type="Node" parent="State_Machine"]
+script = ExtResource("16_if0et")
+
+[node name="p2_o_run2" type="Node" parent="State_Machine"]
+script = ExtResource("17_321d1")
+
+[node name="p2_o_attack2" type="Node" parent="State_Machine"]
+script = ExtResource("18_ygl0q")
+
+[node name="p2_o_dash2" type="Node" parent="State_Machine"]
+script = ExtResource("19_gw2t7")
+
+[node name="big attack" type="Timer" parent="State_Machine"]
+one_shot = true
+
+[node name="p2_o_big_attack" type="Node" parent="State_Machine"]
+script = ExtResource("20_dg8kq")
+
+[node name="p3_d_shoot" type="Node" parent="State_Machine"]
+script = ExtResource("21_wye13")
+
+[node name="p3_d_idle" type="Node" parent="State_Machine"]
+script = ExtResource("21_6y3yd")
+
+[connection signal="timeout" from="attack_cooldown" to="State_Machine/p3_d_idle" method="_on_attack_cooldown_timeout"]
+[connection signal="area_entered" from="attack_box" to="attack_box" method="_on_area_entered"]
+[connection signal="area_entered" from="big attack" to="big attack" method="_on_area_entered"]
+[connection signal="area_entered" from="player_range" to="State_Machine/p3_d_idle" method="_on_player_range_area_entered"]
+[connection signal="timeout" from="player_range/parry_deration" to="." method="_on_parry_deration_timeout"]
+[connection signal="timeout" from="feint" to="State_Machine/p3_d_idle" method="_on_feint_timeout"]
+[connection signal="timeout" from="State_Machine/agro" to="State_Machine/p3_d_idle" method="_on_agro_timeout"]
+[connection signal="timeout" from="State_Machine/run_timer" to="State_Machine/p2_d_run" method="_on_run_timer_timeout"]
+[connection signal="timeout" from="State_Machine/big attack" to="State_Machine/p2_o_big_attack" method="_on_big_attack_timeout"]

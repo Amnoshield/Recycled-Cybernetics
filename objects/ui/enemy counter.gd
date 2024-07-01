@@ -1,7 +1,7 @@
 extends Label
 
 
-func start():
+func _ready():
 	Tracker.enemy_counter = self
 
 

@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var player_attack_animation = get_tree().get_nodes_in_group("attack")[0]
 @onready var dash_timer = $dash_cooldown
 @onready var parry_timer = $player_range/parry_cooldown
-@onready var minion = preload("res://objects/Enemys/ranger/ranged_enemy.tscn")
+@onready var minion = preload("res://objects/Enemys/fighter/fighter_enemy.tscn")
 
 var knockback_strenth = 500
 var knockback = Vector2(0, 0)
@@ -87,12 +87,11 @@ func start_random_attack():
 
 
 func die():
-	var p3 = load("res://objects/Enemys/boss/Phase 3/boss_phase_3.tscn").instantiate()
-	p3.global_position = global_position
-	get_node("..").add_child(p3)
+	Tracker.remove_enemy(self)
 	self.queue_free()
 
 
 func _on_parry_deration_timeout():
 	parrying = false
+
 

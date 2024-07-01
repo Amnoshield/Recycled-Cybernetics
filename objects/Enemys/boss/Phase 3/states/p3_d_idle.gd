@@ -1,5 +1,5 @@
 extends State
-class_name p2_d_idle
+class_name p3_d_idle
 
 @onready var enemy:CharacterBody2D = $"../.."
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
@@ -8,12 +8,14 @@ class_name p2_d_idle
 @onready var dash_timer = $"../../dash_cooldown"
 @onready var feint_timer = $"../../feint"
 @onready var agro = $"../agro"
+@onready var attack_cool = $"../../attack_cooldown"
 var one = false
 var rng = RandomNumberGenerator.new()
 
 
 func Enter():
-	print('idling')
+	if attack_cool.is_stopped():
+		$"..".overide_state("p3_d_shoot")
 	enemy.idle_direction = enemy.change_idle_dir()
 	one = false
 	agro.start(rng.randi_range(3, 6))
@@ -63,14 +65,13 @@ func _on_feint_timeout():
 			Transitioned.emit(self, "p2_po_pathfind")
 		else:
 			trigger_dash()
-			
-	
-	pass
+
 
 func trigger_parry():
 	parry_timer.start()
 	parry_der.start()
 	enemy.parrying = true
+
 
 func trigger_dash():
 	dash_timer.start()
@@ -82,3 +83,10 @@ func _on_agro_timeout():
 		return
 	
 	Transitioned.emit(self, "p2_po_pathfind")
+
+
+func _on_attack_cooldown_timeout():
+	if $"..".current_state != self or (player.global_position-enemy.global_position).length() < 100:
+		return
+	
+	$"..".overide_state("p3_d_shoot")
