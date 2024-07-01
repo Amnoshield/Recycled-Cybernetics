@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var idle_direction = change_idle_dir()
 @onready var player_attack_animation = get_tree().get_nodes_in_group("attack")[0]
 @onready var dash_timer = $dash_cooldown
+@onready var minion = preload("res://objects/Enemys/blob/blob.tscn")
 
 var knockback_strenth = 500
 var wait_distence = 75
@@ -50,6 +51,17 @@ func _ready():
 	attacking_frame = attacking_frames
 	
 	player_attack_animation.animation_finished.connect(player_attack)
+	
+	spawn_minions()
+
+
+func spawn_minions():
+	for x in range(4):
+		Tracker.num_enemies += 1
+		var mob:Node = minion.instantiate()
+		mob.global_position = global_position+Vector2(rng.randi_range(-10, 10), rng.randi_range(-10, 10))
+		get_node("..").add_child(mob)
+	Tracker.enemy_counter.change_label(Tracker.num_enemies)
 
 
 func _physics_process(_delta):

@@ -471,7 +471,6 @@ avoidance_layers = 2
 avoidance_mask = 2
 
 [node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
-visible = false
 collision_layer = 4
 collision_mask = 0
 monitoring = false
@@ -481,18 +480,15 @@ script = ExtResource("2_2gs5r")
 shape = SubResource("RectangleShape2D_3cj4s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_0jk20")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
 collision_mask = 2
 
 [node name="attack_cooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="attack_box" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 monitorable = false
 

@@ -8,7 +8,7 @@ func setup():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	value = max_value-cooldown.time_left
 	if modulate.a == 1 and value != max_value:
 		modulate.a = 0.5
