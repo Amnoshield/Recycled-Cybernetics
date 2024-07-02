@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qkgxgq0aig8i"
+path="res://.godot/imported/simple-zaps-48107.mp3-dd61f72ec7513a207509a83190224737.mp3str"
+
+[deps]
+
+source_file="res://assets/Not ours/sound/bullets/simple-zaps-48107.mp3"
+dest_files=["res://.godot/imported/simple-zaps-48107.mp3-dd61f72ec7513a207509a83190224737.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

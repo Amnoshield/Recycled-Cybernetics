@@ -12,6 +12,7 @@ extends CharacterBody2D
 
 @onready var ap = $Sprite2D/AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var walk_sound = $walk
 
 var knockback_strenth = 500
 var wait_distence = 75
@@ -98,10 +99,20 @@ func spawn_minions():
 
 
 func _physics_process(_delta):
+	if velocity.length() < speed and not walk_sound.stream_paused:
+		walk_sound.stream_paused = true
+	elif velocity.length() >= speed and walk_sound.stream_paused:
+		walk_sound.stream_paused = false
+	
 	move_and_slide()
 
 
 func take_damage(oof_damage:int, new_knockback):
+	if oof_damage:
+		$hurt.play()
+	else:
+		$parry.play()
+	
 	oof_damage -= damage_res
 	if oof_damage < 0:
 		oof_damage = 0
@@ -116,7 +127,7 @@ func take_damage(oof_damage:int, new_knockback):
 
 func attack():
 	if attack_cooldown_timer.is_stopped() and dash_timer.is_stopped() and not $State_Machine.current_state.name in ["boss_P1_Knockback"]:
-		$State_Machine.overide_state("boss_P1_dash_attack")
+		$State_Machine.overide_state("boss_P1_windup")
 
 
 func change_idle_dir():

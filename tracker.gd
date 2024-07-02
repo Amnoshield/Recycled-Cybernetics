@@ -61,7 +61,7 @@ func _ready():
 func _process(_delta):
 	if go_next_level:
 		go_next_level = false
-		if current_level_level > 3:
+		if current_level_level == 4:
 			boss_intro()
 		else:
 			start_next_level()
@@ -150,7 +150,7 @@ func reset():
 	
 	num_enemies = 0
 	next_upgrade = false
-	current_level_level = 0
+	current_level_level = 4
 	go_next_level = false
 	
 	

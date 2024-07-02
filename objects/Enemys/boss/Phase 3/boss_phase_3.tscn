@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://d8ubqr5qt61m"]
+[gd_scene load_steps=55 format=3 uid="uid://d8ubqr5qt61m"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 3/boss_phase_3.gd" id="1_6wuha"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_a73d7"]
@@ -25,6 +25,10 @@
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_0_big_attack.gd" id="20_dg8kq"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 3/states/p3_d_idle.gd" id="21_6y3yd"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 3/states/p3_d_shoot.gd" id="21_wye13"]
+[ext_resource type="AudioStream" uid="uid://cuvoh2oghwker" path="res://assets/Not ours/sound/player/sword-hit-7160.mp3" id="26_x1rkr"]
+[ext_resource type="AudioStream" uid="uid://cm7184qh14sse" path="res://assets/Not ours/sound/fighter/robot walk.mp3" id="27_vli3e"]
+[ext_resource type="AudioStream" uid="uid://h6oenr1a4wld" path="res://assets/Not ours/sound/fighter/metal hurt.mp3" id="28_vdejv"]
+[ext_resource type="AudioStream" uid="uid://1vakucjaia53" path="res://assets/Not ours/sound/boss/sword-slash-with-a-designed-impact-185434.mp3" id="29_27ax3"]
 
 [sub_resource type="Animation" id="Animation_g15ft"]
 length = 0.001
@@ -545,6 +549,66 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sgb8"]
 radius = 45.2769
 
+[sub_resource type="Animation" id="Animation_6od7a"]
+resource_name = "big attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_41bvu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lrums"]
+_data = {
+"RESET": SubResource("Animation_41bvu"),
+"big attack": SubResource("Animation_6od7a")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oidre"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("26_x1rkr")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c5b6p"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("27_vli3e")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eu0rm"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("28_vdejv")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bgjyp"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("29_27ax3")
+stream_0/weight = 1.0
+
 [node name="boss phase 3" type="CharacterBody2D" groups=["boss"]]
 z_index = 3
 collision_layer = 4
@@ -706,9 +770,6 @@ script = ExtResource("18_ygl0q")
 [node name="p2_o_dash2" type="Node" parent="State_Machine"]
 script = ExtResource("19_gw2t7")
 
-[node name="big attack" type="Timer" parent="State_Machine"]
-one_shot = true
-
 [node name="p2_o_big_attack" type="Node" parent="State_Machine"]
 script = ExtResource("20_dg8kq")
 
@@ -718,6 +779,26 @@ script = ExtResource("21_wye13")
 [node name="p3_d_idle" type="Node" parent="State_Machine"]
 script = ExtResource("21_6y3yd")
 
+[node name="big attack" type="AnimationPlayer" parent="State_Machine"]
+libraries = {
+"": SubResource("AnimationLibrary_lrums")
+}
+
+[node name="parry" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_oidre")
+
+[node name="walk" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_c5b6p")
+volume_db = -15.0
+autoplay = true
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_eu0rm")
+volume_db = -10.0
+
+[node name="big attack sound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_bgjyp")
+
 [connection signal="timeout" from="attack_cooldown" to="State_Machine/p3_d_idle" method="_on_attack_cooldown_timeout"]
 [connection signal="area_entered" from="attack_box" to="attack_box" method="_on_area_entered"]
 [connection signal="area_entered" from="big attack" to="big attack" method="_on_area_entered"]
@@ -726,4 +807,4 @@ script = ExtResource("21_6y3yd")
 [connection signal="timeout" from="feint" to="State_Machine/p3_d_idle" method="_on_feint_timeout"]
 [connection signal="timeout" from="State_Machine/agro" to="State_Machine/p3_d_idle" method="_on_agro_timeout"]
 [connection signal="timeout" from="State_Machine/run_timer" to="State_Machine/p2_d_run" method="_on_run_timer_timeout"]
-[connection signal="timeout" from="State_Machine/big attack" to="State_Machine/p2_o_big_attack" method="_on_big_attack_timeout"]
+[connection signal="animation_finished" from="State_Machine/big attack" to="State_Machine/p2_o_big_attack" method="_on_big_attack_animation_finished"]

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @onready var hitbox:Area2D = $hitbox
+@onready var buzz = $buzz
 
 var speed = 30
 var turning_speed_deg = 1
@@ -16,6 +17,8 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	rotation = get_ange_to_player()+deg_to_rad(rng.randi_range(-45, 45))
+	buzz.play()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
@@ -42,6 +45,7 @@ func get_ange_to_player():
 
 
 func take_damage(_damage, fake_knockback:Vector2):
+	#buzz.play()
 	self_knockback = fake_knockback.normalized()*500
 	knocked_back = true
 	hitbox.collision_mask = 4
@@ -51,6 +55,7 @@ func take_damage(_damage, fake_knockback:Vector2):
 func _on_hitbox_area_entered(area:Area2D):#hit whatever it is looking at
 	if not (enemy and player.parrying):
 		die()
+	buzz.play()
 	area.take_damage(damage+rng.randi_range(-1, 1), (area.global_position-global_position).normalized()*knockback)
 	
 

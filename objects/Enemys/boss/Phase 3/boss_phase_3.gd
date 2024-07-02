@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var dash_timer = $dash_cooldown
 @onready var parry_timer = $player_range/parry_cooldown
 @onready var minion = preload("res://objects/Enemys/fighter/fighter_enemy.tscn")
+@onready var walk_sound = $walk
 
 var knockback_strenth = 500
 var knockback = Vector2(0, 0)
@@ -19,6 +20,7 @@ var dashing_frame
 var rng = RandomNumberGenerator.new()
 var parrying = false
 var parried = false
+var invincible = false
 
 #Affected by parts
 var health = 10
@@ -58,14 +60,29 @@ func spawn_minions():
 
 
 func _physics_process(_delta):
+	if velocity.length() < speed and not walk_sound.stream_paused:
+		walk_sound.stream_paused = true
+	elif velocity.length() >= speed and walk_sound.stream_paused:
+		walk_sound.stream_paused = false
+	
 	move_and_slide()
 
 
 func take_damage(oof_damage:int, new_knockback):
-	if parrying and not player.parrying:
+	if parrying:
 		parried = true
-		player.take_damage(0, (player.global_position-global_position).normalized()*new_knockback.length())
+		if not player.parrying:
+			player.take_damage(0, (player.global_position-global_position).normalized()*new_knockback.length())
 		return
+	
+	if invincible:
+		return
+	
+	if oof_damage:
+		$hurt.play()
+	else:
+		$parry.play()
+	
 	oof_damage -= damage_res
 	if oof_damage < 0:
 		oof_damage = 0

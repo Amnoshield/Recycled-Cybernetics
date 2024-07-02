@@ -6,6 +6,7 @@ class_name p2_o_dash2
 
 
 func Enter():
+	enemy.invincible = true
 	enemy.dashing_frame = 0
 	enemy.dashing_velocity = (enemy.global_position-player.global_position).normalized()*500
 
@@ -17,3 +18,7 @@ func Physics_Update(_delta):
 	if enemy.dashing_frame >= enemy.dashing_frames -1: #Dash
 		enemy.velocity = Vector2(0, 0)
 		Transitioned.emit(self, "p2_o_big_attack")
+
+
+func Exit():
+	enemy.invincible = true

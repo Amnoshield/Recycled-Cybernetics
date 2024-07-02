@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://defbi7f4dfbwd"]
+[gd_scene load_steps=13 format=3 uid="uid://defbi7f4dfbwd"]
 
 [ext_resource type="Script" path="res://objects/Enemys/ranger/bullet.gd" id="1_ww0ps"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_q33em"]
 [ext_resource type="Texture2D" uid="uid://v7lay0l8ttv3" path="res://assets/enemies/fighter/energy ball.png" id="2_suhck"]
+[ext_resource type="AudioStream" uid="uid://qkgxgq0aig8i" path="res://assets/Not ours/sound/bullets/simple-zaps-48107.mp3" id="4_ci5bt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0riol"]
 atlas = ExtResource("2_suhck")
@@ -46,6 +47,12 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_6rcyx"]
 radius = 6.08276
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8chi7"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("4_ci5bt")
+stream_0/weight = 1.0
+
 [node name="Bullet" type="CharacterBody2D"]
 z_index = 30
 collision_layer = 0
@@ -68,5 +75,9 @@ script = ExtResource("2_q33em")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_6rcyx")
+
+[node name="buzz" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_8chi7")
+volume_db = -20.0
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

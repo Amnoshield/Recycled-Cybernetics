@@ -8,11 +8,16 @@ var relitive
 
 func Enter():
 	relitive = player.global_position-enemy.global_position
-	$"../big attack".start()
+	$"../big attack".play("big attack")
 	enemy.velocity = Vector2(0, 0)
 
 
-func _on_big_attack_timeout():
+func _on_big_attack_animation_finished(anim_name):
+	if $"..".current_state != self:
+		return
+	
+	$"../big attack".play("RESET")
+	$"../../big attack sound".play()
 	$"../../big attack".set_rotation(relitive.angle()+deg_to_rad(90))
 	$"../../big attack/AnimationPlayer".play("big attack")
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=58 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/player/sword attack.gd" id="2_0rrg6"]
@@ -27,6 +27,9 @@
 [ext_resource type="AudioStream" uid="uid://v3wovcgks1e3" path="res://assets/Not ours/sound/player/sword 2.mp3" id="25_m76pr"]
 [ext_resource type="AudioStream" uid="uid://dblyajojshmyc" path="res://assets/Not ours/sound/player/dash.mp3" id="26_fj6od"]
 [ext_resource type="AudioStream" uid="uid://cv8m8ht3rqv2v" path="res://assets/Not ours/sound/player/runnin.mp3" id="27_wexa7"]
+[ext_resource type="AudioStream" uid="uid://bl1kfc1jguwcv" path="res://assets/Not ours/sound/player/running-in-grass-6237.mp3" id="28_27ug1"]
+[ext_resource type="AudioStream" uid="uid://dif01odkwattu" path="res://assets/Not ours/sound/player/knife-throw-2-88028.mp3" id="28_e1kih"]
+[ext_resource type="AudioStream" uid="uid://cuvoh2oghwker" path="res://assets/Not ours/sound/player/sword-hit-7160.mp3" id="30_0hpy0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tkbnt"]
 radius = 5.0
@@ -888,6 +891,24 @@ _data = {
 "RESET": SubResource("Animation_4fnnh")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ti62l"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("28_27ug1")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_njsgk"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("28_e1kih")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1l6tq"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("30_0hpy0")
+stream_0/weight = 1.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 100
 collision_mask = 2
@@ -1082,6 +1103,16 @@ one_shot = true
 [node name="runnin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_wexa7")
 autoplay = true
+
+[node name="runnin2" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ti62l")
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_njsgk")
+volume_db = -5.0
+
+[node name="parry2" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_1l6tq")
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="parry" to="parry" method="_on_area_entered"]

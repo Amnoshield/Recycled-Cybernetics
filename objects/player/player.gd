@@ -44,6 +44,11 @@ func _ready():
 	$Dash/buffer.wait_time = dash_buffer
 	
 	set_settings()
+	
+	if Tracker.current_level_level == 4:
+		runnin.stop()
+		runnin = $runnin2
+		runnin.play()
 
 
 func set_settings():
@@ -127,6 +132,11 @@ func take_damage(damage_:int, take_knockback:Vector2):
 	
 	elif invincible:
 		return
+	
+	if damage_:
+		$hurt.play()
+	else:
+		$parry2.play()
 	
 	damage_ -= damage_res
 	if damage_ < 0:

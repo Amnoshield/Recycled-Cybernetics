@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d31bq328wfore"]
+[gd_scene load_steps=38 format=3 uid="uid://d31bq328wfore"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.gd" id="1_q1s7m"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_8n533"]
@@ -12,6 +12,10 @@
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_idle.gd" id="8_p7amt"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_knockback.gd" id="8_rrxt6"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_pathfind.gd" id="9_vdmoq"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_windup.gd" id="13_smf28"]
+[ext_resource type="AudioStream" uid="uid://cm7184qh14sse" path="res://assets/Not ours/sound/fighter/robot walk.mp3" id="13_tel8o"]
+[ext_resource type="AudioStream" uid="uid://h6oenr1a4wld" path="res://assets/Not ours/sound/fighter/metal hurt.mp3" id="14_532sw"]
+[ext_resource type="AudioStream" uid="uid://cwa3bhc6l06ne" path="res://assets/Not ours/sound/fighter/metal parry.mp3" id="16_b65g7"]
 
 [sub_resource type="Animation" id="Animation_g15ft"]
 length = 0.001
@@ -151,6 +155,12 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 2)]
 }
+
+[sub_resource type="Animation" id="Animation_jufmw"]
+resource_name = "idle back"
+
+[sub_resource type="Animation" id="Animation_q1enu"]
+resource_name = "idle side"
 
 [sub_resource type="Animation" id="Animation_flnpo"]
 resource_name = "sideways walk"
@@ -381,12 +391,6 @@ tracks/5/keys = {
 "values": [0.6]
 }
 
-[sub_resource type="Animation" id="Animation_jufmw"]
-resource_name = "idle back"
-
-[sub_resource type="Animation" id="Animation_q1enu"]
-resource_name = "idle side"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w17eg"]
 _data = {
 "RESET": SubResource("Animation_g15ft"),
@@ -396,6 +400,43 @@ _data = {
 "sideways walk": SubResource("Animation_flnpo"),
 "walk down": SubResource("Animation_46dg5"),
 "walku up": SubResource("Animation_n1goi")
+}
+
+[sub_resource type="Animation" id="Animation_aseef"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1gba8"]
+resource_name = "dash"
+length = 0.51
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.51),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.34, 0.34, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b76hl"]
+_data = {
+"RESET": SubResource("Animation_aseef"),
+"dash": SubResource("Animation_1gba8")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_41dxn"]
@@ -424,6 +465,24 @@ _data = {
 "RESET": SubResource("Animation_3sky3")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xgmi1"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("13_tel8o")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nsovt"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("14_532sw")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dl8qm"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("16_b65g7")
+stream_0/weight = 1.0
+
 [node name="boss phase 1" type="CharacterBody2D" groups=["boss"]]
 z_index = 3
 collision_layer = 4
@@ -441,6 +500,11 @@ libraries = {
 }
 autoplay = "idle"
 speed_scale = 1.235
+
+[node name="dashAP" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_b76hl")
+}
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -515,6 +579,22 @@ script = ExtResource("9_vdmoq")
 [node name="boss_P1_walk_away" type="Node" parent="State_Machine"]
 script = ExtResource("8_ogiva")
 
+[node name="boss_P1_windup" type="Node" parent="State_Machine"]
+script = ExtResource("13_smf28")
+
+[node name="walk" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_xgmi1")
+volume_db = -15.0
+autoplay = true
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_nsovt")
+volume_db = -10.0
+
+[node name="parry" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_dl8qm")
+
+[connection signal="animation_finished" from="Sprite2D/dashAP" to="State_Machine/boss_P1_windup" method="_on_dash_ap_animation_finished"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="area_entered" from="attack_box" to="." method="_on_attack_box_area_entered"]
 [connection signal="area_exited" from="attack_box" to="." method="_on_attack_box_area_exited"]

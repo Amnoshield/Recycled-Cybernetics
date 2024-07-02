@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cjipcywtmt2jq"]
+[gd_scene load_steps=56 format=3 uid="uid://cjipcywtmt2jq"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/boss_phase_2.gd" id="1_wcsac"]
 [ext_resource type="Texture2D" uid="uid://df8d34s32objc" path="res://assets/boss/boss atempt 1(color change).png" id="2_mkplo"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_dash.gd" id="7_1eggf"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_pathfind.gd" id="8_par44"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_idle.gd" id="9_dccwe"]
+[ext_resource type="AudioStream" uid="uid://v3wovcgks1e3" path="res://assets/Not ours/sound/player/sword 2.mp3" id="9_esfj5"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_start_attack.gd" id="10_m1rtj"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash1.gd" id="11_2xp4h"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack1.gd" id="12_iskxl"]
@@ -24,6 +25,10 @@
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack2.gd" id="17_kr0ek"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash2.gd" id="18_7gx5x"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_0_big_attack.gd" id="20_jxvgn"]
+[ext_resource type="AudioStream" uid="uid://cm7184qh14sse" path="res://assets/Not ours/sound/fighter/robot walk.mp3" id="25_jal6q"]
+[ext_resource type="AudioStream" uid="uid://cuvoh2oghwker" path="res://assets/Not ours/sound/player/sword-hit-7160.mp3" id="27_g368y"]
+[ext_resource type="AudioStream" uid="uid://h6oenr1a4wld" path="res://assets/Not ours/sound/fighter/metal hurt.mp3" id="28_r62ar"]
+[ext_resource type="AudioStream" uid="uid://1vakucjaia53" path="res://assets/Not ours/sound/boss/sword-slash-with-a-designed-impact-185434.mp3" id="29_ij8lm"]
 
 [sub_resource type="Animation" id="Animation_g15ft"]
 length = 0.001
@@ -501,6 +506,12 @@ _data = {
 "sword attack": SubResource("Animation_8qkge")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tf47a"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("9_esfj5")
+stream_0/weight = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1pi5"]
 size = Vector2(80, 236)
 
@@ -543,6 +554,66 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sgb8"]
 radius = 45.2769
+
+[sub_resource type="Animation" id="Animation_6od7a"]
+resource_name = "big attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_41bvu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lrums"]
+_data = {
+"RESET": SubResource("Animation_41bvu"),
+"big attack": SubResource("Animation_6od7a")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qmh16"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("25_jal6q")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gvaye"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("27_g368y")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dq0jm"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("28_r62ar")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vxflw"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("29_ij8lm")
+stream_0/weight = 1.0
 
 [node name="boss phase 2" type="CharacterBody2D" groups=["boss"]]
 z_index = 3
@@ -616,6 +687,10 @@ libraries = {
 "": SubResource("AnimationLibrary_530rv")
 }
 speed_scale = 1.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="attack_box"]
+stream = SubResource("AudioStreamRandomizer_tf47a")
+volume_db = -5.0
 
 [node name="big attack" type="Area2D" parent="."]
 collision_layer = 0
@@ -708,11 +783,28 @@ script = ExtResource("17_kr0ek")
 [node name="p2_o_dash2" type="Node" parent="State_Machine"]
 script = ExtResource("18_7gx5x")
 
-[node name="big attack" type="Timer" parent="State_Machine"]
-one_shot = true
-
 [node name="p2_o_big_attack" type="Node" parent="State_Machine"]
 script = ExtResource("20_jxvgn")
+
+[node name="big attack" type="AnimationPlayer" parent="State_Machine"]
+libraries = {
+"": SubResource("AnimationLibrary_lrums")
+}
+
+[node name="walk" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_qmh16")
+volume_db = -15.0
+autoplay = true
+
+[node name="parry" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_gvaye")
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_dq0jm")
+volume_db = -10.0
+
+[node name="big attack sound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_vxflw")
 
 [connection signal="area_entered" from="attack_box" to="attack_box" method="_on_area_entered"]
 [connection signal="area_entered" from="big attack" to="big attack" method="_on_area_entered"]
@@ -721,4 +813,4 @@ script = ExtResource("20_jxvgn")
 [connection signal="timeout" from="feint" to="State_Machine/p2_d_idle" method="_on_feint_timeout"]
 [connection signal="timeout" from="State_Machine/agro" to="State_Machine/p2_d_idle" method="_on_agro_timeout"]
 [connection signal="timeout" from="State_Machine/run_timer" to="State_Machine/p2_d_run" method="_on_run_timer_timeout"]
-[connection signal="timeout" from="State_Machine/big attack" to="State_Machine/p2_o_big_attack" method="_on_big_attack_timeout"]
+[connection signal="animation_finished" from="State_Machine/big attack" to="State_Machine/p2_o_big_attack" method="_on_big_attack_animation_finished"]
