@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2a4fxjcvqsd6"]
+[gd_scene load_steps=13 format=3 uid="uid://c2a4fxjcvqsd6"]
 
 [ext_resource type="Script" path="res://Menus/Continue.gd" id="1_ip8t5"]
 [ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_jqo0x"]
 [ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="2_tiku3"]
 [ext_resource type="Script" path="res://Menus/audio.gd" id="4_ae6wl"]
+[ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="5_2u71x"]
+[ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="6_jsvix"]
 
 [sub_resource type="Gradient" id="Gradient_01s0c"]
 offsets = PackedFloat32Array(0, 0.220779, 1)
@@ -194,10 +196,27 @@ min_value = -30.0
 max_value = 30.0
 script = ExtResource("4_ae6wl")
 
+[node name="sfx" type="AudioStreamPlayer" parent="BoxContainer"]
+stream = ExtResource("5_2u71x")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="BoxContainer"]
+stream = ExtResource("6_jsvix")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2u71x")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_jsvix")
+
+[connection signal="draw" from="BoxContainer/Continue" to="BoxContainer/Continue" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Continue" to="BoxContainer/Continue" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_pressed"]
 [connection signal="value_changed" from="BoxContainer/audio" to="BoxContainer/audio" method="_on_value_changed"]

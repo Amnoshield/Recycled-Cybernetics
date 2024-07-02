@@ -22,7 +22,12 @@ var upgrades_main:Array = [
 
 
 var totorial_level = "res://levels/levels fr fr og/intro room.tscn"
-var first_levels = ["res://levels/levels fr fr og/first_levels/rm3.tscn", "res://levels/levels fr fr og/first_levels/rm4.tscn"]
+var first_levels = [
+	"res://levels/levels fr fr og/first_levels/rm3.tscn",
+	"res://levels/levels fr fr og/first_levels/rm4.tscn",
+	"res://levels/levels fr fr og/first_levels/rm5.tscn",
+	
+]
 var second_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
 var third_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
 var boss_levels = ["res://levels/levels fr fr og/boss_room.tscn"]
@@ -150,7 +155,7 @@ func reset():
 	
 	num_enemies = 0
 	next_upgrade = false
-	current_level_level = 4
+	current_level_level = 0
 	go_next_level = false
 	
 	

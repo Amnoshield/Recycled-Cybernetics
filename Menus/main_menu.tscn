@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxcwkhnssnixn"]
+[gd_scene load_steps=11 format=3 uid="uid://cxcwkhnssnixn"]
 
 [ext_resource type="Script" path="res://Menus/Start.gd" id="1_bn42c"]
 [ext_resource type="Script" path="res://Menus/Quit.gd" id="1_ge7oo"]
 [ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_hc6ox"]
 [ext_resource type="Script" path="res://Menus/Quit2.gd" id="2_14iy6"]
 [ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="3_hpg7t"]
+[ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="6_np8ds"]
+[ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="7_qef3l"]
 
 [sub_resource type="Gradient" id="Gradient_csywl"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -76,7 +78,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_np8ds")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qef3l")
+
+[connection signal="draw" from="BoxContainer/Start" to="BoxContainer/Start" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Start" to="BoxContainer/Start" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_pressed"]
+[connection signal="draw" from="Quit2" to="Quit2" method="_on_draw"]
 [connection signal="pressed" from="Quit2" to="Quit2" method="_on_pressed"]
+[connection signal="draw" from="Quit3" to="Quit3" method="_on_draw"]
 [connection signal="pressed" from="Quit3" to="Quit3" method="_on_pressed"]

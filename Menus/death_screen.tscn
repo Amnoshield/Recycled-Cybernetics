@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw2mkqqqhl1ti"]
+[gd_scene load_steps=8 format=3 uid="uid://cw2mkqqqhl1ti"]
 
 [ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_b4j3l"]
+[ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="2_hnb74"]
+[ext_resource type="Script" path="res://Menus/Exit.gd" id="2_is73b"]
+[ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="3_1671d"]
 
 [sub_resource type="Gradient" id="Gradient_01s0c"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -50,6 +53,7 @@ layout_mode = 2
 tooltip_text = "Wimp"
 text = "Exit
 "
+script = ExtResource("2_is73b")
 
 [node name="skill issue" type="Label" parent="."]
 anchors_preset = 8
@@ -81,5 +85,14 @@ text = "You died..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hnb74")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1671d")
+
+[connection signal="draw" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Back to main menu" method="_on_exit_pressed"]
