@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Menus/pick_part.gd" id="1_6342l"]
 
-[sub_resource type="Gradient" id="Gradient_csywl"]
+[sub_resource type="Gradient" id="Gradient_x3vgx"]
 offsets = PackedFloat32Array(0, 0.253247, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.363636, 0.363636, 0.363636, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pqmtd"]
-gradient = SubResource("Gradient_csywl")
+gradient = SubResource("Gradient_x3vgx")
 fill_from = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qy2q"]

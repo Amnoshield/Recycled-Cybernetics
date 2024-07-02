@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var idle_direction = change_idle_dir()
 @onready var ap = $Sprite2D/AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var walk_sound = $walk
 
 var speed = 80
 var health = 10
@@ -56,10 +57,20 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	if velocity.length() < speed and not walk_sound.stream_paused:
+		walk_sound.stream_paused = true
+	elif velocity.length() >= speed and walk_sound.stream_paused:
+		walk_sound.stream_paused = false
+	
 	move_and_slide()
 
 
 func take_damage(oof_damage:int, new_knockback):
+	if oof_damage:
+		$hurtbox/AudioStreamPlayer.play()
+	else:
+		$parry.play()
+	
 	health -= oof_damage
 	knockback =  new_knockback
 	attacking_frame = attacking_frames

@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var attack_cooldown_timer = $attack_cooldown
 @onready var idle_direction = change_idle_dir()
 @onready var sprite = $Sprite2D
+@onready var walk_sound = $walk
 
 var speed = 80
 var health = 10
@@ -30,10 +31,17 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	if velocity.length() < speed/3 and not walk_sound.stream_paused:
+		walk_sound.stream_paused = true
+	elif velocity.length() >= speed/3 and walk_sound.stream_paused:
+		walk_sound.stream_paused = false
 	move_and_slide()
 
 
 func take_damage(oof_damage:int, new_knockback):
+	if oof_damage:
+		$hurtbox/hurt.play()
+	
 	health -= oof_damage
 	knockback =  new_knockback
 	$State_Machine.overide_state("ranger_Knockback")

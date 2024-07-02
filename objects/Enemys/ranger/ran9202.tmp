@@ -1,10 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cuqr8ovfm68t3"]
+[gd_scene load_steps=13 format=3 uid="uid://cuqr8ovfm68t3"]
 
 [ext_resource type="Script" path="res://objects/Enemys/ranger/ranged_enemy.gd" id="1_pjekh"]
 [ext_resource type="Texture2D" uid="uid://c1d8am415edvj" path="res://assets/maxes asprite stuff (ignore this)/drone maybe.png" id="2_cijyy"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_t8yqc"]
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_vluf6"]
-[ext_resource type="AudioStream" uid="uid://h6oenr1a4wld" path="res://assets/Not ours/sound/fighter/metal hurt.mp3" id="4_usf7c"]
 [ext_resource type="Script" path="res://objects/Enemys/ranger/states/Ranger_Idle.gd" id="6_77wl4"]
 [ext_resource type="Script" path="res://objects/Enemys/ranger/states/Ranger_Pathfind.gd" id="7_27qtm"]
 [ext_resource type="Script" path="res://objects/Enemys/ranger/states/Ranger_walk_away.gd" id="8_4oevc"]
@@ -14,12 +13,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gog7"]
 radius = 16.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7u7p7"]
-random_pitch = 1.2
-streams_count = 1
-stream_0/stream = ExtResource("4_usf7c")
-stream_0/weight = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5dx4"]
 radius = 15.0
@@ -51,11 +44,6 @@ script = ExtResource("2_t8yqc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("CircleShape2D_4gog7")
 
-[node name="hurt" type="AudioStreamPlayer" parent="hurtbox"]
-stream = SubResource("AudioStreamRandomizer_7u7p7")
-volume_db = -10.0
-pitch_scale = 0.8
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c5dx4")
 
@@ -81,8 +69,8 @@ script = ExtResource("8_7eftn")
 [node name="Ranger_Attack" type="Node" parent="State_Machine"]
 script = ExtResource("8_31vvr")
 
-[node name="walk" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_d7630")
-volume_db = -30.0
+volume_db = -25.0
 pitch_scale = 2.0
 autoplay = true

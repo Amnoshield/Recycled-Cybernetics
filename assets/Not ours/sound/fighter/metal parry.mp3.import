@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cwa3bhc6l06ne"
+path="res://.godot/imported/metal parry.mp3-79ad281f44f5a7221d9820817c3faed0.mp3str"
+
+[deps]
+
+source_file="res://assets/Not ours/sound/fighter/metal parry.mp3"
+dest_files=["res://.godot/imported/metal parry.mp3-79ad281f44f5a7221d9820817c3faed0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

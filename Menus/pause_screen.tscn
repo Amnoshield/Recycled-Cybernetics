@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2a4fxjcvqsd6"]
+[gd_scene load_steps=11 format=3 uid="uid://c2a4fxjcvqsd6"]
 
 [ext_resource type="Script" path="res://Menus/Continue.gd" id="1_ip8t5"]
 [ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_jqo0x"]
 [ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="2_tiku3"]
+[ext_resource type="Script" path="res://Menus/audio.gd" id="4_ae6wl"]
 
 [sub_resource type="Gradient" id="Gradient_01s0c"]
 offsets = PackedFloat32Array(0, 0.220779, 1)
@@ -129,6 +130,8 @@ font_size = 50
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_1rdiu"]
+
 [node name="pause screen" type="Node2D"]
 process_mode = 3
 z_index = 200
@@ -179,9 +182,22 @@ tooltip_text = "You wouldn't dare!!!"
 text = "Exit"
 script = ExtResource("2_tiku3")
 
+[node name="Label" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Audio"
+label_settings = SubResource("LabelSettings_1rdiu")
+horizontal_alignment = 1
+
+[node name="audio" type="HSlider" parent="BoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+script = ExtResource("4_ae6wl")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
 [connection signal="pressed" from="BoxContainer/Continue" to="BoxContainer/Continue" method="_on_pressed"]
 [connection signal="pressed" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_pressed"]
 [connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_pressed"]
+[connection signal="value_changed" from="BoxContainer/audio" to="BoxContainer/audio" method="_on_value_changed"]

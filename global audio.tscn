@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://bxu00ejdcbfag" path="res://assets/Not ours/sound/forest-wind-and-birds-6881.mp3" id="1_hyab1"]
 
 [node name="GlobalAudio" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_hyab1")
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true

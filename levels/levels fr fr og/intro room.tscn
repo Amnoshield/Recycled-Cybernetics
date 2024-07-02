@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c8x882vchytt6" path="res://assets/other/controls_1.png" id="7_jg2cg"]
 [ext_resource type="Texture2D" uid="uid://cp2qrupwaov2a" path="res://assets/other/controls_2.png" id="8_8jed5"]
 [ext_resource type="Texture2D" uid="uid://dcge1qf7pck33" path="res://assets/other/controls_3.png" id="9_o7es4"]
-[ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/blob.tscn" id="11_n6vl7"]
+[ext_resource type="PackedScene" uid="uid://cuqr8ovfm68t3" path="res://objects/Enemys/ranger/ranged_enemy.tscn" id="11_palmf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(384, -583, 384, -293, 270, -293, 94, -583, 210, -293, 94, -293, 266, -289, 212, -289)
@@ -75,4 +75,4 @@ position = Vector2(501, -173)
 
 [node name="enemy_spawner" parent="." instance=ExtResource("6_h8wl2")]
 position = Vector2(506, -533)
-enemies = Array[PackedScene]([ExtResource("11_n6vl7")])
+enemies = Array[PackedScene]([ExtResource("11_palmf")])

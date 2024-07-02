@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://tgk8gnfdri4a"]
+[gd_scene load_steps=40 format=3 uid="uid://tgk8gnfdri4a"]
 
 [ext_resource type="Script" path="res://objects/Enemys/blob/blob.gd" id="1_ckgri"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_h6ciw"]
@@ -8,7 +8,11 @@
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="3_euwad"]
 [ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_pathfind.gd" id="4_onm1h"]
 [ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_knockback.gd" id="5_trb5e"]
+[ext_resource type="AudioStream" uid="uid://chsxpky1cple1" path="res://assets/Not ours/sound/blob/slime hurt.mp3" id="6_g6n60"]
 [ext_resource type="Script" path="res://objects/Enemys/blob/states/blob_idle.gd" id="6_vu8to"]
+[ext_resource type="AudioStream" uid="uid://dl4h6u4cl4c1g" path="res://assets/Not ours/sound/blob/splat.mp3" id="10_bgcky"]
+[ext_resource type="Script" path="res://objects/Enemys/blob/walk.gd" id="11_ey8g5"]
+[ext_resource type="AudioStream" uid="uid://fsd6kb015w77" path="res://assets/Not ours/sound/blob/soft parry.mp3" id="13_md88d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vn760"]
 atlas = ExtResource("2_k3v14")
@@ -227,10 +231,28 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv1ff"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yx5ly"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("6_g6n60")
+stream_0/weight = 1.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_v2fb7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wmcbu"]
 radius = 8.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_52ymu"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("10_bgcky")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y048n"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("13_md88d")
+stream_0/weight = 1.0
 
 [node name="blob" type="CharacterBody2D"]
 collision_layer = 4
@@ -264,6 +286,11 @@ script = ExtResource("2_h6ciw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("CircleShape2D_rv1ff")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hurtbox"]
+stream = SubResource("AudioStreamRandomizer_yx5ly")
+volume_db = -15.0
+pitch_scale = 0.8
+
 [node name="attack" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
@@ -290,6 +317,15 @@ script = ExtResource("5_trb5e")
 [node name="blob_Idle" type="Node" parent="State Machine"]
 script = ExtResource("6_vu8to")
 
+[node name="walk" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_52ymu")
+autoplay = true
+script = ExtResource("11_ey8g5")
+
+[node name="parry" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_y048n")
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="walk" method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="animation_finished" from="AnimatedSprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
 [connection signal="area_exited" from="attack" to="." method="_on_attack_area_exited"]

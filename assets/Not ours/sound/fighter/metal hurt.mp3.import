@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://h6oenr1a4wld"
+path="res://.godot/imported/metal hurt.mp3-7731421207599c7bf18ffe5bb4141213.mp3str"
+
+[deps]
+
+source_file="res://assets/Not ours/sound/fighter/metal hurt.mp3"
+dest_files=["res://.godot/imported/metal hurt.mp3-7731421207599c7bf18ffe5bb4141213.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

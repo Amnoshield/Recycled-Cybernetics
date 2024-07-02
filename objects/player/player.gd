@@ -123,7 +123,6 @@ func _physics_process(_delta):
 func take_damage(damage_:int, take_knockback:Vector2):
 	if parrying:
 		$parry.add_knockback(take_knockback.length())
-		$parry/block.play()
 		return
 	
 	elif invincible:

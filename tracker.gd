@@ -22,11 +22,12 @@ var upgrades_main:Array = [
 
 
 var totorial_level = "res://levels/levels fr fr og/intro room.tscn"
-var first_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
+var first_levels = ["res://levels/levels fr fr og/first_levels/rm3.tscn", "res://levels/levels fr fr og/first_levels/rm4.tscn"]
 var second_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
 var third_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
 var boss_levels = ["res://levels/levels fr fr og/boss_room.tscn"]
 var win_screen = "res://Menus/win_screen.tscn"
+var boss_intro_file = "res://Menus/boss_enter.tscn"
 
 var level_next
 
@@ -60,8 +61,8 @@ func _ready():
 func _process(_delta):
 	if go_next_level:
 		go_next_level = false
-		if current_level_level > 4:
-			next_level()
+		if current_level_level > 3:
+			boss_intro()
 		else:
 			start_next_level()
 
@@ -94,6 +95,10 @@ func start_next_level():
 
 func next_level():
 	get_tree().change_scene_to_file(level_next)
+
+
+func boss_intro():
+	get_tree().change_scene_to_file(boss_intro_file)
 
 
 func trigger_next_level():
