@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cv8m8ht3rqv2v"
+path="res://.godot/imported/runnin.mp3-0f0c59427788bbd04ff8b972bc4b009e.mp3str"
+
+[deps]
+
+source_file="res://assets/Not ours/sound/player/runnin.mp3"
+dest_files=["res://.godot/imported/runnin.mp3-0f0c59427788bbd04ff8b972bc4b009e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

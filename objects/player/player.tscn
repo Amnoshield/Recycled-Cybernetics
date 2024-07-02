@@ -1,10 +1,11 @@
-[gd_scene load_steps=48 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=54 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/player/sword attack.gd" id="2_0rrg6"]
 [ext_resource type="Texture2D" uid="uid://cygkyh2kfb2u2" path="res://assets/other/attack1.png" id="3_8jrcb"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="3_f5pnt"]
 [ext_resource type="Script" path="res://objects/player/parry.gd" id="4_1std8"]
+[ext_resource type="AudioStream" uid="uid://ja3eoqh2nmqd" path="res://assets/Not ours/sound/player/block.mp3" id="4_rpb04"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="5_njb03"]
 [ext_resource type="Texture2D" uid="uid://xocy84g7igib" path="res://assets/player ani/idle ani/front idle.png" id="6_l6bmj"]
 [ext_resource type="Texture2D" uid="uid://barddwqo8a3ou" path="res://assets/player ani/walk ani/front walk.png" id="7_gcc1m"]
@@ -24,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://byjhks2ck5dqs" path="res://assets/player ani/attack cooldown/v3 attack indicators0.png" id="18_nal1k"]
 [ext_resource type="Texture2D" uid="uid://chnlshfr5taxu" path="res://assets/player ani/attack cooldown/v3 attack indicators1.png" id="19_htbhl"]
 [ext_resource type="PackedScene" uid="uid://cjke165hnb1ua" path="res://objects/ui/ui.tscn" id="20_8yet6"]
+[ext_resource type="AudioStream" uid="uid://clijn025ewimp" path="res://assets/Not ours/sound/player/sword 1.mp3" id="24_rpkxc"]
+[ext_resource type="AudioStream" uid="uid://v3wovcgks1e3" path="res://assets/Not ours/sound/player/sword 2.mp3" id="25_m76pr"]
+[ext_resource type="AudioStream" uid="uid://dblyajojshmyc" path="res://assets/Not ours/sound/player/dash.mp3" id="26_fj6od"]
+[ext_resource type="AudioStream" uid="uid://cv8m8ht3rqv2v" path="res://assets/Not ours/sound/player/runnin.mp3" id="27_wexa7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tkbnt"]
 radius = 5.0
@@ -842,6 +847,15 @@ _data = {
 "sword attack": SubResource("Animation_8qkge")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ay7e"]
+playback_mode = 1
+random_pitch = 1.25
+streams_count = 2
+stream_0/stream = ExtResource("24_rpkxc")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("25_m76pr")
+stream_1/weight = 1.0
+
 [sub_resource type="Animation" id="Animation_24u2m"]
 resource_name = "Dash"
 length = 0.2
@@ -919,6 +933,11 @@ one_shot = true
 
 [node name="buffer" type="Timer" parent="parry"]
 one_shot = true
+
+[node name="block" type="AudioStreamPlayer" parent="parry"]
+stream = ExtResource("4_rpb04")
+volume_db = -20.0
+pitch_scale = 0.5
 
 [node name="Smoothing2D" type="Node2D" parent="."]
 script = ExtResource("5_njb03")
@@ -1013,7 +1032,7 @@ z_index = 5
 position = Vector2(0, 4)
 texture = ExtResource("3_8jrcb")
 hframes = 6
-frame = 2
+frame = 5
 
 [node name="progress bar" type="TextureProgressBar" parent="Smoothing2D/sword attack/CollisionShape2D"]
 z_index = 5
@@ -1038,6 +1057,10 @@ one_shot = true
 [node name="buffer" type="Timer" parent="Smoothing2D/sword attack"]
 one_shot = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Smoothing2D/sword attack"]
+stream = SubResource("AudioStreamRandomizer_6ay7e")
+volume_db = -5.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
@@ -1056,11 +1079,19 @@ one_shot = true
 [node name="buffer" type="Timer" parent="Dash"]
 one_shot = true
 
+[node name="sound" type="AudioStreamPlayer" parent="Dash"]
+stream = ExtResource("26_fj6od")
+pitch_scale = 0.8
+
 [node name="ui" parent="." instance=ExtResource("20_8yet6")]
 
 [node name="Pause timeout" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="runnin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_wexa7")
+autoplay = true
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="parry" to="parry" method="_on_area_entered"]

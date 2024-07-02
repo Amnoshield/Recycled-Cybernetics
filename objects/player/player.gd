@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var pause_screen:PackedScene = preload("res://Menus/pause_screen.tscn")
 @onready var dash_timer = $Dash/cooldown
 @onready var parry_timer = $parry/cooldown
+@onready var runnin = $runnin
 
 @export var invincible = false
 @export var parrying = false
@@ -68,6 +69,10 @@ func _physics_process(_delta):
 		velocity = dashing_velocity
 	else: #Use player movement
 		velocity = speed * Input.get_vector("left", "right", "up", "down")
+		if velocity.length() and runnin.stream_paused:
+			runnin.stream_paused = false
+		elif not velocity.length() and not runnin.stream_paused:
+			runnin.stream_paused = true
 		
 		#walk animations
 		if velocity.y > 0 and velocity.x == 0:
@@ -118,6 +123,7 @@ func _physics_process(_delta):
 func take_damage(damage_:int, take_knockback:Vector2):
 	if parrying:
 		$parry.add_knockback(take_knockback.length())
+		$parry/block.play()
 		return
 	
 	elif invincible:
@@ -153,6 +159,7 @@ func dash():
 	dashing_velocity = last_move.normalized()*dash_speed
 	$Dash/AnimationPlayer.play("Dash")
 	dash_timer.start()
+	$Dash/sound.play()
 
 
 func _on_cooldown_timeout():

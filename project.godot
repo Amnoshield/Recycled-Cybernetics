@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Tracker="*res://tracker.gd"
+GlobalAudio="*res://global audio.tscn"
 
 [display]
 

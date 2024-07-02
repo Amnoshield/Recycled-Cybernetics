@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwx2ke5j4u5ek"]
+
+[ext_resource type="AudioStream" uid="uid://bxu00ejdcbfag" path="res://assets/Not ours/sound/forest-wind-and-birds-6881.mp3" id="1_hyab1"]
+
+[node name="GlobalAudio" type="AudioStreamPlayer"]
+stream = ExtResource("1_hyab1")
+volume_db = -10.0
+autoplay = true
