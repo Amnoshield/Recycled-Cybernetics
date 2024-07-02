@@ -10,6 +10,9 @@ extends CharacterBody2D
 @onready var dash_timer = $dash_cooldown
 @onready var minion = preload("res://objects/Enemys/blob/blob.tscn")
 
+@onready var ap = $Sprite2D/AnimationPlayer
+@onready var sprite = $Sprite2D
+
 var knockback_strenth = 500
 var wait_distence = 75
 var wiggle_room = 10
@@ -37,6 +40,7 @@ var entity_knockback = 1500
 var parry_cooldown = 1#Not used
 var damage_res = 0 #Used
 
+var lastdir = 1
 
 func _ready():
 	Tracker.player_reset()
@@ -53,6 +57,35 @@ func _ready():
 	player_attack_animation.animation_finished.connect(player_attack)
 	
 	spawn_minions()
+
+func  _process(_delta):
+	var face_player = velocity 
+	if true:#velocity.length() < speed:
+		face_player = player.global_position - global_position
+	if velocity.length() < speed / 2:
+		if lastdir == 1:
+			ap.play("idle")
+		if lastdir == 2:
+			ap.play("idle back")
+		if lastdir == 3:
+			ap.play("idle side")
+	
+	if face_player.x > 0:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
+	
+	if abs(face_player.x) > abs(face_player.y):
+		ap.play("sideways walk")
+		lastdir = 3
+	elif face_player.y > 0:
+		ap.play("walku up")
+		lastdir = 2
+	elif face_player.y < 0:
+		ap.play("walk down")
+		lastdir = 1
+
+
 
 
 func spawn_minions():

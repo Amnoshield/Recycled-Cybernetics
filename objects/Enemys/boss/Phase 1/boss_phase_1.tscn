@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d31bq328wfore"]
+[gd_scene load_steps=28 format=3 uid="uid://d31bq328wfore"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.gd" id="1_q1s7m"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_8n533"]
@@ -12,6 +12,81 @@
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_idle.gd" id="8_p7amt"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_knockback.gd" id="8_rrxt6"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 1/states/boss_P1_pathfind.gd" id="9_vdmoq"]
+
+[sub_resource type="Animation" id="Animation_g15ft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_eags0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer:speed_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.235]
+}
 
 [sub_resource type="Animation" id="Animation_bllmq"]
 resource_name = "idle"
@@ -77,8 +152,9 @@ tracks/4/keys = {
 "values": [Vector2(0, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_g15ft"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_flnpo"]
+resource_name = "sideways walk"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -89,7 +165,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_eags0")]
+"values": [ExtResource("5_hdoir")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -101,7 +177,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [4]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -122,10 +198,10 @@ tracks/3/path = NodePath(".:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -137,7 +213,19 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 2)]
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer:speed_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.6]
 }
 
 [sub_resource type="Animation" id="Animation_46dg5"]
@@ -204,6 +292,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer:speed_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.24]
+}
 
 [sub_resource type="Animation" id="Animation_n1goi"]
 resource_name = "walku up"
@@ -268,75 +368,31 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_flnpo"]
-resource_name = "sideways walk"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_hdoir")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer:speed_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0.6]
 }
+
+[sub_resource type="Animation" id="Animation_jufmw"]
+resource_name = "idle back"
+
+[sub_resource type="Animation" id="Animation_q1enu"]
+resource_name = "idle side"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w17eg"]
 _data = {
 "RESET": SubResource("Animation_g15ft"),
 "idle": SubResource("Animation_bllmq"),
+"idle back": SubResource("Animation_jufmw"),
+"idle side": SubResource("Animation_q1enu"),
 "sideways walk": SubResource("Animation_flnpo"),
 "walk down": SubResource("Animation_46dg5"),
 "walku up": SubResource("Animation_n1goi")
@@ -384,6 +440,7 @@ libraries = {
 "": SubResource("AnimationLibrary_w17eg")
 }
 autoplay = "idle"
+speed_scale = 1.235
 
 [node name="Label" type="Label" parent="."]
 visible = false
