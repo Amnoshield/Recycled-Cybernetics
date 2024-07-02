@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://d8ubqr5qt61m"]
+[gd_scene load_steps=58 format=3 uid="uid://d8ubqr5qt61m"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 3/boss_phase_3.gd" id="1_6wuha"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_a73d7"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="6_lh845"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/p2_knockback.gd" id="7_0yoog"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_run.gd" id="8_80n6h"]
+[ext_resource type="AudioStream" uid="uid://v3wovcgks1e3" path="res://assets/Not ours/sound/player/sword 2.mp3" id="9_racy8"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_dash.gd" id="10_nk011"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_pathfind.gd" id="11_l5gxb"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_idle.gd" id="12_cumtj"]
@@ -506,8 +507,16 @@ _data = {
 "sword attack": SubResource("Animation_8qkge")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ym0mh"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("9_racy8")
+stream_0/weight = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1pi5"]
 size = Vector2(80, 236)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_j1lme"]
 
 [sub_resource type="Animation" id="Animation_udmup"]
 length = 0.001
@@ -549,21 +558,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_4sgb8"]
 radius = 45.2769
 
-[sub_resource type="Animation" id="Animation_6od7a"]
-resource_name = "big attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_41bvu"]
 length = 0.001
 tracks/0/type = "value"
@@ -577,6 +571,45 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../big attack/CollisionShape2D/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6od7a"]
+resource_name = "big attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.999336, 0.999961),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../big attack/CollisionShape2D/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lrums"]
@@ -682,6 +715,10 @@ libraries = {
 }
 speed_scale = 1.5
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="attack_box"]
+stream = SubResource("AudioStreamRandomizer_ym0mh")
+volume_db = -5.0
+
 [node name="big attack" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
@@ -691,6 +728,13 @@ script = ExtResource("5_1gmjt")
 position = Vector2(0, -140)
 shape = SubResource("RectangleShape2D_q1pi5")
 disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="big attack/CollisionShape2D"]
+visible = false
+self_modulate = Color(0.337255, 0, 0, 0.509804)
+z_index = 200
+scale = Vector2(80, 236)
+texture = SubResource("PlaceholderTexture2D_j1lme")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="big attack"]
 libraries = {
@@ -802,6 +846,7 @@ stream = SubResource("AudioStreamRandomizer_bgjyp")
 [connection signal="timeout" from="attack_cooldown" to="State_Machine/p3_d_idle" method="_on_attack_cooldown_timeout"]
 [connection signal="area_entered" from="attack_box" to="attack_box" method="_on_area_entered"]
 [connection signal="area_entered" from="big attack" to="big attack" method="_on_area_entered"]
+[connection signal="animation_finished" from="big attack/AnimationPlayer" to="State_Machine/p2_o_big_attack" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="player_range" to="State_Machine/p3_d_idle" method="_on_player_range_area_entered"]
 [connection signal="timeout" from="player_range/parry_deration" to="." method="_on_parry_deration_timeout"]
 [connection signal="timeout" from="feint" to="State_Machine/p3_d_idle" method="_on_feint_timeout"]
