@@ -26,6 +26,7 @@ var first_levels = [
 	"res://levels/levels fr fr og/first_levels/rm3.tscn",
 	"res://levels/levels fr fr og/first_levels/rm4.tscn",
 	"res://levels/levels fr fr og/first_levels/rm5.tscn",
+	"res://levels/levels fr fr og/first_levels/rm6.tscn",
 	
 ]
 var second_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
@@ -99,6 +100,10 @@ func start_next_level():
 
 
 func next_level():
+	player_health += 2
+	if player_health > player_max_health:
+		player_health = player_max_health
+	
 	get_tree().change_scene_to_file(level_next)
 
 

@@ -512,8 +512,9 @@ streams_count = 1
 stream_0/stream = ExtResource("9_esfj5")
 stream_0/weight = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1pi5"]
-size = Vector2(80, 236)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bl4lm"]
+radius = 36.0
+height = 228.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5st8v"]
 
@@ -725,7 +726,7 @@ script = ExtResource("5_wsisd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="big attack"]
 position = Vector2(0, -140)
-shape = SubResource("RectangleShape2D_q1pi5")
+shape = SubResource("CapsuleShape2D_bl4lm")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="big attack/CollisionShape2D"]
