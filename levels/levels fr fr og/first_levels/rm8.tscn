@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c68d7msarnoo3"]
+[gd_scene load_steps=11 format=3 uid="uid://d1hb1wo4pwi0f"]
 
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_8wbks"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_277bc"]
@@ -107,18 +107,6 @@ enemies = Array[PackedScene]([ExtResource("8_qp1f6"), ExtResource("7_ey1qh")])
 position = Vector2(786, 135)
 enemies = Array[PackedScene]([ExtResource("9_7exej"), ExtResource("8_qp1f6")])
 
-[node name="enemy_spawner13" parent="." instance=ExtResource("6_2y6wf")]
-position = Vector2(500, 133)
-enemies = Array[PackedScene]([ExtResource("7_ey1qh"), ExtResource("9_7exej")])
-
-[node name="enemy_spawner14" parent="." instance=ExtResource("6_2y6wf")]
-position = Vector2(580, 79)
-enemies = Array[PackedScene]([ExtResource("7_ey1qh"), ExtResource("8_qp1f6")])
-
-[node name="enemy_spawner15" parent="." instance=ExtResource("6_2y6wf")]
-position = Vector2(486, 66)
-enemies = Array[PackedScene]([ExtResource("9_7exej"), ExtResource("8_qp1f6")])
-
 [node name="enemy_spawner16" parent="." instance=ExtResource("6_2y6wf")]
 position = Vector2(406, -63)
 enemies = Array[PackedScene]([ExtResource("7_ey1qh")])
@@ -143,17 +131,9 @@ enemies = Array[PackedScene]([ExtResource("7_ey1qh")])
 position = Vector2(113, -322)
 enemies = Array[PackedScene]([ExtResource("9_7exej"), ExtResource("8_qp1f6")])
 
-[node name="enemy_spawner22" parent="." instance=ExtResource("6_2y6wf")]
-position = Vector2(42, -184)
-enemies = Array[PackedScene]([ExtResource("8_qp1f6"), ExtResource("7_ey1qh")])
-
 [node name="enemy_spawner23" parent="." instance=ExtResource("6_2y6wf")]
 position = Vector2(43, -242)
 enemies = Array[PackedScene]([ExtResource("8_qp1f6"), ExtResource("9_7exej")])
-
-[node name="enemy_spawner24" parent="." instance=ExtResource("6_2y6wf")]
-position = Vector2(-147, -61)
-enemies = Array[PackedScene]([ExtResource("7_ey1qh"), ExtResource("8_qp1f6")])
 
 [node name="enemy_spawner25" parent="." instance=ExtResource("6_2y6wf")]
 position = Vector2(-67, -57)

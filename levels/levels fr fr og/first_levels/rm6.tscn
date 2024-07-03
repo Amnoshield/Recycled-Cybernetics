@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dv0xxccixd8kd"]
+[gd_scene load_steps=11 format=3 uid="uid://b1j3fk8cyj14f"]
 
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_t8k0s"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_45svx"]
@@ -60,14 +60,6 @@ position = Vector2(413, -213)
 
 [node name="enemies" type="Node" parent="."]
 
-[node name="enemy_spawner" parent="enemies" instance=ExtResource("6_u8cas")]
-position = Vector2(44, -416)
-enemies = Array[PackedScene]([ExtResource("8_4apxj"), ExtResource("9_d5p2t")])
-
-[node name="enemy_spawner2" parent="enemies" instance=ExtResource("6_u8cas")]
-position = Vector2(73, -306)
-enemies = Array[PackedScene]([ExtResource("8_4apxj"), ExtResource("7_o5lq6")])
-
 [node name="enemy_spawner3" parent="enemies" instance=ExtResource("6_u8cas")]
 position = Vector2(115, -157)
 enemies = Array[PackedScene]([ExtResource("7_o5lq6"), ExtResource("8_4apxj")])
@@ -79,10 +71,6 @@ enemies = Array[PackedScene]([ExtResource("8_4apxj"), ExtResource("7_o5lq6")])
 [node name="enemy_spawner5" parent="enemies" instance=ExtResource("6_u8cas")]
 position = Vector2(14, -35)
 enemies = Array[PackedScene]([ExtResource("9_d5p2t")])
-
-[node name="enemy_spawner6" parent="enemies" instance=ExtResource("6_u8cas")]
-position = Vector2(250, -28)
-enemies = Array[PackedScene]([ExtResource("8_4apxj")])
 
 [node name="enemy_spawner7" parent="enemies" instance=ExtResource("6_u8cas")]
 position = Vector2(317, -470)
@@ -120,14 +108,6 @@ enemies = Array[PackedScene]([ExtResource("8_4apxj"), ExtResource("7_o5lq6")])
 position = Vector2(695, -63)
 enemies = Array[PackedScene]([ExtResource("9_d5p2t")])
 
-[node name="enemy_spawner16" parent="enemies" instance=ExtResource("6_u8cas")]
-position = Vector2(721, -288)
-enemies = Array[PackedScene]([ExtResource("7_o5lq6"), ExtResource("8_4apxj")])
-
-[node name="enemy_spawner17" parent="enemies" instance=ExtResource("6_u8cas")]
-position = Vector2(730, -404)
-enemies = Array[PackedScene]([ExtResource("7_o5lq6"), ExtResource("8_4apxj")])
-
 [node name="enemy_spawner18" parent="enemies" instance=ExtResource("6_u8cas")]
 position = Vector2(918, -725)
 enemies = Array[PackedScene]([ExtResource("9_d5p2t"), ExtResource("7_o5lq6")])
@@ -156,17 +136,9 @@ enemies = Array[PackedScene]([ExtResource("8_4apxj"), ExtResource("9_d5p2t")])
 position = Vector2(322, -866)
 enemies = Array[PackedScene]([ExtResource("7_o5lq6"), ExtResource("8_4apxj")])
 
-[node name="enemy_spawner25" parent="enemies" instance=ExtResource("6_u8cas")]
-position = Vector2(245, -855)
-enemies = Array[PackedScene]([ExtResource("7_o5lq6")])
-
 [node name="enemy_spawner26" parent="enemies" instance=ExtResource("6_u8cas")]
 position = Vector2(242, -784)
 enemies = Array[PackedScene]([ExtResource("9_d5p2t"), ExtResource("7_o5lq6")])
-
-[node name="enemy_spawner27" parent="enemies" instance=ExtResource("6_u8cas")]
-position = Vector2(-72, -742)
-enemies = Array[PackedScene]([ExtResource("9_d5p2t"), ExtResource("8_4apxj"), ExtResource("7_o5lq6")])
 
 [node name="enemy_spawner28" parent="enemies" instance=ExtResource("6_u8cas")]
 position = Vector2(31, -772)
@@ -195,7 +167,3 @@ enemies = Array[PackedScene]([ExtResource("8_4apxj"), ExtResource("9_d5p2t")])
 [node name="enemy_spawner34" parent="enemies" instance=ExtResource("6_u8cas")]
 position = Vector2(396, -384)
 enemies = Array[PackedScene]([ExtResource("8_4apxj")])
-
-[node name="enemy_spawner35" parent="enemies" instance=ExtResource("6_u8cas")]
-position = Vector2(564, -736)
-enemies = Array[PackedScene]([ExtResource("9_d5p2t"), ExtResource("8_4apxj"), ExtResource("7_o5lq6")])
