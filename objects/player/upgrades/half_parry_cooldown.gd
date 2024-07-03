@@ -1,7 +1,7 @@
 extends Node
 
 
-var part_sprite = null
+var part_sprite = "res://assets/ui/abilities/circut board.png"
 var title = "Half parry cooldown"
 var discription = """Parry more often"""
 var background_sprite = null

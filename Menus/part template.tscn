@@ -1,12 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://byceesklxexht"]
 
 [ext_resource type="Script" path="res://Menus/part template.gd" id="1_sfx6p"]
-[ext_resource type="Texture2D" path="res://assets/ability ui base.png" id="2_dmd5v"]
+[ext_resource type="Texture2D" uid="uid://bgyysp45d3lko" path="res://assets/ability ui base.png" id="2_dmd5v"]
 [ext_resource type="Script" path="res://Menus/Take.gd" id="2_xqwpl"]
 [ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="3_nv0yn"]
 [ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="4_eq6m5"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cjam5"]
+size = Vector2(50, 25)
 
 [node name="PartTemplate" type="Node2D" groups=["part"]]
 script = ExtResource("1_sfx6p")
@@ -29,7 +30,7 @@ text_overrun_behavior = 3
 
 [node name="part sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -50.5)
-scale = Vector2(124, 75)
+scale = Vector2(2, 2)
 texture = SubResource("PlaceholderTexture2D_cjam5")
 
 [node name="Description" type="RichTextLabel" parent="."]
