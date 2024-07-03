@@ -27,10 +27,25 @@ var first_levels = [
 	"res://levels/levels fr fr og/first_levels/rm4.tscn",
 	"res://levels/levels fr fr og/first_levels/rm5.tscn",
 	"res://levels/levels fr fr og/first_levels/rm6.tscn",
-	
+	"res://levels/levels fr fr og/first_levels/rm7.tscn",
+	"res://levels/levels fr fr og/first_levels/rm8.tscn"
 ]
-var second_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
-var third_levels = ["res://levels/levels fr fr og/test_scene.tscn"]
+var second_levels = [
+	"res://levels/levels fr fr og/first_levels/rm3.tscn",
+	"res://levels/levels fr fr og/first_levels/rm4.tscn",
+	"res://levels/levels fr fr og/first_levels/rm5.tscn",
+	"res://levels/levels fr fr og/first_levels/rm6.tscn",
+	"res://levels/levels fr fr og/first_levels/rm7.tscn",
+	"res://levels/levels fr fr og/first_levels/rm8.tscn"
+]
+var third_levels = [
+	"res://levels/levels fr fr og/first_levels/rm3.tscn",
+	"res://levels/levels fr fr og/first_levels/rm4.tscn",
+	"res://levels/levels fr fr og/first_levels/rm5.tscn",
+	"res://levels/levels fr fr og/first_levels/rm6.tscn",
+	"res://levels/levels fr fr og/first_levels/rm7.tscn",
+	"res://levels/levels fr fr og/first_levels/rm8.tscn"
+]
 var boss_levels = ["res://levels/levels fr fr og/boss_room.tscn"]
 var win_screen = "res://Menus/win_screen.tscn"
 var boss_intro_file = "res://Menus/boss_enter.tscn"
