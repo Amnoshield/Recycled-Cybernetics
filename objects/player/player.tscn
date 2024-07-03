@@ -1,10 +1,11 @@
-[gd_scene load_steps=58 format=3 uid="uid://dj2adqdmn3iqk"]
+[gd_scene load_steps=59 format=3 uid="uid://dj2adqdmn3iqk"]
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/player/sword attack.gd" id="2_0rrg6"]
 [ext_resource type="Texture2D" uid="uid://cygkyh2kfb2u2" path="res://assets/other/attack1.png" id="3_8jrcb"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="3_f5pnt"]
 [ext_resource type="Script" path="res://objects/player/parry.gd" id="4_1std8"]
+[ext_resource type="Texture2D" uid="uid://dk80prmq8iqsc" path="res://assets/other/parry ani.png" id="4_iud3q"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="5_njb03"]
 [ext_resource type="Texture2D" uid="uid://xocy84g7igib" path="res://assets/player ani/idle ani/front idle.png" id="6_l6bmj"]
 [ext_resource type="Texture2D" uid="uid://barddwqo8a3ou" path="res://assets/player ani/walk ani/front walk.png" id="7_gcc1m"]
@@ -59,7 +60,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("..:parrying")
+tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -71,7 +72,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_kdrvm"]
 resource_name = "parry"
-length = 0.5
+length = 0.46
+step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -79,7 +81,7 @@ tracks/0/path = NodePath("CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.46),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -91,10 +93,70 @@ tracks/1/path = NodePath("..:parrying")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.46),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_iud3q")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_olxjt"]
@@ -919,6 +981,7 @@ floor_block_on_wall = false
 platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_pjd8b")
+parrying = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_tkbnt")
@@ -938,6 +1001,11 @@ script = ExtResource("4_1std8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="parry"]
 shape = SubResource("CircleShape2D_bmbah")
 disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="parry"]
+visible = false
+texture = ExtResource("4_iud3q")
+hframes = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="parry"]
 libraries = {
