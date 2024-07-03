@@ -1,7 +1,7 @@
 extends Node
 
 
-var part_sprite = null #The sprite for the part (idk how this will work)
+var part_sprite = "res://assets/ui/abilities/wrench.png" #The sprite for the part (idk how this will work)
 var title = "Double knocback resistance"
 var discription = """Take less knockback"""
 var background_sprite = null #The sprite for the backround (idk how this will work)

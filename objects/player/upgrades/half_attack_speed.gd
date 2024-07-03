@@ -1,7 +1,7 @@
 extends Node
 
 
-var part_sprite = null
+var part_sprite = "res://assets/ui/abilities/circut board.png"
 var title = "Half attack speed"
 var discription = """Halfs your attack speed"""
 var background_sprite = null
