@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2a4fxjcvqsd6"]
+[gd_scene load_steps=13 format=3 uid="uid://c2a4fxjcvqsd6"]
 
 [ext_resource type="Script" path="res://Menus/Continue.gd" id="1_ip8t5"]
 [ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_jqo0x"]
@@ -17,116 +17,10 @@ gradient = SubResource("Gradient_01s0c")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 1)
 
-[sub_resource type="FontFile" id="FontFile_7py70"]
-cache/0/50/0/ascent = 0.0
-cache/0/50/0/descent = 0.0
-cache/0/50/0/underline_position = 0.0
-cache/0/50/0/underline_thickness = 0.0
-cache/0/50/0/scale = 1.0
-cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)
-cache/0/50/0/kerning_overrides/10/0 = Vector2(0, 0)
-cache/0/50/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/50/0/kerning_overrides/15/0 = Vector2(0, 0)
-cache/0/50/0/kerning_overrides/14/0 = Vector2(0, 0)
-cache/0/50/0/kerning_overrides/13/0 = Vector2(0, 0)
-cache/0/50/0/kerning_overrides/12/0 = Vector2(0, 0)
-cache/0/50/0/kerning_overrides/11/0 = Vector2(0, 0)
-cache/0/10/0/ascent = 0.0
-cache/0/10/0/descent = 0.0
-cache/0/10/0/underline_position = 0.0
-cache/0/10/0/underline_thickness = 0.0
-cache/0/10/0/scale = 1.0
-cache/0/10/0/kerning_overrides/50/0 = Vector2(0, 0)
-cache/0/10/0/kerning_overrides/10/0 = Vector2(0, 0)
-cache/0/10/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/10/0/kerning_overrides/15/0 = Vector2(0, 0)
-cache/0/10/0/kerning_overrides/14/0 = Vector2(0, 0)
-cache/0/10/0/kerning_overrides/13/0 = Vector2(0, 0)
-cache/0/10/0/kerning_overrides/12/0 = Vector2(0, 0)
-cache/0/10/0/kerning_overrides/11/0 = Vector2(0, 0)
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/50/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/10/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/15/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/14/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/13/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/12/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/11/0 = Vector2(0, 0)
-cache/0/15/0/ascent = 0.0
-cache/0/15/0/descent = 0.0
-cache/0/15/0/underline_position = 0.0
-cache/0/15/0/underline_thickness = 0.0
-cache/0/15/0/scale = 1.0
-cache/0/15/0/kerning_overrides/50/0 = Vector2(0, 0)
-cache/0/15/0/kerning_overrides/10/0 = Vector2(0, 0)
-cache/0/15/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/15/0/kerning_overrides/15/0 = Vector2(0, 0)
-cache/0/15/0/kerning_overrides/14/0 = Vector2(0, 0)
-cache/0/15/0/kerning_overrides/13/0 = Vector2(0, 0)
-cache/0/15/0/kerning_overrides/12/0 = Vector2(0, 0)
-cache/0/15/0/kerning_overrides/11/0 = Vector2(0, 0)
-cache/0/14/0/ascent = 0.0
-cache/0/14/0/descent = 0.0
-cache/0/14/0/underline_position = 0.0
-cache/0/14/0/underline_thickness = 0.0
-cache/0/14/0/scale = 1.0
-cache/0/14/0/kerning_overrides/50/0 = Vector2(0, 0)
-cache/0/14/0/kerning_overrides/10/0 = Vector2(0, 0)
-cache/0/14/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/14/0/kerning_overrides/15/0 = Vector2(0, 0)
-cache/0/14/0/kerning_overrides/14/0 = Vector2(0, 0)
-cache/0/14/0/kerning_overrides/13/0 = Vector2(0, 0)
-cache/0/14/0/kerning_overrides/12/0 = Vector2(0, 0)
-cache/0/14/0/kerning_overrides/11/0 = Vector2(0, 0)
-cache/0/13/0/ascent = 0.0
-cache/0/13/0/descent = 0.0
-cache/0/13/0/underline_position = 0.0
-cache/0/13/0/underline_thickness = 0.0
-cache/0/13/0/scale = 1.0
-cache/0/13/0/kerning_overrides/50/0 = Vector2(0, 0)
-cache/0/13/0/kerning_overrides/10/0 = Vector2(0, 0)
-cache/0/13/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/13/0/kerning_overrides/15/0 = Vector2(0, 0)
-cache/0/13/0/kerning_overrides/14/0 = Vector2(0, 0)
-cache/0/13/0/kerning_overrides/13/0 = Vector2(0, 0)
-cache/0/13/0/kerning_overrides/12/0 = Vector2(0, 0)
-cache/0/13/0/kerning_overrides/11/0 = Vector2(0, 0)
-cache/0/12/0/ascent = 0.0
-cache/0/12/0/descent = 0.0
-cache/0/12/0/underline_position = 0.0
-cache/0/12/0/underline_thickness = 0.0
-cache/0/12/0/scale = 1.0
-cache/0/12/0/kerning_overrides/50/0 = Vector2(0, 0)
-cache/0/12/0/kerning_overrides/10/0 = Vector2(0, 0)
-cache/0/12/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/12/0/kerning_overrides/15/0 = Vector2(0, 0)
-cache/0/12/0/kerning_overrides/14/0 = Vector2(0, 0)
-cache/0/12/0/kerning_overrides/13/0 = Vector2(0, 0)
-cache/0/12/0/kerning_overrides/12/0 = Vector2(0, 0)
-cache/0/12/0/kerning_overrides/11/0 = Vector2(0, 0)
-cache/0/11/0/ascent = 0.0
-cache/0/11/0/descent = 0.0
-cache/0/11/0/underline_position = 0.0
-cache/0/11/0/underline_thickness = 0.0
-cache/0/11/0/scale = 1.0
-cache/0/11/0/kerning_overrides/50/0 = Vector2(0, 0)
-cache/0/11/0/kerning_overrides/10/0 = Vector2(0, 0)
-cache/0/11/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/11/0/kerning_overrides/15/0 = Vector2(0, 0)
-cache/0/11/0/kerning_overrides/14/0 = Vector2(0, 0)
-cache/0/11/0/kerning_overrides/13/0 = Vector2(0, 0)
-cache/0/11/0/kerning_overrides/12/0 = Vector2(0, 0)
-cache/0/11/0/kerning_overrides/11/0 = Vector2(0, 0)
-
 [sub_resource type="Theme" id="Theme_u3dbp"]
 default_font = ExtResource("1_tk3qn")
 Button/font_sizes/font_size = 10
-Button/fonts/font = SubResource("FontFile_7py70")
+Button/fonts/font = ExtResource("1_tk3qn")
 
 [sub_resource type="LabelSettings" id="LabelSettings_wkak7"]
 font_size = 30
@@ -169,12 +63,14 @@ uppercase = true
 
 [node name="Continue" type="Button" parent="BoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tk3qn")
 text = "Continue"
 script = ExtResource("1_ip8t5")
 
 [node name="Back to main menu" type="Button" parent="BoxContainer"]
 layout_mode = 2
 tooltip_text = "This takes you back to the main menu."
+theme_override_fonts/font = ExtResource("1_tk3qn")
 text = "Back to main menu
 "
 script = ExtResource("1_jqo0x")
@@ -182,6 +78,7 @@ script = ExtResource("1_jqo0x")
 [node name="Exit" type="Button" parent="BoxContainer"]
 layout_mode = 2
 tooltip_text = "You wouldn't dare!!!"
+theme_override_fonts/font = ExtResource("1_tk3qn")
 text = "Exit"
 script = ExtResource("2_tiku3")
 
