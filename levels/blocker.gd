@@ -7,4 +7,6 @@ func _ready():
 
 
 func open():
+	$"../open".play("open")
+	$"../AudioStreamPlayer".play()
 	self.queue_free()

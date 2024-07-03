@@ -18,8 +18,10 @@ func _unhandled_input(event):
 
 
 func parry():
-	$AnimationPlayer.play("parry")
+	$"parry tracker".play("parry_tracker")
 	$cooldown.start()
+	$Sprite2D.visible = true
+	$Sprite2D.frame = 0
 
 
 func add_knockback(knockback):
@@ -40,3 +42,8 @@ func _on_area_exited(area):
 func _on_cooldown_timeout():
 	if not $buffer.is_stopped():
 		parry()
+
+
+func _on_parry_tracker_animation_finished(_anim_name):
+	if not $"parry ani".is_playing():
+		$Sprite2D.visible = false

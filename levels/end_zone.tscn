@@ -1,14 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg4yl7masox37"]
+[gd_scene load_steps=12 format=3 uid="uid://dg4yl7masox37"]
 
 [ext_resource type="TileSet" uid="uid://dehtu0x07meao" path="res://assets/tiles/TileSet1.tres" id="1_qw54j"]
 [ext_resource type="Script" path="res://levels/blocker.gd" id="2_plt43"]
 [ext_resource type="Texture2D" uid="uid://cwoxwnvwkgeq1" path="res://assets/other/door shut.png" id="3_f604v"]
+[ext_resource type="Script" path="res://levels/open.gd" id="4_7qw35"]
+[ext_resource type="AudioStream" uid="uid://bjw633dtdq152" path="res://assets/Not ours/sound/gear-spinning-loop-6981.mp3" id="5_a47ot"]
+[ext_resource type="AudioStream" uid="uid://4e5c5hb5s68q" path="res://assets/Not ours/sound/locker-slam-1-101485.mp3" id="6_o4uyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dr7b"]
 size = Vector2(128, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yexpe"]
 size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_0dh6r"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.000136805, -54), Vector2(-0.000126854, 50)]
+}
+
+[sub_resource type="Animation" id="Animation_2ai1n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.000136805, -54)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tohkk"]
+_data = {
+"RESET": SubResource("Animation_2ai1n"),
+"open": SubResource("Animation_0dh6r")
+}
 
 [node name="end_zone" type="Node2D"]
 z_index = 3
@@ -33,11 +73,6 @@ script = ExtResource("2_plt43")
 position = Vector2(0, 0.500004)
 shape = SubResource("RectangleShape2D_3dr7b")
 
-[node name="Sprite2D" type="Sprite2D" parent="blocker"]
-z_index = 3
-position = Vector2(0.000136805, -6)
-texture = ExtResource("3_f604v")
-
 [node name="finish" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
@@ -46,3 +81,24 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="finish"]
 shape = SubResource("RectangleShape2D_yexpe")
 debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(0.000136805, -54)
+texture = ExtResource("3_f604v")
+
+[node name="open" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tohkk")
+}
+script = ExtResource("4_7qw35")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_a47ot")
+volume_db = -10.0
+
+[node name="clank" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_o4uyq")
+volume_db = -5.0
+
+[connection signal="animation_finished" from="open" to="open" method="_on_animation_finished"]
