@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2a4fxjcvqsd6"]
+[gd_scene load_steps=14 format=3 uid="uid://c2a4fxjcvqsd6"]
 
 [ext_resource type="Script" path="res://Menus/Continue.gd" id="1_ip8t5"]
 [ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_jqo0x"]
+[ext_resource type="FontFile" uid="uid://sl08fd13yipe" path="res://assets/fonts/dogicapixel.otf" id="1_tk3qn"]
 [ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="2_tiku3"]
 [ext_resource type="Script" path="res://Menus/audio.gd" id="4_ae6wl"]
 [ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="5_2u71x"]
@@ -123,12 +124,12 @@ cache/0/11/0/kerning_overrides/12/0 = Vector2(0, 0)
 cache/0/11/0/kerning_overrides/11/0 = Vector2(0, 0)
 
 [sub_resource type="Theme" id="Theme_u3dbp"]
-default_font = SubResource("FontFile_7py70")
+default_font = ExtResource("1_tk3qn")
 Button/font_sizes/font_size = 10
 Button/fonts/font = SubResource("FontFile_7py70")
 
 [sub_resource type="LabelSettings" id="LabelSettings_wkak7"]
-font_size = 50
+font_size = 30
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 1)
 
@@ -147,10 +148,10 @@ texture = SubResource("GradientTexture2D_5yamy")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -39.0
-offset_top = -54.0
-offset_right = 154.0
-offset_bottom = 172.0
+offset_left = -36.0
+offset_top = -51.0
+offset_right = 144.0
+offset_bottom = 173.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
