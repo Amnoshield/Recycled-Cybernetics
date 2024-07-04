@@ -34,9 +34,9 @@ var dashing_frame = 0
 @onready var sprite = $Smoothing2D/Sprite2D
 
 func _ready():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	download_tracker()
+	print(health)
+	print(max_health)
 	Tracker.apply_upgrade(self)
 	
 	dashing_frame = dashing_frames

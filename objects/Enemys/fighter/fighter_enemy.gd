@@ -27,6 +27,7 @@ var attacking_velocity = Vector2(0, 0)
 var attacking_frames = 10
 var attacking_frame = 0
 var rng = RandomNumberGenerator.new()
+var dying = false
 
 
 func _ready():
@@ -66,6 +67,9 @@ func _physics_process(_delta):
 
 
 func take_damage(oof_damage:int, new_knockback):
+	if dying:
+		return
+	
 	if oof_damage:
 		$hurtbox/AudioStreamPlayer.play()
 	else:
@@ -102,6 +106,7 @@ func _on_attack_box_area_entered(area): #this should only apply to the player
 
 
 func die():
+	dying = true
 	Tracker.remove_enemy(self)
 	self.queue_free()
 

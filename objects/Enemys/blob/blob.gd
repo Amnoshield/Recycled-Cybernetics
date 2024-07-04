@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var attack_cooldown_timer:Timer = $attack_cooldown
 @onready var idle_direction = change_idle_dir()
 
+
 var speed = 80
 var health = 5
 var damage = 2
@@ -20,6 +21,7 @@ var walk_speed = 40
 var attack_player = false
 var knockback = Vector2(0, 0)
 var rng = RandomNumberGenerator.new()
+var dying = false
 
 
 func _ready():
@@ -32,6 +34,9 @@ func _physics_process(_delta):
 
 
 func take_damage(oof_damage:int, new_knockback):
+	if dying:
+		return
+	
 	if oof_damage:
 		$hurtbox/AudioStreamPlayer.play()
 	else:
@@ -65,14 +70,8 @@ func _on_attack_area_exited(_area):
 
 
 func die():
-	call_deferred("remove_hitboxes")
+	dying = true
 	$AnimatedSprite2D/AnimationPlayer.play("die")
-
-
-func remove_hitboxes():
-	$hurtbox/CollisionShape2D.disabled = true
-	#$CollisionShape2D.disabled = true
-	$attack/CollisionShape2D.disabled = true
 
 
 func change_idle_dir():

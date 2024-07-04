@@ -53,6 +53,7 @@ var boss_intro_file = "res://Menus/boss_enter.tscn"
 var level_next
 
 #need to be reset
+var default_health
 var current_level_level
 var player_health
 var player_max_health
@@ -150,12 +151,12 @@ func trigger_next_level():
 
 
 func player_reset():
-	if player_max_health > 20: #If the player got a more health upgrade
+	if player_max_health > default_health: #If the player got a more health upgrade
 		player_health /= 2
-	elif player_max_health < 20: #If the player got a less health upgrade
+	elif player_max_health < default_health: #If the player got a less health upgrade
 		player_health *= 2
 	
-	player_max_health = 20
+	player_max_health = default_health
 	
 	player_speed = 100
 	player_knockback_res = 1
@@ -168,8 +169,9 @@ func player_reset():
 
 
 func reset():
-	player_max_health = 20
-	player_health = 20
+	default_health = 25
+	player_max_health = default_health
+	player_health = default_health
 	
 	player_reset()
 	

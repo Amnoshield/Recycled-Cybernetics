@@ -6,20 +6,26 @@ extends Node2D
 var spawnable = false
 var near_spawners = []
 var rng = RandomNumberGenerator.new()
+var enemy
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Tracker.num_enemies += 1
+	enemy = enemies[rng.randi_range(0, len(enemies)-1)]
 	add()
+	if enemy:
+		Tracker.num_enemies += 1
 
 
 func spawn():
 	if not spawnable:
 		return
-	var mob:Node = enemies[rng.randi_range(0, len(enemies)-1)].instantiate()
-	mob.global_position = global_position
-	get_node("..").add_child(mob)
+	
+	if enemy:
+		enemy = enemy.instantiate()
+		enemy.global_position = global_position
+		get_node("..").add_child(enemy)
+	
 	spawnable = false
 	trigger()
 	remove()
@@ -43,10 +49,13 @@ func _on_area_2d_area_entered(area:Area2D):
 
 func add():
 	Tracker.spawners.append(self)
-	minimap.add_tracker(self)
+	if enemy:
+		minimap.add_tracker(self)
 
 
 func remove():
+	if enemy:
+		minimap.remove_tracker(self)
+	
 	Tracker.spawners.erase(self)
-	minimap.remove_tracker(self)
 	self.queue_free()
