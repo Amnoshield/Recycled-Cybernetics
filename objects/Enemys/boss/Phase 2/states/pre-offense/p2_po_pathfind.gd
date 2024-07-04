@@ -13,7 +13,7 @@ func Physics_Update(_delta):
 	nav.set_target_position(player.global_position)
 	ray.target_position = player.global_position-enemy.global_position
 	ray.force_raycast_update()
-	if  not ray.is_colliding() and nav.distance_to_target() < 60:
+	if  not ray.is_colliding() and nav.distance_to_target() < 80:
 		Transitioned.emit(self, "p2_po_idle")
 
 	var relitive_pos:Vector2 = nav.get_next_path_position()- enemy.global_position

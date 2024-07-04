@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cjipcywtmt2jq"]
+[gd_scene load_steps=61 format=3 uid="uid://cjipcywtmt2jq"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/boss_phase_2.gd" id="1_wcsac"]
 [ext_resource type="Texture2D" uid="uid://df8d34s32objc" path="res://assets/boss/boss atempt 1(color change).png" id="2_mkplo"]
@@ -24,8 +24,9 @@
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_run2.gd" id="16_sshnt"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack2.gd" id="17_kr0ek"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash2.gd" id="18_7gx5x"]
-[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_0_big_attack.gd" id="20_jxvgn"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_big_attack.gd" id="25_dwdxu"]
 [ext_resource type="AudioStream" uid="uid://cm7184qh14sse" path="res://assets/Not ours/sound/fighter/robot walk.mp3" id="25_jal6q"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash_attack_windup.gd" id="26_e6a2b"]
 [ext_resource type="AudioStream" uid="uid://cuvoh2oghwker" path="res://assets/Not ours/sound/player/sword-hit-7160.mp3" id="27_g368y"]
 [ext_resource type="AudioStream" uid="uid://h6oenr1a4wld" path="res://assets/Not ours/sound/fighter/metal hurt.mp3" id="28_r62ar"]
 [ext_resource type="AudioStream" uid="uid://1vakucjaia53" path="res://assets/Not ours/sound/boss/sword-slash-with-a-designed-impact-185434.mp3" id="29_ij8lm"]
@@ -363,11 +364,11 @@ _data = {
 font_size = 9
 shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
-size = Vector2(32, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uogqj"]
+radius = 11.0
+height = 32.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_t25iu"]
-radius = 16.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_powgr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjnlu"]
 size = Vector2(46, 16)
@@ -563,22 +564,10 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/path = NodePath("../big attack/CollisionShape2D/Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../big attack/CollisionShape2D/Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -590,22 +579,10 @@ resource_name = "big attack"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/path = NodePath("../big attack/CollisionShape2D/Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.999258, 0.999961),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../big attack/CollisionShape2D/Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -616,6 +593,43 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_41bvu"),
 "big attack": SubResource("Animation_6od7a")
+}
+
+[sub_resource type="Animation" id="Animation_idalc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.000390625),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_orjek"]
+resource_name = "windup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.498111, 0.499349),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jx5ak"]
+_data = {
+"RESET": SubResource("Animation_idalc"),
+"windup": SubResource("Animation_orjek")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qmh16"]
@@ -681,10 +695,10 @@ monitoring = false
 script = ExtResource("2_w8jl8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-shape = SubResource("RectangleShape2D_3cj4s")
+shape = SubResource("CapsuleShape2D_uogqj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_t25iu")
+shape = SubResource("CapsuleShape2D_powgr")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 2
@@ -780,7 +794,7 @@ script = ExtResource("4_3ifxj")
 script = ExtResource("5_tpgxy")
 
 [node name="run_timer" type="Timer" parent="State_Machine"]
-wait_time = 2.0
+wait_time = 1.5
 one_shot = true
 
 [node name="p2_d_idle" type="Node" parent="State_Machine"]
@@ -818,12 +832,20 @@ script = ExtResource("17_kr0ek")
 script = ExtResource("18_7gx5x")
 
 [node name="p2_o_big_attack" type="Node" parent="State_Machine"]
-script = ExtResource("20_jxvgn")
+script = ExtResource("25_dwdxu")
 
 [node name="big attack" type="AnimationPlayer" parent="State_Machine"]
 libraries = {
 "": SubResource("AnimationLibrary_lrums")
 }
+
+[node name="dash attack windup" type="AnimationPlayer" parent="State_Machine"]
+libraries = {
+"": SubResource("AnimationLibrary_jx5ak")
+}
+
+[node name="p2_o_dash_attack" type="Node" parent="State_Machine"]
+script = ExtResource("26_e6a2b")
 
 [node name="walk" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_qmh16")
@@ -849,3 +871,4 @@ stream = SubResource("AudioStreamRandomizer_vxflw")
 [connection signal="timeout" from="State_Machine/agro" to="State_Machine/p2_d_idle" method="_on_agro_timeout"]
 [connection signal="timeout" from="State_Machine/run_timer" to="State_Machine/p2_d_run" method="_on_run_timer_timeout"]
 [connection signal="animation_finished" from="State_Machine/big attack" to="State_Machine/p2_o_big_attack" method="_on_big_attack_animation_finished"]
+[connection signal="animation_finished" from="State_Machine/dash attack windup" to="State_Machine/p2_o_dash_attack" method="_on_dash_attack_windup_animation_finished"]

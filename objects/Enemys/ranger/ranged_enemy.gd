@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var walk_sound = $walk
 
-var speed = 80
+var speed = 80.0
 var health = 8
 var knockback_strenth = 500
 var knockback_res = 0

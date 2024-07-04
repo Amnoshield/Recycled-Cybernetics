@@ -443,14 +443,15 @@ _data = {
 font_size = 9
 shadow_color = Color(0, 0, 0, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
-size = Vector2(32, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cv3i8"]
+radius = 11.0
+height = 32.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_t25iu"]
-radius = 16.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c22m6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjnlu"]
-size = Vector2(40, 40)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_laica"]
+radius = 11.0
+height = 32.0
 
 [sub_resource type="Animation" id="Animation_56yeu"]
 resource_name = "Attack"
@@ -530,11 +531,10 @@ monitoring = false
 script = ExtResource("2_8n533")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-visible = false
-shape = SubResource("RectangleShape2D_3cj4s")
+shape = SubResource("CapsuleShape2D_cv3i8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_t25iu")
+shape = SubResource("CapsuleShape2D_c22m6")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 2
@@ -547,7 +547,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_box"]
-shape = SubResource("RectangleShape2D_pjnlu")
+shape = SubResource("CapsuleShape2D_laica")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="attack_box"]
 libraries = {

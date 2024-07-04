@@ -386,8 +386,9 @@ _data = {
 "dash": SubResource("Animation_1gba8")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cj4s"]
-size = Vector2(32, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gkath"]
+radius = 11.0
+height = 28.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_76gy8"]
 random_pitch = 1.2
@@ -395,11 +396,12 @@ streams_count = 1
 stream_0/stream = ExtResource("7_onnda")
 stream_0/weight = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0jk20"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ajsm"]
+height = 26.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4tgt"]
-size = Vector2(34, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q5q53"]
+radius = 11.0
+height = 28.0
 
 [sub_resource type="Animation" id="Animation_56yeu"]
 resource_name = "Attack"
@@ -498,14 +500,16 @@ monitoring = false
 script = ExtResource("2_2gs5r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-shape = SubResource("RectangleShape2D_3cj4s")
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_gkath")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hurtbox"]
 stream = SubResource("AudioStreamRandomizer_76gy8")
 volume_db = -10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_0jk20")
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_2ajsm")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 2
@@ -518,7 +522,8 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_box"]
-shape = SubResource("RectangleShape2D_e4tgt")
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_q5q53")
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="attack_box"]

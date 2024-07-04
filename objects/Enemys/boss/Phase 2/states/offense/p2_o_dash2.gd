@@ -21,4 +21,4 @@ func Physics_Update(_delta):
 
 
 func Exit():
-	enemy.invincible = true
+	enemy.invincible = false

@@ -8,6 +8,6 @@ var rng = RandomNumberGenerator.new()
 
 func Enter():
 	if rng.randi_range(0, 1) == 1:
-		Transitioned.emit(self, "p2_o_dash1")
+		Transitioned.emit(self, "p2_o_dash_attack")
 	else:
 		Transitioned.emit(self, "p2_o_run2")

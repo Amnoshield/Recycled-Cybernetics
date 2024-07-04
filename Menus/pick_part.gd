@@ -23,7 +23,7 @@ func _ready():
 		if part_idx > len(parts)-1: break
 		var idx2 = rng.randi_range(0, 1)
 		var temp_part = Tracker.upgrades[parts[part_idx]][idx2]
-		if temp_part.part_sprite:
+		if typeof(temp_part.part_sprite) == 4:
 			temp_part.part_sprite = load(temp_part.part_sprite)
 		part_templates[part_idx].setup(
 			temp_part.title,

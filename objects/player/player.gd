@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var dash_timer = $Dash/cooldown
 @onready var parry_timer = $parry/cooldown
 @onready var runnin = $runnin
+@onready var attack_ani = $"Smoothing2D/sword attack/AnimationPlayer"
 
 @export var invincible = false
 @export var parrying = false
@@ -35,8 +36,6 @@ var dashing_frame = 0
 
 func _ready():
 	download_tracker()
-	print(health)
-	print(max_health)
 	Tracker.apply_upgrade(self)
 	
 	dashing_frame = dashing_frames
