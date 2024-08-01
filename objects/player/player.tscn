@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_pjd8b"]
 [ext_resource type="Script" path="res://objects/player/sword attack.gd" id="2_0rrg6"]
+[ext_resource type="Script" path="res://objects/player/player_hurtbox.gd" id="2_vcpdd"]
 [ext_resource type="Texture2D" uid="uid://cygkyh2kfb2u2" path="res://assets/other/attack1.png" id="3_8jrcb"]
-[ext_resource type="Script" path="res://objects/hurtbox.gd" id="3_f5pnt"]
 [ext_resource type="Script" path="res://objects/player/parry.gd" id="4_1std8"]
 [ext_resource type="Texture2D" uid="uid://dk80prmq8iqsc" path="res://assets/other/parry ani.png" id="4_iud3q"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="5_njb03"]
@@ -1017,7 +1017,7 @@ shape = SubResource("CapsuleShape2D_tkbnt")
 
 [node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
 collision_mask = 8
-script = ExtResource("3_f5pnt")
+script = ExtResource("2_vcpdd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("CapsuleShape2D_pjen1")

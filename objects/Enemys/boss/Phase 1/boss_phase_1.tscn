@@ -508,12 +508,11 @@ libraries = {
 }
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
 offset_bottom = -1.0
-text = "BOSS"
+text = "p1"
 label_settings = SubResource("LabelSettings_41dxn")
 horizontal_alignment = 1
 

@@ -125,12 +125,7 @@ func _physics_process(_delta):
 
 
 func take_damage(damage_:int, take_knockback:Vector2):
-	if parrying:
-		$"parry/parry ani".play("parry")
-		$parry.add_knockback(take_knockback.length())
-		return
-	
-	elif invincible:
+	if invincible:
 		return
 	
 	if damage_:
@@ -158,7 +153,7 @@ func _unhandled_key_input(event:InputEvent): #Dash
 	elif event.is_action_pressed("pause") and $"Pause timeout".is_stopped(): #trigger pause
 		$"Pause timeout".start()
 		var new_pause = pause_screen.instantiate()
-		new_pause.global_position = global_position
+		new_pause.global_position = $Camera2D.global_position
 		get_tree().get_nodes_in_group("main level")[0].add_child(new_pause)
 		get_tree().paused = true
 

@@ -55,8 +55,12 @@ func take_damage(_damage, fake_knockback:Vector2):
 func _on_hitbox_area_entered(area:Area2D):#hit whatever it is looking at
 	if not (enemy and player.parrying):
 		die()
-	buzz.play()
-	area.take_damage(damage+rng.randi_range(-1, 1), (area.global_position-global_position).normalized()*knockback)
+	
+	area.take_damage(
+		damage+rng.randi_range(-1, 1),
+		(area.global_position-global_position).normalized()*knockback,
+		$buzz
+		)
 	
 
 

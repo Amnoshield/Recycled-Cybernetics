@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var player_attack_animation = get_tree().get_nodes_in_group("attack")[0]
 @onready var dash_timer = $dash_cooldown
 @onready var minion = preload("res://objects/Enemys/blob/blob.tscn")
+var player_hurt_box
 
 @onready var ap = $Sprite2D/AnimationPlayer
 @onready var sprite = $Sprite2D
@@ -44,6 +45,13 @@ var damage_res = 0 #Used
 var lastdir = 1
 
 func _ready():
+	var hurt_boxs = get_tree().get_nodes_in_group("hurtbox")
+	for box in hurt_boxs:
+		if box.get_parent().is_in_group("Player"):
+			player_hurt_box = box
+			break
+	
+	
 	Tracker.player_reset()
 	player.download_tracker()
 	player.set_settings()
@@ -87,8 +95,6 @@ func  _process(_delta):
 		lastdir = 1
 
 
-
-
 func spawn_minions():
 	for x in range(4):
 		Tracker.num_enemies += 1
@@ -110,8 +116,6 @@ func _physics_process(_delta):
 func take_damage(oof_damage:int, new_knockback):
 	if oof_damage:
 		$hurt.play()
-	else:
-		$parry.play()
 	
 	oof_damage -= damage_res
 	if oof_damage < 0:
@@ -147,7 +151,11 @@ func _on_attack_box_area_entered(_area): #this should only apply to the player
 func deal_damage():
 	attack_cooldown_timer.start()
 	attacking_frame = attacking_frames
-	player.take_damage(damage+rng.randi_range(-1, 1), (player.global_position-global_position).normalized()*knockback_strenth)
+	player_hurt_box.take_damage(
+		damage+rng.randi_range(-1, 1),
+		(player.global_position-global_position).normalized()*knockback_strenth,
+		$parry
+		)
 
 
 func _on_random_attack_cooldown_timeout():

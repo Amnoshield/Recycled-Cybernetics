@@ -72,8 +72,6 @@ func take_damage(oof_damage:int, new_knockback):
 	
 	if oof_damage:
 		$hurtbox/AudioStreamPlayer.play()
-	else:
-		$parry.play()
 	
 	health -= oof_damage
 	knockback =  new_knockback
@@ -102,7 +100,11 @@ func change_idle_dir():
 
 func _on_attack_box_area_entered(area): #this should only apply to the player
 	attacking_frame = attacking_frames
-	area.take_damage(damage+rng.randi_range(-1, 1), (area.global_position-global_position).normalized()*knockback_strenth)
+	area.take_damage(
+		damage+rng.randi_range(-1, 1),
+		(area.global_position-global_position).normalized()*knockback_strenth,
+		$parry
+		)
 
 
 func die():

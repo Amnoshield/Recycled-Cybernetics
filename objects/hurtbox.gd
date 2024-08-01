@@ -1,4 +1,8 @@
 extends Area2D
 
-func take_damage(damage:int, knockback):
+
+@onready var player = $".."
+
+
+func take_damage(damage:int, knockback, _null_sound = null):
 	$"..".take_damage(damage, knockback)

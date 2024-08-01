@@ -80,8 +80,6 @@ func take_damage(oof_damage:int, new_knockback):
 	
 	if oof_damage:
 		$hurt.play()
-	else:
-		$parry.play()
 	
 	oof_damage -= damage_res
 	if oof_damage < 0:

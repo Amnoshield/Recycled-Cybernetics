@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @onready var attack_cooldown_timer:Timer = $attack_cooldown
 @onready var idle_direction = change_idle_dir()
+var player_hurt_box
 
 
 var speed = 80
@@ -25,6 +26,12 @@ var dying = false
 
 
 func _ready():
+	var hurt_boxs = get_tree().get_nodes_in_group("hurtbox")
+	for box in hurt_boxs:
+		if box.get_parent().is_in_group("Player"):
+			player_hurt_box = box
+			break
+	
 	$NavigationAgent2D.max_speed = speed
 	attack_cooldown_timer.wait_time = attack_cooldown
 
@@ -40,7 +47,8 @@ func take_damage(oof_damage:int, new_knockback):
 	if oof_damage:
 		$hurtbox/AudioStreamPlayer.play()
 	else:
-		$parry.play()
+		pass
+		#$parry.play()
 	
 	health -= oof_damage
 	knockback =  new_knockback
@@ -57,7 +65,11 @@ func _on_attack_area_entered(_area):
 
 func attack():
 	if attack_player and attack_cooldown_timer.is_stopped():
-		player.take_damage(damage+rng.randi_range(-1, 1), (player.global_position-global_position).normalized()*knockback_strenth)
+		player_hurt_box.take_damage(
+			damage+rng.randi_range(-1, 1),
+			(player.global_position-global_position).normalized()*knockback_strenth,
+			$parry
+		)
 		attack_cooldown_timer.start()
 
 
