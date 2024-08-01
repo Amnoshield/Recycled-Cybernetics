@@ -69,12 +69,6 @@ func _physics_process(_delta):
 
 
 func take_damage(oof_damage:int, new_knockback):
-	if parrying:
-		parried = true
-		if not player.parrying:
-			player.take_damage(0, (player.global_position-global_position).normalized()*new_knockback.length())
-		return
-	
 	if invincible:
 		return
 	
@@ -106,8 +100,4 @@ func die():
 	p3.global_position = global_position
 	get_node("..").add_child(p3)
 	self.queue_free()
-
-
-func _on_parry_deration_timeout():
-	parrying = false
 

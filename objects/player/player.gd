@@ -130,8 +130,6 @@ func take_damage(damage_:int, take_knockback:Vector2):
 	
 	if damage_:
 		$hurt.play()
-	else:
-		$parry2.play()
 	
 	damage_ -= damage_res
 	if damage_ < 0:

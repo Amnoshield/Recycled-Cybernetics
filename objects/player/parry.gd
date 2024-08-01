@@ -26,7 +26,11 @@ func parry():
 
 func add_knockback(knockback):
 	for area in enemys:
-		area.take_damage(0, (area.global_position-global_position).normalized()*knockback)
+		area.take_damage(
+			0,
+			(area.global_position-global_position).normalized()*knockback,
+			$"../parry2"
+		)
 	enemys.clear()
 
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=62 format=3 uid="uid://d8ubqr5qt61m"]
+[gd_scene load_steps=65 format=3 uid="uid://d8ubqr5qt61m"]
 
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 3/boss_phase_3.gd" id="1_6wuha"]
-[ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_a73d7"]
 [ext_resource type="Texture2D" uid="uid://df8d34s32objc" path="res://assets/boss/boss atempt 1(color change).png" id="2_dece3"]
 [ext_resource type="Texture2D" uid="uid://c0548ntccdpqy" path="res://assets/boss/boss atempt 1 walk forward.png" id="3_clfyi"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/attack_box.gd" id="3_lm58b"]
@@ -9,13 +8,17 @@
 [ext_resource type="Texture2D" uid="uid://cygkyh2kfb2u2" path="res://assets/other/attack1.png" id="4_w3pn6"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/big attack.gd" id="5_1gmjt"]
 [ext_resource type="Texture2D" uid="uid://drdbm0p7w7mbj" path="res://assets/boss/boss side walk.png" id="5_c71xj"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/boss_hurtbox.gd" id="6_0mqwm"]
 [ext_resource type="Script" path="res://objects/Enemys/states/State Machine.gd" id="6_lh845"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/p2_knockback.gd" id="7_0yoog"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_run.gd" id="8_80n6h"]
 [ext_resource type="AudioStream" uid="uid://v3wovcgks1e3" path="res://assets/Not ours/sound/player/sword 2.mp3" id="9_racy8"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/defense/p2_d_dash.gd" id="10_nk011"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/player_range.gd" id="11_0ln5w"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_pathfind.gd" id="11_l5gxb"]
+[ext_resource type="Texture2D" uid="uid://dk80prmq8iqsc" path="res://assets/other/parry ani.png" id="12_agcj7"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/pre-offense/p2_po_idle.gd" id="12_cumtj"]
+[ext_resource type="AnimationLibrary" uid="uid://f0l8inh7f5ha" path="res://objects/Enemys/boss/Phase 2/boss_phase_2.tres" id="13_3eyb5"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_start_attack.gd" id="13_jlb03"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_dash1.gd" id="14_hq5h2"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/Phase 2/states/offense/p2_o_attack1.gd" id="15_7spxc"]
@@ -675,6 +678,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
@@ -693,7 +697,7 @@ avoidance_mask = 2
 collision_layer = 4
 collision_mask = 0
 monitoring = false
-script = ExtResource("2_a73d7")
+script = ExtResource("6_0mqwm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("CapsuleShape2D_aan8a")
@@ -759,16 +763,28 @@ libraries = {
 [node name="player_range" type="Area2D" parent="."]
 collision_layer = 0
 monitorable = false
+script = ExtResource("11_0ln5w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_range"]
 shape = SubResource("CircleShape2D_4sgb8")
 
-[node name="parry_deration" type="Timer" parent="player_range"]
-wait_time = 0.5
-one_shot = true
-
 [node name="parry_cooldown" type="Timer" parent="player_range"]
 one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="player_range"]
+visible = false
+texture = ExtResource("12_agcj7")
+hframes = 13
+
+[node name="parry ani" type="AnimationPlayer" parent="player_range"]
+libraries = {
+"": ExtResource("13_3eyb5")
+}
+
+[node name="parry tracker" type="AnimationPlayer" parent="player_range"]
+libraries = {
+"": ExtResource("13_3eyb5")
+}
 
 [node name="dash_cooldown" type="Timer" parent="."]
 wait_time = 10.0
@@ -870,7 +886,7 @@ stream = SubResource("AudioStreamRandomizer_bgjyp")
 [connection signal="area_entered" from="big attack" to="big attack" method="_on_area_entered"]
 [connection signal="animation_finished" from="big attack/AnimationPlayer" to="State_Machine/p2_o_big_attack" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="player_range" to="State_Machine/p3_d_idle" method="_on_player_range_area_entered"]
-[connection signal="timeout" from="player_range/parry_deration" to="." method="_on_parry_deration_timeout"]
+[connection signal="animation_finished" from="player_range/parry tracker" to="player_range" method="_on_parry_tracker_animation_finished"]
 [connection signal="timeout" from="feint" to="State_Machine/p3_d_idle" method="_on_feint_timeout"]
 [connection signal="timeout" from="State_Machine/agro" to="State_Machine/p3_d_idle" method="_on_agro_timeout"]
 [connection signal="timeout" from="State_Machine/run_timer" to="State_Machine/p2_d_run" method="_on_run_timer_timeout"]

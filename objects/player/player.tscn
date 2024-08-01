@@ -44,6 +44,7 @@ height = 16.0
 radius = 41.1096
 
 [sub_resource type="Animation" id="Animation_l0mbt"]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false

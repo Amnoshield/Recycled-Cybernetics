@@ -44,7 +44,11 @@ func attack():
 
 func _on_area_entered(area:Area2D):
 	if area.is_in_group("hurtbox"):
-		area.take_damage(player.damage, (area.global_position-global_position).normalized()*player.entity_knockback)
+		area.take_damage(
+			player.damage,
+			(area.global_position-global_position).normalized()*player.entity_knockback,
+			$"../../parry2"
+		)
 
 
 func _on_cooldown_timeout():

@@ -12,6 +12,7 @@ func _ready():
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
+			child.Overide.connect(overide_state)
 		else:
 			print("unknown child in state")
 	

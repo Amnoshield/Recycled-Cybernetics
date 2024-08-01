@@ -4,7 +4,6 @@ class_name p3_d_idle
 @onready var enemy:CharacterBody2D = $"../.."
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
 @onready var parry_timer = $"../../player_range/parry_cooldown"
-@onready var parry_der = $"../../player_range/parry_deration"
 @onready var dash_timer = $"../../dash_cooldown"
 @onready var feint_timer = $"../../feint"
 @onready var agro = $"../agro"
@@ -70,7 +69,9 @@ func _on_feint_timeout():
 
 func trigger_parry():
 	parry_timer.start()
-	parry_der.start()
+	$"../../player_range/parry tracker".play("parry_tracker")
+	$"../../player_range/Sprite2D".frame = 0
+	$"../../player_range/Sprite2D".visible = true
 	enemy.parrying = true
 
 
