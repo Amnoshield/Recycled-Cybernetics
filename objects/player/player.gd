@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var health_bar = $Smoothing2D/Sprite2D/HealthBar
 @onready var pause_screen:PackedScene = preload("res://Menus/pause_screen.tscn")
+@onready var death_screen:PackedScene = preload("res://Menus/death_screen.tscn")
 @onready var dash_timer = $Dash/cooldown
 @onready var parry_timer = $parry/cooldown
 @onready var runnin = $runnin
@@ -151,7 +152,7 @@ func _unhandled_key_input(event:InputEvent): #Dash
 	elif event.is_action_pressed("pause") and $"Pause timeout".is_stopped(): #trigger pause
 		$"Pause timeout".start()
 		var new_pause = pause_screen.instantiate()
-		new_pause.global_position = $Camera2D.global_position
+		new_pause.global_position = $Camera2D.get_screen_center_position()
 		get_tree().get_nodes_in_group("main level")[0].add_child(new_pause)
 		get_tree().paused = true
 
@@ -170,7 +171,11 @@ func _on_cooldown_timeout():
 
 
 func die():
-	get_tree().change_scene_to_file("res://Menus/death_screen.tscn")
+	var new_death = death_screen.instantiate()
+	new_death.global_position = $Camera2D.get_screen_center_position()
+	get_tree().get_nodes_in_group("main level")[0].add_child(new_death)
+	get_tree().paused = true
+	#get_tree().change_scene_to_file("res://Menus/death_screen.tscn")
 
 
 func _on_hurtbox_area_entered(_area): #This only sees the finish. Besides that the hurtbox is only used by enemys for damage.

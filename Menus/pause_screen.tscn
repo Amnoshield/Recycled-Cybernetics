@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Menus/Continue.gd" id="1_ip8t5"]
 [ext_resource type="Script" path="res://Menus/Back to main menu.gd" id="1_jqo0x"]
+[ext_resource type="Theme" uid="uid://dttj5nnhnbe2n" path="res://assets/ui/small theme.tres" id="1_ptx7n"]
 [ext_resource type="FontFile" uid="uid://sl08fd13yipe" path="res://assets/fonts/dogicapixel.otf" id="1_tk3qn"]
 [ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="2_tiku3"]
 [ext_resource type="Script" path="res://Menus/audio.gd" id="4_ae6wl"]
@@ -17,11 +18,6 @@ gradient = SubResource("Gradient_01s0c")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 1)
 
-[sub_resource type="Theme" id="Theme_u3dbp"]
-default_font = ExtResource("1_tk3qn")
-Button/font_sizes/font_size = 10
-Button/fonts/font = ExtResource("1_tk3qn")
-
 [sub_resource type="LabelSettings" id="LabelSettings_wkak7"]
 font_size = 30
 shadow_size = 10
@@ -34,7 +30,7 @@ process_mode = 3
 z_index = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.486275)
+self_modulate = Color(1, 1, 1, 0.501961)
 scale = Vector2(4.65625, 2.65625)
 texture = SubResource("GradientTexture2D_5yamy")
 
@@ -49,7 +45,7 @@ offset_bottom = 173.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
-theme = SubResource("Theme_u3dbp")
+theme = ExtResource("1_ptx7n")
 vertical = true
 
 [node name="Puased" type="Label" parent="BoxContainer"]
@@ -102,6 +98,7 @@ volume_db = -10.0
 stream = ExtResource("6_jsvix")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(4, 4)
 
 [node name="sfx" type="AudioStreamPlayer" parent="."]

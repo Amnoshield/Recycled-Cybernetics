@@ -116,7 +116,7 @@ func start_next_level():
 
 
 func next_level():
-	player_health += 2
+	player_health += 4
 	if player_health > player_max_health:
 		player_health = player_max_health
 	

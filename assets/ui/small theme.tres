@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dttj5nnhnbe2n"]
+
+[ext_resource type="FontFile" uid="uid://sl08fd13yipe" path="res://assets/fonts/dogicapixel.otf" id="1_px2ri"]
+
+[resource]
+default_font = ExtResource("1_px2ri")
+Button/font_sizes/font_size = 10
+Button/fonts/font = ExtResource("1_px2ri")
