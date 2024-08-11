@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxcwkhnssnixn"]
+[gd_scene load_steps=15 format=3 uid="uid://cxcwkhnssnixn"]
 
 [ext_resource type="Script" path="res://Menus/Start.gd" id="1_bn42c"]
 [ext_resource type="Script" path="res://Menus/Quit.gd" id="1_ge7oo"]
 [ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_hc6ox"]
 [ext_resource type="Script" path="res://Menus/Quit2.gd" id="2_14iy6"]
 [ext_resource type="Script" path="res://Menus/Quit_frfrog.gd" id="3_hpg7t"]
+[ext_resource type="Script" path="res://Menus/options.gd" id="4_idccw"]
+[ext_resource type="Script" path="res://Menus/main_menu_fullscreen.gd" id="4_lf83l"]
+[ext_resource type="Script" path="res://Menus/main_menu_audio.gd" id="5_d3c6g"]
 [ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="6_np8ds"]
 [ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="7_qef3l"]
 
@@ -15,6 +18,8 @@ colors = PackedColorArray(0, 0, 0, 1, 0.363636, 0.363636, 0.363636, 1, 0.784314,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pqmtd"]
 gradient = SubResource("Gradient_csywl")
 fill_from = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fspy0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qy2q"]
 font_size = 50
@@ -35,7 +40,7 @@ texture = SubResource("GradientTexture2D_pqmtd")
 offset_left = 427.0
 offset_top = 176.0
 offset_right = 730.0
-offset_bottom = 257.0
+offset_bottom = 413.0
 vertical = true
 
 [node name="Start" type="Button" parent="BoxContainer"]
@@ -48,6 +53,44 @@ layout_mode = 2
 text = "Quit
 "
 script = ExtResource("1_ge7oo")
+
+[node name="options" type="Button" parent="BoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Options"
+script = ExtResource("4_idccw")
+
+[node name="Panel" type="Panel" parent="BoxContainer/options"]
+visible = false
+layout_mode = 2
+offset_top = 28.0
+offset_right = 303.0
+offset_bottom = 92.0
+
+[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/options/Panel"]
+layout_mode = 2
+offset_right = 303.0
+offset_bottom = 62.0
+vertical = true
+
+[node name="fullscreen" type="CheckBox" parent="BoxContainer/options/Panel/BoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+alignment = 1
+script = ExtResource("4_lf83l")
+
+[node name="Label" type="Label" parent="BoxContainer/options/Panel/BoxContainer"]
+layout_mode = 2
+text = "Audio"
+label_settings = SubResource("LabelSettings_fspy0")
+horizontal_alignment = 1
+
+[node name="audio" type="HSlider" parent="BoxContainer/options/Panel/BoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+ticks_on_borders = true
+script = ExtResource("5_d3c6g")
 
 [node name="Quit2" type="Button" parent="."]
 visible = false
@@ -89,6 +132,10 @@ stream = ExtResource("7_qef3l")
 [connection signal="pressed" from="BoxContainer/Start" to="BoxContainer/Start" method="_on_pressed"]
 [connection signal="draw" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/options" to="BoxContainer/options" method="_on_draw"]
+[connection signal="toggled" from="BoxContainer/options" to="BoxContainer/options" method="_on_toggled"]
+[connection signal="toggled" from="BoxContainer/options/Panel/BoxContainer/fullscreen" to="BoxContainer/options/Panel/BoxContainer/fullscreen" method="_on_toggled"]
+[connection signal="value_changed" from="BoxContainer/options/Panel/BoxContainer/audio" to="BoxContainer/options/Panel/BoxContainer/audio" method="_on_value_changed"]
 [connection signal="draw" from="Quit2" to="Quit2" method="_on_draw"]
 [connection signal="pressed" from="Quit2" to="Quit2" method="_on_pressed"]
 [connection signal="draw" from="Quit3" to="Quit3" method="_on_draw"]

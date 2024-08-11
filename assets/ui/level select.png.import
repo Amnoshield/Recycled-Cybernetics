@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1ii0p1k6hv7s"
-path="res://.godot/imported/Enemy_marker.png-6552bb9204634c1bb235f3f87aeda7ba.ctex"
+uid="uid://d3706oku2yxyx"
+path="res://.godot/imported/level select.png-cea6bf18bd9abcdece4c70b2a5ef4717.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/minimap/Enemy_marker.png"
-dest_files=["res://.godot/imported/Enemy_marker.png-6552bb9204634c1bb235f3f87aeda7ba.ctex"]
+source_file="res://assets/ui/level select.png"
+dest_files=["res://.godot/imported/level select.png-cea6bf18bd9abcdece4c70b2a5ef4717.ctex"]
 
 [params]
 

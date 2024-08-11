@@ -85,8 +85,10 @@ func _process(_delta):
 		go_next_level = false
 		if current_level_level == 4:
 			boss_intro()
+		elif current_level_level == 5:
+			next_level()
 		else:
-			start_next_level()
+			start_part_pick()
 
 
 func spawn_enemies():
@@ -111,7 +113,7 @@ func remove_enemy(enemy):
 		print("end not valid")
 
 
-func start_next_level():
+func start_part_pick():
 	get_tree().change_scene_to_file("res://Menus/pick_part.tscn")
 
 

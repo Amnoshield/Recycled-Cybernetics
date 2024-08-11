@@ -11,4 +11,4 @@ func Enter():
 
 
 func _on_dash_attack_windup_animation_finished(_anim_name):
-	Transitioned.emit(self, "p2_o_dash1")
+	Overide.emit("p2_o_dash1")

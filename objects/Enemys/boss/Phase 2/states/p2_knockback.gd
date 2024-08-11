@@ -10,4 +10,4 @@ func Physics_Update(_delta):
 	enemy.knockback /= 2
 	
 	if enemy.knockback.length() < enemy.speed:
-		Transitioned.emit(self)
+		Transitioned.emit(self, "p2_po_pathfind")
