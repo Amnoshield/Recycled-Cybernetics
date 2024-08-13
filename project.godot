@@ -31,7 +31,7 @@ enabled=PackedStringArray("res://addons/smoothing/plugin.cfg")
 
 [gui]
 
-theme/custom_font="res://assets/fonts/dogicapixel.otf"
+theme/custom_font="res://assets/fonts/betterPixel.tres"
 
 [input]
 

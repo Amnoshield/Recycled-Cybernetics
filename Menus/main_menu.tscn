@@ -54,6 +54,67 @@ text = "Quit
 "
 script = ExtResource("1_ge7oo")
 
+[node name="credits" type="Button" parent="BoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "Credits"
+script = ExtResource("4_idccw")
+
+[node name="Panel" type="Panel" parent="BoxContainer/credits"]
+visible = false
+layout_mode = 2
+offset_left = -171.0
+offset_top = 72.0
+offset_right = 474.0
+offset_bottom = 386.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BoxContainer/credits/Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 636.0
+offset_bottom = 307.0
+focus_mode = 2
+text = "Credits:
+Main programmer: Asa Kramer
+Main artist: Max Hurley
+----------------
+SFX:
+All SFX was found on Pixabay.com
+
+By Pixabay:  \"Sword sound 2\", \"Forest wind and birds\", \"RUNNING 1\", \"Swish Sound\", \"Metronome\", \"Gooey Squish\", \"Knife Stab Sound Effect\", \"COUCH HIT AND SWISH_44100\", \"energy hum\", \"Simple Zaps\", \"Knife throw 2\", \"running in grass\", \"Sword Hit\", \"Sword Slash with a Designed Impact\", \"gear-spinning-loop\", and \"Locker Slam 1\"
+
+Not by Pixabay:
+-\"Robot Heavy Mechanical Footsteps\" by DavidDumaisAudio
+-\"Metal Whoosh Hit 10\" by floraphonic
+-\"Metal Hit 94\" by floraphonic
+-\"Tap Notification\" by lucadialessandro
+-\"Mouse Click\" by SoundReality
+
+All links:
+-https://pixabay.com/sound-effects/sword-sound-2-36274/
+-https://pixabay.com/sound-effects/forest-wind-and-birds-6881/
+-https://pixabay.com/sound-effects/running-1-6846/
+-https://pixabay.com/sound-effects/swish-sound-94707/
+-https://pixabay.com/sound-effects/metronome-85688/
+-https://pixabay.com/sound-effects/gooey-squish-14820/
+-https://pixabay.com/sound-effects/knife-stab-sound-effect-36354/
+-https://pixabay.com/sound-effects/robot-heavy-mechanical-footsteps-194039/
+-https://pixabay.com/sound-effects/metal-whoosh-hit-10-202176/
+-https://pixabay.com/sound-effects/metal-hit-94-200422/
+-https://pixabay.com/sound-effects/couch-hit-and-swish-44100-38612/
+-https://pixabay.com/sound-effects/energy-hum-29083/
+-https://pixabay.com/sound-effects/simple-zaps-48107/
+-https://pixabay.com/sound-effects/knife-throw-2-88028/
+-https://pixabay.com/sound-effects/running-in-grass-6237/
+-https://pixabay.com/sound-effects/sword-hit-7160/
+-https://pixabay.com/sound-effects/sword-slash-with-a-designed-impact-185434/
+-https://pixabay.com/sound-effects/tap-notification-180637/
+-https://pixabay.com/sound-effects/mouse-click-153941/
+-https://pixabay.com/sound-effects/gear-spinning-loop-6981/
+-https://pixabay.com/sound-effects/locker-slam-1-101485/"
+selection_enabled = true
+
 [node name="options" type="Button" parent="BoxContainer"]
 layout_mode = 2
 toggle_mode = true
@@ -63,9 +124,9 @@ script = ExtResource("4_idccw")
 [node name="Panel" type="Panel" parent="BoxContainer/options"]
 visible = false
 layout_mode = 2
-offset_top = 28.0
+offset_top = 36.0
 offset_right = 303.0
-offset_bottom = 92.0
+offset_bottom = 131.0
 
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer/options/Panel"]
 layout_mode = 2
@@ -132,7 +193,11 @@ stream = ExtResource("7_qef3l")
 [connection signal="pressed" from="BoxContainer/Start" to="BoxContainer/Start" method="_on_pressed"]
 [connection signal="draw" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/credits" to="BoxContainer/credits" method="_on_draw"]
+[connection signal="pressed" from="BoxContainer/credits" to="BoxContainer/credits" method="_on_pressed"]
+[connection signal="toggled" from="BoxContainer/credits" to="BoxContainer/credits" method="_on_toggled"]
 [connection signal="draw" from="BoxContainer/options" to="BoxContainer/options" method="_on_draw"]
+[connection signal="pressed" from="BoxContainer/options" to="BoxContainer/options" method="_on_pressed"]
 [connection signal="toggled" from="BoxContainer/options" to="BoxContainer/options" method="_on_toggled"]
 [connection signal="toggled" from="BoxContainer/options/Panel/BoxContainer/fullscreen" to="BoxContainer/options/Panel/BoxContainer/fullscreen" method="_on_toggled"]
 [connection signal="value_changed" from="BoxContainer/options/Panel/BoxContainer/audio" to="BoxContainer/options/Panel/BoxContainer/audio" method="_on_value_changed"]
