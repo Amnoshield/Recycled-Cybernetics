@@ -1,13 +1,17 @@
 extends Button
 
-@export var difficulty : PackedScene
 var hovered = false
 
 func _on_pressed():
-	get_tree().change_scene_to_packed(difficulty)
+	Tracker.difficulty = "normal"
+	Tracker.reset()
+	get_tree().change_scene_to_file(Tracker.totorial_level)
 
 
 func _on_draw():
+	if disabled:
+		return
+	
 	if is_hovered() and not hovered:
 		hovered = true
 		$"../../sfx".play()

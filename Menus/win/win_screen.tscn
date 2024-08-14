@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c23tdoy3f2x7y"]
+[gd_scene load_steps=9 format=3 uid="uid://c23tdoy3f2x7y"]
 
+[ext_resource type="Script" path="res://Menus/win/win_screen.gd" id="1_c8trr"]
 [ext_resource type="Script" path="res://Menus/pause/Back to main menu.gd" id="1_uvan7"]
 [ext_resource type="Script" path="res://Menus/main/Quit_frfrog.gd" id="2_io5oo"]
 [ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="3_gostg"]
@@ -21,6 +22,7 @@ shadow_color = Color(0, 0, 0, 1)
 
 [node name="win screen" type="Node2D"]
 process_mode = 3
+script = ExtResource("1_c8trr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(18, 10.125)

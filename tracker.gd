@@ -51,6 +51,7 @@ var win_screen = "res://Menus/win/win_screen.tscn"
 var boss_intro_file = "res://Menus/boss/boss_enter.tscn"
 
 var level_next
+var difficulty = "easy"
 
 #need to be reset
 var default_health
@@ -118,7 +119,11 @@ func start_part_pick():
 
 
 func next_level():
-	player_health += 4
+	if difficulty == "easy":
+		player_health += 10
+	elif difficulty == "normal":
+		player_health += 5
+	
 	if player_health > player_max_health:
 		player_health = player_max_health
 	
@@ -164,14 +169,31 @@ func player_reset():
 	player_knockback_res = 1
 	player_dash_cooldown = 1.
 	player_attack_cooldown = 1.
-	player_damage = 2
+	
 	player_knockback = 1000
 	player_parry_cooldown = 1.
-	player_damage_res = 0
+	
+	
+	if difficulty == "easy":
+		player_damage = 3
+		player_damage_res = 1
+	elif difficulty == "normal" or difficulty == "one shot":
+		player_damage = 2
+		player_damage_res = 0
+	elif difficulty == "hard":
+		player_damage = 2
+		player_damage_res = -1
 
 
 func reset():
-	default_health = 25
+	if difficulty == "easy":
+		default_health = 30
+	elif difficulty == "normal" or difficulty == "hard":
+		default_health = 25
+	elif difficulty == "one shot":
+		default_health = 1
+	
+	
 	player_max_health = default_health
 	player_health = default_health
 	
@@ -203,3 +225,4 @@ func apply_upgrade(entity):
 func apply_upgrades(entity):
 	for upgrade in chosen_upgrades:
 		upgrade["obj"].affect(entity)
+
