@@ -560,9 +560,10 @@ one_shot = true
 [node name="dash_cooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "knockback")]
 script = ExtResource("3_17gaw")
 initial_state = NodePath("boss_P1_Idle")
+knockback = NodePath("boss_P1_Knockback")
 
 [node name="boss_P1_dash_attack" type="Node" parent="State_Machine"]
 script = ExtResource("4_ehept")

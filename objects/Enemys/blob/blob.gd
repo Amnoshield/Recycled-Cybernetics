@@ -52,7 +52,7 @@ func take_damage(oof_damage:int, new_knockback):
 	
 	health -= oof_damage
 	knockback =  new_knockback
-	$"State Machine".overide_state("blob_Knockback")
+	$"State Machine".trigger_knockback()
 	
 	if health <= 0:
 		die()

@@ -15,3 +15,6 @@ func Update(_delta):
 	
 func Physics_Update(_delta):
 	pass
+
+func Knockback_Event():
+	Overide.emit(get_parent().knockback.name)

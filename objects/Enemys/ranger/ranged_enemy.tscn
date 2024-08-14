@@ -62,9 +62,10 @@ shape = SubResource("CircleShape2D_c5dx4")
 [node name="attack_cooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "knockback")]
 script = ExtResource("3_vluf6")
 initial_state = NodePath("Ranger_Pathfind")
+knockback = NodePath("Ranger_Knockback")
 
 [node name="Ranger_Idle" type="Node" parent="State_Machine"]
 script = ExtResource("6_77wl4")

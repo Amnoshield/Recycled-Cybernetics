@@ -129,11 +129,11 @@ selection_enabled = true
 [node name="options" type="Button" parent="BoxContainer"]
 layout_mode = 2
 toggle_mode = true
+button_pressed = true
 text = "Options"
 script = ExtResource("5_lnxom")
 
 [node name="Panel" type="Panel" parent="BoxContainer/options"]
-visible = false
 layout_mode = 2
 offset_top = 36.0
 offset_right = 303.0

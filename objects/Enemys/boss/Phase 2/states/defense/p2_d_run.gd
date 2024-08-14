@@ -11,7 +11,6 @@ class_name p2_d_run
 
 func Enter():
 	run_timer.start()
-	enemy.state = "d"
 
 
 func Physics_Update(_delta):

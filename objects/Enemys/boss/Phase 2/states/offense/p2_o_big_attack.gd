@@ -26,3 +26,6 @@ func _on_animation_player_animation_finished(_anim_name):
 		Transitioned.emit(self, "p2_d_run")
 	else:
 		Transitioned.emit(self, "p2_po_idle")
+
+func Knockback_Event():
+	pass

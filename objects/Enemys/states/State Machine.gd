@@ -2,6 +2,7 @@ extends Node
 class_name State_Machine
 
 @export var initial_state:State
+@export var knockback:State
 
 var next_state
 var current_state:State
@@ -52,7 +53,6 @@ func on_child_transition(state, new_state_name = null):
 	if not bad:
 		new_state.Enter()
 
-
 func overide_state(new_state_name, continue_after = true, exit = true):
 	var new_state = states.get(new_state_name.to_lower())
 	if not new_state:
@@ -67,3 +67,7 @@ func overide_state(new_state_name, continue_after = true, exit = true):
 	
 	current_state = new_state
 	new_state.Enter()
+
+func trigger_knockback():
+	if current_state != knockback:
+		current_state.Knockback_Event()

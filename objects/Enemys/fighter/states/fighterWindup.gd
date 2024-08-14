@@ -12,3 +12,7 @@ func Enter():
 
 func _on_dash_ap_animation_finished(_anim_name):
 	Transitioned.emit(self, "fighter_attack")
+
+
+func Knockback_Event():
+	pass

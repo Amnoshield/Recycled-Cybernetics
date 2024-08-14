@@ -9,4 +9,4 @@ func Physics_Update(_delta):
 	enemy.knockback /= 2
 	
 	if enemy.knockback.length() < enemy.speed:
-		Transitioned.emit(self, "boss_P1_Idle")
+		Transitioned.emit(self)

@@ -48,7 +48,7 @@ func take_damage(oof_damage:int, new_knockback):
 	
 	health -= oof_damage
 	knockback =  new_knockback
-	$State_Machine.overide_state("ranger_Knockback")
+	$State_Machine.trigger_knockback()
 	
 	if health <= 0:
 		die()

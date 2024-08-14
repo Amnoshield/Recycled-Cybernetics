@@ -76,7 +76,7 @@ func take_damage(oof_damage:int, new_knockback):
 	health -= oof_damage
 	knockback =  new_knockback
 	attacking_frame = attacking_frames
-	$State_Machine.overide_state("Fighter_Knockback")
+	$State_Machine.trigger_knockback()
 	
 	if health <= 0:
 		die()
@@ -99,6 +99,7 @@ func change_idle_dir():
 
 
 func _on_attack_box_area_entered(area): #this should only apply to the player
+	print("delt damage")
 	attacking_frame = attacking_frames
 	area.take_damage(
 		damage+rng.randi_range(-1, 1),
@@ -119,5 +120,5 @@ func _on_rng_attack_timeout():
 
 
 func start_rng_attack():
-	$"rng attack".wait_time = rng.randf_range(0.5, 4)
+	$"rng attack".wait_time = rng.randf_range(0.3, 3)
 	$"rng attack".start()

@@ -796,9 +796,10 @@ one_shot = true
 wait_time = 0.6
 one_shot = true
 
-[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "knockback")]
 script = ExtResource("3_fbts4")
 initial_state = NodePath("p2_d_run")
+knockback = NodePath("p2_knockback")
 
 [node name="agro" type="Timer" parent="State_Machine"]
 one_shot = true

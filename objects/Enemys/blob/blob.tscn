@@ -312,9 +312,10 @@ shape = SubResource("CapsuleShape2D_hn5bs")
 [node name="attack_cooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "knockback")]
 script = ExtResource("3_euwad")
 initial_state = NodePath("blob_pathfind")
+knockback = NodePath("blob_Knockback")
 
 [node name="blob_pathfind" type="Node" parent="State Machine"]
 script = ExtResource("4_onm1h")
