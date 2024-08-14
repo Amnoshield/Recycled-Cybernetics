@@ -1,0 +1,143 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2a4fxjcvqsd6"]
+
+[ext_resource type="Theme" uid="uid://dttj5nnhnbe2n" path="res://assets/ui/small theme.tres" id="1_prtrn"]
+[ext_resource type="FontFile" uid="uid://sl08fd13yipe" path="res://assets/fonts/dogicapixel.otf" id="2_rrp6h"]
+[ext_resource type="Script" path="res://Menus/pause/Continue.gd" id="3_lnlxc"]
+[ext_resource type="Script" path="res://Menus/pause/Back to main menu.gd" id="4_sx1s2"]
+[ext_resource type="Script" path="res://Menus/main/Quit_frfrog.gd" id="5_b0d0n"]
+[ext_resource type="Script" path="res://Menus/pause/fullscreen.gd" id="6_3loux"]
+[ext_resource type="Script" path="res://Menus/pause/audio.gd" id="7_0x7ot"]
+[ext_resource type="Script" path="res://Menus/pause/music_slider.gd" id="8_t318k"]
+[ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="9_nteh2"]
+[ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="10_3127y"]
+
+[sub_resource type="Gradient" id="Gradient_01s0c"]
+offsets = PackedFloat32Array(0, 0.220779, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.357143, 0.357143, 0.357143, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5yamy"]
+gradient = SubResource("Gradient_01s0c")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wkak7"]
+font_size = 30
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rdiu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ivne"]
+
+[node name="pause screen" type="Node2D"]
+process_mode = 3
+z_index = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.501961)
+scale = Vector2(4.65625, 2.65625)
+texture = SubResource("GradientTexture2D_5yamy")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -51.0
+offset_right = 144.0
+offset_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+theme = ExtResource("1_prtrn")
+vertical = true
+
+[node name="Puased" type="Label" parent="BoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+text = "Paused"
+label_settings = SubResource("LabelSettings_wkak7")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Continue" type="Button" parent="BoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_rrp6h")
+text = "Continue"
+script = ExtResource("3_lnlxc")
+
+[node name="Back to main menu" type="Button" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "This takes you back to the main menu."
+theme_override_fonts/font = ExtResource("2_rrp6h")
+text = "Back to main menu
+"
+script = ExtResource("4_sx1s2")
+
+[node name="Exit" type="Button" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "You wouldn't dare!!!"
+theme_override_fonts/font = ExtResource("2_rrp6h")
+text = "Quit game"
+script = ExtResource("5_b0d0n")
+
+[node name="fullscreen" type="CheckBox" parent="BoxContainer"]
+layout_mode = 2
+text = "Fullscreen"
+icon_alignment = 2
+script = ExtResource("6_3loux")
+
+[node name="Label" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Audio"
+label_settings = SubResource("LabelSettings_1rdiu")
+horizontal_alignment = 1
+
+[node name="audio" type="HSlider" parent="BoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+script = ExtResource("7_0x7ot")
+
+[node name="Music" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Music
+"
+label_settings = SubResource("LabelSettings_6ivne")
+horizontal_alignment = 1
+
+[node name="slider2" type="HSlider" parent="BoxContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+ticks_on_borders = true
+script = ExtResource("8_t318k")
+
+[node name="sfx" type="AudioStreamPlayer" parent="BoxContainer"]
+stream = ExtResource("9_nteh2")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="BoxContainer"]
+stream = ExtResource("10_3127y")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(4, 4)
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_nteh2")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_3127y")
+
+[connection signal="draw" from="BoxContainer/Continue" to="BoxContainer/Continue" method="_on_draw"]
+[connection signal="pressed" from="BoxContainer/Continue" to="BoxContainer/Continue" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_draw"]
+[connection signal="pressed" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_draw"]
+[connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_pressed"]
+[connection signal="toggled" from="BoxContainer/fullscreen" to="BoxContainer/fullscreen" method="_on_toggled"]
+[connection signal="value_changed" from="BoxContainer/audio" to="BoxContainer/audio" method="_on_value_changed"]
+[connection signal="value_changed" from="BoxContainer/slider2" to="BoxContainer/slider2" method="_on_value_changed"]

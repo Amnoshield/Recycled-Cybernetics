@@ -1,9 +1,71 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwx2ke5j4u5ek"]
+[gd_scene load_steps=9 format=3 uid="uid://dwx2ke5j4u5ek"]
 
+[ext_resource type="Script" path="res://global audio.gd" id="1_1b4ms"]
+[ext_resource type="AudioStream" uid="uid://bih7dr6i5xbrh" path="res://assets/Not ours/sound/street-fight-115554.mp3" id="1_gl8je"]
 [ext_resource type="AudioStream" uid="uid://bxu00ejdcbfag" path="res://assets/Not ours/sound/forest-wind-and-birds-6881.mp3" id="1_hyab1"]
+[ext_resource type="AudioStream" uid="uid://di0edwna5q1mq" path="res://assets/Not ours/sound/digital-duel-electronic-fight-song-198050.mp3" id="2_45dm4"]
 
-[node name="GlobalAudio" type="AudioStreamPlayer"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_htlio"]
+streams_count = 2
+stream_0/stream = ExtResource("1_gl8je")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_45dm4")
+stream_1/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_tejrw"]
+resource_name = "audio end"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-20.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_s0bvp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-20.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05s2a"]
+_data = {
+"RESET": SubResource("Animation_s0bvp"),
+"audio end": SubResource("Animation_tejrw")
+}
+
+[node name="GlobalAudio" type="Node"]
 process_mode = 3
+script = ExtResource("1_1b4ms")
+
+[node name="fighting music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_htlio")
+volume_db = -20.0
+bus = &"Fight music"
+
+[node name="blend" type="AnimationPlayer" parent="fighting music"]
+libraries = {
+"": SubResource("AnimationLibrary_05s2a")
+}
+
+[node name="GlobalAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_hyab1")
 volume_db = -15.0
 autoplay = true
+
+[connection signal="animation_finished" from="fighting music/blend" to="." method="_on_blend_animation_finished"]

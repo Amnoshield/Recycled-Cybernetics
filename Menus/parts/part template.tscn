@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://byceesklxexht"]
+
+[ext_resource type="Script" path="res://Menus/parts/part template.gd" id="1_sfx6p"]
+[ext_resource type="Texture2D" uid="uid://bgyysp45d3lko" path="res://assets/ability ui base.png" id="2_dmd5v"]
+[ext_resource type="Script" path="res://Menus/parts/Take.gd" id="2_xqwpl"]
+[ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="3_nv0yn"]
+[ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="4_eq6m5"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cjam5"]
+size = Vector2(50, 25)
+
+[node name="PartTemplate" type="Node2D" groups=["part"]]
+script = ExtResource("1_sfx6p")
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("2_dmd5v")
+
+[node name="Title" type="Label" parent="."]
+offset_left = -69.0
+offset_top = -117.0
+offset_right = 69.0
+offset_bottom = -94.0
+tooltip_text = "Title"
+mouse_filter = 0
+text = "Title
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="part sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -50.5)
+scale = Vector2(2, 2)
+texture = SubResource("PlaceholderTexture2D_cjam5")
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_direction = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_right = 70.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Description"
+focus_mode = 2
+text = "Description"
+selection_enabled = true
+deselect_on_focus_loss_enabled = false
+
+[node name="Take" type="Button" parent="."]
+offset_left = -68.0
+offset_top = 84.0
+offset_right = 70.0
+offset_bottom = 115.0
+tooltip_text = "Take this part and continue"
+text = "Take"
+script = ExtResource("2_xqwpl")
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nv0yn")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_eq6m5")
+
+[connection signal="draw" from="Take" to="Take" method="_on_draw"]
+[connection signal="pressed" from="Take" to="." method="_on_take_pressed"]

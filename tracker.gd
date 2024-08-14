@@ -47,8 +47,8 @@ var third_levels = [
 	"res://levels/levels fr fr og/first_levels/rm8.tscn"
 ]
 var boss_levels = ["res://levels/levels fr fr og/boss_room.tscn"]
-var win_screen = "res://Menus/win_screen.tscn"
-var boss_intro_file = "res://Menus/boss_enter.tscn"
+var win_screen = "res://Menus/win/win_screen.tscn"
+var boss_intro_file = "res://Menus/boss/boss_enter.tscn"
 
 var level_next
 
@@ -114,7 +114,7 @@ func remove_enemy(enemy):
 
 
 func start_part_pick():
-	get_tree().change_scene_to_file("res://Menus/pick_part.tscn")
+	get_tree().change_scene_to_file("res://Menus/parts/pick_part.tscn")
 
 
 func next_level():

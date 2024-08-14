@@ -7,8 +7,3 @@ extends Sprite2D
 func _ready():
 	if Tracker.current_level_level == level:
 		scale = Vector2(2, 2)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

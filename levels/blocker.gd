@@ -9,4 +9,5 @@ func _ready():
 func open():
 	$"../open".play("open")
 	$"../AudioStreamPlayer".play()
+	GlobalAudio.end_music()
 	self.queue_free()

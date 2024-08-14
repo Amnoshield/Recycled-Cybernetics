@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @onready var health_bar = $Smoothing2D/Sprite2D/HealthBar
-@onready var pause_screen:PackedScene = preload("res://Menus/pause_screen.tscn")
-@onready var death_screen:PackedScene = preload("res://Menus/death_screen.tscn")
+@onready var pause_screen:PackedScene = preload("res://Menus/pause/pause_screen.tscn")
+@onready var death_screen:PackedScene = preload("res://Menus/death/death_screen.tscn")
 @onready var dash_timer = $Dash/cooldown
 @onready var parry_timer = $parry/cooldown
 @onready var runnin = $runnin

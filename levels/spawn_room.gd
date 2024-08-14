@@ -12,3 +12,5 @@ func _on_area_exited(_area):
 func _on_animation_player_animation_finished(_anim_name):
 	$"../AudioStreamPlayer".stop()
 	$"../clank".play()
+	GlobalAudio.start_music()
+	

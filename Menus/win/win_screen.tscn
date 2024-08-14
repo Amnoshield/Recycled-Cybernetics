@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://c23tdoy3f2x7y"]
+
+[ext_resource type="Script" path="res://Menus/pause/Back to main menu.gd" id="1_uvan7"]
+[ext_resource type="Script" path="res://Menus/main/Quit_frfrog.gd" id="2_io5oo"]
+[ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="3_gostg"]
+[ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="4_axvvm"]
+
+[sub_resource type="Gradient" id="Gradient_01s0c"]
+offsets = PackedFloat32Array(0, 0.220779, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.357143, 0.357143, 0.357143, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5yamy"]
+gradient = SubResource("Gradient_01s0c")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wkak7"]
+font_size = 50
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="win screen" type="Node2D"]
+process_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(18, 10.125)
+texture = SubResource("GradientTexture2D_5yamy")
+centered = false
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 485.0
+offset_top = 229.0
+offset_right = 643.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="Back to main menu" type="Button" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "This takes you back to the main menu."
+text = "Back to main menu
+"
+script = ExtResource("1_uvan7")
+
+[node name="Exit" type="Button" parent="BoxContainer"]
+layout_mode = 2
+tooltip_text = "You wouldn't dare!!!"
+text = "Exit"
+script = ExtResource("2_io5oo")
+
+[node name="sfx" type="AudioStreamPlayer" parent="BoxContainer"]
+stream = ExtResource("3_gostg")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="BoxContainer"]
+stream = ExtResource("4_axvvm")
+
+[node name="skill issue" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 386.0
+offset_top = 101.0
+offset_right = 743.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "This time >:)"
+mouse_filter = 0
+text = "You won!!!"
+label_settings = SubResource("LabelSettings_wkak7")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="you died" type="Label" parent="."]
+offset_left = 477.0
+offset_top = 176.0
+offset_right = 653.0
+offset_bottom = 206.0
+tooltip_text = "ծ_o"
+mouse_filter = 0
+text = "Did you like our game?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gostg")
+volume_db = -10.0
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_axvvm")
+
+[connection signal="draw" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_draw"]
+[connection signal="pressed" from="BoxContainer/Back to main menu" to="BoxContainer/Back to main menu" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_draw"]
+[connection signal="pressed" from="BoxContainer/Exit" to="BoxContainer/Exit" method="_on_pressed"]
