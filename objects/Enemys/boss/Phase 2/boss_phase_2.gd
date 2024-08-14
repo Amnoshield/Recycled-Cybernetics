@@ -21,6 +21,7 @@ var rng = RandomNumberGenerator.new()
 var parrying = false
 var parried = false
 var invincible = false
+var state
 
 #Affected by parts
 var health = 10

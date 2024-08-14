@@ -8,6 +8,9 @@ class_name p2_po_pathfind
 @onready var attack_cooldown:Timer = $"../../attack_cooldown"
 @onready var ray:RayCast2D = $"../../RayCast2D"
 
+func Enter():
+	enemy.state = "po"
+
 
 func Physics_Update(_delta):
 	nav.set_target_position(player.global_position)

@@ -7,7 +7,7 @@ var part_templates = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for x in range(3):
-		part_templates.append(load("res://Menus/part template.tscn").instantiate())
+		part_templates.append(load("res://Menus/parts/part template.tscn").instantiate())
 		part_templates[-1].global_position = Vector2(288*x+288, 324)
 		self.add_child(part_templates[-1])
 	

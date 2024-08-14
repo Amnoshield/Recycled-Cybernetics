@@ -23,6 +23,6 @@ func _on_big_attack_animation_finished(_anim_name):
 
 func _on_animation_player_animation_finished(_anim_name):
 	if rng.randi_range(0, 1) == 1:
-		Overide.emit("p2_d_run", false)
+		Transitioned.emit(self, "p2_d_run")
 	else:
-		Overide.emit("p2_po_idle", false)
+		Transitioned.emit(self, "p2_po_idle")

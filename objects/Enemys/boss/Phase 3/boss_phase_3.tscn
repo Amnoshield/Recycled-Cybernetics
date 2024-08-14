@@ -806,6 +806,7 @@ one_shot = true
 
 [node name="p2_knockback" type="Node" parent="State_Machine"]
 script = ExtResource("7_0yoog")
+idle = "p3_d_idle"
 
 [node name="p2_d_run" type="Node" parent="State_Machine"]
 script = ExtResource("8_80n6h")

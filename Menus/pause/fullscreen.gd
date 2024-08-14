@@ -15,5 +15,4 @@ func _on_toggled(toggled_on):
 	if not toggled_on:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		DisplayServer.WINDOW_MODE_MAXIMIZED
 
