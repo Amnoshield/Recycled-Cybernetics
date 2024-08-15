@@ -123,7 +123,7 @@ func take_damage(oof_damage:int, new_knockback):
 	health -= oof_damage
 	knockback =  new_knockback*knockback_res
 	attacking_frame = attacking_frames
-	$State_Machine.overide_state("boss_P1_Knockback")
+	$State_Machine.trigger_knockback()
 	
 	if health <= 0:
 		call_deferred("die")

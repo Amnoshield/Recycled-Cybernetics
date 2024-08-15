@@ -42,7 +42,8 @@ layout_mode = 2
 tooltip_text = "More health,
 heal more,
 deal more damage,
-take less damage."
+take less damage,
+faster cooldowns."
 text = "Easy"
 script = ExtResource("1_c1t4o")
 
@@ -55,7 +56,9 @@ script = ExtResource("2_c62cw")
 
 [node name="Hard" type="Button" parent="BoxContainer"]
 layout_mode = 2
-tooltip_text = "Take more damage and no more healing :)"
+tooltip_text = "Take more damage,
+no more healing,
+and slower cooldowns >:)"
 disabled = true
 text = "Hard"
 script = ExtResource("4_5k37x")

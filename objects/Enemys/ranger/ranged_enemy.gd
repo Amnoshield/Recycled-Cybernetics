@@ -59,6 +59,6 @@ func change_idle_dir():
 
 
 func die():
-	dying = false
+	dying = true
 	Tracker.remove_enemy(self)
 	self.queue_free()

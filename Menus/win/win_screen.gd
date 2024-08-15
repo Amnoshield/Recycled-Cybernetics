@@ -15,6 +15,7 @@ func _ready():
 	
 	
 	save_file = FileAccess.open("user://unlocks.save", FileAccess.WRITE)
+	print(Tracker.difficulty, defficulty_level)
 	if Tracker.difficulty == "easy" and defficulty_level == 1:
 		save_file.store_8(2)
 	elif Tracker.difficulty == "normal" and defficulty_level == 2:

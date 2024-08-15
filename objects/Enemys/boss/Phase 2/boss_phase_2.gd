@@ -27,11 +27,11 @@ var health = 10
 var max_health = 10
 var speed = 100
 var knockback_res = 1
-var dash_cooldown = 1.0
-var attack_cooldown = 1.0
-var damage = 5
+var dash_cooldown = 2.0
+var attack_cooldown = 2.0
+var damage = 3
 var entity_knockback = 1500
-var parry_cooldown = 1.0
+var parry_cooldown = 2.0
 var damage_res = 0
 
 

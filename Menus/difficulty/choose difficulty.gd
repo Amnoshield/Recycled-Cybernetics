@@ -8,10 +8,18 @@ func _ready():
 		save_file_write.store_8(1)
 		save_file_write.close()
 	
+	
 	var save_file = FileAccess.open("user://unlocks.save", FileAccess.READ)
 	var defficulty_level = save_file.get_8()
 	save_file.close()
 	
+	
+	if defficulty_level == 0:
+		var save_file_write = FileAccess.open("user://unlocks.save", FileAccess.WRITE)
+		save_file_write.store_8(1)
+		save_file_write.close()
+	
+
 	if defficulty_level >= 2:
 		$BoxContainer/Normal.disabled = false
 	if defficulty_level >= 3:
