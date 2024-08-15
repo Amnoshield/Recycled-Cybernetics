@@ -81,7 +81,7 @@ func take_damage(oof_damage:int, new_knockback):
 	health -= oof_damage
 	knockback =  new_knockback*knockback_res
 	dashing_frame = dashing_frames #This sould be used at the end of the dashing / attacking state
-	$State_Machine.overide_state("p2_Knockback")
+	$State_Machine.trigger_knockback()
 	
 	if health <= 0:
 		call_deferred("die")

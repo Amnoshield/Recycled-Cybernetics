@@ -99,7 +99,6 @@ func change_idle_dir():
 
 
 func _on_attack_box_area_entered(area): #this should only apply to the player
-	print("delt damage")
 	attacking_frame = attacking_frames
 	area.take_damage(
 		damage+rng.randi_range(-1, 1),
@@ -120,5 +119,5 @@ func _on_rng_attack_timeout():
 
 
 func start_rng_attack():
-	$"rng attack".wait_time = rng.randf_range(0.3, 3)
+	$"rng attack".wait_time = rng.randf_range(0.5, 3.5)
 	$"rng attack".start()

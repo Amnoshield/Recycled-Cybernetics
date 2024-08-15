@@ -22,7 +22,6 @@ var walk_speed = 40
 var attack_player = false
 var knockback = Vector2(0, 0)
 var rng = RandomNumberGenerator.new()
-var dying = false
 
 
 func _ready():
@@ -41,9 +40,6 @@ func _physics_process(_delta):
 
 
 func take_damage(oof_damage:int, new_knockback):
-	if dying:
-		return
-	
 	if oof_damage:
 		$hurtbox/AudioStreamPlayer.play()
 	else:
@@ -55,7 +51,7 @@ func take_damage(oof_damage:int, new_knockback):
 	$"State Machine".trigger_knockback()
 	
 	if health <= 0:
-		die()
+		call_deferred("die")
 
 
 func _on_attack_area_entered(_area):
@@ -82,7 +78,9 @@ func _on_attack_area_exited(_area):
 
 
 func die():
-	dying = true
+	$CollisionShape2D.disabled = true
+	$attack/CollisionShape2D.disabled = true
+	$hurtbox/CollisionShape2D.disabled = true
 	$AnimatedSprite2D/AnimationPlayer.play("die")
 
 

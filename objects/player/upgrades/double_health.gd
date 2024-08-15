@@ -3,7 +3,7 @@ extends Node
 
 var part_sprite = "res://assets/ui/abilities/circut board.png"
 var title = "Double Health"
-var discription = """Doubles your max and current health"""
+var discription = """Doubles your health"""
 var background_sprite = null
 
 

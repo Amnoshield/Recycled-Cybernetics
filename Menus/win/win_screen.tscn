@@ -84,10 +84,10 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="you died" type="Label" parent="."]
-offset_left = 477.0
+offset_left = 421.0
 offset_top = 176.0
-offset_right = 653.0
-offset_bottom = 206.0
+offset_right = 695.0
+offset_bottom = 208.0
 tooltip_text = "ծ_o"
 mouse_filter = 0
 text = "Did you like our game?"

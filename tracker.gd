@@ -167,20 +167,25 @@ func player_reset():
 	
 	player_speed = 100
 	player_knockback_res = 1
-	player_dash_cooldown = 1.
-	player_attack_cooldown = 1.
-	
 	player_knockback = 1000
-	player_parry_cooldown = 1.
 	
 	
 	if difficulty == "easy":
+		player_dash_cooldown = 0.8
+		player_attack_cooldown = 0.8
+		player_parry_cooldown = 0.8
 		player_damage = 3
 		player_damage_res = 1
 	elif difficulty == "normal" or difficulty == "one shot":
+		player_dash_cooldown = 1.
+		player_attack_cooldown = 1.
+		player_parry_cooldown = 1.
 		player_damage = 2
 		player_damage_res = 0
 	elif difficulty == "hard":
+		player_dash_cooldown = 1.2
+		player_attack_cooldown = 1.2
+		player_parry_cooldown = 1.2
 		player_damage = 2
 		player_damage_res = -1
 
