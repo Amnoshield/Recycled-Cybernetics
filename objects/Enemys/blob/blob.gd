@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var attack_cooldown_timer:Timer = $attack_cooldown
 @onready var idle_direction = change_idle_dir()
 var player_hurt_box
+var dying = false
 
 
 var speed = 80
@@ -40,6 +41,9 @@ func _physics_process(_delta):
 
 
 func take_damage(oof_damage:int, new_knockback):
+	if dying:
+		return
+	
 	if oof_damage:
 		$hurtbox/AudioStreamPlayer.play()
 	else:
@@ -51,6 +55,7 @@ func take_damage(oof_damage:int, new_knockback):
 	$"State Machine".trigger_knockback()
 	
 	if health <= 0:
+		dying = true
 		call_deferred("die")
 
 
