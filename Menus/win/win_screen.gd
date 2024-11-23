@@ -3,6 +3,12 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	save_difficulty()
+	SpeedrunTimer.save()
+	$"you won".text = "You beat " + Tracker.difficulty + " mode"
+	
+	
+func save_difficulty():
 	if not FileAccess.file_exists("user://unlocks.save"):
 		print("file not found {0}, making a new one".format(["user://unlocks.save"]))
 		var save_file_write = FileAccess.open("user://unlocks.save", FileAccess.WRITE)
@@ -20,6 +26,7 @@ func _ready():
 		save_file.store_8(2)
 	elif Tracker.difficulty == "normal" and defficulty_level == 2:
 		save_file.store_8(3)
+	elif Tracker.difficulty == "hard" and defficulty_level == 3:
+		save_file.store_8(4)
 	
 	save_file.close()
-

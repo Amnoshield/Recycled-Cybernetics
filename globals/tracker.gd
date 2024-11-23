@@ -92,7 +92,8 @@ func _process(_delta):
 			start_part_pick()
 
 
-func spawn_enemies():
+func start_level():
+	#activate spawners
 	for enemy in spawners:
 		if is_instance_valid(enemy):
 			enemy.spawnable = true
@@ -135,6 +136,8 @@ func boss_intro():
 
 
 func trigger_next_level():
+	SpeedrunTimer.new_split()
+	
 	go_next_level = true
 	current_level_level += 1
 	if current_level_level == 1:#level 1
@@ -202,6 +205,8 @@ func reset():
 	player_max_health = default_health
 	player_health = default_health
 	
+	SpeedrunTimer.reset()
+	
 	player_reset()
 	
 	num_enemies = 0
@@ -230,4 +235,3 @@ func apply_upgrade(entity):
 func apply_upgrades(entity):
 	for upgrade in chosen_upgrades:
 		upgrade["obj"].affect(entity)
-

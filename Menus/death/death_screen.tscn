@@ -49,29 +49,24 @@ vertical = true
 layout_mode = 2
 tooltip_text = "Get good bro"
 mouse_filter = 0
-text = "L + skill issue"
+text = "You died"
 label_settings = SubResource("LabelSettings_wkak7")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="you died" type="Label" parent="BoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="BoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-mouse_filter = 0
-text = "You died..."
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Back to main menu" type="Button" parent="BoxContainer"]
 layout_mode = 2
-tooltip_text = "This takes you back to the main menu."
 text = "Back to main menu
 "
 script = ExtResource("2_6vvyh")
 
 [node name="Exit" type="Button" parent="BoxContainer"]
 layout_mode = 2
-tooltip_text = "Wimp"
 text = "Exit
 "
 script = ExtResource("2_is73b")

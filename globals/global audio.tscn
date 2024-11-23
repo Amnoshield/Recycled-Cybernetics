@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwx2ke5j4u5ek"]
 
-[ext_resource type="Script" path="res://global audio.gd" id="1_1b4ms"]
+[ext_resource type="Script" path="res://globals/global audio.gd" id="1_1b4ms"]
 [ext_resource type="AudioStream" uid="uid://bih7dr6i5xbrh" path="res://assets/Not ours/sound/street-fight-115554.mp3" id="1_gl8je"]
 [ext_resource type="AudioStream" uid="uid://bxu00ejdcbfag" path="res://assets/Not ours/sound/forest-wind-and-birds-6881.mp3" id="1_hyab1"]
 [ext_resource type="AudioStream" uid="uid://di0edwna5q1mq" path="res://assets/Not ours/sound/digital-duel-electronic-fight-song-198050.mp3" id="2_45dm4"]

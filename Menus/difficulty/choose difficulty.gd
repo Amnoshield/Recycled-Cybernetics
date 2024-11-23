@@ -27,4 +27,3 @@ func _ready():
 	if defficulty_level >= 4:
 		$"BoxContainer/One shot".disabled = false
 	
-
