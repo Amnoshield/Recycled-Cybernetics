@@ -96,4 +96,3 @@ func change_idle_dir():
 func _on_animation_player_animation_finished(_die): #kill the enemy after death enimation
 	Tracker.remove_enemy(self)
 	queue_free()
-

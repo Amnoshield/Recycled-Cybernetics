@@ -105,5 +105,3 @@ func die():
 
 func _on_parry_deration_timeout():
 	parrying = false
-
-

@@ -515,7 +515,6 @@ _data = {
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("9_racy8")
-stream_0/weight = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_leg2b"]
 radius = 36.0
@@ -640,25 +639,21 @@ _data = {
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("26_x1rkr")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c5b6p"]
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("27_vli3e")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_eu0rm"]
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("28_vdejv")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bgjyp"]
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("29_27ax3")
-stream_0/weight = 1.0
 
 [node name="boss phase 3" type="CharacterBody2D" groups=["boss"]]
 z_index = 3

@@ -394,7 +394,6 @@ height = 28.0
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("7_onnda")
-stream_0/weight = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ajsm"]
 height = 26.0
@@ -407,13 +406,11 @@ height = 28.0
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("14_y0f5g")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j0cuc"]
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("16_ndgs0")
-stream_0/weight = 1.0
 
 [node name="fighter enemy" type="CharacterBody2D"]
 z_index = 3

@@ -945,7 +945,6 @@ _data = {
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("25_m76pr")
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_24u2m"]
 resource_name = "Dash"
@@ -988,19 +987,16 @@ _data = {
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("28_27ug1")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_njsgk"]
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("28_e1kih")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1l6tq"]
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("30_0hpy0")
-stream_0/weight = 1.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 100

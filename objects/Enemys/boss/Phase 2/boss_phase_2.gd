@@ -100,4 +100,3 @@ func die():
 	p3.global_position = global_position
 	get_node("..").add_child(p3)
 	self.queue_free()
-
