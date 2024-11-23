@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjke165hnb1ua"]
+[gd_scene load_steps=12 format=3 uid="uid://cjke165hnb1ua"]
 
+[ext_resource type="Script" path="res://objects/ui/timer.gd" id="1_k7md8"]
 [ext_resource type="Script" path="res://objects/ui/minimap.gd" id="2_1fe7h"]
 [ext_resource type="PackedScene" uid="uid://c78t5crfo0mc4" path="res://objects/ui/enemy_marker.tscn" id="3_un4ku"]
 [ext_resource type="FontFile" uid="uid://sl08fd13yipe" path="res://assets/fonts/dogicapixel.otf" id="4_1rivu"]
@@ -15,13 +16,49 @@ font = ExtResource("4_1rivu")
 
 [node name="ui" type="CanvasLayer"]
 
-[node name="minimap" type="ReferenceRect" parent="."]
+[node name="Timer" type="ReferenceRect" parent="."]
+process_priority = -200
 offset_left = 41.0
-offset_top = 33.0
+offset_top = 11.0
 offset_right = 241.0
-offset_bottom = 233.0
+offset_bottom = 51.0
 mouse_filter = 2
 border_width = 2.0
+script = ExtResource("1_k7md8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Timer"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="min" type="Label" parent="Timer/HBoxContainer"]
+layout_mode = 2
+text = "00:"
+vertical_alignment = 2
+
+[node name="sec" type="Label" parent="Timer/HBoxContainer"]
+layout_mode = 2
+text = "00."
+vertical_alignment = 2
+
+[node name="msec" type="Label" parent="Timer/HBoxContainer"]
+layout_mode = 2
+text = "00"
+vertical_alignment = 2
+
+[node name="minimap" type="ReferenceRect" parent="."]
+offset_left = 41.0
+offset_top = 53.0
+offset_right = 241.0
+offset_bottom = 253.0
+mouse_filter = 2
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="minimap"]
 layout_mode = 0
@@ -50,9 +87,9 @@ texture = ExtResource("4_4c4r1")
 
 [node name="enemy counter" type="ReferenceRect" parent="."]
 offset_left = 41.0
-offset_top = 233.0
+offset_top = 253.0
 offset_right = 241.0
-offset_bottom = 273.0
+offset_bottom = 293.0
 mouse_filter = 2
 border_width = 2.0
 

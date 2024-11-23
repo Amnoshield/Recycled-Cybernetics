@@ -18,8 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Tracker="*res://tracker.gd"
-GlobalAudio="*res://global audio.tscn"
+Tracker="*res://globals/tracker.gd"
+GlobalAudio="*res://globals/global audio.tscn"
+SpeedrunTimer="*res://globals/speedrun_timer.gd"
 
 [display]
 

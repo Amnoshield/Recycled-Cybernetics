@@ -7,7 +7,11 @@ extends Area2D
 func take_damage(damage:int, knockback, parry_sound_node):
 	if player.parrying:
 		parry_sound_node.play()
-		$"../parry/parry ani".play("parry")
+		call_deferred("trigger_parry_ani")
 		$"../parry".add_knockback(knockback.length())
 	else:
 		player.take_damage(damage, knockback)
+
+
+func trigger_parry_ani():
+	$"../parry/parry ani".play("parry")

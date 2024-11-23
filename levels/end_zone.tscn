@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dg4yl7masox37"]
+[gd_scene load_steps=12 format=4 uid="uid://dg4yl7masox37"]
 
 [ext_resource type="TileSet" uid="uid://dehtu0x07meao" path="res://assets/tiles/TileSet1.tres" id="1_qw54j"]
 [ext_resource type="Script" path="res://levels/blocker.gd" id="2_plt43"]
@@ -54,14 +54,15 @@ _data = {
 z_index = 3
 rotation = 3.14159
 
-[node name="walls" type="TileMap" parent="."]
+[node name="walls2" type="TileMapLayer" parent="."]
+z_index = 5
+use_parent_material = true
+tile_map_data = PackedByteArray("AAABAP7/AgACAAAAAAABAP//AgACAAEAAAABAAAAAgACAAEAAAABAAEAAgABAAIAAAD+//7/AgAFAAAAAAD+////AgAFAAEAAAD+/wAAAgAFAAEAAAD+/wEAAgAAAAIAAAD//wEAAgADAAAAAAAAAAEAAgADAAAAAAA=")
 tile_set = ExtResource("1_qw54j")
-format = 2
-layer_0/name = "walls"
-layer_0/z_index = 5
-layer_0/tile_data = PackedInt32Array(-131071, 131074, 0, -65535, 131074, 1, 1, 131074, 1, 65537, 65538, 2, -65538, 327682, 0, -2, 327682, 1, 65534, 327682, 1, 131070, 2, 2, 131071, 196610, 0, 65536, 196610, 0)
-layer_1/name = "floor"
-layer_1/tile_data = PackedInt32Array()
+
+[node name="floor" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("1_qw54j")
 
 [node name="blocker" type="StaticBody2D" parent="."]
 position = Vector2(0, -48)
