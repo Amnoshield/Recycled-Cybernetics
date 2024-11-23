@@ -1,6 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cxcwkhnssnixn"]
+[gd_scene load_steps=23 format=3 uid="uid://cxcwkhnssnixn"]
 
 [ext_resource type="Script" path="res://Menus/main/main_menu.gd" id="1_0nven"]
+[ext_resource type="Texture2D" uid="uid://buv2spj5woguc" path="res://assets/maxes asprite stuff (ignore this)/clounds.png" id="2_amsfi"]
+[ext_resource type="Texture2D" uid="uid://hlnhwgqibhyu" path="res://assets/maxes asprite stuff (ignore this)/start screen 2.png" id="2_e514p"]
 [ext_resource type="Script" path="res://Menus/main/Start.gd" id="2_j1jsv"]
 [ext_resource type="Script" path="res://Menus/main/Quit.gd" id="3_p8ei8"]
 [ext_resource type="PackedScene" uid="uid://drntx8rv725jw" path="res://Menus/difficulty/choose difficulty.tscn" id="3_wxxkv"]
@@ -22,6 +24,44 @@ colors = PackedColorArray(0, 0, 0, 1, 0.363636, 0.363636, 0.363636, 1, 0.784314,
 gradient = SubResource("Gradient_lrdee")
 fill_from = Vector2(0, 1)
 
+[sub_resource type="Animation" id="Animation_3d2s3"]
+resource_name = "clouds"
+length = 200.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("clouds:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 200),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 194), Vector2(2455, 194)]
+}
+
+[sub_resource type="Animation" id="Animation_adegy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("clouds:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 179)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sa2mc"]
+_data = {
+"RESET": SubResource("Animation_adegy"),
+"clouds": SubResource("Animation_3d2s3")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_fspy0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qy2q"]
@@ -34,10 +74,27 @@ shadow_offset = Vector2(2, 2)
 process_mode = 3
 script = ExtResource("1_0nven")
 
+[node name="clouds" type="Sprite2D" parent="."]
+position = Vector2(32, 179)
+texture = ExtResource("2_amsfi")
+
+[node name="backround remade" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(596, 299)
+scale = Vector2(1.9, 1.9)
+texture = ExtResource("2_e514p")
+
 [node name="backround" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(576, 324)
 scale = Vector2(18, 10.125)
 texture = SubResource("GradientTexture2D_pqmtd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sa2mc")
+}
+autoplay = "clouds"
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 offset_left = 427.0
