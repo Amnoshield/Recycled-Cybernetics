@@ -16,48 +16,79 @@ font = ExtResource("4_1rivu")
 
 [node name="ui" type="CanvasLayer"]
 
-[node name="Timer" type="ReferenceRect" parent="."]
+[node name="Timer" type="ReferenceRect" parent="." node_paths=PackedStringArray("label_current_min", "label_current_sec", "label_current_msec", "label_split_plus", "label_split_min", "label_split_sec", "label_split_msec", "split_section")]
 process_priority = -200
 offset_left = 41.0
 offset_top = 11.0
 offset_right = 241.0
-offset_bottom = 51.0
+offset_bottom = 83.0
 mouse_filter = 2
 border_width = 2.0
 script = ExtResource("1_k7md8")
+label_current_min = NodePath("VBoxContainer/current time/min")
+label_current_sec = NodePath("VBoxContainer/current time/sec")
+label_current_msec = NodePath("VBoxContainer/current time/msec")
+label_split_plus = NodePath("VBoxContainer/last split/+-")
+label_split_min = NodePath("VBoxContainer/last split/min")
+label_split_sec = NodePath("VBoxContainer/last split/sec")
+label_split_msec = NodePath("VBoxContainer/last split/msec")
+split_section = NodePath("VBoxContainer/last split")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Timer"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Timer"]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 68.0
 alignment = 1
 
-[node name="min" type="Label" parent="Timer/HBoxContainer"]
+[node name="current time" type="HBoxContainer" parent="Timer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="min" type="Label" parent="Timer/VBoxContainer/current time"]
 layout_mode = 2
 text = "00:"
 vertical_alignment = 2
 
-[node name="sec" type="Label" parent="Timer/HBoxContainer"]
+[node name="sec" type="Label" parent="Timer/VBoxContainer/current time"]
 layout_mode = 2
 text = "00."
 vertical_alignment = 2
 
-[node name="msec" type="Label" parent="Timer/HBoxContainer"]
+[node name="msec" type="Label" parent="Timer/VBoxContainer/current time"]
+layout_mode = 2
+text = "00"
+vertical_alignment = 2
+
+[node name="last split" type="HBoxContainer" parent="Timer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="+-" type="Label" parent="Timer/VBoxContainer/last split"]
+layout_mode = 2
+text = "+-"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="min" type="Label" parent="Timer/VBoxContainer/last split"]
+layout_mode = 2
+text = "00:"
+vertical_alignment = 2
+
+[node name="sec" type="Label" parent="Timer/VBoxContainer/last split"]
+layout_mode = 2
+text = "00."
+vertical_alignment = 2
+
+[node name="msec" type="Label" parent="Timer/VBoxContainer/last split"]
 layout_mode = 2
 text = "00"
 vertical_alignment = 2
 
 [node name="minimap" type="ReferenceRect" parent="."]
 offset_left = 41.0
-offset_top = 53.0
+offset_top = 85.0
 offset_right = 241.0
-offset_bottom = 253.0
+offset_bottom = 285.0
 mouse_filter = 2
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="minimap"]
@@ -87,9 +118,9 @@ texture = ExtResource("4_4c4r1")
 
 [node name="enemy counter" type="ReferenceRect" parent="."]
 offset_left = 41.0
-offset_top = 253.0
+offset_top = 285.0
 offset_right = 241.0
-offset_bottom = 293.0
+offset_bottom = 325.0
 mouse_filter = 2
 border_width = 2.0
 
@@ -102,7 +133,7 @@ text = "Enemies left: 1"
 label_settings = SubResource("LabelSettings_mrlc8")
 script = ExtResource("5_nme5a")
 
-[node name="ReferenceRect" type="ReferenceRect" parent="."]
+[node name="level counter" type="ReferenceRect" parent="."]
 modulate = Color(1, 1, 1, 0.498039)
 offset_left = 482.0
 offset_top = 34.0
@@ -111,30 +142,30 @@ offset_bottom = 74.0
 mouse_filter = 2
 border_width = 2.0
 
-[node name="tracker1" type="Sprite2D" parent="ReferenceRect"]
+[node name="tracker1" type="Sprite2D" parent="level counter"]
 position = Vector2(20, 20)
 texture = ExtResource("7_bjew5")
 script = ExtResource("7_d8f8t")
 
-[node name="tracker2" type="Sprite2D" parent="ReferenceRect"]
+[node name="tracker2" type="Sprite2D" parent="level counter"]
 position = Vector2(55, 20)
 texture = ExtResource("7_bjew5")
 script = ExtResource("7_d8f8t")
 level = 1
 
-[node name="tracker3" type="Sprite2D" parent="ReferenceRect"]
+[node name="tracker3" type="Sprite2D" parent="level counter"]
 position = Vector2(90, 20)
 texture = ExtResource("7_bjew5")
 script = ExtResource("7_d8f8t")
 level = 2
 
-[node name="tracker4" type="Sprite2D" parent="ReferenceRect"]
+[node name="tracker4" type="Sprite2D" parent="level counter"]
 position = Vector2(125, 20)
 texture = ExtResource("7_bjew5")
 script = ExtResource("7_d8f8t")
 level = 3
 
-[node name="tracker5" type="Sprite2D" parent="ReferenceRect"]
+[node name="tracker5" type="Sprite2D" parent="level counter"]
 position = Vector2(160, 20)
 texture = ExtResource("7_q4quk")
 script = ExtResource("7_d8f8t")

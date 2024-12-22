@@ -8,9 +8,7 @@
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_htlio"]
 streams_count = 2
 stream_0/stream = ExtResource("1_gl8je")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("2_45dm4")
-stream_1/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_s0bvp"]
 length = 0.001
@@ -67,5 +65,6 @@ libraries = {
 stream = ExtResource("1_hyab1")
 volume_db = -15.0
 autoplay = true
+bus = &"Background music"
 
 [connection signal="animation_finished" from="fighting music/blend" to="." method="_on_blend_animation_finished"]

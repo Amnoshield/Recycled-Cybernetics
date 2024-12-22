@@ -1,20 +1,7 @@
 extends Button
 
-
 var hovered = false
-
-
-func load_main_menu():
-	get_tree().change_scene_to_file("res://Menus/main/main_menu.tscn")
-
-
-func _on_pressed():
-	load_main_menu()
-
-
-func _on_exit_pressed():
-	load_main_menu()
-
+@export_file(".tscn") var main_menu:String
 
 func _on_draw():
 	if is_hovered() and not hovered:
@@ -24,3 +11,7 @@ func _on_draw():
 		$"../../click".play()
 	elif not is_hovered() and hovered:
 		hovered = false
+
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(main_menu)

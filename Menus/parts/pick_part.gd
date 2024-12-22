@@ -32,5 +32,3 @@ func _ready():
 			temp_part.background_sprite,
 			parts[part_idx],
 			idx2)
-
-

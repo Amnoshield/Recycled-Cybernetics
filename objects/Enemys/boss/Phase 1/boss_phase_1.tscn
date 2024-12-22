@@ -470,19 +470,16 @@ _data = {
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("13_tel8o")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nsovt"]
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("14_532sw")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dl8qm"]
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("16_b65g7")
-stream_0/weight = 1.0
 
 [node name="boss phase 1" type="CharacterBody2D" groups=["boss"]]
 z_index = 3

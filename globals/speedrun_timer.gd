@@ -3,6 +3,7 @@ extends Node
 var timer
 var time: float = 0.0
 var splits:Array = []
+var last_split: float = 0.0
 
 
 func start_timer():
@@ -10,12 +11,18 @@ func start_timer():
 
 
 func new_split():
-	var old_total = 0
-	for t in splits:
-		old_total += t
-	splits.append(time-old_total)
-
-	print(splits[-1])
+	splits.append(time)
+	
+	var record_file = "user://"+Tracker.difficulty+"_record.save"
+	if FileAccess.file_exists(record_file):
+		var read_file = FileAccess.open(record_file, FileAccess.READ)
+		var old_splits = read_file.get_var()["splits"]
+		
+		var old_split = old_splits[len(splits)-1]
+		last_split = time-old_split
+		print(last_split)
+		
+		read_file.close()
 
 
 func save():
@@ -42,3 +49,4 @@ func save():
 func reset():
 	time = 0.0
 	splits = []
+	last_split = 0.0

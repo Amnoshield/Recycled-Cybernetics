@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://drntx8rv725jw"]
+[gd_scene load_steps=12 format=3 uid="uid://drntx8rv725jw"]
 
 [ext_resource type="Script" path="res://Menus/difficulty/choose difficulty.gd" id="1_2fpg0"]
 [ext_resource type="Script" path="res://Menus/difficulty/Easy.gd" id="1_c1t4o"]
 [ext_resource type="Script" path="res://Menus/difficulty/Normal.gd" id="2_c62cw"]
 [ext_resource type="Script" path="res://Menus/difficulty/Hard.gd" id="4_5k37x"]
 [ext_resource type="Script" path="res://Menus/difficulty/One shot.gd" id="5_b1naq"]
+[ext_resource type="Script" path="res://Menus/difficulty/back_to_main_menu.gd" id="8_2bx0w"]
 [ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="10_logcu"]
 [ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="11_064n0"]
 
@@ -81,9 +82,20 @@ vertical_alignment = 1
 [node name="sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_logcu")
 volume_db = -10.0
+bus = &"Menu"
 
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_064n0")
+bus = &"Menu"
+
+[node name="Back to main menu" type="Button" parent="."]
+offset_left = 457.0
+offset_top = 512.0
+offset_right = 687.0
+offset_bottom = 542.0
+text = "Back to main menu"
+script = ExtResource("8_2bx0w")
+main_menu = "res://Menus/main/main_menu.tscn"
 
 [connection signal="draw" from="BoxContainer/Easy" to="BoxContainer/Easy" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Easy" to="BoxContainer/Easy" method="_on_pressed"]
@@ -93,3 +105,4 @@ stream = ExtResource("11_064n0")
 [connection signal="pressed" from="BoxContainer/Hard" to="BoxContainer/Hard" method="_on_pressed"]
 [connection signal="draw" from="BoxContainer/One shot" to="BoxContainer/One shot" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/One shot" to="BoxContainer/One shot" method="_on_pressed"]
+[connection signal="pressed" from="Back to main menu" to="Back to main menu" method="_on_pressed"]

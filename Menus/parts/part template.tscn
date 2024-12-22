@@ -63,9 +63,11 @@ script = ExtResource("2_xqwpl")
 [node name="sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_nv0yn")
 volume_db = -10.0
+bus = &"Menu"
 
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_eq6m5")
+bus = &"Menu"
 
 [connection signal="draw" from="Take" to="Take" method="_on_draw"]
 [connection signal="pressed" from="Take" to="." method="_on_take_pressed"]

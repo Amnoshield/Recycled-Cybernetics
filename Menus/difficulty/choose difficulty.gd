@@ -15,6 +15,7 @@ func _ready():
 	
 	
 	if defficulty_level == 0:
+		push_error("This should not run")
 		var save_file_write = FileAccess.open("user://unlocks.save", FileAccess.WRITE)
 		save_file_write.store_8(1)
 		save_file_write.close()

@@ -74,9 +74,11 @@ script = ExtResource("2_is73b")
 [node name="sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_hnb74")
 volume_db = -10.0
+bus = &"Menu"
 
 [node name="click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1671d")
+bus = &"Menu"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
