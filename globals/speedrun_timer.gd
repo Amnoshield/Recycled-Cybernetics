@@ -4,6 +4,7 @@ var timer
 var time: float = 0.0
 var splits:Array = []
 var last_split: float = 0.0
+var new_pb = false
 
 
 func start_timer():
@@ -31,6 +32,8 @@ func save():
 	var record_file = "user://"+Tracker.difficulty+"_record.save"
 	
 	if not FileAccess.file_exists(record_file):
+		new_pb = true
+		
 		print("file not found {0}, making a new one".format([record_file]))
 		var save_file = FileAccess.open(record_file, FileAccess.WRITE)
 		save_file.store_var({"splits":splits, "time":time})
@@ -41,12 +44,15 @@ func save():
 		read_file.close()
 		
 		if old_time < time:
+			new_pb = true
 			var save_file = FileAccess.open(record_file, FileAccess.WRITE)
 			
 			save_file.store_var(splits)
+			save_file.close()
 
 
 func reset():
 	time = 0.0
 	splits = []
 	last_split = 0.0
+	new_pb = false

@@ -35,41 +35,86 @@ texture = SubResource("GradientTexture2D_2i55h")
 offset_left = 427.0
 offset_top = 176.0
 offset_right = 730.0
-offset_bottom = 413.0
+offset_bottom = 377.0
 vertical = true
 
-[node name="Easy" type="Button" parent="BoxContainer"]
+[node name="Easy" type="Button" parent="BoxContainer" node_paths=PackedStringArray("click_sound", "sfx_sound")]
 layout_mode = 2
 tooltip_text = "More health,
 heal more,
 deal more damage,
 take less damage,
 faster cooldowns."
-text = "Easy"
+text = "Easy
+Best Time: 00: 00. 000"
 script = ExtResource("1_c1t4o")
+click_sound = NodePath("../../click")
+sfx_sound = NodePath("../../sfx")
 
-[node name="Normal" type="Button" parent="BoxContainer"]
+[node name="Panel" type="Panel" parent="BoxContainer/Easy"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 27.0
+offset_right = 297.0
+offset_bottom = 49.0
+size_flags_vertical = 3
+
+[node name="Normal" type="Button" parent="BoxContainer" node_paths=PackedStringArray("click_sound", "sfx_sound")]
 layout_mode = 2
 tooltip_text = "Normal"
 disabled = true
-text = "Normal"
+text = "Normal
+Best Time: 00: 00. 000"
 script = ExtResource("2_c62cw")
+click_sound = NodePath("../../click")
+sfx_sound = NodePath("../../sfx")
 
-[node name="Hard" type="Button" parent="BoxContainer"]
+[node name="Panel" type="Panel" parent="BoxContainer/Normal"]
+show_behind_parent = true
+offset_left = 6.0
+offset_top = 27.0
+offset_right = 297.0
+offset_bottom = 49.0
+size_flags_vertical = 3
+
+[node name="Hard" type="Button" parent="BoxContainer" node_paths=PackedStringArray("click_sound", "sfx_sound")]
 layout_mode = 2
 tooltip_text = "Take more damage,
 no more healing,
 and slower cooldowns >:)"
 disabled = true
-text = "Hard"
+text = "Hard
+Best Time: 00: 00. 000"
 script = ExtResource("4_5k37x")
+click_sound = NodePath("../../click")
+sfx_sound = NodePath("../../sfx")
 
-[node name="One shot" type="Button" parent="BoxContainer"]
+[node name="Panel" type="Panel" parent="BoxContainer/Hard"]
+show_behind_parent = true
+offset_left = 6.0
+offset_top = 27.0
+offset_right = 297.0
+offset_bottom = 49.0
+size_flags_vertical = 3
+
+[node name="One shot" type="Button" parent="BoxContainer" node_paths=PackedStringArray("click_sound", "sfx_sound")]
 layout_mode = 2
 tooltip_text = "You have one health >:)"
 disabled = true
-text = "One shot"
+text = "One Shot
+Best Time: 00: 00. 000"
 script = ExtResource("5_b1naq")
+click_sound = NodePath("../../click")
+sfx_sound = NodePath("../../sfx")
+
+[node name="Panel" type="Panel" parent="BoxContainer/One shot"]
+show_behind_parent = true
+offset_left = 6.0
+offset_top = 27.0
+offset_right = 297.0
+offset_bottom = 49.0
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="."]
 offset_right = 1153.0
