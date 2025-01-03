@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b260841kkr4fa"]
+[gd_scene load_steps=12 format=4 uid="uid://b260841kkr4fa"]
 
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_uwrox"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_3w8fc"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cuqr8ovfm68t3" path="res://objects/Enemys/ranger/ranged_enemy.tscn" id="7_irqjp"]
 [ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/Enemys/fighter/fighter_enemy.tscn" id="8_ajbge"]
 [ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/blob.tscn" id="9_ehq06"]
+[ext_resource type="PackedScene" uid="uid://bhfib5np8qn3" path="res://objects/other/Barrel.tscn" id="10_wnocw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(896, -805, 862, -805, 862, -839, 896, -839, 1024, -503, 1024, -197, 990, -245, 990, -311, 974, -197, 976, -231, 862, -231, 960, -183, 862, -149, 960, -69, 848, -135, 1280, -743, 1280, -629, 1246, -629, 1246, -695, 1232, -709, 910, -743, 1038, -709, 1024, -695, 976, -709, 862, -744, 1182, -565, 1182, -615, 1232, -615, 1294, -615, 1376, -615, 1376, -389, 1182, -389, 1182, -503, 1168, -551, 1168, -517, 1038, -551, 1038, -517, 654, -231, 768, -231, 768, -149, 606, -69, 286, -565, 286, -679, 576, -679, 576, -629, 768, -615, 768, -373, 734, -373, 734, -567, 720, -581, 590, -615, 590, -581, 576, -567, 576, -517, 142, -517, 272, -551, 862, -709, 782, -135, 640, -245, 606, -311, 640, -311, 1024, -565, 654, -325, 592, -325, 270, -325, 260, -315, 218, -315, 208, -325, 720, -359, 782, -359, 909, -744, 990, -695, 990, -373, 976, -325, 976, -359, 142, -359, 94, -325, 128, -373, 94, -551, 128, -503)
@@ -130,3 +131,92 @@ enemies = Array[PackedScene]([ExtResource("9_ehq06"), ExtResource("8_ajbge"), Ex
 [node name="enemy_spawner23" parent="enemies" instance=ExtResource("6_pjhdv")]
 position = Vector2(947, -287)
 enemies = Array[PackedScene]([ExtResource("9_ehq06"), ExtResource("8_ajbge"), ExtResource("7_irqjp"), null])
+
+[node name="barrels" type="Node" parent="."]
+
+[node name="Barrel" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(360.08, -275.838)
+
+[node name="Barrel2" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(357.408, -505.689)
+
+[node name="Barrel3" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(552.514, -631.306)
+
+[node name="Barrel4" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(574.787, -629.524)
+
+[node name="Barrel5" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(550.733, -611.706)
+
+[node name="Barrel6" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(840.275, -633.088)
+
+[node name="Barrel7" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(842.947, -468.271)
+
+[node name="Barrel8" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(811.766, -467.381)
+
+[node name="Barrel9" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(814.439, -633.979)
+
+[node name="Barrel10" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1038.95, -570.725)
+
+[node name="Barrel11" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(730, -270)
+
+[node name="Barrel12" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(728.021, -290.984)
+
+[node name="Barrel13" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(730.694, -310.583)
+
+[node name="Barrel14" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(868.5, -17.8874)
+
+[node name="Barrel15" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(888.143, -16.2037)
+
+[node name="Barrel16" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(868.5, -38.653)
+
+[node name="Barrel17" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1037.99, -184.063)
+
+[node name="Barrel18" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1123.74, -183.94)
+
+[node name="Barrel19" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1228.25, -15.6425)
+
+[node name="Barrel20" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1208.04, -18.4485)
+
+[node name="Barrel21" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1292.79, -142.48)
+
+[node name="Barrel22" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1445.45, -338.35)
+
+[node name="Barrel23" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1645.24, -337.228)
+
+[node name="Barrel24" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1619.99, -340.595)
+
+[node name="Barrel25" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1641.32, -360.799)
+
+[node name="Barrel26" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1447.69, -567.893)
+
+[node name="Barrel27" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1643, -567.893)
+
+[node name="Barrel28" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1548.15, -696.976)
+
+[node name="Barrel29" parent="barrels" instance=ExtResource("10_wnocw")]
+position = Vector2(1128.91, -659.935)

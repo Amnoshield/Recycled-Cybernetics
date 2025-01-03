@@ -26,7 +26,12 @@ func _physics_process(_delta):
 	
 	velocity += Vector2(0, 1).rotated(fake_rotation)*speed
 	
-	if abs(rad_to_deg(velocity.angle_to(vec2))) > 90:
+	var leaving_player = abs(rad_to_deg(velocity.angle_to(vec2))) > 90
+	var far_from_player = (player.global_position - global_position).length() > 50
+	var too_fast = velocity.length() > max_speed
+	if leaving_player and far_from_player and too_fast:
+		print((player.global_position - global_position))
+		
 		velocity = velocity.limit_length(max_speed)
 	
 	move_and_slide()

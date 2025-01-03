@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://qx2tnvc67rd7"]
+[gd_scene load_steps=10 format=4 uid="uid://qx2tnvc67rd7"]
 
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_j08lt"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_tu0wh"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://coeqejmi0xdc8" path="res://assets/tiles/TileSet2.tres" id="4_lw64u"]
 [ext_resource type="PackedScene" uid="uid://chrykf56drv22" path="res://objects/Enemys/enemy_spawner.tscn" id="6_qhumj"]
 [ext_resource type="PackedScene" uid="uid://d31bq328wfore" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.tscn" id="7_iapcs"]
+[ext_resource type="PackedScene" uid="uid://bhfib5np8qn3" path="res://objects/other/Barrel.tscn" id="8_2u1u1"]
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player/player.tscn" id="9_bmv48"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
@@ -62,3 +63,98 @@ position = Vector2(829, -20)
 [node name="enemy_spawner" parent="." instance=ExtResource("6_qhumj")]
 position = Vector2(828, -379)
 enemies = Array[PackedScene]([ExtResource("7_iapcs")])
+
+[node name="barrels" type="Node" parent="."]
+
+[node name="Barrel" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(1164, -82)
+
+[node name="Barrel2" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(483, -79)
+
+[node name="Barrel3" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(504, -79)
+
+[node name="Barrel4" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(482, -102)
+
+[node name="Barrel5" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(658, -408)
+
+[node name="Barrel6" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(659, -350)
+
+[node name="Barrel7" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(659, -383)
+
+[node name="Barrel8" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(485, -663)
+
+[node name="Barrel9" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(483.5, -637.5)
+
+[node name="Barrel10" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(508, -663.5)
+
+[node name="Barrel11" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(511.5, -639.5)
+
+[node name="Barrel12" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(797, -534)
+
+[node name="Barrel13" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(821, -534.5)
+
+[node name="Barrel14" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(845, -533)
+
+[node name="Barrel15" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(982, -402)
+
+[node name="Barrel16" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(982.163, -379.327)
+
+[node name="Barrel17" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(982, -355)
+
+[node name="Barrel18" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(940.632, -243.409)
+
+[node name="Barrel19" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(939, -268)
+
+[node name="Barrel20" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(964.482, -273.471)
+
+[node name="Barrel21" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(686.04, -273.471)
+
+[node name="Barrel22" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(704.939, -271.582)
+
+[node name="Barrel23" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(703.679, -247.643)
+
+[node name="Barrel24" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(1138.69, -81.1607)
+
+[node name="Barrel25" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(1164.25, -106.134)
+
+[node name="Barrel26" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(1141.66, -104.35)
+
+[node name="Barrel27" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(501.865, -102.566)
+
+[node name="Barrel28" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(1163.66, -665.062)
+
+[node name="Barrel29" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(1138.69, -663.278)
+
+[node name="Barrel30" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(1163, -641)
+
+[node name="Barrel31" parent="barrels" instance=ExtResource("8_2u1u1")]
+position = Vector2(1137.5, -645.44)

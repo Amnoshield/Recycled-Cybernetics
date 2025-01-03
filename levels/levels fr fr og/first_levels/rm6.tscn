@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b1j3fk8cyj14f"]
+[gd_scene load_steps=12 format=4 uid="uid://b1j3fk8cyj14f"]
 
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_t8k0s"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_45svx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/blob.tscn" id="7_o5lq6"]
 [ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/Enemys/fighter/fighter_enemy.tscn" id="8_4apxj"]
 [ext_resource type="PackedScene" uid="uid://cuqr8ovfm68t3" path="res://objects/Enemys/ranger/ranged_enemy.tscn" id="9_d5p2t"]
+[ext_resource type="PackedScene" uid="uid://bhfib5np8qn3" path="res://objects/other/Barrel.tscn" id="10_pccym"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(144, -613, 126, -613, 126, -615, 130, -615, 142, -627, 144, -631, 142, -631, 510, -501, 510, -631, 544, -631, 544, -357, 668, -693, 656, -681, 638, -693, 638, -777, 672, -807, 496, -487, 540, -357, -96, -231, -96, -99, -130, -117, -130, -183, -144, -197, -210, -231, -210, -197, 254, -373, 254, -503, 288, -375, 288, -341, 284, -341, 302, -389, 288, -437, 240, -359, 272, -329, 128, -935, 128, -821, 94, -821, 94, -887, 80, -901, -322, -935, 14, -901, -322, -931, 270, -819, 270, -823, 336, -823, 336, -819, 672, -693, 512, -777, 512, -773, 494, -773, 348, -807, 656, -645, 558, -645, 624, -679, 494, -679, 496, -645, 462, -645, 462, -649, 480, -693, 450, -661, 446, -661, 446, -759, 480, -759, 336, -761, 336, -757, 270, -757, 270, -761, 258, -807, 258, -773, -18, -773, -18, -777, 142, -807, 0, -821, -30, -789, -34, -789, -34, -887, 0, -887, -178, -679, -144, -679, -144, -581, -146, -581, -2, -551, 256, -551, 256, -531, 240, -517, 174, -517, 268, -519, 288, -519, 446, -437, 446, -455, 450, -455, 528, -345, 462, -467, 462, -471, 466, -471, 478, -483, 478, -487, 528, -341, 524, -341, 432, -423, 512, -329, 512, -325, 494, -325, 446, -375, 446, -181, 480, -311, 480, -181, 430, -69, 160, -503, 160, -373, 126, -373, 126, -503, 272, -325, 174, -325, 174, -359, 112, -359, 160, -311, 160, -245, 156, -245, 126, -311, 144, -233, 144, -229, 142, -229, 142, -233, 130, -245, 126, -245, 112, -325, 30, -325, 30, -329, 46, -359, 18, -341, 14, -341, 14, -345, 32, -373, 2, -357, -2, -357, -2, -375, -160, -375, -160, -341, -164, -341, -176, -329, -176, -325, -210, -325, -18, -99, -18, -103, 96, -103, 96, -53, 48, -69, 382, -53, 382, -167, 432, -167, 416, -55, 494, -167, 544, -167, 544, -69, 416, -21, 380, -21, 368, -39, 368, -9, 368, -5, 270, -5, 110, -39, 256, 123, 30, 123, 30, 89, 144, 89, 158, 75, 178, 73, 158, 73, 256, 9, 190, 61, 190, 23, 178, 11, 158, 11, 158, 9, 144, -5, 62, -5, 62, -55, -258, -69, -258, -487, -208, -487, -224, -311, -208, -581, -226, -581, -226, -585, -238, -597, -274, -597, -274, -679, -240, -679, -240, -773, -338, -773, -338, -777, -192, -887, -350, -789, -354, -789, -354, -903, -350, -903, -178, -901, -338, -915, -338, -919, -334, -919, 626, -789, 524, -789, 432, -773, 432, -389, 302, -423, -144, -103, -84, -87, -192, -693, -160, -567, -194, -567, -226, -693, -48, -901, 80, -807, 348, -773, 112, -517, 46, -517, 32, -503, -2, -437, -16, -423, -16, -389, -224, -245, -224, -183, 14, -807, -226, -759, -160, -437, -194, -501, -146, -389, -146, -423, -30, -87, -210, -103, -224, -117)
@@ -139,3 +140,158 @@ enemies = Array[PackedScene]([ExtResource("7_o5lq6")])
 [node name="enemy_spawner33" parent="enemies" instance=ExtResource("6_u8cas")]
 position = Vector2(466, -496)
 enemies = Array[PackedScene]([ExtResource("8_4apxj"), ExtResource("9_d5p2t"), null])
+
+[node name="barrels" type="Node" parent="."]
+
+[node name="Barrel" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(259.965, -505.562)
+
+[node name="Barrel2" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(559.6, -506.411)
+
+[node name="Barrel3" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(557.959, -286.489)
+
+[node name="Barrel4" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(539.778, -269.027)
+
+[node name="Barrel5" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(386.87, -387.011)
+
+[node name="Barrel6" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(409.523, -387.011)
+
+[node name="Barrel7" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(428.873, -388.899)
+
+[node name="Barrel8" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(3.90114, -442.194)
+
+[node name="Barrel9" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(-11.5714, -632.41)
+
+[node name="Barrel10" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(8.02841, -635.073)
+
+[node name="Barrel11" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(36.9826, -526.156)
+
+[node name="Barrel12" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(397.351, -890.316)
+
+[node name="Barrel13" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(374.188, -891.652)
+
+[node name="Barrel14" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(397.351, -871.061)
+
+[node name="Barrel15" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(569.294, -779.844)
+
+[node name="Barrel16" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(586.222, -780.289)
+
+[node name="Barrel17" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(553.704, -778.953)
+
+[node name="Barrel18" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(532.322, -703.672)
+
+[node name="Barrel19" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(604.93, -703.226)
+
+[node name="Barrel20" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(939.462, -762.026)
+
+[node name="Barrel21" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(914.962, -760.689)
+
+[node name="Barrel22" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(941.244, -737.526)
+
+[node name="Barrel23" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(924.317, -594.982)
+
+[node name="Barrel24" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(900.708, -594.092)
+
+[node name="Barrel25" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(780, -272)
+
+[node name="Barrel26" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(727.428, -424.82)
+
+[node name="Barrel27" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(643.238, -122.806)
+
+[node name="Barrel28" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(812.064, -122.36)
+
+[node name="Barrel29" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(809.391, -19.0158)
+
+[node name="Barrel30" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(788.455, -18.1249)
+
+[node name="Barrel31" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(811.173, -42.6246)
+
+[node name="Barrel32" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(688.229, 31.3201)
+
+[node name="Barrel33" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(293.561, 134.992)
+
+[node name="Barrel34" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(292.661, 173.418)
+
+[node name="Barrel35" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(309.152, 152.482)
+
+[node name="Barrel36" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(309.597, 170.746)
+
+[node name="Barrel37" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(325.188, 134.664)
+
+[node name="Barrel38" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(333.651, 152.364)
+
+[node name="Barrel39" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(334.097, 176.537)
+
+[node name="Barrel40" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(357.26, 131.546)
+
+[node name="Barrel41" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(361.715, 180.546)
+
+[node name="Barrel42" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(363.942, -57.3243)
+
+[node name="Barrel43" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(323.406, 49.1381)
+
+[node name="Barrel44" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(4.00975, -14.8885)
+
+[node name="Barrel45" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(2.237, -39.9518)
+
+[node name="Barrel46" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(28, -15)
+
+[node name="Barrel47" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(170.172, -183.832)
+
+[node name="Barrel48" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(139.435, -184.723)
+
+[node name="Barrel49" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(167.499, -161.56)
+
+[node name="Barrel50" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(68.3095, -273.619)
+
+[node name="Barrel51" parent="barrels" instance=ExtResource("10_pccym")]
+position = Vector2(87.8383, -272.359)

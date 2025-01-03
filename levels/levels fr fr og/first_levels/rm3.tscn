@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://c6t7n40ehbnqc"]
+[gd_scene load_steps=12 format=4 uid="uid://c6t7n40ehbnqc"]
 
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_6dnfd"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_uj32o"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/blob.tscn" id="7_ife8h"]
 [ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/Enemys/fighter/fighter_enemy.tscn" id="8_0gr2m"]
 [ext_resource type="PackedScene" uid="uid://cuqr8ovfm68t3" path="res://objects/Enemys/ranger/ranged_enemy.tscn" id="9_cy8tn"]
+[ext_resource type="PackedScene" uid="uid://bhfib5np8qn3" path="res://objects/other/Barrel.tscn" id="10_ju2l3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(256, -389, 222, -389, 222, -423, 256, -423, 0, -599, 0, -341, -34, -469, -34, -599, -48, -455, -34, -407, 64, -839, 64, -741, 14, -741, -98, -839, -48, -741, 0, -727, -34, -727, 158, -661, 158, -711, 208, -711, 670, -725, 670, -775, 832, -775, 832, -613, 782, -613, 656, -711, 768, -599, 734, -599, 720, -613, 734, -533, 768, -533, 718, -357, 670, -613, 670, -663, 656, -677, 526, -711, 526, -677, 512, -663, 512, -341, 478, -341, 478, -791, 512, -725, 270, -711, 320, -711, 320, -549, 158, -549, 158, -599, 222, -725, 256, -725, 144, -613, -242, -519, -192, -519, -192, -469, 670, -341, 670, -519, 720, -519, 704, -343, 782, -519, 832, -519, 832, -357, 14, -199, 64, -199, 64, -133, -34, -133, -192, -407, -192, -357, -354, -357, -354, -519, -304, -519, -178, -421, -290, -533, -256, -533, -98, -741, 0, -661, -34, -661, 0, -213, 0, -279, 14, -293, 704, -293, 656, -327, 270, -293, 526, -327, -48, -647, 14, -647, 14, -613, -48, -613, 512, -839, 464, -805, 222, -839, 270, -805, 256, -791, 144, -647, -242, -613, -290, -647, -256, -599, -178, -455, -48, -421, 208, -327, 209, -328, 269, -328, 270, -327, 264, -288, 214, -288, 208, -293, 464, -327, 14, -327)
@@ -136,3 +137,107 @@ enemies = Array[PackedScene]([ExtResource("8_0gr2m"), null])
 [node name="enemy_spawner21" parent="enemies" instance=ExtResource("6_dho73")]
 position = Vector2(245, -470)
 enemies = Array[PackedScene]([ExtResource("9_cy8tn"), ExtResource("8_0gr2m"), ExtResource("7_ife8h"), null])
+
+[node name="barrels" type="Node" parent="."]
+
+[node name="Barrel" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(334.277, -81.0803)
+
+[node name="Barrel2" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(337.451, -97.748)
+
+[node name="Barrel3" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(314.434, -78.6992)
+
+[node name="Barrel4" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(226.333, -80.2866)
+
+[node name="Barrel5" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(-92, -302)
+
+[node name="Barrel6" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(-93.5281, -327.128)
+
+[node name="Barrel7" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(-69, -299)
+
+[node name="Barrel8" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(-73.6856, -323.953)
+
+[node name="Barrel9" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(76, -472)
+
+[node name="Barrel10" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(164.869, -791.824)
+
+[node name="Barrel11" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(164.425, -767.632)
+
+[node name="Barrel12" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(184.267, -793.03)
+
+[node name="Barrel13" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(334.245, -688.262)
+
+[node name="Barrel14" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(336.245, -794.205)
+
+[node name="Barrel15" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(334.658, -774.744)
+
+[node name="Barrel16" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(419.203, -497.774)
+
+[node name="Barrel17" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(589.055, -496.186)
+
+[node name="Barrel18" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(592.23, -663.657)
+
+[node name="Barrel19" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(418.409, -666.038)
+
+[node name="Barrel20" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(562.863, -503.329)
+
+[node name="Barrel21" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(585.88, -518.41)
+
+[node name="Barrel22" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(75.6081, -305.217)
+
+[node name="Barrel23" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(-90.1989, -473.027)
+
+[node name="Barrel24" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(783.558, -794.414)
+
+[node name="Barrel25" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(935.637, -722.496)
+
+[node name="Barrel26" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(1099.7, -726.241)
+
+[node name="Barrel27" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(1073.48, -726.241)
+
+[node name="Barrel28" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(1101.2, -705.265)
+
+[node name="Barrel29" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(934.138, -564.424)
+
+[node name="Barrel30" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(1101.2, -562.177)
+
+[node name="Barrel31" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(931.142, -470.78)
+
+[node name="Barrel32" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(1101.2, -473.027)
+
+[node name="Barrel33" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(1098.95, -308.214)
+
+[node name="Barrel34" parent="barrels" instance=ExtResource("10_ju2l3")]
+position = Vector2(967.85, -249.031)

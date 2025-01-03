@@ -71,6 +71,7 @@ func  _process(_delta):
 	var face_player = velocity 
 	if true:#velocity.length() < speed:
 		face_player = player.global_position - global_position
+	@warning_ignore("integer_division")
 	if velocity.length() < speed / 2:
 		if lastdir == 1:
 			ap.play("idle")

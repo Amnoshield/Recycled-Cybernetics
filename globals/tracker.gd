@@ -64,11 +64,19 @@ var player_dash_cooldown
 var player_attack_cooldown
 var player_damage
 var player_knockback
-var player_parry_cooldown
 var player_damage_res
 
 var num_enemies
 var go_next_level
+
+#enemies
+var enemy_speed
+var enemy_attack_cooldown
+var enemy_health
+
+#barrels
+var barrel_health_chance = [1, 10]
+var barrel_pool:Array
 
 
 func _ready():
@@ -174,21 +182,14 @@ func player_reset():
 	
 	
 	if difficulty == "easy":
-		player_dash_cooldown = 0.8
-		player_attack_cooldown = 0.8
-		player_parry_cooldown = 0.8
 		player_damage = 3
 		player_damage_res = 1
 	elif difficulty == "normal" or difficulty == "one shot":
-		player_dash_cooldown = 1.
-		player_attack_cooldown = 1.
 		player_parry_cooldown = 1.
 		player_damage = 2
 		player_damage_res = 0
 	elif difficulty == "hard":
-		player_dash_cooldown = 1.2
 		player_attack_cooldown = 1.2
-		player_parry_cooldown = 1.2
 		player_damage = 2
 		player_damage_res = -1
 
@@ -235,3 +236,24 @@ func apply_upgrade(entity):
 func apply_upgrades(entity):
 	for upgrade in chosen_upgrades:
 		upgrade["obj"].affect(entity)
+
+
+func reset_barrel_pool():
+	if barrel_health_chance[0] > barrel_health_chance[1]:
+		push_error("Bad barrel chance values: " + str(barrel_health_chance[0])+" and "+str(barrel_health_chance[1]))
+		
+	barrel_pool = []
+	for x in barrel_health_chance[1]:
+		barrel_pool.append(false)
+	
+	while barrel_pool.count(true) < barrel_health_chance[0]:
+		var index = rng.randi_range(0, len(barrel_pool)-1)
+		if not barrel_pool[index]:
+			barrel_pool[index] = true
+
+
+func get_barrel_loot():
+	if not len(barrel_pool):
+		reset_barrel_pool()
+	
+	return barrel_pool.pop_back()
