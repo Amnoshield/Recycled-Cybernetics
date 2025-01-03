@@ -18,11 +18,11 @@ var health
 var max_health
 var speed
 var knockback_res
-var dash_cooldown
-var attack_cooldown
+var dash_cooldown = 1
+var attack_cooldown = 1
 var damage
 var entity_knockback
-var parry_cooldown
+var parry_cooldown = 1
 var damage_res
 
 #normal
@@ -193,11 +193,8 @@ func upload_tracker():
 	Tracker.player_health = health
 	Tracker.player_speed = speed
 	Tracker.player_knockback_res = knockback_res
-	Tracker.player_dash_cooldown = dash_cooldown
-	Tracker.player_attack_cooldown = attack_cooldown
 	Tracker.player_damage = damage
 	Tracker.player_knockback = entity_knockback
-	Tracker.player_parry_cooldown = parry_cooldown
 	Tracker.player_damage_res = damage_res
 
 
@@ -206,9 +203,6 @@ func download_tracker():
 	max_health = Tracker.player_max_health
 	speed = Tracker.player_speed
 	knockback_res = Tracker.player_knockback_res
-	dash_cooldown = Tracker.player_dash_cooldown
-	attack_cooldown = Tracker.player_attack_cooldown
 	damage = Tracker.player_damage
 	entity_knockback = Tracker.player_knockback
-	parry_cooldown = Tracker.player_parry_cooldown
 	damage_res = Tracker.player_damage_res

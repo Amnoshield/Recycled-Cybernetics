@@ -19,15 +19,16 @@ var knockback_strenth = 500
 var wait_distence = 75
 var wiggle_room = 10
 var walk_speed = 40
-var random_attack_min = 2
-var random_attack_max = 5
+var random_attack_min = 0.5
+var random_attack_max = 3.5
 var idle_speed = 20
 var attacking = false
 
 var knockback = Vector2(0, 0)
 var attacking_velocity = Vector2(0, 0)
-var attacking_frames = 10
+var attacking_frames = 12
 var attacking_frame = 0
+const attack_speed = 80
 var rng = RandomNumberGenerator.new()
 
 #Affected by parts
@@ -185,3 +186,15 @@ func _on_attack_cooldown_timeout():
 
 func _on_attack_box_area_exited(_area):
 	attacking = false
+
+
+func download_tracker():
+	health *= Tracker.enemy_health
+	
+	attack_cooldown /= Tracker.enemy_attack_cooldown
+	random_attack_min /= Tracker.enemy_attack_cooldown
+	random_attack_max /= Tracker.enemy_attack_cooldown
+	$Sprite2D/dashAP.speed_scale /= Tracker.enemy_attack_cooldown
+	
+	speed *= Tracker.enemy_speed
+	idle_speed *= Tracker.enemy_speed

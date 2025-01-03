@@ -32,6 +32,8 @@ func save():
 	var record_file = "user://"+Tracker.difficulty+"_record.save"
 	
 	if not FileAccess.file_exists(record_file):
+		push_warning("File did not exsist, creating a new one: " + record_file)
+		
 		new_pb = true
 		
 		print("file not found {0}, making a new one".format([record_file]))

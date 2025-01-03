@@ -60,8 +60,6 @@ var player_health
 var player_max_health
 var player_speed
 var player_knockback_res
-var player_dash_cooldown
-var player_attack_cooldown
 var player_damage
 var player_knockback
 var player_damage_res
@@ -185,11 +183,9 @@ func player_reset():
 		player_damage = 3
 		player_damage_res = 1
 	elif difficulty == "normal" or difficulty == "one shot":
-		player_parry_cooldown = 1.
 		player_damage = 2
 		player_damage_res = 0
 	elif difficulty == "hard":
-		player_attack_cooldown = 1.2
 		player_damage = 2
 		player_damage_res = -1
 
@@ -198,16 +194,27 @@ func reset():
 	if difficulty == "easy":
 		default_health = 30
 		barrel_health_chance = [1,5]
-		var enemy_speed
-		var enemy_attack_cooldown
-		var enemy_health
-	
-	elif difficulty == "normal" or difficulty == "hard":
+		enemy_speed = 0.5
+		enemy_attack_cooldown = 0.5
+		enemy_health = 0.5
+	elif difficulty == "normal":
 		default_health = 25
 		barrel_health_chance = [1, 10]
+		enemy_speed = 1
+		enemy_attack_cooldown = 1
+		enemy_health = 1
+	elif difficulty == "hard":
+		default_health = 25
+		barrel_health_chance = [1, 15]
+		enemy_speed = 1.2
+		enemy_attack_cooldown = 1.2
+		enemy_health = 1.2
 	elif difficulty == "one shot":
 		default_health = 1
 		barrel_health_chance = [1, 20]
+		enemy_speed = 1.2
+		enemy_attack_cooldown = 1.2
+		enemy_health = 1.2
 	
 	reset_barrel_pool()
 	

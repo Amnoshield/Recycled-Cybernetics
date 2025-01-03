@@ -18,19 +18,22 @@ var attack_cooldown = 1
 var wait_distence = 75
 var wiggle_room = 10
 var walk_speed = 40
-var random_attack_min = 1
-var random_attack_max = 5
+var random_attack_min = 0.5
+var random_attack_max = 3.5
 var idle_speed = 20
+const attack_speed = 80
 
 var knockback = Vector2(0, 0)
 var attacking_velocity = Vector2(0, 0)
-var attacking_frames = 10
+var attacking_frames = 12
 var attacking_frame = 0
 var rng = RandomNumberGenerator.new()
 var dying = false
 
 
 func _ready():
+	download_tracker()
+	
 	$NavigationAgent2D.max_speed = speed
 	attack_cooldown_timer.wait_time = attack_cooldown
 	attacking_frame = attacking_frames
@@ -88,7 +91,7 @@ func attack():
 		if $State_Machine.current_state.name in ["Fighter_Idle", "Fighter_walk_away"]:
 			$State_Machine.overide_state("fighterWindup")
 			idle_direction = change_idle_dir()
-			attacking_velocity = (player.global_position-global_position)*speed/attacking_frames
+			attacking_velocity = (player.global_position-global_position)*attack_speed/attacking_frames
 			attacking_frame = 0
 		return true
 	return false
@@ -119,5 +122,17 @@ func _on_rng_attack_timeout():
 
 
 func start_rng_attack():
-	$"rng attack".wait_time = rng.randf_range(0.5, 3.5)
+	$"rng attack".wait_time = rng.randf_range(random_attack_min, random_attack_max)
 	$"rng attack".start()
+
+
+func download_tracker():
+	health *= Tracker.enemy_health
+	
+	attack_cooldown /= Tracker.enemy_attack_cooldown
+	random_attack_min /= Tracker.enemy_attack_cooldown
+	random_attack_max /= Tracker.enemy_attack_cooldown
+	$Sprite2D/dashAP.speed_scale /= Tracker.enemy_attack_cooldown
+	
+	speed *= Tracker.enemy_speed
+	idle_speed *= Tracker.enemy_speed

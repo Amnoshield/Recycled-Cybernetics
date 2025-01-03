@@ -26,6 +26,7 @@ var rng = RandomNumberGenerator.new()
 
 
 func _ready():
+	download_tracker()
 	var hurt_boxs = get_tree().get_nodes_in_group("hurtbox")
 	for box in hurt_boxs:
 		if box.get_parent().is_in_group("Player"):
@@ -96,3 +97,9 @@ func change_idle_dir():
 func _on_animation_player_animation_finished(_die): #kill the enemy after death enimation
 	Tracker.remove_enemy(self)
 	queue_free()
+
+
+func download_tracker():
+	health *= Tracker.enemy_health
+	attack_cooldown /= Tracker.enemy_attack_cooldown
+	speed *= Tracker.enemy_speed

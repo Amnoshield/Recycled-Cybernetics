@@ -15,7 +15,7 @@ extends CharacterBody2D
 var knockback_strenth = 500
 var knockback = Vector2(0, 0)
 var dashing_velocity = Vector2(0, 0)
-var dashing_frames = 10
+var dashing_frames = 12
 var dashing_frame
 var rng = RandomNumberGenerator.new()
 var parrying = false
@@ -100,3 +100,17 @@ func die():
 	p3.global_position = global_position
 	get_node("..").add_child(p3)
 	self.queue_free()
+
+
+func download_tracker():
+	health *= Tracker.enemy_health
+	max_health *= Tracker.enemy_health
+	
+	attack_cooldown /= Tracker.enemy_attack_cooldown
+	dash_cooldown /= Tracker.enemy_attack_cooldown
+	attack_cooldown /= Tracker.enemy_attack_cooldown
+	parry_cooldown /= Tracker.enemy_attack_cooldown
+	$"State_Machine/big attack".speed_scale /= Tracker.enemy_attack_cooldown
+	$"State_Machine/dash attack windup".speed_scale /= Tracker.enemy_attack_cooldown
+	
+	speed *= Tracker.enemy_speed

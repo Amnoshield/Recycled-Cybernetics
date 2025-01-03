@@ -10,7 +10,7 @@ func Enter():
 	attack_hitbox.disabled = false
 	enemy.attacking = true
 	enemy.attacking_frame = 0
-	enemy.attacking_velocity = (player.global_position-enemy.global_position)*enemy.speed/enemy.attacking_frames
+	enemy.attacking_velocity = (player.global_position-enemy.global_position)*enemy.attack_speed/enemy.attacking_frames
 
 
 func Physics_Update(_delta):

@@ -61,8 +61,11 @@ func _on_hitbox_area_entered(area:Area2D):#hit whatever it is looking at
 		(area.global_position-global_position).normalized()*knockback,
 		$buzz
 		)
-	
 
 
 func die():
 	self.queue_free()
+
+
+func download_tracker():
+	speed *= Tracker.enemy_speed

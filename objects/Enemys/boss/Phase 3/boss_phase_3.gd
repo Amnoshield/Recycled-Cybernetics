@@ -105,3 +105,17 @@ func die():
 
 func _on_parry_deration_timeout():
 	parrying = false
+
+
+func download_tracker():
+	health *= Tracker.enemy_health
+	max_health *= Tracker.enemy_health
+	
+	attack_cooldown /= Tracker.enemy_attack_cooldown
+	dash_cooldown /= Tracker.enemy_attack_cooldown
+	attack_cooldown /= Tracker.enemy_attack_cooldown
+	parry_cooldown /= Tracker.enemy_attack_cooldown
+	$"State_Machine/big attack".speed_scale /= Tracker.enemy_attack_cooldown
+	$"State_Machine/dash attack windup".speed_scale /= Tracker.enemy_attack_cooldown
+	
+	speed *= Tracker.enemy_speed

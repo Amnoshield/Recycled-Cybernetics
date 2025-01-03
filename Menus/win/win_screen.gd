@@ -29,5 +29,7 @@ func save_difficulty():
 		save_file.store_8(3)
 	elif Tracker.difficulty == "hard" and defficulty_level == 3:
 		save_file.store_8(4)
+	else:
+		save_file.store_8(defficulty_level)
 	
 	save_file.close()

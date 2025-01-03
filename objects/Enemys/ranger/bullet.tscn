@@ -51,7 +51,6 @@ radius = 6.08276
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("4_ci5bt")
-stream_0/weight = 1.0
 
 [node name="Bullet" type="CharacterBody2D"]
 z_index = 30

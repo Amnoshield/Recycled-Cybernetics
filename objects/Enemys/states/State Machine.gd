@@ -15,13 +15,13 @@ func _ready():
 			child.Transitioned.connect(on_child_transition)
 			child.Overide.connect(overide_state)
 		else:
-			print("unknown child in state")
+			push_warning("unknown child in state")
 	
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state
 	else:
-		print("No starting state selected")
+		push_error("No starting state selected")
 
 func _process(delta):
 	if current_state:
@@ -42,7 +42,7 @@ func on_child_transition(state, new_state_name = null):
 	
 	var new_state = states.get(new_state_name.to_lower())
 	if not new_state:
-		print("State \"", new_state_name, "\" does not exist")
+		push_error("State \"", new_state_name, "\" does not exist")
 		return
 		
 	if current_state:
@@ -56,7 +56,7 @@ func on_child_transition(state, new_state_name = null):
 func overide_state(new_state_name, continue_after = true, exit = true):
 	var new_state = states.get(new_state_name.to_lower())
 	if not new_state:
-		print("State \"", new_state_name, "\" does not exist")
+		push_error("State \"", new_state_name, "\" does not exist")
 		return
 		
 	if exit and current_state:
