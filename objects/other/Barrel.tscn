@@ -56,9 +56,11 @@ size = Vector2(16, 16)
 
 [node name="Barrel" type="RigidBody2D"]
 z_index = 20
-collision_layer = 2
-collision_mask = 2
+collision_layer = 32
+collision_mask = 39
 gravity_scale = 0.0
+linear_damp = 8.0
+angular_damp = 8.0
 script = ExtResource("1_ul6d7")
 heart = ExtResource("2_6q6i4")
 

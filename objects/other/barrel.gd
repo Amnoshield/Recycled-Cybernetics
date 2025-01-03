@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 
 @export var heart:PackedScene
@@ -13,11 +13,14 @@ func _ready() -> void:
 		rotation_degrees += rng.randf_range(-5, 5)
 
 
-func take_damage(damage, _kb):
+func take_damage(damage, kockback):
 	if damage:
 		$Sprite2D.play("default")
+		#self.collision_layer = 0
 		if Tracker.get_barrel_loot():
 			call_deferred("spawn_heart")
+	
+	linear_velocity = kockback/2
 
 
 func spawn_heart():

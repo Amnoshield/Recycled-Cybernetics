@@ -92,6 +92,7 @@ buffering/stretch/aspect="keep_height"
 2d_physics/layer_3="enemys"
 2d_physics/layer_4="End zone"
 2d_physics/layer_5="Spawner"
+2d_physics/layer_6="barrels"
 avoidance/layer_1="Player"
 avoidance/layer_2="Enemy"
 
