@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhfib5np8qn3"]
+
+[ext_resource type="Script" path="res://objects/other/barrel.gd" id="1_ul6d7"]
+[ext_resource type="PackedScene" uid="uid://b01yp2rldreom" path="res://objects/other/Heart.tscn" id="2_6q6i4"]
+[ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_v2dp7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_01h1l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvix5"]
+size = Vector2(16, 16)
+
+[node name="Barrel" type="Node2D"]
+z_index = 50
+script = ExtResource("1_ul6d7")
+heart = ExtResource("2_6q6i4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.386719, 0.215765, 0, 1)
+scale = Vector2(16, 16)
+texture = SubResource("CanvasTexture_01h1l")
+
+[node name="Area2D" type="Area2D" parent="." groups=["hurtbox"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_v2dp7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_kvix5")

@@ -143,6 +143,11 @@ func take_damage(damage_:int, take_knockback:Vector2):
 		call_deferred("die")
 
 
+func heal(healing):
+	health += healing
+	health_bar.set_value_no_signal(health)
+
+
 func _unhandled_key_input(event:InputEvent): #Dash
 	if event.is_action_pressed("dash"):
 		if dash_timer.is_stopped():

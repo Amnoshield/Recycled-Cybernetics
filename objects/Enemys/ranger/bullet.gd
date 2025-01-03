@@ -66,5 +66,3 @@ func _on_hitbox_area_entered(area:Area2D):#hit whatever it is looking at
 
 func die():
 	self.queue_free()
-
-
