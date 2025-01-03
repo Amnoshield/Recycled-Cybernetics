@@ -10,7 +10,7 @@ size = Vector2(8, 8)
 
 [node name="Heart" type="CharacterBody2D"]
 process_priority = 1000000
-z_index = 50
+z_index = 10
 script = ExtResource("1_2sjqh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -11,7 +11,6 @@ var max_speed = 50
 
 
 func _ready():
-	print("heart spawned")
 	rotation = get_ange_to_player()+deg_to_rad(rng.randi_range(-45, 45))
 
 
@@ -25,7 +24,8 @@ func _physics_process(_delta):
 	
 	velocity += Vector2(0, 1).rotated(rotation)*speed
 	
-	velocity = velocity.limit_length(max_speed)
+	if abs(rad_to_deg(velocity.angle_to(vec2))) > 90:
+		velocity = velocity.limit_length(max_speed)
 	
 	move_and_slide()
 
@@ -36,13 +36,5 @@ func get_ange_to_player():
 
 func take_damage(damage, _kb):
 	if $"spawn cooldown".is_stopped() and damage:
-		trigger_healing()
-
-
-func trigger_healing():
-	player.heal(healing)
-	self.queue_free()
-
-
-func play():
-	pass
+		player.heal(healing)
+		self.queue_free()
