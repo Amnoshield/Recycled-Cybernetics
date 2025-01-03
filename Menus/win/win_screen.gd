@@ -11,7 +11,6 @@ func _ready():
 func save_difficulty():
 	if not FileAccess.file_exists("user://unlocks.save"):
 		push_error("This shouldn't run, the file should have been created in the difficulty select screen")
-		print("file not found {0}, making a new one".format(["user://unlocks.save"]))
 		var save_file_write = FileAccess.open("user://unlocks.save", FileAccess.WRITE)
 		save_file_write.store_8(1)
 		save_file_write.close()

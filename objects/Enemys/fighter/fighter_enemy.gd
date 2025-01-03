@@ -9,19 +9,19 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var walk_sound = $walk
 
-var speed = 80
-var health = 10
+var speed = 80.0
+var health = 10.0
 var damage = 3
 var knockback_strenth = 500
 var knockback_res = 0
-var attack_cooldown = 1
+var attack_cooldown = 1.0
 var wait_distence = 75
 var wiggle_room = 10
-var walk_speed = 40
+var walk_speed = 40.0
 var random_attack_min = 0.5
 var random_attack_max = 3.5
-var idle_speed = 20
-const attack_speed = 80
+var idle_speed = 20.0
+const attack_speed = 80.0
 
 var knockback = Vector2(0, 0)
 var attacking_velocity = Vector2(0, 0)
@@ -136,3 +136,4 @@ func download_tracker():
 	
 	speed *= Tracker.enemy_speed
 	idle_speed *= Tracker.enemy_speed
+	walk_speed *= Tracker.enemy_speed

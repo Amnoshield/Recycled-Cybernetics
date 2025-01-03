@@ -9,14 +9,14 @@ extends CharacterBody2D
 @onready var walk_sound = $walk
 
 var speed = 80.0
-var health = 8
+var health = 8.0
 var knockback_strenth = 500
 var knockback_res = 0
-var attack_cooldown = 1
+var attack_cooldown = 1.0
 var wait_distence = 100
 var wiggle_room = 10
-var walk_speed = 40
-var idle_speed = 20
+var walk_speed = 40.0
+var idle_speed = 20.0
 
 var knockback = Vector2(0, 0)
 var rng = RandomNumberGenerator.new()
@@ -71,3 +71,4 @@ func download_tracker():
 	attack_cooldown /= Tracker.enemy_attack_cooldown
 	speed *= Tracker.enemy_speed
 	walk_speed *= Tracker.enemy_speed
+	idle_speed *= Tracker.enemy_speed

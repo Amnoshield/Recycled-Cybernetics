@@ -23,9 +23,9 @@ var parried = false
 var invincible = false
 
 #Affected by parts
-var health = 10
-var max_health = 10
-var speed = 100
+var health = 10.0
+var max_health = 10.0
+var speed = 100.0
 var knockback_res = 1
 var dash_cooldown = 2.0
 var attack_cooldown = 2.0

@@ -9,15 +9,15 @@ var dying = false
 
 
 var speed = 80
-var health = 5
+var health = 5.0
 var damage = 2
 var knockback_strenth = 1000
 var knockback_res = 0
-var attack_cooldown = 1
-var idle_speed = 20
+var attack_cooldown = 1.0
+var idle_speed = 20.0
 var wait_distence = 80
 var wiggle_room = 10
-var walk_speed = 40
+var walk_speed = 40.0
 
 
 var attack_player = false

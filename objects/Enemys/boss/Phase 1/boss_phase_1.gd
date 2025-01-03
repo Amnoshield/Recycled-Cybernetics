@@ -18,10 +18,10 @@ var player_hurt_box
 var knockback_strenth = 500
 var wait_distence = 75
 var wiggle_room = 10
-var walk_speed = 40
+var walk_speed = 40.0
 var random_attack_min = 0.5
 var random_attack_max = 3.5
-var idle_speed = 20
+var idle_speed = 20.0
 var attacking = false
 
 var knockback = Vector2(0, 0)
@@ -32,8 +32,8 @@ const attack_speed = 80
 var rng = RandomNumberGenerator.new()
 
 #Affected by parts
-var health = 10
-var max_health = 10
+var health = 10.0
+var max_health = 10.0
 var speed = 100 #used
 var knockback_res = 1 #Used
 var dash_cooldown = 1.0#Not used

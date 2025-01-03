@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var hitbox:Area2D = $hitbox
 @onready var buzz = $buzz
 
-var speed = 30
+var speed = 30.0
 var turning_speed_deg = 1
 var damage = 2
 var knockback = 100

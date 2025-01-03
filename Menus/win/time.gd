@@ -9,8 +9,11 @@ var color_hue = 0
 
 
 func _ready() -> void:
+	@warning_ignore("narrowing_conversion")
 	mseconds = fmod(SpeedrunTimer.time, 1) * 100
+	@warning_ignore("narrowing_conversion")
 	seconds = fmod(SpeedrunTimer.time, 60)
+	@warning_ignore("narrowing_conversion")
 	minutes = fmod(SpeedrunTimer.time, 3600) / 60
 	
 	$HBoxContainer/min.text = "%02d:" % minutes
@@ -27,7 +30,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if new_pb:
-		modulate = modulate.from_hsv(color_hue, 1, 1)
+		modulate = Color.from_hsv(color_hue, 1, 1)
 		color_hue += 0.002
 
 		if color_hue > 1:

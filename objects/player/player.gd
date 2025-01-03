@@ -18,11 +18,11 @@ var health
 var max_health
 var speed
 var knockback_res
-var dash_cooldown = 1
-var attack_cooldown = 1
+var dash_cooldown:float = 1.0
+var attack_cooldown:float = 1.0
 var damage
 var entity_knockback
-var parry_cooldown = 1
+var parry_cooldown:float = 1.0
 var damage_res
 
 #normal

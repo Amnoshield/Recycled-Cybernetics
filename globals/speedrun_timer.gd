@@ -21,14 +21,11 @@ func new_split():
 		
 		var old_split = old_splits[len(splits)-1]
 		last_split = time-old_split
-		print(last_split)
 		
 		read_file.close()
 
 
 func save():
-	print(time)
-	print(splits)
 	var record_file = "user://"+Tracker.difficulty+"_record.save"
 	
 	if not FileAccess.file_exists(record_file):
@@ -36,7 +33,6 @@ func save():
 		
 		new_pb = true
 		
-		print("file not found {0}, making a new one".format([record_file]))
 		var save_file = FileAccess.open(record_file, FileAccess.WRITE)
 		save_file.store_var({"splits":splits, "time":time})
 		save_file.close()
@@ -45,11 +41,11 @@ func save():
 		var old_time = read_file.get_var()["time"]
 		read_file.close()
 		
-		if old_time < time:
+		if time < old_time:
 			new_pb = true
 			var save_file = FileAccess.open(record_file, FileAccess.WRITE)
 			
-			save_file.store_var(splits)
+			save_file.store_var({"splits":splits, "time":time})
 			save_file.close()
 
 
