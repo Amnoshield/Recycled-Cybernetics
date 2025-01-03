@@ -9,20 +9,22 @@ var speed = 0.9
 var healing = 4
 var max_speed = 50
 
+var fake_rotation
+
 
 func _ready():
-	rotation = get_ange_to_player()+deg_to_rad(rng.randi_range(-45, 45))
+	fake_rotation = get_ange_to_player()+deg_to_rad(rng.randi_range(-45, 45))
 
 
 func _physics_process(_delta):
-	var vec1 = Vector2(0, 1).rotated(rotation)
+	var vec1 = Vector2(0, 1).rotated(fake_rotation)
 	var vec2 = Vector2(0, 1).rotated(get_ange_to_player())
 	if vec1.angle_to(vec2) > 0:
-		rotation += deg_to_rad(turning_speed_deg)
+		fake_rotation += deg_to_rad(turning_speed_deg)
 	else:
-		rotation += deg_to_rad(-turning_speed_deg)
+		fake_rotation += deg_to_rad(-turning_speed_deg)
 	
-	velocity += Vector2(0, 1).rotated(rotation)*speed
+	velocity += Vector2(0, 1).rotated(fake_rotation)*speed
 	
 	if abs(rad_to_deg(velocity.angle_to(vec2))) > 90:
 		velocity = velocity.limit_length(max_speed)

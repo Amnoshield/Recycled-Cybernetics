@@ -31,8 +31,11 @@ func _process(delta: float) -> void:
 
 
 func updateTimeDisplay():
+	@warning_ignore("narrowing_conversion")
 	mseconds = fmod(SpeedrunTimer.time, 1) * 100
+	@warning_ignore("narrowing_conversion")
 	seconds = fmod(SpeedrunTimer.time, 60)
+	@warning_ignore("narrowing_conversion")
 	minutes = fmod(SpeedrunTimer.time, 3600) / 60
 	
 	label_current_min.text = "%02d:" % minutes
@@ -43,8 +46,11 @@ func updateTimeDisplay():
 func updateSplitDisplay():
 	print(SpeedrunTimer.last_split)
 	var last_split =  abs(SpeedrunTimer.last_split)
+	@warning_ignore("narrowing_conversion")
 	mseconds = fmod(last_split, 1) * 100
+	@warning_ignore("narrowing_conversion")
 	seconds = fmod(last_split, 60)
+	@warning_ignore("narrowing_conversion")
 	minutes = fmod(last_split, 3600) / 60
 	
 	label_split_min.text = "%02d:" % minutes

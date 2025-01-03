@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" path="res://objects/other/heart.gd" id="1_2sjqh"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_tx7yu"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_o0dub"]
+[ext_resource type="Texture2D" uid="uid://beocpumbfd4e4" path="res://assets/other/heart.png" id="2_y25d4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbcqt"]
 size = Vector2(8, 8)
@@ -11,12 +10,14 @@ size = Vector2(8, 8)
 [node name="Heart" type="CharacterBody2D"]
 process_priority = 1000000
 z_index = 10
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_2sjqh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
-scale = Vector2(8, 8)
-texture = SubResource("CanvasTexture_o0dub")
+texture = ExtResource("2_y25d4")
 
 [node name="Area2D" type="Area2D" parent="." groups=["hurtbox"]]
 collision_layer = 4
