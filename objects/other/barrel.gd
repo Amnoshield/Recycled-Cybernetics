@@ -27,5 +27,4 @@ func spawn_heart():
 
 
 func _on_sprite_2d_animation_finished() -> void:
-	
 	queue_free()

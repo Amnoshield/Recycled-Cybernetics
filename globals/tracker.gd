@@ -197,11 +197,19 @@ func player_reset():
 func reset():
 	if difficulty == "easy":
 		default_health = 30
+		barrel_health_chance = [1,5]
+		var enemy_speed
+		var enemy_attack_cooldown
+		var enemy_health
+	
 	elif difficulty == "normal" or difficulty == "hard":
 		default_health = 25
+		barrel_health_chance = [1, 10]
 	elif difficulty == "one shot":
 		default_health = 1
+		barrel_health_chance = [1, 20]
 	
+	reset_barrel_pool()
 	
 	player_max_health = default_health
 	player_health = default_health
