@@ -1,10 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhfib5np8qn3"]
+[gd_scene load_steps=12 format=3 uid="uid://bhfib5np8qn3"]
 
 [ext_resource type="Script" path="res://objects/other/barrel.gd" id="1_ul6d7"]
 [ext_resource type="PackedScene" uid="uid://b01yp2rldreom" path="res://objects/other/Heart.tscn" id="2_6q6i4"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_v2dp7"]
+[ext_resource type="Texture2D" uid="uid://cs0l8p4byvdre" path="res://assets/other/box break ani.png" id="3_qg3cm"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_01h1l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_owypw"]
+atlas = ExtResource("3_qg3cm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd0kw"]
+atlas = ExtResource("3_qg3cm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln4p0"]
+atlas = ExtResource("3_qg3cm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f66v2"]
+atlas = ExtResource("3_qg3cm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugg6c"]
+atlas = ExtResource("3_qg3cm")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qs1s1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owypw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd0kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln4p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f66v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugg6c")
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvix5"]
 size = Vector2(16, 16)
@@ -14,10 +56,8 @@ z_index = 50
 script = ExtResource("1_ul6d7")
 heart = ExtResource("2_6q6i4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.386719, 0.215765, 0, 1)
-scale = Vector2(16, 16)
-texture = SubResource("CanvasTexture_01h1l")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qs1s1")
 
 [node name="Area2D" type="Area2D" parent="." groups=["hurtbox"]]
 collision_layer = 4
@@ -27,3 +67,5 @@ script = ExtResource("2_v2dp7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_kvix5")
+
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

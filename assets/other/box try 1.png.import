@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs0l8p4byvdre"
-path="res://.godot/imported/box break ani.png-cf0879c6d1365bad04c21f61accc22d4.ctex"
+uid="uid://d1owt66ngilam"
+path="res://.godot/imported/box try 1.png-c2c271e6a6b638c386684a20bb215b61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/box break ani.png"
-dest_files=["res://.godot/imported/box break ani.png-cf0879c6d1365bad04c21f61accc22d4.ctex"]
+source_file="res://assets/other/box try 1.png"
+dest_files=["res://.godot/imported/box try 1.png-c2c271e6a6b638c386684a20bb215b61.ctex"]
 
 [params]
 

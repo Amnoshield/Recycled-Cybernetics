@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cuqr8ovfm68t3" path="res://objects/Enemys/ranger/ranged_enemy.tscn" id="7_10qa7"]
 [ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/blob.tscn" id="7_nf70n"]
 [ext_resource type="PackedScene" uid="uid://ttfionm4jjiw" path="res://objects/Enemys/fighter/fighter_enemy.tscn" id="8_sdq5g"]
-[ext_resource type="Texture2D" uid="uid://d1owt66ngilam" path="res://assets/tiles/box try 1.png" id="10_ja8do"]
+[ext_resource type="PackedScene" uid="uid://bhfib5np8qn3" path="res://objects/other/Barrel.tscn" id="10_t3ajo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(96, -135, 96, -37, -82, -37, -354, -135, -96, -23, -354, 123, -176, 123, -96, 139, -162, 137, -158, 203, -162, 203, -82, 153, -48, 219, -146, 215, -64, 153, -53, 169, 350, -103, 350, -119, 400, -119, 400, -21, 339, -87, 350, -69, 339, -85, 350, -21, 315, -87, 315, -85, 64, 105, 64, 219, 14, 219, 30, 139, 0, 233, 0, 315, -34, 315, -34, 233, -13, 169, -146, 219, -2, 153, 16, 153, 190, -103, 304, -103, 304, -69, 238, -69, 224, -55, 190, 43, 224, 91, 176, 57, 78, 91, 30, 57)
@@ -80,7 +80,5 @@ enemies = Array[PackedScene]([ExtResource("7_nf70n")])
 position = Vector2(606, 35)
 enemies = Array[PackedScene]([ExtResource("7_10qa7")])
 
-[node name="BoxTry1" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(255, 329)
-texture = ExtResource("10_ja8do")
+[node name="Barrel" parent="." instance=ExtResource("10_t3ajo")]
+position = Vector2(259, 326)
