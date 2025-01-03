@@ -1,7 +1,82 @@
+# -----------------------------------------------------------------------------------
 # Godot 4+ specific ignores
-.godot/
+# -----------------------------------------------------------------------------------
+.godot/                     # Godot 4.0+ metadata folder
 
 # Godot-specific ignores
-.import/
-export.cfg
-export_presets.cfg
+.import/                    # Import cache folder
+export.cfg                  # Export configuration
+export_presets.cfg          # Export presets configuration
+
+# -----------------------------------------------------------------------------------
+# Common auto-generated or temporary files
+# -----------------------------------------------------------------------------------
+*.tmp                       # Temp files
+*.swap                      # Swap files (e.g., from some editors)
+*.log                       # Log files
+*.log.*                     # Rotated logs
+
+# -----------------------------------------------------------------------------------
+# Editor/IDE config & system files
+# -----------------------------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+directory\.cache/
+
+# JetBrains (e.g., Rider, IntelliJ)
+.idea/
+*.iml
+
+# Visual Studio Code
+.vscode/
+
+# Mono / C# (if you use Godot C# projects)
+mono_crash.*
+/.mono/
+*.csproj
+*.sln
+*.user
+*.csproj.user
+*.dll
+*.pdb
+
+# -----------------------------------------------------------------------------------
+# Backup or old revisions (if you enable Godot's built-in backups)
+# -----------------------------------------------------------------------------------
+*.godot_backup
+*.old
+
+# -----------------------------------------------------------------------------------
+# Other recommended ignores
+# -----------------------------------------------------------------------------------
+# Crash dumps (if any)
+*.stackdump
+*.dmp
+
+# Backup suffixes used by some editors or OS
+*~
+*.bak
+*.orig
+
+# Node modules (in case you have a JS/TS tool in the project)
+node_modules/
+
+# Yarn / PNPM lock files
+yarn.lock
+pnpm-lock.yaml
+
+# Add any other specialized tool/language directories below
+# e.g., Python caches, Rust target directories, etc.
+
+# -----------------------------------------------------------------------------------
+# End of .gitignore
+# -----------------------------------------------------------------------------------
