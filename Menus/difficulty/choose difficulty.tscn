@@ -72,6 +72,7 @@ sfx_sound = NodePath("../../sfx")
 
 [node name="Panel" type="Panel" parent="BoxContainer/Normal"]
 show_behind_parent = true
+layout_mode = 0
 offset_left = 6.0
 offset_top = 27.0
 offset_right = 297.0
@@ -92,6 +93,7 @@ sfx_sound = NodePath("../../sfx")
 
 [node name="Panel" type="Panel" parent="BoxContainer/Hard"]
 show_behind_parent = true
+layout_mode = 0
 offset_left = 6.0
 offset_top = 27.0
 offset_right = 297.0
@@ -110,6 +112,7 @@ sfx_sound = NodePath("../../sfx")
 
 [node name="Panel" type="Panel" parent="BoxContainer/One shot"]
 show_behind_parent = true
+layout_mode = 0
 offset_left = 6.0
 offset_top = 27.0
 offset_right = 297.0
