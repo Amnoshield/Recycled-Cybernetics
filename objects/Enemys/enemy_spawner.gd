@@ -28,6 +28,7 @@ func spawn():
 		get_node("..").add_child(enemy)
 	
 	spawnable = false
+	#call_deferred_thread_group("trigger")
 	trigger()
 	remove()
 
@@ -38,7 +39,8 @@ func trigger():
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
-	spawn()
+	call_deferred_thread_group("spawn")
+	#spawn()
 
 
 func _on_area_2d_area_entered(area:Area2D):
