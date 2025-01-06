@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcs86kb2df6dv"]
+
+[ext_resource type="Script" path="res://levels/levels fr fr og/level_gen.gd" id="1_mxyva"]
+
+[node name="LevelGen" type="Node2D"]
+process_mode = 3
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 2
+script = ExtResource("1_mxyva")
