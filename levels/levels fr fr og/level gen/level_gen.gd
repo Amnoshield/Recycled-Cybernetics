@@ -1,11 +1,12 @@
 extends Node2D
 
 #globals
+@export var player:PackedScene
 @export var plan:Array[Dictionary] = [{
 	"type":"start room",
 	"start":Vector2(0, 0),
-	"end":Vector2(0,-1),
-	"rect":Rect2(0,-1,1,2),
+	"end":Vector2(0,-2),
+	"rect":Rect2(0,-2,1,3),
 	"direction":"north"
 }]
 
@@ -20,6 +21,7 @@ func line_gen(parent:Dictionary, length_range:Vector2, cont:Dictionary = {}):
 	var lengths
 	if cont:
 		lengths = cont["lengths"]
+		parent = cont["parent"]
 	else:
 		lengths = Array(range(length_range[0], length_range[1]+1))
 		lengths.shuffle()
@@ -40,8 +42,7 @@ func line_gen(parent:Dictionary, length_range:Vector2, cont:Dictionary = {}):
 				"east", "west":
 					directions = ["north", "south"]
 				_:
-					directions = ["north", "south", "east", "west"]
-					push_error("Direction not found: "+str(parent["direction"]))
+					directions = [parent["next_direction"]]
 			directions.shuffle()
 
 		for direction_idx in directions.size():
@@ -88,14 +89,21 @@ func room_gen(parent:Dictionary, size_rand:Vector2, cont:Dictionary = {}):
 	var sizes_x
 	var sizes_y
 	if cont:
+		parent = cont["parent"]
 		sizes_x = cont["sizes_x"]
 		sizes_y = cont["sizes_y"]
 	else:
 		sizes_x = Array(range(size_rand[0], size_rand[1]+1))
-		sizes_x.shuffle()
+		if parent["direction"] == "west":
+			sizes_x = sizes_x.map(func(element): return -element)
+		
 		sizes_y = Array(range(size_rand[0], size_rand[1]+1))
+		if parent["direction"] == "north":
+			sizes_y = sizes_y.map(func(element): return -element)
+		
+		sizes_x.shuffle()
 		sizes_y.shuffle()
-
+	
 	for x_idx in sizes_x.size():
 		if cont and x_idx < cont["x_idx"]+1: continue
 		
@@ -124,30 +132,100 @@ func room_gen(parent:Dictionary, size_rand:Vector2, cont:Dictionary = {}):
 				var offset = offsets[offset_idx]
 				var start
 				if parent["direction"] in ["north", "south"]:
-					start = Vector2(parent["start"][0]-offset, parent["start"][1])
+					start = Vector2(parent["end"][0]-offset, parent["end"][1])
 				else:
-					start = Vector2(parent["start"][0]-offset, parent["start"][1])
+					start = Vector2(parent["end"][0], parent["end"][1]-offset)
+					
 				var end = start+size
 				
-				var room = {
-					"type":"room",
-					"parent":parent,
-					"start":start,
-					"end":end,
-					"sizes_x":sizes_x,
-					"x_idx":x_idx,
-					"sizes_y":sizes_y,
-					"y_idx":y_idx,
-					"offsets":offsets,
-					"offset_idx":offset_idx,
-					"direction":null
-				}
+				var exit_sides:Array
+				if cont:
+					exit_sides = cont["exit_sides"]
+				else:
+					match parent["direction"]:
+						"north":
+							exit_sides = ["north", "east", "west"]
+						"south":
+							exit_sides = ["south", "east", "west"]
+						"east":
+							exit_sides = ["north", "south", "east"]
+						"west":
+							exit_sides = ["north", "south", "west"]
+					exit_sides.shuffle()
 				
-				var reorded_room = reorder_shape(room.duplicate())
-				room["rect"] = Rect2(reorded_room["start"], reorded_room["end"]-reorded_room["start"])
-				
-				if not detect_collisions(room, plan):
-					return room
+				for side_idx in exit_sides.size():
+					if cont and side_idx < cont["side_idx"]+1: continue
+					
+					var side = exit_sides[side_idx]
+					var continue_sides = true
+					var exit_offsets:Array
+					match side:
+						"north", "south":
+							exit_offsets = range(0, size.x+1)
+						"east", "west":
+							exit_offsets = range(0, size.y+1)
+					exit_offsets.shuffle()
+					
+					for exit_offset_idx in exit_offsets.size():
+						if cont and exit_offset_idx < cont["exit_offset_idx"]+1: continue
+						
+						var exit_offset = exit_offsets[exit_offset_idx]
+						var room = {
+							"type":"room",
+							"parent":parent,
+							"start":start,
+							"end":end,
+							"sizes_x":sizes_x,
+							"x_idx":x_idx,
+							"sizes_y":sizes_y,
+							"y_idx":y_idx,
+							"offsets":offsets,
+							"offset_idx":offset_idx,
+							"exit_sides":exit_sides,
+							"side_idx": side_idx,
+							"exit_offsets":exit_offsets,
+							"exit_offset_idx":exit_offset_idx,
+							"direction":null,
+							"next_direction":side
+						}
+						
+						var reorded_room = reorder_shape(room.duplicate())
+						room["rect"] = Rect2(reorded_room["start"], reorded_room["end"]-reorded_room["start"])
+						
+						match side:
+							"north", "south":
+								room["end"] += Vector2(-exit_offset, 0)
+							"east", "west":
+								room["end"] += Vector2(0, -exit_offset)
+						
+						if detect_collisions(room, plan):
+							#Leave the side loop becuase it doesn't effect collitions.
+							#It only effects the connection to the next hall
+							continue_sides = false
+							break
+						else:
+							return room
+					
+					if not continue_sides:
+						#Leave the side loop becuase it doesn't effect collitions.
+						#It only effects the connection to the next hall
+						break
+	return false
+
+
+func exit_gen(parent:Dictionary):
+	var exit = {
+		"type":"exit",
+		"parent":parent,
+		"start":parent["end"],
+		"end":parent["end"]-Vector2(0, 2),
+		"direction":null
+	}
+	var reordered_exit = reorder_shape(exit.duplicate())
+	exit["rect"] = Rect2(reordered_exit["start"], reordered_exit["end"]-reordered_exit["start"])
+	
+	if not detect_collisions(exit, plan):
+		return exit
 	return false
 
 
@@ -194,18 +272,13 @@ func gen_main_hall(num_rooms=Vector2(2,4), room_size=Vector2(3,5), num_halls=Vec
 	var total_shapes = len(instructions)
 	var counter = 0
 	while counter < total_shapes:
-		for shape in plan:
-			if shape["type"] == "line":
-				if shape["start"] !=  shape["parent"]["end"]:
-					print("cought you")
-		
-		var last_shape = plan[-1]
-		if last_shape["type"] == "line" and plan[-2]["type"] == "line" and last_shape["start"] != plan[-2]["end"]:
-			print("fuck")
-		elif last_shape["type"] == "line":
-			"idk man"
+		if tries > 100:
+			push_error("couldn't gen main hall")
+			print("couldn't gen main hall")
+			break
 		
 		if counter < len(plan)-1:
+			print(instructions[counter+1] + " gen faild. current instuctions: ", instructions[counter], " ", counter, instructions)
 			tries += 1
 		match instructions[counter]:
 			"hall":
@@ -217,13 +290,20 @@ func gen_main_hall(num_rooms=Vector2(2,4), room_size=Vector2(3,5), num_halls=Vec
 					plan.append(new_line)
 					counter += 1
 				else:
+					if counter < 4:
+						for object in plan:
+							print(object["type"], " ", object["direction"], object["start"], object["end"], object["rect"])
+						"pause here"
+					
 					counter -= 1
 			"room":
 				#counter += 1
 				#continue
 				var new_room
-				if counter < len(plan)-1: new_room = room_gen(plan[-2], room_size, plan.pop_back())
-				else: new_room = room_gen(plan[-1], room_size)
+				if counter < len(plan)-1:
+					new_room = room_gen(plan[-2], room_size, plan.pop_back())
+				else:
+					new_room = room_gen(plan[-1], room_size)
 				
 				if new_room:
 					plan.append(new_room)
@@ -231,14 +311,18 @@ func gen_main_hall(num_rooms=Vector2(2,4), room_size=Vector2(3,5), num_halls=Vec
 				else:
 					counter -= 1
 			"exit":
-				#if (plan[-1]["type"] == "line" and plan[-1]["direction"] == "south"):
-					#instructions.insert(instructions.size()-1, "hall")
-					#total_shapes += 1
-					#print("added hall to exit")
-					#continue
+				if (plan[-1]["type"] == "line" and plan[-1]["direction"] == "south" and plan[-2]["type"] != "room"):
+					instructions.insert(instructions.size()-1, "hall")
+					total_shapes += 1
+					print("added hall to exit")
+					continue
 				
-				counter += 1
-				continue
+				var new_exit = exit_gen(plan[-1])
+				if new_exit:
+					plan.append(new_exit)
+					counter += 1
+				else:
+					counter -= 1
 			_:
 				push_error("this shouldn't be possible:", instructions[counter])
 	
@@ -247,22 +331,20 @@ func gen_main_hall(num_rooms=Vector2(2,4), room_size=Vector2(3,5), num_halls=Vec
 
 
 func trigger_gen():
-	#var rect1 = Rect2(0, -1, 0, 2)
-	#var rect2 = Rect2(0, -1, 1, 4)
-	#print(rect1)
-	#print(rect2)
-	#print(rect1.intersects(rect2, true))
-
-	gen_main_hall(Vector2(1,1), Vector2(3, 5), Vector2(4,6), Vector2(3,5))
+	var starting_time = Time.get_ticks_usec()
+	gen_main_hall(Vector2(1,2), Vector2(2, 3), Vector2(2,3), Vector2(4,5))
 
 	print("------------------")
 	for object in plan:
-		print(object["type"], " ", object["direction"], object["start"], object["end"], object["rect"])
-		#if object["type"] == "line":
-			#if object["start"] !=  object["parent"]["end"]:
-				#print("cought you")
-			#else:
-				#print(object["start"], object["parent"]["end"])
-	#print(plan[-1])
+		if object["type"] == "room":
+			print(object["type"], " ", object["direction"], object["start"], object["end"], object["rect"], object["offsets"][object["offset_idx"]], " ", object["offsets"])
+		else:
+			print(object["type"], " ", object["direction"], object["start"], object["end"], object["rect"])
 	print(len(plan))
-	print("done")
+	$TileMapLayer.place_ground(plan)
+	print("done in ", Time.get_ticks_usec()-starting_time, " microseconds")
+	call_deferred("summon_player")
+
+
+func summon_player():
+	add_child(player.instantiate())
