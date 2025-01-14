@@ -44,7 +44,6 @@ func updateTimeDisplay():
 
 
 func updateSplitDisplay():
-	print(SpeedrunTimer.last_split)
 	var last_split =  abs(SpeedrunTimer.last_split)
 	@warning_ignore("narrowing_conversion")
 	mseconds = fmod(last_split, 1) * 100
@@ -63,7 +62,6 @@ func updateSplitDisplay():
 		label_split_plus.text = "+"
 	
 	#color stuff
-	
 	if SpeedrunTimer.last_split == 0: #White
 		split_section.modulate = Color("fff")
 	elif SpeedrunTimer.last_split < -15: #Green
@@ -78,10 +76,8 @@ func updateSplitDisplay():
 
 
 func stop():
-	print("stopping timer")
 	set_process(false)
 
 
 func start():
-	print("starting timer")
 	set_process(true)

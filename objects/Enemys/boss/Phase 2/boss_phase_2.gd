@@ -36,9 +36,6 @@ var damage_res = 0
 
 
 func _ready():
-	Tracker.player_reset()
-	player.download_tracker()
-	player.set_settings()
 	Tracker.apply_upgrades(self)
 	$NavigationAgent2D.max_speed = speed
 	attack_cooldown_timer.wait_time = attack_cooldown

@@ -5,12 +5,10 @@ var hovered = false
 
 
 func _ready():
-	print('paused')
 	minimap.invis()
 
 
 func _on_pressed():
-	print('unpausing')
 	unpause()
 
 

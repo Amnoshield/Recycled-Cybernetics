@@ -16,4 +16,3 @@ func _on_value_changed(value_):
 		AudioServer.set_bus_mute(master_bus, true)
 	else:
 		AudioServer.set_bus_mute(master_bus, false)
-
