@@ -1,20 +1,28 @@
 # -----------------------------------------------------------------------------------
 # Godot 4+ specific ignores
 # -----------------------------------------------------------------------------------
-.godot/                     # Godot 4.0+ metadata folder
+# Godot 4.0+ metadata folder
+.godot/                     
 
 # Godot-specific ignores
-.import/                    # Import cache folder
-export.cfg                  # Export configuration
-export_presets.cfg          # Export presets configuration
+# Import cache folder
+.import/                    
+# Export configuration
+export.cfg                  
+# Export presets configuration
+export_presets.cfg          
 
 # -----------------------------------------------------------------------------------
 # Common auto-generated or temporary files
 # -----------------------------------------------------------------------------------
-*.tmp                       # Temp files
-*.swap                      # Swap files (e.g., from some editors)
-*.log                       # Log files
-*.log.*                     # Rotated logs
+# Temp files
+*.tmp    
+# Swap files (e.g., from some editors)                   
+*.swap                      
+# Log files
+*.log                      
+# Rotated logs
+*.log.*                     
 
 # -----------------------------------------------------------------------------------
 # Editor/IDE config & system files
