@@ -31,6 +31,7 @@ var last_move = Vector2(0, 0)
 var dashing_velocity = Vector2(0, 0)
 var dashing_frames = 5
 var dashing_frame = 0
+var control_active = true
 
 @onready var AP = $Smoothing2D/Sprite2D/AnimationPlayer
 @onready var sprite = $Smoothing2D/Sprite2D
@@ -72,7 +73,7 @@ func _physics_process(_delta):
 	elif dashing_frame < dashing_frames -1: #Dash
 		dashing_frame += 1
 		velocity = dashing_velocity
-	else: #Use player movement
+	elif control_active: #Use player movement
 		velocity = speed * Input.get_vector("left", "right", "up", "down")
 		if velocity.length() and runnin.stream_paused:
 			runnin.stream_paused = false
@@ -149,7 +150,7 @@ func heal(healing):
 
 
 func _unhandled_key_input(event:InputEvent): #Dash
-	if event.is_action_pressed("dash"):
+	if event.is_action_pressed("dash") and control_active:
 		if dash_timer.is_stopped():
 			dash()
 		else:
@@ -157,7 +158,7 @@ func _unhandled_key_input(event:InputEvent): #Dash
 	elif event.is_action_pressed("pause") and $"Pause timeout".is_stopped(): #trigger pause
 		$"Pause timeout".start()
 		var new_pause = pause_screen.instantiate()
-		new_pause.global_position = $Camera2D.get_screen_center_position()
+		#new_pause.global_position = $Camera2D.get_screen_center_position()
 		get_tree().get_nodes_in_group("main level")[0].add_child(new_pause)
 		get_tree().paused = true
 
@@ -206,3 +207,14 @@ func download_tracker():
 	damage = Tracker.player_damage
 	entity_knockback = Tracker.player_knockback
 	damage_res = Tracker.player_damage_res
+
+
+func disable_controls():
+	control_active = false
+	velocity = Vector2(0, 0)
+	dashing_frame = dashing_frames
+	knockback = Vector2(0, 0)
+
+
+func enable_controls():
+	control_active = true

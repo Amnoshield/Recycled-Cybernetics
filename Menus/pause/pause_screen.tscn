@@ -29,26 +29,27 @@ shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ivne"]
 
-[node name="pause screen" type="Node2D"]
+[node name="pause screen" type="CanvasLayer"]
 process_mode = 3
-z_index = 200
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.501961)
-scale = Vector2(4.65625, 2.65625)
+position = Vector2(384, 216)
+scale = Vector2(12, 6.75)
 texture = SubResource("GradientTexture2D_5yamy")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -36.0
-offset_top = -51.0
-offset_right = 144.0
-offset_bottom = 173.0
+offset_left = 287.0
+offset_top = 101.0
+offset_right = -670.0
+offset_bottom = -316.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.4, 0.4)
 theme = ExtResource("1_prtrn")
 vertical = true
 
@@ -122,10 +123,6 @@ bus = &"Menu"
 [node name="click" type="AudioStreamPlayer" parent="BoxContainer"]
 stream = ExtResource("10_3127y")
 bus = &"Menu"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
-zoom = Vector2(4, 4)
 
 [node name="sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_nteh2")

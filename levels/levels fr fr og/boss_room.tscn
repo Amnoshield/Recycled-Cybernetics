@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://qx2tnvc67rd7"]
+[gd_scene load_steps=11 format=4 uid="uid://qx2tnvc67rd7"]
 
 [ext_resource type="PackedScene" uid="uid://dg4yl7masox37" path="res://levels/end_zone.tscn" id="1_j08lt"]
 [ext_resource type="PackedScene" uid="uid://bb0hwr4cieh4x" path="res://levels/start_zone.tscn" id="2_tu0wh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d31bq328wfore" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.tscn" id="7_iapcs"]
 [ext_resource type="PackedScene" uid="uid://bhfib5np8qn3" path="res://objects/other/Barrel.tscn" id="8_2u1u1"]
 [ext_resource type="PackedScene" uid="uid://dj2adqdmn3iqk" path="res://objects/player/player.tscn" id="9_bmv48"]
+[ext_resource type="PackedScene" uid="uid://c6qy0wdh65r0f" path="res://objects/Enemys/boss/boss_spawner.tscn" id="9_f8vsd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rst2h"]
 vertices = PackedVector2Array(798, -597, 798, -663, 928, -775, 928, -197, 784, -583, 478, -309, 478, -375, 704, -375, 704, -309, 622, -197, 608, -183, 576, -183, 562, -197, 608, -169, 576, -169, 478, -597, 704, -663, 704, -597, 464, -389, 464, -583, 478, -663, 784, -295, 798, -309, 718, -295, 464, -295, 254, -197, 398, -295, 384, -309, 254, -775, 384, -375, 398, -389, 784, -677, 718, -677, 464, -677, 384, -597, 718, -583, 798, -375, 784, -389, 718, -389, 398, -583, 398, -677, 384, -663)
@@ -46,7 +47,7 @@ tile_map_data = PackedByteArray("AAANAOr/AAAAAAEAAAANAOv/AAAAAAEAAAANAOz/AAAAAAE
 tile_set = ExtResource("3_sjtvc")
 
 [node name="floor deets" type="TileMapLayer" parent="NavigationRegion2D"]
-z_index = -4
+z_index = -5
 use_parent_material = true
 position = Vector2(-177, -54)
 tile_map_data = PackedByteArray("AAAVAPL/AAAEAAAAAAAVAPT/AAAEAAAAAAAXAPX/AAAEAAAAAAAXAPb/AAABAAEAAAAdAPP/AAABAAEAAAAcAPP/AAADAAAAAAASAPD/AAAEAAAAAAASAPH/AAAEAAAAAAAZAPf/AAADAAAAAAAYAPj/AAAEAAAAAAAQAPf/AAAEAAAAAAASAPn/AAADAAAAAAAPAPb/AAADAAAAAAAgAO//AAAEAAAAAAAhAPP/AAAEAAAAAAAgAPb/AAABAAEAAAAcAPD/AAADAAAAAAAbAPD/AAAEAAAAAAAYAO3/AAADAAAAAAAUAOr/AAADAAAAAAAgAOv/AAAEAAAAAAA=")
@@ -61,6 +62,8 @@ tile_set = ExtResource("4_lw64u")
 position = Vector2(829, -20)
 
 [node name="enemy_spawner" parent="." instance=ExtResource("6_qhumj")]
+process_mode = 4
+visible = false
 position = Vector2(828, -379)
 enemies = Array[PackedScene]([ExtResource("7_iapcs")])
 
@@ -158,3 +161,6 @@ position = Vector2(1163, -641)
 
 [node name="Barrel31" parent="barrels" instance=ExtResource("8_2u1u1")]
 position = Vector2(1137.5, -645.44)
+
+[node name="BossSpawner" parent="." instance=ExtResource("9_f8vsd")]
+position = Vector2(828, -379)

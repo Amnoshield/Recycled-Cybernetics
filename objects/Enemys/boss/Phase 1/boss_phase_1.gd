@@ -65,8 +65,7 @@ func _ready():
 	attacking_frame = attacking_frames
 	
 	player_attack_animation.animation_finished.connect(player_attack)
-	
-	spawn_minions()
+
 
 func  _process(_delta):
 	var face_player = velocity 
@@ -97,15 +96,6 @@ func  _process(_delta):
 		lastdir = 1
 
 
-func spawn_minions():
-	for x in range(4):
-		Tracker.num_enemies += 1
-		var mob:Node = minion.instantiate()
-		mob.global_position = global_position+Vector2(rng.randi_range(-10, 10), rng.randi_range(-10, 10))
-		get_node("..").add_child(mob)
-	Tracker.enemy_counter.change_label(Tracker.num_enemies)
-
-
 func _physics_process(_delta):
 	if velocity.length() < speed and not walk_sound.stream_paused:
 		walk_sound.stream_paused = true
@@ -128,7 +118,7 @@ func take_damage(oof_damage:int, new_knockback):
 	$State_Machine.trigger_knockback()
 	
 	if health <= 0:
-		call_deferred("die")
+		die()
 
 
 func attack():
@@ -167,11 +157,7 @@ func _on_random_attack_cooldown_timeout():
 
 
 func die():
-	#Tracker.remove_enemy(self)
-	var p2 = load("res://objects/Enemys/boss/Phase 2/boss_phase_2.tscn").instantiate()
-	p2.global_position = global_position
-	get_node("..").add_child(p2)
-	self.queue_free()
+	$"..".next_phase()
 
 
 func player_attack(_name):

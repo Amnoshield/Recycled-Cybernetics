@@ -43,16 +43,14 @@ func _ready():
 	parry_timer.wait_time = parry_cooldown
 	
 	dashing_frame = dashing_frames
-	
-	spawn_minions()
 
 
 func spawn_minions():
 	for x in range(2):
 		Tracker.num_enemies += 1
-		var mob:Node = minion.instantiate()
+		var mob:Node2D = minion.instantiate()
 		mob.global_position = global_position+Vector2(rng.randi_range(-10, 10), rng.randi_range(-10, 10))
-		get_node("..").add_child(mob)
+		$"../..".add_child(mob)
 	Tracker.enemy_counter.change_label(Tracker.num_enemies)
 
 
@@ -81,7 +79,7 @@ func take_damage(oof_damage:int, new_knockback):
 	$State_Machine.trigger_knockback()
 	
 	if health <= 0:
-		call_deferred("die")
+		die()
 
 
 func change_idle_dir():
@@ -93,10 +91,7 @@ func start_random_attack():
 
 
 func die():
-	var p3 = load("res://objects/Enemys/boss/Phase 3/boss_phase_3.tscn").instantiate()
-	p3.global_position = global_position
-	get_node("..").add_child(p3)
-	self.queue_free()
+	$"..".next_phase()
 
 
 func download_tracker():
@@ -111,3 +106,8 @@ func download_tracker():
 	$"State_Machine/dash attack windup".speed_scale /= Tracker.enemy_attack_cooldown
 	
 	speed *= Tracker.enemy_speed
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		call_deferred("spawn_minions")

@@ -878,6 +878,7 @@ volume_db = -10.0
 [node name="big attack sound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_bgjyp")
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="timeout" from="attack_cooldown" to="State_Machine/p3_d_idle" method="_on_attack_cooldown_timeout"]
 [connection signal="area_entered" from="attack_box" to="attack_box" method="_on_area_entered"]
 [connection signal="area_entered" from="big attack" to="big attack" method="_on_area_entered"]

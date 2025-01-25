@@ -874,6 +874,7 @@ volume_db = -10.0
 [node name="big attack sound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_vxflw")
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="area_entered" from="attack_box" to="attack_box" method="_on_area_entered"]
 [connection signal="area_entered" from="big attack" to="big attack" method="_on_area_entered"]
 [connection signal="animation_finished" from="big attack/AnimationPlayer" to="State_Machine/p2_o_big_attack" method="_on_animation_player_animation_finished"]

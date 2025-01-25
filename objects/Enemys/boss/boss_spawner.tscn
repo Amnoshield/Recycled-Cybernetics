@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6qy0wdh65r0f"]
+
+[ext_resource type="PackedScene" uid="uid://d31bq328wfore" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.tscn" id="1_mxaxo"]
+[ext_resource type="Script" path="res://objects/Enemys/boss/boss_spawner.gd" id="1_q48el"]
+[ext_resource type="PackedScene" uid="uid://tgk8gnfdri4a" path="res://objects/Enemys/blob/blob.tscn" id="3_0tc36"]
+[ext_resource type="PackedScene" uid="uid://cjipcywtmt2jq" path="res://objects/Enemys/boss/Phase 2/boss_phase_2.tscn" id="3_elji4"]
+[ext_resource type="PackedScene" uid="uid://d8ubqr5qt61m" path="res://objects/Enemys/boss/Phase 3/boss_phase_3.tscn" id="4_mmlfx"]
+[ext_resource type="Texture2D" uid="uid://4de6qdrbrulo" path="res://assets/ui/abilities/screwdriver.png" id="6_w2nhs"]
+
+[sub_resource type="Animation" id="Animation_dwlgw"]
+resource_name = "main_events"
+length = 2.25
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 2.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"zoom_out_cam"
+}, {
+"args": [],
+"method": &"activate_boss"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a4gn1"]
+_data = {
+"main_events": SubResource("Animation_dwlgw")
+}
+
+[node name="BossSpawner" type="Node2D" node_paths=PackedStringArray("boss_phase1", "boss_phase2", "boss_phase3", "minions", "player_point")]
+script = ExtResource("1_q48el")
+boss_phase1 = NodePath("boss phase 1")
+boss_phase2 = NodePath("boss phase 2")
+boss_phase3 = NodePath("boss phase 3")
+minions = NodePath("minions")
+player_point = NodePath("player ani point")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(10, 10)
+
+[node name="boss phase 1" parent="." instance=ExtResource("1_mxaxo")]
+process_mode = 4
+position = Vector2(0, -30)
+
+[node name="boss phase 2" parent="." instance=ExtResource("3_elji4")]
+process_mode = 4
+visible = false
+
+[node name="boss phase 3" parent="." instance=ExtResource("4_mmlfx")]
+process_mode = 4
+visible = false
+
+[node name="minions" type="Node2D" parent="."]
+process_mode = 4
+
+[node name="blob" parent="minions" instance=ExtResource("3_0tc36")]
+position = Vector2(30, -30)
+
+[node name="blob2" parent="minions" instance=ExtResource("3_0tc36")]
+position = Vector2(-30, -30)
+
+[node name="blob3" parent="minions" instance=ExtResource("3_0tc36")]
+position = Vector2(20, -10)
+
+[node name="blob4" parent="minions" instance=ExtResource("3_0tc36")]
+position = Vector2(-20, -10)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 30)
+enabled = false
+zoom = Vector2(3, 3)
+
+[node name="player ani point" type="Node2D" parent="."]
+position = Vector2(0, 30)
+
+[node name="Timing" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a4gn1")
+}
+
+[node name="parts" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="parts"]
+position = Vector2(0, 30)
+texture = ExtResource("6_w2nhs")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -44,8 +44,6 @@ func _ready():
 	parry_timer.wait_time = parry_cooldown
 	
 	dashing_frame = dashing_frames
-	
-	spawn_minions()
 
 
 func spawn_minions():
@@ -53,7 +51,7 @@ func spawn_minions():
 		Tracker.num_enemies += 1
 		var mob:Node = minion.instantiate()
 		mob.global_position = global_position+Vector2(rng.randi_range(-10, 10), rng.randi_range(-10, 10))
-		get_node("..").add_child(mob)
+		$"../..".add_child(mob)
 	Tracker.enemy_counter.change_label(Tracker.num_enemies)
 
 
@@ -116,3 +114,8 @@ func download_tracker():
 	$"State_Machine/dash attack windup".speed_scale /= Tracker.enemy_attack_cooldown
 	
 	speed *= Tracker.enemy_speed
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		call_deferred("spawn_minions")
