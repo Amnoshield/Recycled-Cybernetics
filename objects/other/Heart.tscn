@@ -1,13 +1,91 @@
-[gd_scene load_steps=5 format=3 uid="uid://b01yp2rldreom"]
+[gd_scene load_steps=16 format=3 uid="uid://b01yp2rldreom"]
 
 [ext_resource type="Script" path="res://objects/other/heart.gd" id="1_2sjqh"]
+[ext_resource type="Texture2D" uid="uid://bbmqr08sc5q1i" path="res://assets/other/heart_ani.png" id="2_6smtb"]
 [ext_resource type="Script" path="res://objects/hurtbox.gd" id="2_tx7yu"]
-[ext_resource type="Texture2D" uid="uid://beocpumbfd4e4" path="res://assets/other/heart.png" id="2_y25d4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug8w2"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lepsw"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyjvn"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugej6"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvobv"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ecjy"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp3wv"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywejo"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(64, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf0m7"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(72, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr3fk"]
+atlas = ExtResource("2_6smtb")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wio3g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug8w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lepsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyjvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugej6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvobv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ecjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp3wv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywejo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf0m7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr3fk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbcqt"]
 size = Vector2(8, 8)
 
-[node name="Heart" type="CharacterBody2D"]
+[node name="Heart" type="CharacterBody2D" node_paths=PackedStringArray("ani_timer", "sprite")]
 process_priority = 1000000
 z_index = 13
 collision_layer = 0
@@ -15,9 +93,13 @@ collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_2sjqh")
+ani_timer = NodePath("ani timer")
+sprite = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_y25d4")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wio3g")
+frame = 9
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="." groups=["hurtbox"]]
 collision_layer = 4
@@ -32,3 +114,8 @@ shape = SubResource("RectangleShape2D_kbcqt")
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="ani timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ani timer" to="." method="_on_ani_timer_timeout"]
