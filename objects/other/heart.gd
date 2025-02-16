@@ -59,5 +59,5 @@ func start_timer():
 
 func _on_ani_timer_timeout() -> void:
 	start_timer()
-	sprite.flip_h = randi_range(0, 1)
+	#sprite.flip_h = randi_range(0, 1)
 	sprite.play("default")
