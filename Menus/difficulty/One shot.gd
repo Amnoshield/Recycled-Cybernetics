@@ -1,11 +1,8 @@
-extends Button
+extends simpleButton
 
-@export var click_sound:AudioStreamPlayer
-@export var sfx_sound:AudioStreamPlayer
-
-var hovered = false
 
 func _ready() -> void:
+	super()
 	var record_file = "user://one shot_record.save"
 	if FileAccess.file_exists(record_file): # and not disabled??????
 		var read_file = FileAccess.open(record_file, FileAccess.READ)
@@ -23,21 +20,7 @@ func _ready() -> void:
 		text = "One Shot"
 		$Panel.visible = false
 
-
 func _on_pressed():
 	Tracker.difficulty = "one shot"
 	Tracker.reset()
 	get_tree().change_scene_to_file(Tracker.totorial_level)
-
-
-func _on_draw():
-	if disabled:
-		return
-	
-	if is_hovered() and not hovered:
-		hovered = true
-		sfx_sound.play()
-	elif is_hovered() and hovered:
-		click_sound.play()
-	elif not is_hovered() and hovered:
-		hovered = false

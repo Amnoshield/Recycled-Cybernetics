@@ -1,0 +1,143 @@
+[gd_scene load_steps=9 format=3 uid="uid://bt4v2legy23xl"]
+
+[ext_resource type="Script" path="res://Menus/option/options.gd" id="1_3jb3f"]
+[ext_resource type="Script" path="res://Menus/button.gd" id="1_3jnte"]
+[ext_resource type="Script" path="res://Menus/main/main_menu_audio_slider.gd" id="2_x03dv"]
+[ext_resource type="Script" path="res://Menus/option/tab_container.gd" id="3_mtsmk"]
+[ext_resource type="Script" path="res://Menus/option/fullscreen.gd" id="3_vkvbu"]
+[ext_resource type="Script" path="res://Menus/main/main_menu_music_slider.gd" id="5_0lmi0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fspy0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8cbsx"]
+
+[node name="options" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_3jb3f")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="options->main" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_top = 30.0
+offset_right = 79.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "Back"
+script = ExtResource("1_3jnte")
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -471.0
+offset_top = -573.0
+offset_right = 471.0
+grow_horizontal = 2
+grow_vertical = 0
+tab_alignment = 1
+current_tab = 0
+script = ExtResource("3_mtsmk")
+
+[node name="Video" type="Control" parent="Panel/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 151.0
+offset_top = 17.0
+offset_right = -151.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fullscreen" type="OptionButton" parent="Panel/TabContainer/Video/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 1
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+script = ExtResource("3_vkvbu")
+
+[node name="Audio" type="Control" parent="Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = 42.0
+offset_right = -61.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel/TabContainer/Audio/VBoxContainer"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Master audio" type="Label" parent="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "Master Audio"
+label_settings = SubResource("LabelSettings_fspy0")
+horizontal_alignment = 1
+
+[node name="master audio slider" type="HSlider" parent="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+ticks_on_borders = true
+script = ExtResource("2_x03dv")
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="Panel/TabContainer/Audio/VBoxContainer"]
+layout_mode = 2
+split_offset = 156
+dragger_visibility = 1
+
+[node name="Music" type="Label" parent="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+text = "Music
+"
+label_settings = SubResource("LabelSettings_8cbsx")
+horizontal_alignment = 1
+
+[node name="music" type="HSlider" parent="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+min_value = -30.0
+max_value = 30.0
+ticks_on_borders = true
+script = ExtResource("5_0lmi0")
+
+[connection signal="pressed" from="Panel/options->main" to="." method="back"]
+[connection signal="tab_changed" from="Panel/TabContainer" to="Panel/TabContainer" method="_on_tab_changed"]
+[connection signal="tab_hovered" from="Panel/TabContainer" to="Panel/TabContainer" method="_on_tab_hovered"]
+[connection signal="item_selected" from="Panel/TabContainer/Video/VBoxContainer/fullscreen" to="Panel/TabContainer/Video/VBoxContainer/fullscreen" method="_on_item_selected"]
+[connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer/master audio slider" to="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer/master audio slider" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer2/music" to="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer2/music" method="_on_value_changed"]

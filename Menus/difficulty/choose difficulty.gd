@@ -1,5 +1,9 @@
-extends Node2D
+extends Control
 
+@export var chooseDifficulty_To_Main:AnimationPlayer
+
+func back():
+	chooseDifficulty_To_Main.play("chooseDifficulty_To_Main")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,4 +35,3 @@ func _ready():
 		$BoxContainer/Hard.disabled = false
 	if defficulty_level >= 4:
 		$"BoxContainer/One shot".disabled = false
-	

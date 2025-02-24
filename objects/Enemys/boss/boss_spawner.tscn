@@ -19,7 +19,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.25, 3),
+"times": PackedFloat32Array(0.25, 2.8),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -64,7 +64,7 @@ tracks/3/path = NodePath("parts/PathRight/PathFollow2D2/move3")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2),
+"times": PackedFloat32Array(1.8),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"move3", -1, 1.0, false],

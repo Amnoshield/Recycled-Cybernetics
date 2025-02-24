@@ -7,7 +7,7 @@ func _ready():
 
 
 func _on_toggled(toggled_on):
-	$"../../../../../click".play()
+	GlobalAudio.click()
 	if toggled_on:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
