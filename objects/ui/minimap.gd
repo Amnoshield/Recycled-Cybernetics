@@ -22,8 +22,8 @@ func _physics_process(_delta):
 
 
 func add_tracker(tracke:Node):
-	Tracker.enemy_counter = $"../../../enemy counter/Label"
-	Tracker.enemy_counter.change_label(Tracker.num_enemies)
+	#Tracker.enemy_counter = $"../../../enemy counter/Label"
+	#Tracker.enemy_counter.change_label(Tracker.num_enemies)
 	var tracker = tracker_texture.instantiate()
 	tracker.position = tracke.global_position
 	tracker_pos[tracke.global_position] = tracker

@@ -1,9 +1,10 @@
 extends simpleButton
 
+@export var fade:AnimationPlayer
 
 func _ready() -> void:
 	super()
-	var record_file = "user://one shot_record.save"
+	var record_file = "user://veryHard_record.save"
 	if FileAccess.file_exists(record_file): # and not disabled??????
 		var read_file = FileAccess.open(record_file, FileAccess.READ)
 		var best_time = read_file.get_var()["time"]
@@ -13,14 +14,18 @@ func _ready() -> void:
 		var seconds = fmod(best_time, 60)
 		var minutes = fmod(best_time, 3600) / 60
 		
-		text = "One Shot\n" + "Best Time: " + "%02d:" % minutes + "%02d." % seconds + "%03d" % mseconds
+		text = "Very Hard\n" + "Best Time: " + "%02d:" % minutes + "%02d." % seconds + "%03d" % mseconds
 		$Panel.visible = true
 	
 	else:
-		text = "One Shot"
+		text = "Very Hard"
 		$Panel.visible = false
 
 func _on_pressed():
-	Tracker.difficulty = "one shot"
+	fade.animation_finished.connect(load_level)
+	fade.play("fade_out")
+
+func load_level(_aniName):
+	Tracker.difficulty = "veryHard"
 	Tracker.reset()
 	get_tree().change_scene_to_file(Tracker.totorial_level)

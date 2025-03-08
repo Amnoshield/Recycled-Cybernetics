@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cxcwkhnssnixn"]
+[gd_scene load_steps=22 format=3 uid="uid://cxcwkhnssnixn"]
 
 [ext_resource type="Script" path="res://Menus/main/main_menu.gd" id="1_0nven"]
 [ext_resource type="Texture2D" uid="uid://buv2spj5woguc" path="res://assets/maxes asprite stuff (ignore this)/clounds.png" id="2_amsfi"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" path="res://Menus/main/options.gd" id="5_lnxom"]
 [ext_resource type="Script" path="res://Menus/button.gd" id="9_l24vw"]
 [ext_resource type="Script" path="res://Menus/main/Quit_frfrog.gd" id="10_waw4t"]
-[ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="11_hgpq8"]
-[ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="12_f8k6p"]
 [ext_resource type="Script" path="res://Menus/main/menuController.gd" id="16_1wkwv"]
 [ext_resource type="PackedScene" uid="uid://bt4v2legy23xl" path="res://Menus/option/options.tscn" id="17_uur6x"]
 
@@ -191,15 +189,6 @@ libraries = {
 "": SubResource("AnimationLibrary_sa2mc")
 }
 autoplay = "clouds"
-
-[node name="sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_hgpq8")
-volume_db = -10.0
-bus = &"Menu"
-
-[node name="click" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_f8k6p")
-bus = &"Menu"
 
 [node name="master" type="Control" parent="."]
 layout_mode = 3

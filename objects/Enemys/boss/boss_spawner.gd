@@ -6,13 +6,19 @@ extends Node2D
 @export var minions:Node2D
 @export var player_point:Node2D
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
+@onready var minimap = get_tree().get_nodes_in_group("minimap")[0]
 var triggered = false
 var phase = 1
 
+func _ready() -> void:
+	Tracker.num_enemies += 1
+	minimap.add_tracker(self)
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	if not triggered:
+		minimap.remove_tracker(self)
 		Tracker.num_enemies += 4
+		Tracker.enemy_counter.change_label(Tracker.num_enemies)
 		triggered = true
 		player.disable_controls()
 		player.global_position = player_point.global_position

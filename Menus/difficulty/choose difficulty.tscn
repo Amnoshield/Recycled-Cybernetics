@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://drntx8rv725jw"]
+[gd_scene load_steps=14 format=3 uid="uid://drntx8rv725jw"]
 
 [ext_resource type="Script" path="res://Menus/difficulty/choose difficulty.gd" id="1_2fpg0"]
 [ext_resource type="Script" path="res://Menus/difficulty/Easy.gd" id="1_c1t4o"]
 [ext_resource type="Script" path="res://Menus/difficulty/Normal.gd" id="2_c62cw"]
 [ext_resource type="Script" path="res://Menus/difficulty/Hard.gd" id="4_5k37x"]
-[ext_resource type="Script" path="res://Menus/difficulty/One shot.gd" id="5_b1naq"]
+[ext_resource type="Script" path="res://Menus/difficulty/Very Hard.gd" id="5_b1naq"]
 [ext_resource type="Script" path="res://Menus/button.gd" id="6_32e78"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dq1q8"]
@@ -13,12 +13,146 @@ shadow_size = 8
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2, 2)
 
-[node name="ChooseDifficulty" type="Control"]
+[sub_resource type="Gradient" id="Gradient_octet"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_esjws"]
+gradient = SubResource("Gradient_octet")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.501, 0.501)
+
+[sub_resource type="Animation" id="Animation_8grjs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:fill_to")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.501, 0.501)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_bdayq"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:fill_to")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0.501, 0.501), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ijo1k"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:fill_to")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.75, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.501, 0.501)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rbpeh"]
+_data = {
+"RESET": SubResource("Animation_8grjs"),
+"fade_in": SubResource("Animation_bdayq"),
+"fade_out": SubResource("Animation_ijo1k")
+}
+
+[node name="ChooseDifficulty" type="Control" node_paths=PackedStringArray("fade")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 script = ExtResource("1_2fpg0")
+fade = NodePath("fade")
 
 [node name="Back to main menu" type="Button" parent="."]
 layout_mode = 0
@@ -37,7 +171,7 @@ offset_right = 730.0
 offset_bottom = 520.0
 vertical = true
 
-[node name="Easy" type="Button" parent="BoxContainer"]
+[node name="Easy" type="Button" parent="BoxContainer" node_paths=PackedStringArray("fade")]
 layout_mode = 2
 tooltip_text = "More health,
 heal more,
@@ -47,6 +181,7 @@ faster cooldowns."
 text = "Easy
 Best Time: 00: 00. 000"
 script = ExtResource("1_c1t4o")
+fade = NodePath("../../fade/AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="BoxContainer/Easy"]
 show_behind_parent = true
@@ -57,13 +192,14 @@ offset_right = 297.0
 offset_bottom = 49.0
 size_flags_vertical = 3
 
-[node name="Normal" type="Button" parent="BoxContainer"]
+[node name="Normal" type="Button" parent="BoxContainer" node_paths=PackedStringArray("fade")]
 layout_mode = 2
 tooltip_text = "Normal"
 disabled = true
 text = "Normal
 Best Time: 00: 00. 000"
 script = ExtResource("2_c62cw")
+fade = NodePath("../../fade/AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="BoxContainer/Normal"]
 show_behind_parent = true
@@ -74,7 +210,7 @@ offset_right = 297.0
 offset_bottom = 49.0
 size_flags_vertical = 3
 
-[node name="Hard" type="Button" parent="BoxContainer"]
+[node name="Hard" type="Button" parent="BoxContainer" node_paths=PackedStringArray("fade")]
 layout_mode = 2
 tooltip_text = "Take more damage,
 no more healing,
@@ -83,6 +219,7 @@ disabled = true
 text = "Hard
 Best Time: 00: 00. 000"
 script = ExtResource("4_5k37x")
+fade = NodePath("../../fade/AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="BoxContainer/Hard"]
 show_behind_parent = true
@@ -93,15 +230,16 @@ offset_right = 297.0
 offset_bottom = 49.0
 size_flags_vertical = 3
 
-[node name="One shot" type="Button" parent="BoxContainer"]
+[node name="Very hard" type="Button" parent="BoxContainer" node_paths=PackedStringArray("fade")]
 layout_mode = 2
 tooltip_text = "You have one health >:)"
 disabled = true
-text = "One Shot
+text = "Very Hard
 Best Time: 00: 00. 000"
 script = ExtResource("5_b1naq")
+fade = NodePath("../../fade/AnimationPlayer")
 
-[node name="Panel" type="Panel" parent="BoxContainer/One shot"]
+[node name="Panel" type="Panel" parent="BoxContainer/Very hard"]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 6.0
@@ -119,6 +257,23 @@ label_settings = SubResource("LabelSettings_dq1q8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="fade" type="TextureRect" parent="."]
+z_index = 50
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_esjws")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fade"]
+libraries = {
+"": SubResource("AnimationLibrary_rbpeh")
+}
+
 [connection signal="pressed" from="Back to main menu" to="." method="back"]
 [connection signal="draw" from="BoxContainer/Easy" to="BoxContainer/Easy" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Easy" to="BoxContainer/Easy" method="_on_pressed"]
@@ -126,5 +281,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="BoxContainer/Normal" to="BoxContainer/Normal" method="_on_pressed"]
 [connection signal="draw" from="BoxContainer/Hard" to="BoxContainer/Hard" method="_on_draw"]
 [connection signal="pressed" from="BoxContainer/Hard" to="BoxContainer/Hard" method="_on_pressed"]
-[connection signal="draw" from="BoxContainer/One shot" to="BoxContainer/One shot" method="_on_draw"]
-[connection signal="pressed" from="BoxContainer/One shot" to="BoxContainer/One shot" method="_on_pressed"]
+[connection signal="draw" from="BoxContainer/Very hard" to="BoxContainer/Very hard" method="_on_draw"]
+[connection signal="pressed" from="BoxContainer/Very hard" to="BoxContainer/Very hard" method="_on_pressed"]

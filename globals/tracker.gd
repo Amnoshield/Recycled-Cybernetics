@@ -126,10 +126,13 @@ func start_part_pick():
 
 
 func next_level():
-	if difficulty == "easy":
-		player_health += 10
-	elif difficulty == "normal":
-		player_health += 5
+	match difficulty:
+		"easy":
+			player_health += 10
+		"normal", "hard":
+			player_health += 5
+		"veryHard":
+			player_health += 4
 	
 	if player_health > player_max_health:
 		player_health = player_max_health
@@ -178,43 +181,47 @@ func player_reset():
 	player_knockback_res = 1
 	player_knockback = 1000
 	
-	
+	player_damage = 3
 	if difficulty == "easy":
-		player_damage = 3
 		player_damage_res = 1
 	elif difficulty == "normal" or difficulty == "one shot":
-		player_damage = 2
 		player_damage_res = 0
-	elif difficulty == "hard":
-		player_damage = 2
+	elif difficulty == "hard" or "veryHard":
 		player_damage_res = -1
 
 
 func reset():
-	if difficulty == "easy":
-		default_health = 30
-		barrel_health_chance = [1,5]
-		enemy_speed = 0.5
-		enemy_attack_cooldown = 0.5
-		enemy_health = 0.5
-	elif difficulty == "normal":
-		default_health = 25
-		barrel_health_chance = [1, 10]
-		enemy_speed = 1
-		enemy_attack_cooldown = 1
-		enemy_health = 1
-	elif difficulty == "hard":
-		default_health = 25
-		barrel_health_chance = [1, 15]
-		enemy_speed = 1.2
-		enemy_attack_cooldown = 1.2
-		enemy_health = 1.2
-	elif difficulty == "one shot":
-		default_health = 1
-		barrel_health_chance = [1, 20]
-		enemy_speed = 1.2
-		enemy_attack_cooldown = 1.2
-		enemy_health = 1.2
+	match difficulty:
+		"easy":
+			default_health = 30
+			barrel_health_chance = [1,5]
+			enemy_speed = 0.5
+			enemy_attack_cooldown = 0.5
+			enemy_health = 0.5
+		"normal":
+			default_health = 25
+			barrel_health_chance = [1, 10]
+			enemy_speed = 1
+			enemy_attack_cooldown = 1
+			enemy_health = 1
+		"hard":
+			default_health = 25
+			barrel_health_chance = [1, 15]
+			enemy_speed = 1.2
+			enemy_attack_cooldown = 1.2
+			enemy_health = 1.2
+		"veryHard":
+			default_health = 20
+			barrel_health_chance = [1, 20]
+			enemy_speed = 1.2
+			enemy_attack_cooldown = 1.5
+			enemy_health = 1.2
+		"one shot":
+			default_health = 1
+			barrel_health_chance = [1, 20]
+			enemy_speed = 1.2
+			enemy_attack_cooldown = 1.2
+			enemy_health = 1.2
 	
 	reset_barrel_pool()
 	

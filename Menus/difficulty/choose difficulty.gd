@@ -1,12 +1,15 @@
 extends Control
 
 @export var chooseDifficulty_To_Main:AnimationPlayer
+@export var fade:TextureRect
 
 func back():
 	chooseDifficulty_To_Main.play("chooseDifficulty_To_Main")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	fade.visible = false
+	
 	if not FileAccess.file_exists("user://unlocks.save"):
 		push_warning("This should only run on first game load.")
 		

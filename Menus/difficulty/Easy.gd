@@ -1,5 +1,7 @@
 extends simpleButton
 
+@export var fade:AnimationPlayer
+
 func _ready() -> void:
 	super()
 	var record_file = "user://easy_record.save"
@@ -20,6 +22,10 @@ func _ready() -> void:
 		$Panel.visible = false
 
 func _on_pressed():
+	fade.animation_finished.connect(load_level)
+	fade.play("fade_out")
+
+func load_level(_aniName):
 	Tracker.difficulty = "easy"
 	Tracker.reset()
 	get_tree().change_scene_to_file(Tracker.totorial_level)
