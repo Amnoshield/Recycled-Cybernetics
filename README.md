@@ -42,9 +42,14 @@ Not by Pixabay:
 
 ----------------
 Music:
--”Digital Duel - Electronic fight song” by Montogoronto
+- by Montogoronto
 -”Street Fight” by DSTechnician
 
+----------------
+Shader:
+-”VHS and CRT monitor effect” by pend00
+
+----------------
 All links:
 -https://pixabay.com/sound-effects/sword-sound-2-36274/
 -https://pixabay.com/sound-effects/forest-wind-and-birds-6881/
@@ -69,3 +74,4 @@ All links:
 -https://pixabay.com/sound-effects/locker-slam-1-101485/
 -https://pixabay.com/music/video-games-digital-duel-electronic-fight-song-198050/
 -https://pixabay.com/music/electro-street-fight-115554/
+-https://godotshaders.com/shader/vhs-and-crt-monitor-effect/
