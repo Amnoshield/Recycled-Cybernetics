@@ -6,6 +6,7 @@
 size = Vector2(1152, 648)
 
 [node name="crt" type="CanvasLayer"]
+layer = 128
 
 [node name="crt" type="TextureRect" parent="."]
 visibility_layer = 2

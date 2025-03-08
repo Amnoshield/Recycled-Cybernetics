@@ -1,7 +1,4 @@
-extends Button
-
-
-var hovered = false
+extends simpleButton
 
 
 func load_main_menu():
@@ -14,13 +11,3 @@ func _on_pressed():
 
 func _on_exit_pressed():
 	load_main_menu()
-
-
-func _on_draw():
-	if is_hovered() and not hovered:
-		hovered = true
-		$"../../sfx".play()
-	elif is_hovered() and hovered:
-		$"../../click".play()
-	elif not is_hovered() and hovered:
-		hovered = false
