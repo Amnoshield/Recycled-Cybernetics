@@ -1,11 +1,51 @@
-[gd_scene load_steps=11 format=3 uid="uid://c23tdoy3f2x7y"]
+[gd_scene load_steps=16 format=3 uid="uid://c23tdoy3f2x7y"]
 
 [ext_resource type="Script" path="res://Menus/win/win_screen.gd" id="1_c8trr"]
 [ext_resource type="Script" path="res://Menus/pause/Back to main menu.gd" id="1_uvan7"]
 [ext_resource type="Script" path="res://Menus/main/Quit_frfrog.gd" id="2_io5oo"]
+[ext_resource type="Texture2D" uid="uid://buv2spj5woguc" path="res://assets/maxes asprite stuff (ignore this)/clounds.png" id="2_th80e"]
+[ext_resource type="Texture2D" uid="uid://hlnhwgqibhyu" path="res://assets/maxes asprite stuff (ignore this)/start screen 2.png" id="3_3ekoe"]
 [ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="3_gostg"]
 [ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="4_axvvm"]
 [ext_resource type="Script" path="res://Menus/win/time.gd" id="7_laee3"]
+
+[sub_resource type="Animation" id="Animation_adegy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("clouds:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 179)]
+}
+
+[sub_resource type="Animation" id="Animation_3d2s3"]
+resource_name = "clouds"
+length = 200.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("clouds:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 200),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 194), Vector2(2455, 194)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sa2mc"]
+_data = {
+"RESET": SubResource("Animation_adegy"),
+"clouds": SubResource("Animation_3d2s3")
+}
 
 [sub_resource type="Gradient" id="Gradient_01s0c"]
 offsets = PackedFloat32Array(0, 0.220779, 1)
@@ -30,7 +70,25 @@ shadow_offset = Vector2(0, 0)
 process_mode = 3
 script = ExtResource("1_c8trr")
 
+[node name="clouds" type="Sprite2D" parent="."]
+position = Vector2(32, 179)
+texture = ExtResource("2_th80e")
+
+[node name="backround" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(596, 299)
+scale = Vector2(1.9, 1.9)
+texture = ExtResource("3_3ekoe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sa2mc")
+}
+autoplay = "clouds"
+speed_scale = 4.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(18, 10.125)
 texture = SubResource("GradientTexture2D_5yamy")
 centered = false

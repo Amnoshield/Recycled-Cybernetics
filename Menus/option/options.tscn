@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt4v2legy23xl"]
+[gd_scene load_steps=10 format=3 uid="uid://bt4v2legy23xl"]
 
 [ext_resource type="Script" path="res://Menus/option/options.gd" id="1_3jb3f"]
 [ext_resource type="Script" path="res://Menus/button.gd" id="1_3jnte"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Menus/option/tab_container.gd" id="3_mtsmk"]
 [ext_resource type="Script" path="res://Menus/option/fullscreen.gd" id="3_vkvbu"]
 [ext_resource type="Script" path="res://Menus/main/main_menu_music_slider.gd" id="5_0lmi0"]
+[ext_resource type="Script" path="res://Menus/option/shader_toggle.gd" id="5_ukk8d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fspy0"]
 
@@ -82,6 +83,15 @@ popup/item_1/text = "Fullscreen"
 popup/item_1/id = 1
 script = ExtResource("3_vkvbu")
 
+[node name="shaderToggle" type="OptionButton" parent="Panel/TabContainer/Video/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Shader on"
+popup/item_1/text = "Shader off"
+popup/item_1/id = 1
+script = ExtResource("5_ukk8d")
+
 [node name="Audio" type="Control" parent="Panel/TabContainer"]
 visible = false
 layout_mode = 2
@@ -139,5 +149,6 @@ script = ExtResource("5_0lmi0")
 [connection signal="tab_changed" from="Panel/TabContainer" to="Panel/TabContainer" method="_on_tab_changed"]
 [connection signal="tab_hovered" from="Panel/TabContainer" to="Panel/TabContainer" method="_on_tab_hovered"]
 [connection signal="item_selected" from="Panel/TabContainer/Video/VBoxContainer/fullscreen" to="Panel/TabContainer/Video/VBoxContainer/fullscreen" method="_on_item_selected"]
+[connection signal="item_selected" from="Panel/TabContainer/Video/VBoxContainer/shaderToggle" to="Panel/TabContainer/Video/VBoxContainer/shaderToggle" method="_on_item_selected"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer/master audio slider" to="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer/master audio slider" method="_on_value_changed"]
 [connection signal="value_changed" from="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer2/music" to="Panel/TabContainer/Audio/VBoxContainer/HSplitContainer2/music" method="_on_value_changed"]

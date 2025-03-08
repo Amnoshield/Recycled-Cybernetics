@@ -39,6 +39,7 @@ var control_active = true
 func _ready():
 	download_tracker()
 	Tracker.apply_upgrade(self)
+	#upload_tracker()
 	
 	dashing_frame = dashing_frames
 	
@@ -178,7 +179,7 @@ func _on_cooldown_timeout():
 
 func die():
 	var new_death = death_screen.instantiate()
-	new_death.global_position = $Camera2D.get_screen_center_position()
+	#new_death.global_position = $Camera2D.get_screen_center_position()
 	get_tree().get_nodes_in_group("main level")[0].add_child(new_death)
 	get_tree().paused = true
 	#get_tree().change_scene_to_file("res://Menus/death_screen.tscn")
@@ -197,6 +198,9 @@ func upload_tracker():
 	Tracker.player_damage = damage
 	Tracker.player_knockback = entity_knockback
 	Tracker.player_damage_res = damage_res
+	Tracker.player_attack_cooldown = attack_cooldown
+	Tracker.player_dash_cooldown = dash_cooldown
+	Tracker.player_parry_cooldown = parry_cooldown
 
 
 func download_tracker():
@@ -207,6 +211,9 @@ func download_tracker():
 	damage = Tracker.player_damage
 	entity_knockback = Tracker.player_knockback
 	damage_res = Tracker.player_damage_res
+	attack_cooldown = Tracker.player_attack_cooldown
+	dash_cooldown = Tracker.player_dash_cooldown
+	parry_cooldown = Tracker.player_parry_cooldown
 
 
 func disable_controls():
@@ -214,6 +221,7 @@ func disable_controls():
 	velocity = Vector2(0, 0)
 	dashing_frame = dashing_frames
 	knockback = Vector2(0, 0)
+	runnin.stream_paused = true
 
 
 func enable_controls():

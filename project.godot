@@ -18,12 +18,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+CRT_Shader="*res://shaders/crt.tscn"
 Tracker="*res://globals/tracker.gd"
 GlobalAudio="*res://globals/global audio.tscn"
 SpeedrunTimer="*res://globals/speedrun_timer.gd"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
