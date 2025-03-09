@@ -10,7 +10,9 @@
 # Export configuration
 export.cfg                  
 # Export presets configuration
-export_presets.cfg          
+export_presets.cfg        
+# Exports
+.exports
 
 # -----------------------------------------------------------------------------------
 # Common auto-generated or temporary files

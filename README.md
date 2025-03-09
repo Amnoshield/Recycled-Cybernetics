@@ -30,21 +30,26 @@ All SFX was found on Pixabay.com
 By Pixabay:  "Sword sound 2", "Forest wind and birds", "RUNNING 1", "Swish Sound", "Metronome", "Gooey Squish", "Knife Stab Sound Effect", "COUCH HIT AND SWISH_44100", "energy hum", "Simple Zaps", "Knife throw 2", "running in grass", "Sword Hit", "Sword Slash with a Designed Impact", "gear-spinning-loop", and "Locker Slam 1"
 
 Not by Pixabay:
--"Robot Heavy Mechanical Footsteps" by DavidDumaisAudio
+- "Robot Heavy Mechanical Footsteps" by DavidDumaisAudio
 
--"Metal Whoosh Hit 10" by floraphonic
+- "Metal Whoosh Hit 10" by floraphonic
 
--"Metal Hit 94" by floraphonic
+- "Metal Hit 94" by floraphonic
 
--"Tap Notification" by lucadialessandro
+- "Tap Notification" by lucadialessandro
 
--"Mouse Click" by SoundReality
+ -"Mouse Click" by SoundReality
 
 ----------------
 Music:
--”Digital Duel - Electronic fight song” by Montogoronto
--”Street Fight” by DSTechnician
+- ”Digital Duel - Electronic fight song” by Montogoronto
+- ”Street Fight” by DSTechnician
 
+----------------
+Shader(s):
+- ”VHS and CRT monitor effect” by pend00
+
+----------------
 All links:
 -https://pixabay.com/sound-effects/sword-sound-2-36274/
 -https://pixabay.com/sound-effects/forest-wind-and-birds-6881/
@@ -69,3 +74,4 @@ All links:
 -https://pixabay.com/sound-effects/locker-slam-1-101485/
 -https://pixabay.com/music/video-games-digital-duel-electronic-fight-song-198050/
 -https://pixabay.com/music/electro-street-fight-115554/
+-https://godotshaders.com/shader/vhs-and-crt-monitor-effect/

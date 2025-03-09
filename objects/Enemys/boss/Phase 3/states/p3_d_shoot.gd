@@ -16,5 +16,5 @@ func Enter():
 func fire():
 	var new_bullet = bullet.instantiate()
 	new_bullet.global_position = enemy.global_position
-	get_node("../../..").add_child(new_bullet)
+	get_node("..").add_child(new_bullet)
 	enemy.idle_direction = enemy.change_idle_dir()

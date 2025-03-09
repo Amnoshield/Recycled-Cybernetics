@@ -14,16 +14,18 @@ config/name="Recycled Cybernetics"
 run/main_scene="res://Menus/main/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=120
-config/icon="res://icon.svg"
+config/icon="res://assets/game_icon.png"
 
 [autoload]
 
+CRT_Shader="*res://shaders/crt.tscn"
 Tracker="*res://globals/tracker.gd"
 GlobalAudio="*res://globals/global audio.tscn"
 SpeedrunTimer="*res://globals/speedrun_timer.gd"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

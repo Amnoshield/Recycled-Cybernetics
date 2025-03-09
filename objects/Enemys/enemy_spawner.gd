@@ -54,6 +54,7 @@ func add():
 	Tracker.spawners.append(self)
 	if enemy:
 		minimap.add_tracker(self)
+		Tracker.enemy_counter.change_label(Tracker.num_enemies)
 
 
 func remove():

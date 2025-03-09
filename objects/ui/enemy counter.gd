@@ -7,5 +7,3 @@ func _ready():
 
 func change_label(num:int):
 	text = "Enemies left: {0}".format([num])
-
-

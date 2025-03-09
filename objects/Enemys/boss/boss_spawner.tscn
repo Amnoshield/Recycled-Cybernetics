@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6qy0wdh65r0f"]
+[gd_scene load_steps=21 format=3 uid="uid://c6qy0wdh65r0f"]
 
 [ext_resource type="PackedScene" uid="uid://d31bq328wfore" path="res://objects/Enemys/boss/Phase 1/boss_phase_1.tscn" id="1_mxaxo"]
 [ext_resource type="Script" path="res://objects/Enemys/boss/boss_spawner.gd" id="1_q48el"]
@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cjipcywtmt2jq" path="res://objects/Enemys/boss/Phase 2/boss_phase_2.tscn" id="3_elji4"]
 [ext_resource type="PackedScene" uid="uid://d8ubqr5qt61m" path="res://objects/Enemys/boss/Phase 3/boss_phase_3.tscn" id="4_mmlfx"]
 [ext_resource type="Texture2D" uid="uid://4de6qdrbrulo" path="res://assets/ui/abilities/screwdriver.png" id="6_w2nhs"]
+[ext_resource type="Texture2D" uid="uid://ckvdm0nckl08o" path="res://assets/ui/abilities/circut board.png" id="7_vig0h"]
+[ext_resource type="Texture2D" uid="uid://cs53ris58djq0" path="res://assets/ui/abilities/wrench.png" id="8_43vb6"]
 
 [sub_resource type="Animation" id="Animation_dwlgw"]
 resource_name = "main_events"
-length = 2.25
+length = 3.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -17,7 +19,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.25, 2.25),
+"times": PackedFloat32Array(0.25, 2.8),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -27,10 +29,238 @@ tracks/0/keys = {
 "method": &"activate_boss"
 }]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("parts/PathLeft/PathFollow2D/move2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"move2", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("parts/PathRight/PathFollow2D/move1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"move1", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("parts/PathRight/PathFollow2D2/move3")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"move3", -1, 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a4gn1"]
 _data = {
 "main_events": SubResource("Animation_dwlgw")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_relve"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 30, 8.4757, 12.4487, -8.4757, -12.4487, -30, 17, -5.82705, 12.9784, 5.82705, -12.9784, -31, -16, 0, 0, 0, 0, 0, -30)
+}
+point_count = 4
+
+[sub_resource type="Animation" id="Animation_plwkc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("screwdriver:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_j1lon"]
+resource_name = "move2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("screwdriver:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ncmhc"]
+_data = {
+"RESET": SubResource("Animation_plwkc"),
+"move2": SubResource("Animation_j1lon")
+}
+
+[sub_resource type="Animation" id="Animation_5178n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("circutBoard:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ux1sb"]
+resource_name = "move1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("circutBoard:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_24o6b"]
+_data = {
+"RESET": SubResource("Animation_5178n"),
+"move1": SubResource("Animation_ux1sb")
+}
+
+[sub_resource type="Animation" id="Animation_st843"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wrench:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3n54y"]
+resource_name = "move3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wrench:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcf50"]
+_data = {
+"RESET": SubResource("Animation_st843"),
+"move3": SubResource("Animation_3n54y")
 }
 
 [node name="BossSpawner" type="Node2D" node_paths=PackedStringArray("boss_phase1", "boss_phase2", "boss_phase3", "minions", "player_point")]
@@ -86,8 +316,55 @@ libraries = {
 
 [node name="parts" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="parts"]
+[node name="PathLeft" type="Path2D" parent="parts"]
+curve = SubResource("Curve2D_relve")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="parts/PathLeft"]
 position = Vector2(0, 30)
+rotates = false
+loop = false
+
+[node name="screwdriver" type="Sprite2D" parent="parts/PathLeft/PathFollow2D"]
+visible = false
 texture = ExtResource("6_w2nhs")
+
+[node name="move2" type="AnimationPlayer" parent="parts/PathLeft/PathFollow2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ncmhc")
+}
+
+[node name="PathRight" type="Path2D" parent="parts"]
+scale = Vector2(-1, 1)
+curve = SubResource("Curve2D_relve")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="parts/PathRight"]
+position = Vector2(0, 30)
+scale = Vector2(-1, 1)
+rotates = false
+loop = false
+
+[node name="circutBoard" type="Sprite2D" parent="parts/PathRight/PathFollow2D"]
+visible = false
+texture = ExtResource("7_vig0h")
+
+[node name="move1" type="AnimationPlayer" parent="parts/PathRight/PathFollow2D"]
+libraries = {
+"": SubResource("AnimationLibrary_24o6b")
+}
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="parts/PathRight"]
+position = Vector2(0, 30)
+scale = Vector2(-1, 1)
+rotates = false
+loop = false
+
+[node name="wrench" type="Sprite2D" parent="parts/PathRight/PathFollow2D2"]
+visible = false
+texture = ExtResource("8_43vb6")
+
+[node name="move3" type="AnimationPlayer" parent="parts/PathRight/PathFollow2D2"]
+libraries = {
+"": SubResource("AnimationLibrary_vcf50")
+}
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

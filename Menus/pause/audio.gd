@@ -7,7 +7,7 @@ func _ready():
 
 func _on_value_changed(value_):
 	if fmod(value_, 3) == 0:
-		$"../click".play()
+		GlobalAudio.click()
 	
 	AudioServer.set_bus_volume_db(master_bus, value_)
 	

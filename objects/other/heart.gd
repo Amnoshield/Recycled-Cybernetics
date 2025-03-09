@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 
 @onready var player:CharacterBody2D = get_tree().get_nodes_in_group("Player")[0]
+@export var ani_timer:Timer
+@export var sprite:AnimatedSprite2D
 
 var rng = RandomNumberGenerator.new()
 var turning_speed_deg = 5
@@ -14,6 +16,7 @@ var fake_rotation
 
 func _ready():
 	fake_rotation = get_ange_to_player()+deg_to_rad(rng.randi_range(-45, 45))
+	start_timer()
 
 
 func _physics_process(_delta):
@@ -49,3 +52,12 @@ func take_damage(damage, _kb):
 	if $"spawn cooldown".is_stopped() and damage:
 		player.heal(healing)
 		self.queue_free()
+
+func start_timer():
+	ani_timer.start(rng.randf_range(1.0, 2.0))
+
+
+func _on_ani_timer_timeout() -> void:
+	start_timer()
+	#sprite.flip_h = randi_range(0, 1)
+	sprite.play("default")

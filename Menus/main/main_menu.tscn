@@ -1,28 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://cxcwkhnssnixn"]
+[gd_scene load_steps=22 format=3 uid="uid://cxcwkhnssnixn"]
 
 [ext_resource type="Script" path="res://Menus/main/main_menu.gd" id="1_0nven"]
 [ext_resource type="Texture2D" uid="uid://buv2spj5woguc" path="res://assets/maxes asprite stuff (ignore this)/clounds.png" id="2_amsfi"]
 [ext_resource type="Texture2D" uid="uid://hlnhwgqibhyu" path="res://assets/maxes asprite stuff (ignore this)/start screen 2.png" id="2_e514p"]
-[ext_resource type="Script" path="res://Menus/main/Start.gd" id="2_j1jsv"]
-[ext_resource type="Script" path="res://Menus/main/Quit.gd" id="3_p8ei8"]
 [ext_resource type="PackedScene" uid="uid://drntx8rv725jw" path="res://Menus/difficulty/choose difficulty.tscn" id="3_wxxkv"]
-[ext_resource type="Script" path="res://Menus/main/credits.gd" id="4_7l50f"]
 [ext_resource type="Script" path="res://Menus/main/options.gd" id="5_lnxom"]
-[ext_resource type="Script" path="res://Menus/main/main_menu_fullscreen.gd" id="6_py77i"]
-[ext_resource type="Script" path="res://Menus/main/main_menu_audio_slider.gd" id="7_avqk1"]
-[ext_resource type="Script" path="res://Menus/main/main_menu_music_slider.gd" id="8_4ahkc"]
-[ext_resource type="Script" path="res://Menus/main/Quit2.gd" id="9_vbfoy"]
+[ext_resource type="Script" path="res://Menus/button.gd" id="9_l24vw"]
 [ext_resource type="Script" path="res://Menus/main/Quit_frfrog.gd" id="10_waw4t"]
-[ext_resource type="AudioStream" uid="uid://ouwocqwxj6g4" path="res://assets/Not ours/sound/tap-notification-180637.mp3" id="11_hgpq8"]
-[ext_resource type="AudioStream" uid="uid://d2pgwes6f7uqu" path="res://assets/Not ours/sound/mouse-click-153941.mp3" id="12_f8k6p"]
-
-[sub_resource type="Gradient" id="Gradient_lrdee"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.363636, 0.363636, 0.363636, 1, 0.784314, 0.784314, 0.784314, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pqmtd"]
-gradient = SubResource("Gradient_lrdee")
-fill_from = Vector2(0, 1)
+[ext_resource type="Script" path="res://Menus/main/menuController.gd" id="16_1wkwv"]
+[ext_resource type="PackedScene" uid="uid://bt4v2legy23xl" path="res://Menus/option/options.tscn" id="17_uur6x"]
 
 [sub_resource type="Animation" id="Animation_adegy"]
 length = 0.001
@@ -62,7 +48,121 @@ _data = {
 "clouds": SubResource("Animation_3d2s3")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_fspy0"]
+[sub_resource type="Animation" id="Animation_bn6oo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4qkb4"]
+resource_name = "chooseDifficulty"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1152, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hfxqp"]
+resource_name = "chooseDifficulty_To_Main"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(-1152, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l7qvy"]
+resource_name = "credit->main"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0, -648), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0c3oo"]
+resource_name = "credits"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -648)]
+}
+
+[sub_resource type="Animation" id="Animation_nmb14"]
+resource_name = "options"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1152, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ry5bx"]
+resource_name = "optionsBack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(1152, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pe2xk"]
+_data = {
+"RESET": SubResource("Animation_bn6oo"),
+"chooseDifficulty": SubResource("Animation_4qkb4"),
+"chooseDifficulty_To_Main": SubResource("Animation_hfxqp"),
+"credit->main": SubResource("Animation_l7qvy"),
+"credits": SubResource("Animation_0c3oo"),
+"options": SubResource("Animation_nmb14"),
+"optionsBack": SubResource("Animation_ry5bx")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qy2q"]
 font_size = 50
@@ -78,17 +178,11 @@ script = ExtResource("1_0nven")
 position = Vector2(32, 179)
 texture = ExtResource("2_amsfi")
 
-[node name="backround remade" type="Sprite2D" parent="."]
+[node name="backround" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(596, 299)
 scale = Vector2(1.9, 1.9)
 texture = ExtResource("2_e514p")
-
-[node name="backround" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(576, 324)
-scale = Vector2(18, 10.125)
-texture = SubResource("GradientTexture2D_pqmtd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -96,49 +190,101 @@ libraries = {
 }
 autoplay = "clouds"
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
+[node name="master" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="master" groups=["guiAni"]]
+libraries = {
+"": SubResource("AnimationLibrary_pe2xk")
+}
+script = ExtResource("16_1wkwv")
+
+[node name="home" type="Control" parent="master"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="BoxContainer" type="BoxContainer" parent="master/home"]
+layout_mode = 2
 offset_left = 427.0
-offset_top = 176.0
+offset_top = 236.0
 offset_right = 730.0
-offset_bottom = 413.0
+offset_bottom = 387.0
 vertical = true
 
-[node name="Start" type="Button" parent="BoxContainer"]
+[node name="Start" type="Button" parent="master/home/BoxContainer"]
 layout_mode = 2
 text = "Start run"
-script = ExtResource("2_j1jsv")
-difficulty = ExtResource("3_wxxkv")
+script = ExtResource("9_l24vw")
 
-[node name="Quit1" type="Button" parent="BoxContainer"]
+[node name="options" type="Button" parent="master/home/BoxContainer"]
+layout_mode = 2
+text = "Options"
+script = ExtResource("5_lnxom")
+
+[node name="credits" type="Button" parent="master/home/BoxContainer"]
+layout_mode = 2
+text = "Credits"
+script = ExtResource("9_l24vw")
+
+[node name="Quit" type="Button" parent="master/home/BoxContainer"]
 layout_mode = 2
 text = "Quit
 "
-script = ExtResource("3_p8ei8")
+script = ExtResource("10_waw4t")
 
-[node name="credits" type="Button" parent="BoxContainer"]
+[node name="Label" type="Label" parent="master/home"]
 layout_mode = 2
-toggle_mode = true
-text = "Credits"
-script = ExtResource("4_7l50f")
+offset_right = 1153.0
+offset_bottom = 174.0
+text = "Recycled Cybernetics"
+label_settings = SubResource("LabelSettings_0qy2q")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="BoxContainer/credits"]
-visible = false
+[node name="credits" type="Control" parent="master"]
+anchors_preset = 0
+offset_top = 648.0
+offset_right = 1152.0
+offset_bottom = 1296.0
+
+[node name="Panel" type="Panel" parent="master/credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="credit->main" type="Button" parent="master/credits/Panel"]
 layout_mode = 2
-offset_left = -171.0
-offset_top = 72.0
-offset_right = 474.0
-offset_bottom = 386.0
+offset_left = 497.0
+offset_top = 30.0
+offset_right = 655.0
+offset_bottom = 60.0
+text = "Back"
+script = ExtResource("9_l24vw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BoxContainer/credits/Panel"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 636.0
-offset_bottom = 307.0
+[node name="RichTextLabel" type="RichTextLabel" parent="master/credits/Panel"]
+layout_mode = 2
+offset_left = 167.0
+offset_top = 83.0
+offset_right = 985.0
+offset_bottom = 618.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
 focus_mode = 2
-text = "Credits:
+text = "Credits
+----------------
 Main programmer: Asa Kramer
+
 Main artist: Max Hurley
+
 ----------------
 SFX:
 All SFX was found on Pixabay.com
@@ -146,16 +292,26 @@ All SFX was found on Pixabay.com
 By Pixabay:  \"Sword sound 2\", \"Forest wind and birds\", \"RUNNING 1\", \"Swish Sound\", \"Metronome\", \"Gooey Squish\", \"Knife Stab Sound Effect\", \"COUCH HIT AND SWISH_44100\", \"energy hum\", \"Simple Zaps\", \"Knife throw 2\", \"running in grass\", \"Sword Hit\", \"Sword Slash with a Designed Impact\", \"gear-spinning-loop\", and \"Locker Slam 1\"
 
 Not by Pixabay:
--\"Robot Heavy Mechanical Footsteps\" by DavidDumaisAudio
--\"Metal Whoosh Hit 10\" by floraphonic
--\"Metal Hit 94\" by floraphonic
--\"Tap Notification\" by lucadialessandro
--\"Mouse Click\" by SoundReality
+- \"Robot Heavy Mechanical Footsteps\" by DavidDumaisAudio
 
+- \"Metal Whoosh Hit 10\" by floraphonic
+
+- \"Metal Hit 94\" by floraphonic
+
+- \"Tap Notification\" by lucadialessandro
+
+ -\"Mouse Click\" by SoundReality
+
+----------------
 Music:
--”Digital Duel - Electronic fight song” by Montogoronto
--”Street Fight” by DSTechnician
+- ”Digital Duel - Electronic fight song” by Montogoronto
+- ”Street Fight” by DSTechnician
 
+----------------
+Shader(s):
+- ”VHS and CRT monitor effect” by pend00
+
+----------------
 All links:
 -https://pixabay.com/sound-effects/sword-sound-2-36274/
 -https://pixabay.com/sound-effects/forest-wind-and-birds-6881/
@@ -180,112 +336,26 @@ All links:
 -https://pixabay.com/sound-effects/locker-slam-1-101485/
 -https://pixabay.com/music/video-games-digital-duel-electronic-fight-song-198050/
 -https://pixabay.com/music/electro-street-fight-115554/
-"
+-https://godotshaders.com/shader/vhs-and-crt-monitor-effect/"
 selection_enabled = true
 
-[node name="options" type="Button" parent="BoxContainer"]
-layout_mode = 2
-toggle_mode = true
-button_pressed = true
-text = "Options"
-script = ExtResource("5_lnxom")
+[node name="options" parent="master" node_paths=PackedStringArray("optionsBack") instance=ExtResource("17_uur6x")]
+offset_left = -1152.0
+offset_right = 0.0
+optionsBack = NodePath("../AnimationPlayer")
 
-[node name="Panel" type="Panel" parent="BoxContainer/options"]
-layout_mode = 2
-offset_top = 36.0
-offset_right = 303.0
-offset_bottom = 189.0
+[node name="ChooseDifficulty" parent="master" node_paths=PackedStringArray("chooseDifficulty_To_Main") instance=ExtResource("3_wxxkv")]
+offset_left = 1152.0
+offset_right = 2304.0
+chooseDifficulty_To_Main = NodePath("../AnimationPlayer")
 
-[node name="BoxContainer" type="BoxContainer" parent="BoxContainer/options/Panel"]
-layout_mode = 2
-offset_right = 303.0
-offset_bottom = 62.0
-vertical = true
-
-[node name="fullscreen" type="CheckBox" parent="BoxContainer/options/Panel/BoxContainer"]
-layout_mode = 2
-text = "Fullscreen"
-alignment = 1
-script = ExtResource("6_py77i")
-
-[node name="Master audio" type="Label" parent="BoxContainer/options/Panel/BoxContainer"]
-layout_mode = 2
-text = "Master Audio"
-label_settings = SubResource("LabelSettings_fspy0")
-horizontal_alignment = 1
-
-[node name="slider" type="HSlider" parent="BoxContainer/options/Panel/BoxContainer"]
-layout_mode = 2
-min_value = -30.0
-max_value = 30.0
-ticks_on_borders = true
-script = ExtResource("7_avqk1")
-
-[node name="Music" type="Label" parent="BoxContainer/options/Panel/BoxContainer"]
-layout_mode = 2
-text = "Music
-"
-label_settings = SubResource("LabelSettings_fspy0")
-horizontal_alignment = 1
-
-[node name="slider2" type="HSlider" parent="BoxContainer/options/Panel/BoxContainer"]
-layout_mode = 2
-min_value = -30.0
-max_value = 30.0
-ticks_on_borders = true
-script = ExtResource("8_4ahkc")
-
-[node name="Quit2" type="Button" parent="."]
-visible = false
-offset_left = 829.0
-offset_top = 331.0
-offset_right = 945.0
-offset_bottom = 362.0
-text = "Quit
-"
-script = ExtResource("9_vbfoy")
-
-[node name="Quit3" type="Button" parent="."]
-visible = false
-offset_left = 235.0
-offset_top = 444.0
-offset_right = 277.0
-offset_bottom = 475.0
-text = "Quit
-"
-script = ExtResource("10_waw4t")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 1153.0
-offset_bottom = 174.0
-text = "Recycled Cybernetics"
-label_settings = SubResource("LabelSettings_0qy2q")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_hgpq8")
-volume_db = -10.0
-bus = &"Menu"
-
-[node name="click" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_f8k6p")
-bus = &"Menu"
-
-[connection signal="draw" from="BoxContainer/Start" to="BoxContainer/Start" method="_on_draw"]
-[connection signal="pressed" from="BoxContainer/Start" to="BoxContainer/Start" method="_on_pressed"]
-[connection signal="draw" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_draw"]
-[connection signal="pressed" from="BoxContainer/Quit1" to="BoxContainer/Quit1" method="_on_pressed"]
-[connection signal="draw" from="BoxContainer/credits" to="BoxContainer/credits" method="_on_draw"]
-[connection signal="pressed" from="BoxContainer/credits" to="BoxContainer/credits" method="_on_pressed"]
-[connection signal="toggled" from="BoxContainer/credits" to="BoxContainer/credits" method="_on_toggled"]
-[connection signal="draw" from="BoxContainer/options" to="BoxContainer/options" method="_on_draw"]
-[connection signal="pressed" from="BoxContainer/options" to="BoxContainer/options" method="_on_pressed"]
-[connection signal="toggled" from="BoxContainer/options" to="BoxContainer/options" method="_on_toggled"]
-[connection signal="toggled" from="BoxContainer/options/Panel/BoxContainer/fullscreen" to="BoxContainer/options/Panel/BoxContainer/fullscreen" method="_on_toggled"]
-[connection signal="value_changed" from="BoxContainer/options/Panel/BoxContainer/slider" to="BoxContainer/options/Panel/BoxContainer/slider" method="_on_value_changed"]
-[connection signal="value_changed" from="BoxContainer/options/Panel/BoxContainer/slider2" to="BoxContainer/options/Panel/BoxContainer/slider2" method="_on_value_changed"]
-[connection signal="draw" from="Quit2" to="Quit2" method="_on_draw"]
-[connection signal="pressed" from="Quit2" to="Quit2" method="_on_pressed"]
-[connection signal="draw" from="Quit3" to="Quit3" method="_on_draw"]
-[connection signal="pressed" from="Quit3" to="Quit3" method="_on_pressed"]
+[connection signal="draw" from="master/home/BoxContainer/Start" to="master/home/BoxContainer/Start" method="_on_draw"]
+[connection signal="pressed" from="master/home/BoxContainer/Start" to="master/AnimationPlayer" method="_on_start_pressed"]
+[connection signal="draw" from="master/home/BoxContainer/options" to="master/home/BoxContainer/options" method="_on_draw"]
+[connection signal="pressed" from="master/home/BoxContainer/options" to="master/AnimationPlayer" method="_on_options_pressed"]
+[connection signal="pressed" from="master/home/BoxContainer/options" to="master/home/BoxContainer/options" method="_on_pressed"]
+[connection signal="draw" from="master/home/BoxContainer/credits" to="master/home/BoxContainer/credits" method="_on_draw"]
+[connection signal="pressed" from="master/home/BoxContainer/credits" to="master/AnimationPlayer" method="_on_credits_pressed"]
+[connection signal="draw" from="master/home/BoxContainer/Quit" to="master/home/BoxContainer/Quit" method="_on_draw"]
+[connection signal="pressed" from="master/home/BoxContainer/Quit" to="master/home/BoxContainer/Quit" method="_on_pressed"]
+[connection signal="pressed" from="master/credits/Panel/credit->main" to="master/AnimationPlayer" method="_on_creditmain_pressed"]
